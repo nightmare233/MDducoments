@@ -345,14 +345,14 @@
 ## objects
 ### ticketForContact
 | Name | Type | Description |
-  | - | - | - |
-  | `id` | integer | id of ticket |
-  | `subject` | string | ticket subject |
-  | `contactId` | integer | id of the contact who submit the ticket |
-  | `isClosed` | boolean | if the ticket is closed |
-  | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
-  | `createdTime` | datetime | create time of ticket |
-  | `closedTime` | datetime | close time of ticket |
+| - | - | - |
+| `id` | integer | id of ticket |
+| `subject` | string | ticket subject |
+| `contactId` | integer | id of the contact who submit the ticket |
+| `isClosed` | boolean | if the ticket is closed |
+| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
+| `createdTime` | datetime | create time of ticket |
+| `closedTime` | datetime | close time of ticket |
 
 ## endpoints
 ### Get a ticket by ticket id
@@ -377,12 +377,12 @@
 - Parameters: 
 
 | Name | Type | Description |
-  | - | - | - | 
-  | `subject` | string | ticket subject |
-  | `content` | string | the content of the first message |
-  | `contactId` | integer | id of the contact who submit the ticket |
-  | `attachments` | [attachment](#attachment)[] | attachments of the first message |
-  | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
+| - | - | - | 
+| `subject` | string | ticket subject |
+| `content` | string | the content of the first message |
+| `contactId` | integer | id of the contact who submit the ticket |
+| `attachments` | [attachment](#attachment)[] | attachments of the first message |
+| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
 
 - Response: 
     - [ticket for contact object ](#ticketforcontact)
@@ -414,12 +414,14 @@
 ### Reply ticket
  `post api/v1/ticket/ticketsForContact/{id}/messages`
 - Parameters:
+
 | Name | Type | Description |
-  | - | - | - | 
-  | `ticketId` | integer | id of ticket |
-  | `content` | string | message content |  
-  | `contactId` | integer | contact id |  
-  | `attachments` | [attachment](#attachment)[] | attachment array of message | 
+| - | - | - | 
+| `ticketId` | integer | id of ticket |
+| `content` | string | message content |  
+| `contactId` | integer | contact id |  
+| `attachments` | [attachment](#attachment)[] | attachment array of message | 
+
 - Response: 
     - [message object](#message) 
 
