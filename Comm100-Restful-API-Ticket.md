@@ -628,7 +628,8 @@
 | `from` | string | email from email address | 
 | `to` | string | to email addresses | 
 | `cc` | string | cc email addresses | 
-| `body` | string | email body | 
+| `htmlBody` | string | email body | 
+| `plainBody` | string | email body | 
 | `emailAccountId` | integer | receive email account id | 
 | `isRead` | boolean | if is read | 
 | `attachments` | [attachment](#attachment)[] | attachments | 

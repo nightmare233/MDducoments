@@ -4,6 +4,7 @@
 |---|---|---| 
 |[Contact](#contact)|/api/v1/account/contacts|for contact| 
 |[Agent](#agent)|/api/v1/account/agents|for agent|
+
 # Contact
 ## objects
 ### contact
@@ -132,8 +133,9 @@
 #### Add contact identity
 `post  /api/v1/account/contacts/{contactId}/identities`
 - Parameters
-    - contactId, integer, contact id
-    - [identity object](#identity)
+    - contactId: integer, contact id
+    - type: string, identity type
+    - value: string, identity value
 - Response
     - [identity object](#identity)
 
