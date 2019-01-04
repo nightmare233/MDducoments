@@ -12,7 +12,6 @@
     - DateTime Parametes： 
         - The input time parameter needs to conform to the standard format of is-8601, for reference：<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">wikipedia</a> 
 - All response time values are UTC time, and the caller converts as their time zone as required. 
-- Ticket system main enumeration types including: 
 
 # Resource List 
 |Name|EndPoint|Note| 
@@ -584,7 +583,7 @@
 | - | - | - | 
 | `id` | integer | id | 
 | `name` | string | member name | 
-| `type` | [department member type](#departmentmembertype) | agent or group | 
+| `type` | string | agent or group | 
 
 ## endpoints 
 ### Get one department 
