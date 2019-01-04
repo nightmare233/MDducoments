@@ -18,7 +18,7 @@
 |Name|EndPoint|Note| 
 |---|---|---| 
 |[Ticket](#ticket)|/api/v1/ticket/tickets|| 
-|[TicketForContact](#ticketforcontact)|/api/v1/ticket/ticketsForContact|for contact|
+|[PortalTicket](#portalTicket)|/api/v1/ticket/portalTickets|for contact|
 |[Filter](#filter)|/api/v1/ticket/filters|| 
 |[Field](#field)|/api/v1/ticket/fields|| 
 |[Attachment](#attachment)|/api/v1/ticket/attachments|| 
@@ -101,7 +101,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `type` | string | `Note`, `Email`, `Reply` | 
-| `source` | string | `Note`, `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message` | 
+| `source` | string | `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message` | 
 | `subject` | string | message subject | 
 | `htmlBody` | string | html body of message | 
 | `plainBody` | string | plain text body of message | 
@@ -382,7 +382,7 @@
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
 
 - Response: 
-    - [ticket for contact object ](#ticketforcontact)
+  - [portal ticket object](#portalticket) 
 
 ### Close ticket
 `put api/v1/ticket/portalTickets/{id}/close` 
