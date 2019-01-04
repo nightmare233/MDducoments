@@ -129,8 +129,8 @@
 <code>GET api/v1/ticket/tickets</code> 
 + Max 50 tickets are responded for each request. 
 + Parameters 
-    - filterId: int, Filter ID, optional 
-    - tagId: int, Tag ID, optional 
+    - filterId: int, filter id, optional 
+    - tagId: int, tag id, optional 
     - keywords: string, optional 
     - pageIndex: int, optional 
     - sortBy: string, optional, `Next SLA Breach\ Last Reply Time\	Last Activity Time\	Priority\ Status` 
@@ -146,7 +146,7 @@
 ### Get a ticket 
 <code>GET api/v1/ticket/tickets/{id} </code> 
 + Parameters 
-    - id: int, ticket ID 
+    - id: int, ticket  
 + Response 
     - [ticket object](#ticket) 
 
@@ -264,7 +264,7 @@
 ### Get a deleted ticket 
 <code>GET api/v1/ticket/deletedTickets/{id}</code> 
 - Parameters 
-    - id: int, ticket ID 
+    - id: int, ticket id 
 - Response 
     - [ticket object](#ticket) 
 
@@ -272,7 +272,7 @@
 <code>POST api/v1/ticket/deletedTickets/{id}/restore </code> 
 - Restore ticket from recycle bin 
 - Parameters 
-    - id: int, ticket ID 
+    - id: int, ticket id 
 - Response 
     - [ticket object](#ticket)  
 
@@ -280,14 +280,14 @@
 <code>DELETE api/v1/ticket/deletedTickets/{id}</code> 
 - delete ticket from recycle bin, permanently delete. including: message, attachment, ticket history. 
 - Parameters 
-    - id: int, ticket ID 
+    - id: int, ticket id 
 - Response 
     - http status code 
 
 ### Get ticket draft 
 <code>GET api/v1/ticket/tickets/{id}/draft</code> 
 - Parameters 
-    - id: int, ticket ID 
+    - id: int, ticket id 
 - Response 
     - [ticket draft object](#ticketdraft) 
 
@@ -308,7 +308,7 @@
 ### Delete ticket draft 
 <code>DELETE api/v1/ticket/tickets/{id}/draft</code> 
 - Parameters 
-    - id: int, ticket ID 
+    - id: int, ticket id 
 - Response 
     - http status code 
 
@@ -316,8 +316,8 @@
 <code>POST api/v1/ticket/tickets/{id}/merge</code> 
 - merge source ticket to this ticket 
 - Parameters 
-    - id: int, target ticket ID, 
-    - sourceId: int, source ticket ID 
+    - id: int, target ticket id, 
+    - sourceId: int, source ticket id 
 - Response 
     - [ticket object](#ticket) 
 
@@ -328,7 +328,7 @@
 - Response 
     - allCount: integer, all unread ticket number. 
     - array including: 
-        - filterId: int, filter ID 
+        - filterId: int, filter id 
         - unreadCount: int, count unread tickets of a filter 
         - unreadMentionedCount: int, unread and metioned to me tickets number in filter 
 
@@ -454,7 +454,7 @@
 ### Get a filter and its conditions 
 <code>Get api/v1/ticket/filters/{id}</code> 
 - Parameters 
-    - id: int, filter ID 
+    - id: int, filter id 
 - Response 
     - [filter object](#filter) 
 
@@ -468,7 +468,7 @@
 ### Delete filter 
 <code>Delete api/vi/ticket/filters/{id}</code> 
 - Parameters 
-    - id: int, filter ID 
+    - id: int, filter id 
 - Response 
     - http status code 
 
@@ -652,7 +652,7 @@
 ### Get a junk email 
 <code>GET api/v1/ticket/junkEmails/{id}</code> 
 - Parameters 
-    - id: int, email ID 
+    - id: int, email id 
 - Response 
     - [junk email object](#junkemail) 
 
@@ -666,14 +666,14 @@
 ### Restore a junk email to a normal ticket 
 <code>POST api/v1/ticket/junkEmails/{id}/notJunk</code> 
 - Parameters 
-    - id: int, email ID 
+    - id: int, email id 
 - Response 
     - [ticket object](#ticket) 
 
 ### Delete a junk email 
 <code>DELETE api/v1/ticket/junkEmails/{id}</code> 
 - Parameters 
-    - id: int, junk email ID 
+    - id: int, junk email id 
 - Response 
     - http status code 
 
@@ -701,7 +701,7 @@
 ### Update One Tag 
 <code>Put api/v1/ticket/tags/{id}</code> 
 - Parameters 
-    - id: int, tag ID 
+    - id: int, tag id 
     - name: string, tag name 
 - Response 
     - [tag object](#tag) 
@@ -709,7 +709,7 @@
 ### Delete a tag 
 <code>Delete api/v1/ticket/tags/{id}</code> 
 - Parameters 
-    - id: int, tag ID 
+    - id: int, tag id 
 - Response 
     - http status code
 
