@@ -144,7 +144,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `subject` | string | ticket subject | 
-| `message` | [new message object](#new_message) | the first message of the ticket. | 
+| `message` | [new message object](#newmessage) | the first message of the ticket. | 
 | `agentAssignee` | integer | agent id | 
 | `departmentAssignee` | integer | department id | 
 | `contactId` | integer | the contact id or agent id | 
@@ -159,7 +159,7 @@
 + Response 
     - [ticket object](#tickets)
 
-#### new_message
+#### newMessage
 | Name | Type | Description | 
 | - | - | - | 
 | `type` | string | `note`, `email`, `reply` | 
@@ -183,7 +183,7 @@
 ### Reply ticket 
 `post api/v1/ticket/tickets/{id}/messages` 
 + Parameters 
-    - [new message object](#new_message)  
+    - [new message object](#newmessage)  
 + Response 
     - [message](#message) list 
 
