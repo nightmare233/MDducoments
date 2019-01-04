@@ -487,7 +487,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | field id | 
-| `dataType` | string | field date type: <br>`text`, `textarea`, `email`, <br>`url`, `date`, `integer`, <br>`float`, `operator`, `radio`,<br> `checkbox`, `dropdownList`, <br>`checkboxList`, `link`, `department` | 
+| `dataType` | string | `text`, `textarea`, `email`, <br>`url`, `date`, `integer`, <br>`float`, `operator`, `radio`,<br> `checkbox`, `dropdownList`, <br>`checkboxList`, `link`, `department` | 
 | `name` | integer | field name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 

@@ -8,7 +8,7 @@
 ## objects
 ### contact
 | Name | Type | Description |
-| - | - | :-: | :-: | - |
+| - | - | - |
 | `id` | integer | id of the contact |
 | `name` | string |  the name of the contact |
 | `alias` | string |  the alias name of the contact |
@@ -49,7 +49,7 @@
 - Parameters 
 
 | Name | Type | Description |
-| - | - | :-: | :-: | - |
+| - | - | - |
 | `name` | string |  the name of the contact |
 | `alias` | string |  the alias name of the contact |
 | `identities` | [identity](#identity)[] | the array of identities  |
@@ -107,7 +107,7 @@ Note: † Any of the attributes is mandatory
 - Parameters
 
 | Name | Type | Description |
-| - | - | :-: | :-: | - |
+| - | - | - |
 | `name` | string |  the name of the contact |
 | `alias` | string |  the alias name of the contact |
 | `identities` | [identity](#identity)[] | the array of identities  |
