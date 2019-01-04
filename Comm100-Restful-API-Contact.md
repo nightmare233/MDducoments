@@ -63,7 +63,6 @@
 | `stateOrProvince` | string | the state or province of the contact |
 | `country` | string |  the country of the contact |
 | `postcode` | string | the postcode of the contact  |
-Note: † Any of the attributes is mandatory
 
 - Response
     - [contact object](#contact)
