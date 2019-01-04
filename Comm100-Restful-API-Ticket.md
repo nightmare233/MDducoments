@@ -475,7 +475,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | field id | 
-| `dataType` | string | `text`, `textarea`, `email`, <br>`url`, `date`, `integer`, <br>`float`, `operator`, `radio`,<br> `checkbox`, `dropdownList`, <br>`checkboxList`, `link`, `department` | 
+| `dataType` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,<br/> `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
 | `name` | integer | field name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
@@ -523,7 +523,7 @@
 | - | - | - | 
 | `id` | integer | id | 
 | `email` | string | email or domain | 
-| `blockType` | string | block type：`blockEmailasJunk`,<br> `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
+| `blockType` | string | `blockEmailasJunk`,<br> `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
 ### Get block sender list 

@@ -24,7 +24,7 @@
         id: 1, //number
         name: '' //string
     },
-    contact: 1, //number
+    contact:
     {
         id: number, //number
         name: '', //string  // todo：
