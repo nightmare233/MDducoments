@@ -1,5 +1,4 @@
 # Catalogue 
-[toc] 
 # Generic 
 - Authorization: Comm100 Ticket API provides 2 authentication methods: 
     - API_key Authentication 
@@ -88,11 +87,11 @@
 | `originalId` | string | the original ID of message in original object |
 | `content` | string | html content of message | 
 | `contentText` | string | plain text of message | 
-| `quote` | string | quoted email content of the message, only for email message | 
+| `quote` | string | quoted content of the message, only for email message | 
 | `senderId`| integer | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `senderName` | string | sender name | 
-| `senderAvatar` | string | avatar of sender | 
+| `senderAvatar` | string | the avatar url of sender | 
 | `time` | datetime | message received time | 
 | `subject` | string | message subject | 
 | `from` | string | message from email | 
@@ -376,6 +375,7 @@
 ### Submit new ticket
 `post api/v1/ticket/ticketsForContact/`
 - Parameters: 
+
 | Name | Type | Description |
   | - | - | - | 
   | `subject` | string | ticket subject |
@@ -383,6 +383,7 @@
   | `contactId` | integer | id of the contact who submit the ticket |
   | `attachments` | [attachment](#attachment)[] | attachments of the first message |
   | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
+
 - Response: 
     - [ticket for contact object ](#ticketforcontact)
 
