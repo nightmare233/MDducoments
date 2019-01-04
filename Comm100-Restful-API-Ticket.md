@@ -82,8 +82,8 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of message | 
-| `type` | string | `Note`, `Email`, `Reply` | 
-| `source` | string | `Agentconsole`, `HelpDesk`, `API`, `Chat`, `Offline Message`| 
+| `type` | string | `note`, `email`, `reply` | 
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
 | `htmlBody` | string | html body of message | 
 | `plainBody` | string | plain text body of message | 
 | `quote` | string | quoted content of the message, only for email message | 
@@ -95,19 +95,6 @@
 | `to` | string | | 
 | `cc` | string | message cc emails |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
-
-### new_message
-| Name | Type | Description | 
-| - | - | - | 
-| `type` | string | `Note`, `Email`, `Reply` | 
-| `source` | string | `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message` | 
-| `subject` | string | message subject | 
-| `htmlBody` | string | html body of message | 
-| `plainBody` | string | plain text body of message | 
-| `from` | string | message from email | 
-| `to` | string | message to email when contact reply,<br/> to and from is nullable and don't send email | 
-| `cc` | string | message cc emails | 
-| `attachments` | [attachment](#attachment)[] | attachment array | 
 
 ### ticketDraft 
 | Name | Type | Description | 
@@ -121,6 +108,7 @@
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
 | `savedTime` | datetime | draft save time | 
+| `savedBy` | integer | the agent id who saved the ticket draft | 
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
 
 ## endpoints 
@@ -170,6 +158,19 @@
 
 + Response 
     - [ticket object](#tickets)
+
+#### new_message
+| Name | Type | Description | 
+| - | - | - | 
+| `type` | string | `note`, `email`, `reply` | 
+| `source` | string | `agentConsole`, `API` | 
+| `subject` | string | message subject | 
+| `htmlBody` | string | html body of message | 
+| `plainBody` | string | plain text body of message | 
+| `from` | string | message from email | 
+| `to` | string | message to email when contact reply,<br/> to and from is nullable and don't send email | 
+| `cc` | string | message cc emails | 
+| `attachments` | [attachment](#attachment)[] | attachment array | 
 
 ### Get ticket messages 
 <code>GET api/v1/ticket/tickets/{id}/messages</code> 
@@ -344,12 +345,6 @@
 | `createdTime` | datetime | create time of ticket |
 | `closedTime` | datetime | close time of ticket |
 
-### portalTicketNewMessage
-| Name | Type | Description |
-| - | - | - |
-| `htmlBody` | string | html body of the message |   
-| `plainBody` | string | plain text of the message |  
-| `attachments` | [attachment](#attachment)[] | attachment array of message | 
 
 ## endpoints
 ### Get a ticket by ticket id
@@ -382,6 +377,13 @@
 
 - Response: 
   - [portal ticket object](#portalticket) 
+
+##### portalTicketNewMessage
+| Name | Type | Description |
+| - | - | - |
+| `htmlBody` | string | html body of the message |   
+| `plainBody` | string | plain text of the message |  
+| `attachments` | [attachment](#attachment)[] | attachment array of message | 
 
 ### Close ticket
 `put api/v1/ticket/portalTickets/{id}/close` 
@@ -627,8 +629,8 @@
 | `from` | string | email from email address | 
 | `to` | string | to email addresses | 
 | `cc` | string | cc email addresses | 
-| `htmlBody` | string | email body | 
-| `plainBody` | string | email body | 
+| `htmlBody` | string | html body | 
+| `plainBody` | string | plain text body | 
 | `emailAccountId` | integer | receive email account id | 
 | `isRead` | boolean | if is read | 
 | `attachments` | [attachment](#attachment)[] | attachments | 
@@ -694,7 +696,7 @@
 ### Add a tag 
 <code>Post api/v1/ticket/tags</code> 
 - Parameters 
-    - name: string tag name 
+    - name: string, tag name 
 - Response 
     - [tag object](#tag) 
 
