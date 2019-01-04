@@ -182,7 +182,7 @@
 
 | Name | Type | Description | 
 | - | - | - | 
-| `source` | string | `Note`, `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message`, `Facebook Messenger`, `Facebook Visitor Post`, `Facebook Wall Post`, `Tweet`, `Twitter Direct Message`, `SMS`, WeChat Message` | 
+| `source` | string | `Note`, `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message` | 
 | `subject` | string | message subject | 
 | `content` | string | html text of the message | 
 | `contentText` | string | plain text of the message | 
@@ -194,7 +194,6 @@
 
 + Response 
     - [message](#message) list 
-
 
 ### Update ticket 
 <code>PUT api/v1/ticket/tickets/{id}</code> 
