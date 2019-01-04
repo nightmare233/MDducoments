@@ -42,7 +42,7 @@
 | `receivingAccount` | string | `receiving email` | 
 | `channel` | string | `portal`, `email`| 
 | `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
-| `status` | string |  status of ticket: `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
+| `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `isRead` | bool | if read of ticket | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
 | `createdBy` | integer | creator id of ticket: contact id or agent id | 
@@ -122,7 +122,7 @@
     - pageIndex: int, optional 
     - sortBy: string, optional, `Next SLA Breach\ Last Reply Time\	Last Activity Time\	Priority\ Status` 
     - order: string, optional, `ascending` or `descending` 
-    - conditions: optional, parameter format: `?conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello` 
+    - conditions: optional, parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello` 
 + Response 
     - [ticket object](#tickets) list, 
     - total: int, total number of tickets 
@@ -152,7 +152,7 @@
 | `createdByType` | string | contact or agent | 
 | `channel` | string | `portal`, `email` | 
 | `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
-| `status` | string |  status of ticket: `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed` |  
+| `status` | string | `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed` |  
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
 | `tags` | [tag](#tag)[] | tags of the ticket | 
 
