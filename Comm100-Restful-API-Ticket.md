@@ -41,7 +41,7 @@
 | `departmentAssignee` | integer | department assignee | 
 | `contactId` | integer | the contact id | 
 | `receivingAccount` | string | `receiving email` | 
-| `channel` | string | `internal`, `portal`, `email`| 
+| `channel` | string | `portal`, `email`| 
 | `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
 | `status` | string |  status of ticket: `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `isRead` | bool | if read of ticket | 
@@ -62,7 +62,7 @@
 | `slaPolicy` | integer | SLA id of this ticket matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first <br/> response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
-| `ResolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
+| `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
 | `mentionedAgents`|[mentioned Agent](#mentionedagent)[]| mentioned agents list | 
 
 ### customFieldValue
@@ -83,15 +83,13 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of message | 
-| `source` | string | `Note`, `Agentconsole`, `HelpDesk`, <br/>`API`, `Email`, `Chat`, `Offline Message`| 
-| `originalId` | string | the original ID of message in original object |
-| `content` | string | html content of message | 
-| `contentText` | string | plain text of message | 
+| `type` | string | `Note`, `Email`, `Reply` | 
+| `source` | string | `Agentconsole`, `HelpDesk`, `API`, `Chat`, `Offline Message`| 
+| `htmlBody` | string | html body of message | 
+| `plainBody` | string | plain text body of message | 
 | `quote` | string | quoted content of the message, only for email message | 
 | `senderId`| integer | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
-| `senderName` | string | sender name | 
-| `senderAvatar` | string | the avatar url of sender | 
 | `time` | datetime | message received time | 
 | `subject` | string | message subject | 
 | `from` | string | message from email | 
@@ -99,14 +97,27 @@
 | `cc` | string | message cc emails |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
 
+### new_message
+| Name | Type | Description | 
+| - | - | - | 
+| `type` | string | `Note`, `Email`, `Reply` | 
+| `source` | string | `Note`, `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message` | 
+| `subject` | string | message subject | 
+| `htmlBody` | string | html body of message | 
+| `plainBody` | string | plain text body of message | 
+| `from` | string | message from email | 
+| `to` | string | message to email when contact reply,<br/> to and from is nullable and don't send email | 
+| `cc` | string | message cc emails | 
+| `attachments` | [attachment](#attachment)[] | attachment array | 
+
 ### ticketDraft 
 | Name | Type | Description | 
 | - | - | - | 
 | `draftId` | integer | id of ticket draft | 
 | `ticketId` | integer | id of ticket | 
 | `subject` | string | draft subject | 
-| `content` | string | html content of message | 
-| `contentText` | string | plain text of message | 
+| `htmlBody` | string | html body of ticket draft | 
+| `plainBody` | string | plain text body of ticket draft | 
 | `from` | string | from email address | 
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
@@ -124,8 +135,7 @@
     - pageIndex: int, optional 
     - sortBy: string, optional, `Next SLA Breach\ Last Reply Time\	Last Activity Time\	Priority\ Status` 
     - order: string, optional, `ascending` or `descending` 
-    - conditions: optional, parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi `
-
+    - conditions: optional, parameter format: `?conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`
 | Name | Type | Description | 
 | - | - | - | 
 | `fieldId` | integer | field id | 
@@ -152,16 +162,15 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `subject` | string | ticket subject | 
-| `content` | string | the first message of the ticket. | 
+| `message` | [new message object](#new_message) | the first message of the ticket. | 
 | `agentAssignee` | integer | agent id | 
 | `departmentAssignee` | integer | department id | 
 | `contactId` | integer | the contact id or agent id | 
 | `createdBy` | integer | contact id or agent id | 
 | `createdByType` | string | contact or agent | 
-| `channel` | string | `internal`, `portal`, `email`, `facebookMessenger`, `facebookVisitorPost`, `facebookWallPost`, `tweet`, `twitterDirectMessage`, `SMS`, `weChatMessage`| 
+| `channel` | string | `portal`, `email` | 
 | `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
-| `status` | string |  status of ticket: `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed` | 
-| `attachments` | [attachment](#attachment)[] | attachment array of the first message | 
+| `status` | string |  status of ticket: `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed` |  
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
 | `tags` | [tag](#tag)[] | tags of the ticket | 
 
@@ -179,19 +188,7 @@
 ### Reply ticket 
 <code>POST api/v1/ticket/tickets/{id}/messages</code> 
 + Parameters 
-
-| Name | Type | Description | 
-| - | - | - | 
-| `source` | string | `Note`, `Agentconsole`, `HelpDesk`, `API`, `Email`, `Chat`, `Offline Message` | 
-| `subject` | string | message subject | 
-| `content` | string | html text of the message | 
-| `contentText` | string | plain text of the message | 
-| `originalId` | string | the original ID of the message | 
-| `from` | string | message from email | 
-| `to` | string | message to email when contact reply,<br/> to and from is nullable and don't send email | 
-| `cc` | string | message cc emails | 
-| `attachments` | [attachment](#attachment)[] | attachment array | 
-
+    - [new message object](#new_message)  
 + Response 
     - [message](#message) list 
 
@@ -340,9 +337,9 @@
         - unreadCount: int, count unread tickets of a filter 
         - unreadMentionedCount: int, unread and metioned to me tickets number in filter 
 
-# TicketForContact
+# PortalTicket
 ## objects
-### ticketForContact
+### portalTicket
 | Name | Type | Description |
 | - | - | - |
 | `id` | integer | id of ticket |
@@ -353,76 +350,77 @@
 | `createdTime` | datetime | create time of ticket |
 | `closedTime` | datetime | close time of ticket |
 
+### portalTicketNewMessage
+| Name | Type | Description |
+| - | - | - |
+| `htmlBody` | string | html body of the message |   
+| `plainBody` | string | plain text of the message |  
+| `attachments` | [attachment](#attachment)[] | attachment array of message | 
+
 ## endpoints
 ### Get a ticket by ticket id
-`get api/v1/ticket/ticketsForContact/{id}`
+`get api/v1/ticket/portalTickets/{id}`
 - Parameters: 
     - id, integer, ticket id
     - contactId, integer
 - Response: 
-    - [ticket for contact object](#ticketforcontact) 
+    - [portal ticket object](#portalticket) 
 
 ### Get ticket list
-`get api/v1/ticket/ticketsForContact/`
+`get api/v1/ticket/portalTickets/`
 - Parameters:
     - contactId, integer
     - startTime, DateTime, optional
     - endTime, DateTime, optional
 - Response: 
-    - [ticket for contact object list](#ticketforcontact)
+    - [portal ticket object ](#portalticket)list
 
 ### Submit new ticket
-`post api/v1/ticket/ticketsForContact/`
+`post api/v1/ticket/portalTickets/`
 - Parameters: 
 
 | Name | Type | Description |
 | - | - | - | 
 | `subject` | string | ticket subject |
-| `content` | string | the content of the first message |
-| `contactId` | integer | id of the contact who submit the ticket |
-| `attachments` | [attachment](#attachment)[] | attachments of the first message |
+| `message` | [new message object](#portalticketnewmessage) | the first message |
+| `contactId` | integer | id of the contact who submit the ticket | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
 
 - Response: 
     - [ticket for contact object ](#ticketforcontact)
 
 ### Close ticket
-`put api/v1/ticket/ticketsForContact/{id}/close` 
+`put api/v1/ticket/portalTickets/{id}/close` 
 - Parameters: 
     - id, integer, ticket id,
     - contactId, integer
 - Response: 
-    - [ticket for contact object](#ticketforcontact)
+    - [portal ticket object](#portalticket) 
 
 ### Reopen ticket
-`put api/v1/ticket/ticketsForContact/{id}/reopen` 
+`put api/v1/ticket/portalTickets/{id}/reopen` 
 - Parameters: 
     - id, integer, ticket id,
     - contactId, integer
 - Response: 
-    - [ticket for contact object](#ticketforcontact)
+    - [portal ticket object](#portalticket) 
 
 ### Get message list of ticket
-`get api/v1/ticket/ticketsForContact/{id}/messages`
+`get api/v1/ticket/portalTickets/{id}/messages`
 - Parameters: 
     - id, integer, ticket id
     - contactId, integer
 - Response: 
-    - [message object list](#message) 
+    - [message object](#message) list
 
 ### Reply ticket
- `post api/v1/ticket/ticketsForContact/{id}/messages`
+ `post api/v1/ticket/portalTickets/{id}/messages`
 - Parameters:
-
-| Name | Type | Description |
-| - | - | - | 
-| `ticketId` | integer | id of ticket |
-| `content` | string | message content |  
-| `contactId` | integer | contact id |  
-| `attachments` | [attachment](#attachment)[] | attachment array of message | 
-
+    - id: integer, ticket id
+    - contactId: integer, contact id
+    - [new message object](#portalticketnewmessage)
 - Response: 
-    - [message object](#message) 
+    - [message object](#message) list
 
 # Filters 
 ## objects 
@@ -635,7 +633,7 @@
 | `from` | string | email from email address | 
 | `to` | string | to email addresses | 
 | `cc` | string | cc email addresses | 
-| `body` | string | email content | 
+| `body` | string | email body | 
 | `emailAccountId` | integer | receive email account id | 
 | `isRead` | boolean | if is read | 
 | `attachments` | [attachment](#attachment)[] | attachments | 

@@ -30,11 +30,10 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | the id of identity |
-| `contactId` | integer | the id of contact |
 | `type` | string | `email`, `SSOUserId`, `externalId` |
 | `value` | string | the value of this identity |
-- Note
-    - We currently only allow one for each type.
+
+- Note: We currently only allow one for each type.
 
 ### endpoints
 #### Get a contact by contact id
@@ -52,7 +51,7 @@
 | - | - | - |
 | `name` | string |  the name of the contact |
 | `alias` | string |  the alias name of the contact |
-| `identities` | [identity](#identity)[] | the array of identities  |
+| `identities` | [identity](#identity)[] | the array of identities |
 | `description` | string | a small description of the contact |
 | `company` | string | the primary company name to which this contact belongs|
 | `title` | string | the title of the contact|
@@ -109,7 +108,6 @@
 | - | - | - |
 | `name` | string |  the name of the contact |
 | `alias` | string |  the alias name of the contact |
-| `identities` | [identity](#identity)[] | the array of identities  |
 | `description` | string | a small description of the contact |
 | `company` | string | the primary company name to which this contact belongs|
 | `title` | string | the title of the contact|
@@ -119,7 +117,7 @@
 | `city` | string | the city of the contact  |
 | `stateOrProvince` | string | the state or province of the contact |
 | `country` | string |  the country of the contact |
-| `postcode` | string | the postcode of the contact  |
+| `postcode` | string | the postcode of the contact |
 
 - Response
     - [contact object](#contact)
@@ -128,6 +126,31 @@
  `delete  /api/v1/account/contacts/{id}`
 - Parameters
     - id: integer, id of the contact
+- Response
+    - http status code and message
+
+#### Add contact identity
+`post  /api/v1/account/contacts/{contactId}/identities`
+- Parameters
+    - contactId, integer, contact id
+    - [identity object](#identity)
+- Response
+    - [identity object](#identity)
+
+#### Update contact identity
+`put  /api/v1/account/contacts/{contactId}/identities/{id}`
+- Parameters
+    - contactId, integer, contact id
+    - id, integer, contact identity id
+    - value, string, the value of the identity
+- Response
+    - [identity object](#identity)
+
+#### Delete contact identity
+ `delete  /api/v1/account/contacts/{contactId}/identities/{id}`
+- Parameters
+    - contactId, integer, contact id
+    - id, integer, contact identity id
 - Response
     - http status code and message
 

@@ -1,4 +1,3 @@
-[toc]
 # General
 
 # Basic Data Structure
