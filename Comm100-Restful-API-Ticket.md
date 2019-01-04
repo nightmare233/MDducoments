@@ -362,7 +362,7 @@
     - [portal ticket object](#portalticket) 
 
 ### Get ticket list
-`get api/v1/ticket/portalTickets/`
+`get api/v1/ticket/portalTickets`
 - Parameters:
     - contactId, integer
     - startTime, DateTime, optional
@@ -371,7 +371,7 @@
     - [portal ticket object ](#portalticket)list
 
 ### Submit new ticket
-`post api/v1/ticket/portalTickets/`
+`post api/v1/ticket/portalTickets`
 - Parameters: 
 
 | Name | Type | Description |
