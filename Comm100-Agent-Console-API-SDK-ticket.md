@@ -47,6 +47,7 @@
             guid: "6a8f3e5f-4e31-4ee7-b074-13d0ea278eab", //string
             url: '', //string
             fileName:'', //string
+            isAvailable: true
         }
     ]
   }
@@ -74,6 +75,7 @@
                 guid: "6a8f3e5f-4e31-4ee7-b074-13d0ea278eab", //string
                 url: '', //string
                 fileName:'', //string
+                isAvailable: true //boolean
             }
         ]
     }
@@ -84,6 +86,7 @@
     fileName: '', // string
     url: '',// string
     guid: '', // string
+    isAvailable: true //boolean
   }
   
   // agent

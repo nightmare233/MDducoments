@@ -113,7 +113,7 @@
 
 ## endpoints 
 ### Get or search ticket list 
-<code>GET api/v1/ticket/tickets</code> 
+`get api/v1/ticket/tickets` 
 + Max 50 tickets are responded for each request. 
 + Parameters 
     - filterId: int, filter id, optional 
@@ -131,14 +131,14 @@
     - currentPage: string, current page uri. 
 
 ### Get a ticket 
-<code>GET api/v1/ticket/tickets/{id} </code> 
+`get api/v1/ticket/tickets/{id} ` 
 + Parameters 
     - id: int, ticket  
 + Response 
     - [ticket object](#ticket) 
 
 ### Submit new ticket 
-<code>POST api/v1/ticket/tickets</code> 
+`post api/v1/ticket/tickets` 
 - Parameters 
 
 | Name | Type | Description | 
@@ -173,7 +173,7 @@
 | `attachments` | [attachment](#attachment)[] | attachment array | 
 
 ### Get ticket messages 
-<code>GET api/v1/ticket/tickets/{id}/messages</code> 
+`get api/v1/ticket/tickets/{id}/messages` 
 + Parameters 
     - id: int, ticket id 
 + Response 
@@ -181,14 +181,14 @@
 
 
 ### Reply ticket 
-<code>POST api/v1/ticket/tickets/{id}/messages</code> 
+`post api/v1/ticket/tickets/{id}/messages` 
 + Parameters 
     - [new message object](#new_message)  
 + Response 
     - [message](#message) list 
 
 ### Update ticket 
-<code>PUT api/v1/ticket/tickets/{id}</code> 
+`put api/v1/ticket/tickets/{id}` 
 + Parameters 
 
 | Name | Type | Description | 
@@ -206,7 +206,7 @@
     - [ticket](#ticket) object 
 
 ### Batch update ticket 
-<code>PUT api/v1/ticket/tickets/</code> 
+`put api/v1/ticket/tickets/` 
 + Parameters 
     - ids: ticket id array, 
     - status, string, optional 
@@ -218,37 +218,35 @@
     - [ticket](#ticket) object list 
 
 ### Mark ticket read 
-<code>PUT api/v1/ticket/tickets/{id}/read</code> 
+`put api/v1/ticket/tickets/{id}/read` 
 + Parameters 
     - id: ticketId 
 + Response 
     - http status code 
 
 ### Mark ticket unread 
-<code>PUT api/v1/ticket/tickets/{id}/unread</code> 
+`put api/v1/ticket/tickets/{id}/unread` 
 + Parameters 
     - id: ticketId 
 + Response 
     - http status code 
 
 ### Delete a ticket 
-<code>Delete api/v1/ticket/tickets/{id} </code> 
-- delete ticket, display ticket in recycle bin. 
+`delete api/v1/ticket/tickets/{id} ` 
 - Parameters 
     - id: int 
 - Response 
     - http status code 
 
 ### Batch delete tickets 
-<code>Delete api/v1/ticket/tickets/ </code> 
+`delete api/v1/ticket/tickets/ ` 
 + Parameters 
     - ticket id array 
 + Response 
     - http status code 
 
 ### Get deleted tickets 
-<code>GET api/v1/ticket/deletedTickets/</code> 
-- get deleted tickets for recycle bin 
+`get api/v1/ticket/deletedTickets/` 
 - Parameters 
     - keywords: string, optional 
     - pageIndex: int, optional 
@@ -262,59 +260,56 @@
     - currentPage: string, current page uri. 
 
 ### Get a deleted ticket 
-<code>GET api/v1/ticket/deletedTickets/{id}</code> 
+`get api/v1/ticket/deletedTickets/{id}` 
 - Parameters 
     - id: int, ticket id 
 - Response 
     - [ticket object](#ticket) 
 
 ### Restore a deleted ticket 
-<code>POST api/v1/ticket/deletedTickets/{id}/restore </code> 
-- Restore ticket from recycle bin 
+`post api/v1/ticket/deletedTickets/{id}/restore ` 
 - Parameters 
     - id: int, ticket id 
 - Response 
     - [ticket object](#ticket)  
 
 ### Delete a ticket permanently 
-<code>DELETE api/v1/ticket/deletedTickets/{id}</code> 
-- delete ticket from recycle bin, permanently delete. including: message, attachment, ticket history. 
+`delete api/v1/ticket/deletedTickets/{id}` 
 - Parameters 
     - id: int, ticket id 
 - Response 
     - http status code 
 
 ### Get ticket draft 
-<code>GET api/v1/ticket/tickets/{id}/draft</code> 
+`get api/v1/ticket/tickets/{id}/draft` 
 - Parameters 
     - id: int, ticket id 
 - Response 
     - [ticket draft object](#ticketdraft) 
 
 ### Create ticket draft 
-<code>POST api/v1/ticket/tickets/{id}/draft</code> 
+`post api/v1/ticket/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft object](#ticketdraft) 
 - Response 
     - [ticket draft object](#ticketdraft) 
 
 ### Update ticket draft 
-<code>PUT api/v1/ticket/tickets/{id}/draft</code> 
+`put api/v1/ticket/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft object](#ticketdraft) 
 - Response 
     - [ticket draft object](#ticketdraft) 
 
 ### Delete ticket draft 
-<code>DELETE api/v1/ticket/tickets/{id}/draft</code> 
+`delete api/v1/ticket/tickets/{id}/draft` 
 - Parameters 
     - id: int, ticket id 
 - Response 
     - http status code 
 
 ### Merge ticket 
-<code>POST api/v1/ticket/tickets/{id}/merge</code> 
-- merge source ticket to this ticket 
+`post api/v1/ticket/tickets/{id}/merge`
 - Parameters 
     - id: int, target ticket id, 
     - sourceId: int, source ticket id 
@@ -322,7 +317,7 @@
     - [ticket object](#ticket) 
 
 ### Get unread tickets number in filters 
-<code>GET api/v1/ticket/filters/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}</code> 
+`get api/v1/ticket/filters/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
 - Parameters 
     - filterIds: filter id array 
 - Response 
@@ -439,35 +434,35 @@
 
 ## endpoints 
 ### Get all public and private filters 
-<code>Get /api/v1/ticket/filters</code> 
+`get /api/v1/ticket/filters`
 - Parameters 
     - no parameters 
 - Response 
     - [filter object](#filter) list, without conditions. 
 
 ### Create a new filter 
-<code>POST api/v1/ticket/filters</code> 
+`post api/v1/ticket/filters`
 - Parameters 
     - [filter object](#filter) 
 - Response 
     - [filter object](#filter) list 
 
 ### Get a filter and its conditions 
-<code>Get api/v1/ticket/filters/{id}</code> 
+`get api/v1/ticket/filters/{id}` 
 - Parameters 
     - id: int, filter id 
 - Response 
     - [filter object](#filter) 
 
 ### Update filter 
-<code>Put api/v1/ticket/filters/{id}</code> 
+`put api/v1/ticket/filters/{id}` 
 - Parameters 
     - [filter object](#filter) 
 - Response 
     - [filter object](#filter) 
 
 ### Delete filter 
-<code>Delete api/vi/ticket/filters/{id}</code> 
+`delete api/vi/ticket/filters/{id}` 
 - Parameters 
     - id: int, filter id 
 - Response 
@@ -499,7 +494,7 @@
 
 ## endpoints 
 ### Get fields and their options 
-<code>Get api/v1/ticket/fields</code> 
+`get api/v1/ticket/fields` 
 - Response 
     - [field object](#field) list 
 
@@ -515,7 +510,7 @@
 | `isAvailable` | boolean | if the attachment is available | 
 ## endpoints 
 ### Upload attachment 
-<code>Post /api/v1/ticket/attachments</code> 
+`post /api/v1/ticket/attachments` 
 - Parameters 
     - multipart/form-data 
 - Response 
@@ -532,14 +527,14 @@
 
 ## endpoints 
 ### Get block sender list 
-<code>Get /api/v1/ticket/blockedSenders?domain={domain}</code> 
+`get /api/v1/ticket/blockedSenders?domain={domain}` 
 - Parameters 
     - domain: string, the domain of email address 
 - Response 
     - [block sender object](#blockedsender) list 
 
 ### Add block sender 
-<code>POST api/v1/ticket/blockedSenders</code> 
+`post api/v1/ticket/blockedSenders` 
 - Parameters 
     - [block sender object](#blockedsender) 
 - Response 
@@ -558,14 +553,14 @@
 
 ## endpoints 
 ### Get canned responses 
-<code>Get api/v1/ticket/cannedResponses</code> 
+`get api/v1/ticket/cannedResponses` 
 - Response 
     - [Canned responses object](#cannedresponse) list 
 
 
 # Configs 
 ### Get ticket configs of this site 
-<code>GET api/v1/ticket/configs</code> 
+`get api/v1/ticket/configs` 
 - Response 
     - isEnabledDepartment: bool 
     - recipientLimitPerEmail: int 
@@ -589,12 +584,12 @@
 
 ## endpoints 
 ### Get one department 
-<code>GET api/v1/ticket/departments/{id} </code> 
+`get api/v1/ticket/departments/{id} ` 
 - Response 
     - [department object](#department) 
 
 ### Get all departments 
-<code>GET api/v1/ticket/departments</code> 
+`get api/v1/ticket/departments` 
 - Response 
     - [department object](#department) List without department member. 
 
@@ -613,7 +608,7 @@
 
 ## endpoints 
 ### Get all enabled email accounts 
-<code>GET api/v1/ticket/emailAccounts</code> 
+`get api/v1/ticket/emailAccounts` 
 - Response 
     - [email account object](#emailaccount) list 
 
@@ -637,7 +632,7 @@
 
 ## endpoints 
 ### Get junk email list 
-<code>GET api/v1/ticket/junkEmails</code> 
+`get api/v1/ticket/junkEmails` 
 
 - Parameters 
     - keywords: string, optional 
@@ -652,28 +647,28 @@
     - currentPage: string, 
 
 ### Get a junk email 
-<code>GET api/v1/ticket/junkEmails/{id}</code> 
+`get api/v1/ticket/junkEmails/{id}` 
 - Parameters 
     - id: int, email id 
 - Response 
     - [junk email object](#junkemail) 
 
 ### Update junk email 
-<code>PUT api/v1/ticket/junkEmails/{id}</code> 
+`put api/v1/ticket/junkEmails/{id}` 
 - Parameters 
     - isRead: bool, 
 - Response 
     - [junk email object](#junkemail) 
 
 ### Restore a junk email to a normal ticket 
-<code>POST api/v1/ticket/junkEmails/{id}/notJunk</code> 
+`post api/v1/ticket/junkEmails/{id}/notJunk` 
 - Parameters 
     - id: int, email id 
 - Response 
     - [ticket object](#ticket) 
 
 ### Delete a junk email 
-<code>DELETE api/v1/ticket/junkEmails/{id}</code> 
+`delete api/v1/ticket/junkEmails/{id}` 
 - Parameters 
     - id: int, junk email id 
 - Response 
@@ -689,19 +684,19 @@
 | `ticketCount` | integer | tickets number with this tag | 
 ## endpoints 
 ### Get all tags 
-<code>Get api/v1/ticket/tags</code> 
+`Get api/v1/ticket/tags` 
 - Response 
     - [tag object](#tag) list 
 
 ### Add a tag 
-<code>Post api/v1/ticket/tags</code> 
+`Post api/v1/ticket/tags` 
 - Parameters 
     - name: string, tag name 
 - Response 
     - [tag object](#tag) 
 
 ### Update One Tag 
-<code>Put api/v1/ticket/tags/{id}</code> 
+`Put api/v1/ticket/tags/{id}` 
 - Parameters 
     - id: int, tag id 
     - name: string, tag name 
@@ -709,7 +704,7 @@
     - [tag object](#tag) 
 
 ### Delete a tag 
-<code>Delete api/v1/ticket/tags/{id}</code> 
+`Delete api/v1/ticket/tags/{id}` 
 - Parameters 
     - id: int, tag id 
 - Response 
