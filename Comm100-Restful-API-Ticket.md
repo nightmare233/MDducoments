@@ -135,12 +135,7 @@
     - pageIndex: int, optional 
     - sortBy: string, optional, `Next SLA Breach\ Last Reply Time\	Last Activity Time\	Priority\ Status` 
     - order: string, optional, `ascending` or `descending` 
-    - conditions: optional, parameter format: `?conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`
-| Name | Type | Description | 
-| - | - | - | 
-| `fieldId` | integer | field id | 
-| `matchType` | string | matach type: `contains`, `notContains`, `is`,<br/> `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
-| `value` | string | condition value | 
+    - conditions: optional, parameter format: `?conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello` 
 + Response 
     - [ticket object](#tickets) list, 
     - total: int, total number of tickets 
@@ -516,7 +511,7 @@
 | `fileName` | string | attachment file name| 
 | `guid` | string | attachment unique id | 
 | `url` | string | attachment download link | 
-| `ifAvailable` | boolean | if the attachment is available | 
+| `isAvailable` | boolean | if the attachment is available | 
 ## endpoints 
 ### Upload attachment 
 <code>Post /api/v1/ticket/attachments</code> 
