@@ -7,20 +7,58 @@
   const ticket = {
     id: 1, //number
     subject: '', //string
-    agentAssignee: 1, //number
-    departmentAssignee: 1, //number
-    contactId: 1, //number
-    channel: '', // string, Internal, Portal, Email, Facebook Messenger, Facebook Visitor Post, Facebook Wall Post, Tweet, Twitter Direct Message, SMS, WeChat Message
+    agentAssignee: 
+    {
+        id: 1,    // number
+        email: '', //string
+        displayName: '', //string 
+        firstName: '', //string
+        lastName: '', //string	 
+        title: '', //string	 
+        bio: '', //string	 
+        mobilePhone: '', //string	
+        isAdmin: false // boolean
+    },
+    departmentAssignee: 
+    {
+        id: 1, //number
+        name: '' //string
+    },
+    contact: 1, //number
+    {
+        id: number, //number
+        name: '', //string  // todo：
+        identities:
+        {
+            id: 1, //number
+            type: '', //string, email, SSOUserId, externalId
+            value: '', //string, the value of this identity
+        },
+        description: '', //string
+        company: '', //string
+        title: '', //string
+        phoneNumber: '', //string
+        faxNumber: '', //string
+        address: '', //string
+        city: '', //string
+        stateOrProvince: '', //string
+        country: '', //string
+        postcode: '', //string
+        createTime: '' //string
+    },
+    channel: '', // string, Portal, Email,
     status: '', //string, new, pendingExternal, pendingInternal, onHold, closed
     priority: '', //string, low, normal, high, urgent
     isRead: false, //boolean
+    isHaveDraft: true, //boolean
     receivingAccount: '', //string
-    createdBy: 1, //number
     createdTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
     closedTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
     lastActivityTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
     lastStatusChangeTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
-    totalReplies: 3, //number
+    firstRespondBreachAt: '2018-12-08T12:03:07.563', //ISO 8601 time format
+    nextRespondBreachAt: '2018-12-08T12:03:07.563', //ISO 8601 time format
+    resolveBreachAt: '2018-12-08T12:03:07.563', //ISO 8601 time format
     tags: [
         {
             id: 1, //number
@@ -31,13 +69,13 @@
         {
             fieldId: 1, //number
             fieldName:'', //string
-            value: '', //string
+            value: '' //string
         }
-    ],
-    mentionedAgents[
+    ], 
+    mentionedAgents:[
         {
             id: 1, //number,agent id
-            noteId: 1, // note Id
+            messageId: 1, // message Id
             isRead: false, //boolean
         }
     ],
@@ -55,20 +93,24 @@
   //message
   const message = {
         id: 1, //number
-        ticketId: 1, //number
-        source: '', //string, Agent Console, API, Help Desk, Web Form, Chat, Offline Message, Facebook Messenger, Facebook Visitor Post, Facebook Wall Post, Tweet, Twitter Direct Message, SMS, WeChat Message
-        originalId: '', //string
-        content: '', //string, html text of the message
-        contentText: '', //string, plain text of the message
+        type: '', //string, note, email, reply
+        source: '', //string, gentConsole, API, helpDesk, webForm, Chat, offlineMessage,
+        htmlBody: '', //string, html text of the message
+        plainBody: '', //string, plain text of the message
         quote: '', //string
         subject: '', //string
         from: '', //string
         to: '', //string
         cc: '', //string
-        sentTime: ''//string
-        senderId:1, //string
-        senderType:'',//string
-        senderName: '', //string
+        time: '', //string
+        sender: 
+        {
+            id: 1, //number
+            type:'', //string
+            name: '', //string
+            email: '', //string   
+            avatarUrl: '', //string
+        }
         attachments:[
             {
                 id: 1, //number
@@ -92,24 +134,15 @@
   // agent
   const  agent = {
     id: 1,    // number
-    name: '', // string
-    email: '',// string
-    status: '', // string, online/away
-    ticketStatus: '', //string, available, unavailable
-    chats: 3,   // number, ongoing chats
-    isAdmin: false, // boolean
-  }
-  
-  //contact
-  const contact = {
-    id: number, //number
-    name: '', //string 
     email: '', //string
-    phoneNumber: '', //string
-    ssoUserId: '', //string
-    externalId: '', //string
+    displayName: '', //string 
+    firstName: '', //string
+    lastName: '', //string	 
+    title: '', //string	 
+    bio: '', //string	 
+    mobilePhone: '', //string	
+    isAdmin: false // boolean
   }
-
 ```
 
 # Objects
@@ -117,7 +150,8 @@
 
   ```javascript
   /** @type {object(agent)} **/
-  Comm100AgentConsoleAPI.get('agentconsole.currentAgent');
+    Comm100AgentConsoleAPI.get('agentconsole.currentAgent');
+    Comm100AgentConsoleAPI.get('agentconsole.currentAgent.ticketStatus');   
   ```
 
 ## Ticket
@@ -137,18 +171,11 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.subject', value);
 ### contact
 
 ```javascript
-Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.contact');
+Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.contact'); 
 //Only the ID of the contact can be set
 Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact', value);
-//Sample
-Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact', 
-{
-    id: number, //required
-    name: '', //string, optional 
-    email: '', //string, optional
-    phoneNumber: ''//string, optional
-    ssoUserId: '', //string, optional
-}});
+//Example
+Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact', { id: 1 });
 ```
 
 ### department assignee
@@ -156,12 +183,16 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.contact',
 ```javascript
 Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.departmentAssignee');
 Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.departmentAssignee', value);
+//Example
+Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.departmentAssignee', { id: 1 });
 ```
 ### agent assignee
 
 ```javascript
 Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.agentAssignee');
 Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.agentAssignee', value);
+//Example
+Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.agentAssignee', {id: 1 });
 ```
 
 ### priority
@@ -181,7 +212,11 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.status', value);
 
 ```javascript
 Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.tags');
-Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.tags', value);
+Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.add', value});
+Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.remove', value});
+//Example
+Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.add', {id: 1});
+Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.remove', {id: 1});
 ```
 
 ### custom fields
@@ -206,7 +241,7 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.customFields:123',
     }
 
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.subject.changed', function(event) {});
-Comm100AgentConsoleAPI.on('agentconsole.currentTicket.contact.changed', function(event) {});
+Comm100AgentConsoleAPI.on('agentconsole.currentTicket.contactId.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.departmentAssignee.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.agentAssignee.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.priority.changed', function(event) {});
