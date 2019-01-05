@@ -9,7 +9,7 @@
     subject: '', //string
     agentAssignee: 
     {
-        id: 1,    // number
+        id: 1, // number
         email: '', //string
         displayName: '', //string 
         firstName: '', //string
