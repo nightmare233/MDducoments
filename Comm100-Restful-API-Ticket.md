@@ -114,16 +114,16 @@
 `get api/v2/ticket/tickets` 
 + Max 50 tickets are responded for each request. 
 + Parameters 
-    - filterId: int, filter id, optional 
-    - tagId: int, tag id, optional 
+    - filterId: integer, filter id, optional 
+    - tagId: integer, tag id, optional 
     - keywords: string, optional 
-    - pageIndex: int, optional 
+    - pageIndex: integer, optional 
     - sortBy: string, optional, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
     - sortOrder: string, optional, `ascending` or `descending`, default value: `descending`
     - conditions: optional, parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
 + Response 
     - tickets: [ticket object](#tickets) list, 
-    - total: int, total number of tickets 
+    - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
     - currentPage: string, current page uri. 
@@ -131,7 +131,7 @@
 ### Get a ticket 
 `get api/v2/ticket/tickets/{id} ` 
 + Parameters 
-    - id: int, ticket  
+    - id: integer, ticket  
 + Response 
     - [ticket object](#ticket) 
 
@@ -162,7 +162,7 @@
 ### Get ticket messages 
 `get api/v2/ticket/tickets/{id}/messages` 
 + Parameters 
-    - id: int, ticket id 
+    - id: integer, ticket id 
 + Response 
     - [message](#message) list 
 
@@ -202,7 +202,7 @@
 ### Batch update ticket 
 `put api/v2/ticket/tickets/` 
 + Parameters 
-    - ids: ticket id array, 
+    - ids: integer[], ticket id array, 
     - status, string, optional 
     - priority, string, optional 
     - agentassigneeId, integer, optional 
@@ -226,16 +226,16 @@
     - http status code 
 
 ### Delete a ticket 
-`delete api/v2/ticket/tickets/{id} ` 
+`delete api/v2/ticket/tickets/{id}` 
 - Parameters 
-    - id: int 
+    - id: integer 
 - Response 
     - http status code 
 
 ### Batch delete tickets 
-`delete api/v2/ticket/tickets/ ` 
+`delete api/v2/ticket/tickets` 
 + Parameters 
-    - ticket id array 
+    - ids: integer[], id array
 + Response 
     - http status code 
 
@@ -243,12 +243,12 @@
 `get api/v2/ticket/deletedTickets/` 
 - Parameters 
     - keywords: string, optional 
-    - pageIndex: int, optional 
+    - pageIndex: integer, optional 
     - timeFrom: DateTime, optional, default search the last 30 days. 
     - timeTo: DateTime, optional, defautl value is the current time. 
 - Response 
     - tickets: [ticket object](#ticket) list 
-    - total: int, total number of tickets 
+    - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
     - currentPage: string, current page uri. 
@@ -256,28 +256,28 @@
 ### Get a deleted ticket 
 `get api/v2/ticket/deletedTickets/{id}` 
 - Parameters 
-    - id: int, ticket id 
+    - id: integer, ticket id 
 - Response 
     - [ticket object](#ticket) 
 
 ### Restore a deleted ticket 
 `post api/v2/ticket/deletedTickets/{id}/restore ` 
 - Parameters 
-    - id: int, ticket id 
+    - id: integer, ticket id 
 - Response 
     - [ticket object](#ticket)  
 
 ### Delete a ticket permanently 
 `delete api/v2/ticket/deletedTickets/{id}` 
 - Parameters 
-    - id: int, ticket id 
+    - id: integer, ticket id 
 - Response 
     - http status code 
 
 ### Get ticket draft 
 `get api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
-    - id: int, ticket id 
+    - id: integer, ticket id 
 - Response 
     - [ticket draft object](#ticketdraft) 
 
@@ -298,15 +298,15 @@
 ### Delete ticket draft 
 `delete api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
-    - id: int, ticket id 
+    - id: integer, ticket id 
 - Response 
     - http status code 
 
 ### Merge ticket 
 `post api/v2/ticket/tickets/{id}/merge`
 - Parameters 
-    - id: int, target ticket id, 
-    - sourceId: int, source ticket id 
+    - id: integer, target ticket id, 
+    - sourceId: integer, source ticket id 
 - Response 
     - [ticket object](#ticket) 
 
@@ -317,9 +317,9 @@
 - Response 
     - allCount: integer, all unread ticket number. 
     - array including: 
-        - filterId: int, filter id 
-        - unreadCount: int, count unread tickets of a filter 
-        - unreadMentionedCount: int, unread and metioned to me tickets number in filter 
+        - filterId: integer, filter id 
+        - unreadCount: integer, count unread tickets of a filter 
+        - unreadMentionedCount: integer, unread and metioned to me tickets number in filter 
 
 # PortalTicket
 ## objects
@@ -356,7 +356,7 @@
 ### Submit new ticket
 `post api/v2/ticket/portalTickets`
 - Parameters: 
-    - subject: string, ticket subject
+    - subject: string, ticket subject, required
     - contactId: integer, id of the contact who submit the ticket
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
     - message:  the first message
@@ -431,28 +431,33 @@
 ### Create a new filter 
 `post api/v2/ticket/filters`
 - Parameters 
-    - [filter object](#filter) 
+    - name: string, filter name, required 
+    - isPrivate: boolean, if private filter, default value: `false` 
+    - conditions: [condition](#condition)[], array of filter condition
 - Response 
     - [filter object](#filter) list 
 
 ### Get a filter and its conditions 
 `get api/v2/ticket/filters/{id}` 
 - Parameters 
-    - id: int, filter id 
+    - id: integer, filter id 
 - Response 
     - [filter object](#filter) 
 
 ### Update filter 
 `put api/v2/ticket/filters/{id}` 
 - Parameters 
-    - [filter object](#filter) 
+    - id: integer, filter id 
+    - name: string, filter name, required 
+    - isPrivate: boolean, if private filter 
+    - conditions: [condition](#condition)[], array of filter condition
 - Response 
     - [filter object](#filter) 
 
 ### Delete filter 
 `delete api/vi/ticket/filters/{id}` 
 - Parameters 
-    - id: int, filter id 
+    - id: integer, filter id 
 - Response 
     - http status code 
 
@@ -463,7 +468,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | field id | 
-| `dataType` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,<br/> `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
+| `dataType` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, <br/>`radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
 | `name` | integer | field name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
@@ -551,7 +556,7 @@
 `get api/v2/ticket/configs` 
 - Response 
     - isEnabledDepartment: bool 
-    - recipientLimitPerEmail: int 
+    - recipientLimitPerEmail: integer 
 
 # Department 
 ## objects 
@@ -607,7 +612,7 @@
 | - | - | - | 
 | `id` | integer | id | 
 | `subject` | string | email subject | 
-| `time` | datetime | id | 
+| `time` | datetime | received time | 
 | `name` | string | sender name | 
 | `from` | string | email from email address | 
 | `to` | string | to email addresses | 
@@ -624,12 +629,12 @@
 
 - Parameters 
     - keywords: string, optional 
-    - pageIndex: int, optional 
+    - pageIndex: integer, optional 
     - timeFrom: DateTime, optional 
     - timeTo: DateTime, optional 
 - Response 
     - junkEmails: [junk email object](#junkemail) list 
-    - total: int, 
+    - total: integer, 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
     - currentPage: string, 
@@ -637,7 +642,7 @@
 ### Get a junk email 
 `get api/v2/ticket/junkEmails/{id}` 
 - Parameters 
-    - id: int, email id 
+    - id: integer, email id 
 - Response 
     - [junk email object](#junkemail) 
 
@@ -651,14 +656,14 @@
 ### Restore a junk email to a normal ticket 
 `post api/v2/ticket/junkEmails/{id}/notJunk` 
 - Parameters 
-    - id: int, email id 
+    - id: integer, email id 
 - Response 
     - [ticket object](#ticket) 
 
 ### Delete a junk email 
 `delete api/v2/ticket/junkEmails/{id}` 
 - Parameters 
-    - id: int, junk email id 
+    - id: integer, junk email id 
 - Response 
     - http status code 
 
@@ -686,7 +691,7 @@
 ### Update One Tag 
 `Put api/v2/ticket/tags/{id}` 
 - Parameters 
-    - id: int, tag id 
+    - id: integer, tag id 
     - name: string, tag name 
 - Response 
     - [tag object](#tag) 
@@ -694,7 +699,7 @@
 ### Delete a tag 
 `Delete api/v2/ticket/tags/{id}` 
 - Parameters 
-    - id: int, tag id 
+    - id: integer, tag id 
 - Response 
     - http status code
 
