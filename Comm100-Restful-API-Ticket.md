@@ -53,16 +53,13 @@
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
 | `lastReplyBy` | integer | last replier: contact id or agent id | 
 | `isHaveDraft` | boolean | if has ticket draft | 
-| `tags` | [tag](#tag)[] | tags of the ticket | 
-| `closedTime` | datetime | closed time | 
-| `closedByType` | string | closed by type: agent or contact | 
-| `closedBy` | integer | id of agent or contact | 
+| `tagIds` | integer[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
-| `slaPolicy` | integer | SLA id of this ticket matched | 
+| `slaPolicyId` | integer | SLA id of this ticket matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first <br/> response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
-| `mentionedAgents`|[mentioned Agent](#mentionedagent)[]| mentioned agents list | 
+| `mentionedAgents`|[mentionedAgent](#mentionedagent)[]| mentioned agents list | 
 
 ### customFieldValue
 | Name | Type | Description | 
@@ -104,6 +101,7 @@
 | `subject` | string | draft subject | 
 | `htmlBody` | string | html body of ticket draft | 
 | `plainBody` | string | plain text body of ticket draft | 
+| `quote` | string | quoted body | 
 | `from` | string | from email address | 
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
@@ -120,11 +118,11 @@
     - tagId: int, tag id, optional 
     - keywords: string, optional 
     - pageIndex: int, optional 
-    - sortBy: string, optional, `Next SLA Breach\ Last Reply Time\	Last Activity Time\	Priority\ Status` 
-    - order: string, optional, `ascending` or `descending` 
-    - conditions: optional, parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello` 
+    - sortBy: string, optional, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
+    - sortOrder: string, optional, `ascending` or `descending`, default value: `descending`
+    - conditions: optional, parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
 + Response 
-    - [ticket object](#tickets) list, 
+    - tickets: [ticket object](#tickets) list, 
     - total: int, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
@@ -140,37 +138,26 @@
 ### Submit new ticket 
 `post api/v2/ticket/tickets` 
 - Parameters 
-
-| Name | Type | Description | 
-| - | - | - | 
-| `subject` | string | ticket subject | 
-| `message` | [new message object](#newmessage) | the first message of the ticket. | 
-| `agentAssignee` | integer | agent id | 
-| `departmentAssignee` | integer | department id | 
-| `contactId` | integer | the contact id or agent id | 
-| `createdBy` | integer | contact id or agent id | 
-| `createdByType` | string | contact or agent | 
-| `channel` | string | `portal`, `email` | 
-| `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed` |  
-| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
-| `tags` | [tag](#tag)[] | tags of the ticket | 
-
+    - subject: string, ticket subject, required
+    - channel: string, `portal`, `email` 
+    - contactId: integer, the contact id or agent id 
+    - agentAssignee: integer, agent id
+    - departmentAssignee: integer, department id
+    - priority: string, priority: `urgent`, `high`, `normal`, `low`, default value: `normal` 
+    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
+    - customFields: [custom field value](#customfieldvalue)[], custom field value array
+    - tagIds: integer[], tag id array
+    - message: the first message of the ticket
+        - type: string | `note`, `email`, `reply`, required
+        - source：string, `agentConsole`, `API`, default value: `API`
+        - subject: string, for email message, email subject
+        - htmlBody: string, html body of message
+        - plainBody: string, plain text body of message
+        - from: string, for email type message, one of email account address 
+        - cc:string, message cc emails 
+        - attachments: [attachment](#attachment)[], attachment array
 + Response 
     - [ticket object](#tickets)
-
-#### newMessage
-| Name | Type | Description | 
-| - | - | - | 
-| `type` | string | `note`, `email`, `reply` | 
-| `source` | string | `agentConsole`, `API` | 
-| `subject` | string | message subject | 
-| `htmlBody` | string | html body of message | 
-| `plainBody` | string | plain text body of message | 
-| `from` | string | message from email | 
-| `to` | string | message to email when contact reply,<br/> to and from is nullable and don't send email | 
-| `cc` | string | message cc emails | 
-| `attachments` | [attachment](#attachment)[] | attachment array | 
 
 ### Get ticket messages 
 `get api/v2/ticket/tickets/{id}/messages` 
@@ -182,9 +169,16 @@
 
 ### Reply ticket 
 `post api/v2/ticket/tickets/{id}/messages` 
-+ Parameters 
-    - [new message object](#newmessage)  
-+ Response 
+- Parameters  
+    - type: string | `note`, `email`, `reply`, required
+    - source：string, `agentConsole`, `API`, default value: `API`
+    - subject: string, for email message, email subject
+    - htmlBody: string, html body of message
+    - plainBody: string, plain text body of message
+    - from: string, for email type message, one of email account address 
+    - cc: string, message cc emails 
+    - attachments: [attachment](#attachment)[], attachment array
+- Response 
     - [message](#message) list 
 
 ### Update ticket 
@@ -201,7 +195,7 @@
 | `status` | string |  status of ticket: `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
 | `isRead` | bool | if read of ticket | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
-| `tags` | [tag](#tag)[] | tags of the ticket | 
+| `tagIds` | integer[] | tag id array | 
 + Response 
     - [ticket](#ticket) object 
 
@@ -253,7 +247,7 @@
     - timeFrom: DateTime, optional, default search the last 30 days. 
     - timeTo: DateTime, optional, defautl value is the current time. 
 - Response 
-    - [ticket object](#ticket) list 
+    - tickets: [ticket object](#ticket) list 
     - total: int, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
@@ -348,7 +342,7 @@
     - id, integer, ticket id
     - contactId, integer
 - Response: 
-    - [portal ticket object](#portalticket) 
+    - [portalTicket object](#portalticket) 
 
 ### Get ticket list
 `get api/v2/ticket/portalTickets`
@@ -357,28 +351,20 @@
     - startTime, DateTime, optional
     - endTime, DateTime, optional
 - Response: 
-    - [portal ticket object ](#portalticket)list
+    - [portalTicket object ](#portalticket) list
 
 ### Submit new ticket
 `post api/v2/ticket/portalTickets`
 - Parameters: 
-
-| Name | Type | Description |
-| - | - | - | 
-| `subject` | string | ticket subject |
-| `message` | [new message object](#portalticketnewmessage) | the first message |
-| `contactId` | integer | id of the contact who submit the ticket | 
-| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
-
+    - subject: string, ticket subject
+    - contactId: integer, id of the contact who submit the ticket
+    - customFields: [custom field value](#customfieldvalue)[], custom field value array
+    - message:  the first message
+        - htmlBody: string, html body of the message
+        - plainBody: string, plain text of the message
+        - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
-  - [portal ticket object](#portalticket) 
-
-##### portalTicketNewMessage
-| Name | Type | Description |
-| - | - | - |
-| `htmlBody` | string | html body of the message |   
-| `plainBody` | string | plain text of the message |  
-| `attachments` | [attachment](#attachment)[] | attachment array of message | 
+  - [portalTicket object](#portalticket) 
 
 ### Close ticket
 `put api/v2/ticket/portalTickets/{id}/close` 
@@ -386,7 +372,7 @@
     - id, integer, ticket id,
     - contactId, integer
 - Response: 
-    - [portal ticket object](#portalticket) 
+    - [portalTicket object](#portalticket) 
 
 ### Reopen ticket
 `put api/v2/ticket/portalTickets/{id}/reopen` 
@@ -394,7 +380,7 @@
     - id, integer, ticket id,
     - contactId, integer
 - Response: 
-    - [portal ticket object](#portalticket) 
+    - [portalTicket object](#portalticket) 
 
 ### Get message list of ticket
 `get api/v2/ticket/portalTickets/{id}/messages`
@@ -409,7 +395,9 @@
 - Parameters:
     - id: integer, ticket id
     - contactId: integer, contact id
-    - [new message object](#portalticketnewmessage)
+    - htmlBody: string, html body of the message
+    - plainBody: string, plain text of the message
+    - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
     - [message object](#message) list
 
@@ -640,7 +628,7 @@
     - timeFrom: DateTime, optional 
     - timeTo: DateTime, optional 
 - Response 
-    - [junk email object](#junkemail) list 
+    - junkEmails: [junk email object](#junkemail) list 
     - total: int, 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 

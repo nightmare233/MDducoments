@@ -84,7 +84,7 @@
     - stateOrProvince, string, optional
     - city, string, optional
 - Response
-    - [contact object](#contact) list
+    - contacts: [contact object](#contact) list
     - total: int, total number of contacts.
     - previousPage: string, next page uri, the first page return null.
     - nextPage: string, the last page return null.

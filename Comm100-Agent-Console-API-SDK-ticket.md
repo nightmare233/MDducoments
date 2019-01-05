@@ -28,12 +28,13 @@
     {
         id: number, //number
         name: '', //string  // todo：
-        identities:
-        {
-            id: 1, //number
-            type: '', //string, email, SSOUserId, externalId
-            value: '', //string, the value of this identity
-        },
+        identities:[
+            {
+                id: 1, //number
+                type: '', //string, email, SSOUserId, externalId
+                value: '', //string, the value of this identity
+            }
+        ],
         description: '', //string
         company: '', //string
         title: '', //string
