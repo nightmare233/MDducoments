@@ -217,8 +217,8 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.status', value);
 
 ```javascript
 Comm100AgentConsoleAPI.get('agentconsole.ticket.currentTicket.tags');
-Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.add', value});
-Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.remove', value});
+Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.add', value);
+Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.remove', value);
 //Example
 Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.add', {id: 1});
 Comm100AgentConsoleAPI.do('agentconsole.ticket.currentTicket.tags.remove', {id: 1});
@@ -246,7 +246,7 @@ Comm100AgentConsoleAPI.set('agentconsole.ticket.currentTicket.customFields:123',
     }
 
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.subject.changed', function(event) {});
-Comm100AgentConsoleAPI.on('agentconsole.currentTicket.contactId.changed', function(event) {});
+Comm100AgentConsoleAPI.on('agentconsole.currentTicket.contact.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.departmentAssignee.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.agentAssignee.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentTicket.priority.changed', function(event) {});

@@ -49,7 +49,7 @@
 
 | Name | Type | Description |
 | - | - | - |
-| `name` | string |  the name of the contact |
+| `name` | string |  the name of the contact, required |
 | `alias` | string |  the alias name of the contact |
 | `identities` | [identity](#identity)[] | the array of identities |
 | `description` | string | a small description of the contact |
