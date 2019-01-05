@@ -15,7 +15,7 @@
 | `alias` | string |  the alias name of the contact |
 | `identities` | [identity](#identity)[] | identity array  |
 | `description` | string | a small description of the contact |
-| `company` | string | the primary company name to which this contact belongs|
+| `company` | string | the primary company name which this contact belongs to |
 | `title` | string | the title of the contact|
 | `phoneNumber` | string | telephone number of the contact|
 | `faxNumber` | string | fax number of the contact |
@@ -53,7 +53,7 @@
 | `alias` | string |  the alias name of the contact |
 | `identities` | [identity](#identity)[] | the array of identities |
 | `description` | string | a small description of the contact |
-| `company` | string | the primary company name to which this contact belongs |
+| `company` | string | the primary company name which this contact belongs to |
 | `title` | string | the title of the contact |
 | `phoneNumber` | string | telephone number of the contact|
 | `faxNumber` | string | fax number of the contact |
@@ -105,7 +105,7 @@
 | `name` | string |  the name of the contact |
 | `alias` | string |  the alias name of the contact |
 | `description` | string | a small description of the contact |
-| `company` | string | the primary company name to which this contact belongs|
+| `company` | string | the primary company name which this contact belongs to|
 | `title` | string | the title of the contact|
 | `phoneNumber` | string | telephone number of the contact|
 | `faxNumber` | string | fax number of the contact |

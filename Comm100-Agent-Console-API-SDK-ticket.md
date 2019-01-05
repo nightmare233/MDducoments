@@ -19,7 +19,7 @@
         mobilePhone: '', //string	
         isAdmin: false, // boolean
         timeZone: '', //string
-        dateTimeFormat: '' //string
+    dateTimeFormat: '' //string
     },
     departmentAssignee: 
     {
@@ -97,7 +97,7 @@
   const message = {
         id: 1, //number
         type: '', //string, note, email, reply
-        source: '', //string, gentConsole, API, helpDesk, webForm, Chat, offlineMessage,
+        source: '', //string, agentConsole, API, helpDesk, webForm, Chat, offlineMessage,
         htmlBody: '', //string, html text of the message
         plainBody: '', //string, plain text of the message
         quote: '', //string
