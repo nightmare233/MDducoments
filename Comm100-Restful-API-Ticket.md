@@ -139,15 +139,15 @@
 `post api/v2/ticket/tickets` 
 - Parameters 
     - subject: string, ticket subject, required
-    - channel: string, `portal`, `email` 
-    - contactId: integer, the contact id or agent id 
-    - agentAssignee: integer, agent id
-    - departmentAssignee: integer, department id
+    - channel: string, `portal`, `email`, required 
+    - contactId: integer, the contact id or agent id, optional 
+    - agentAssignee: integer, agent id, optional
+    - departmentAssignee: integer, department id, optional
     - priority: string, priority: `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
-    - tagIds: integer[], tag id array
-    - message: the first message of the ticket
+    - tagIds: integer[], tag id array, , optional
+    - message: the first message of the ticket, required
         - type: string | `note`, `email`, `reply`, required
         - source：string, `agentConsole`, `API`, default value: `API`
         - subject: string, for email message, email subject
@@ -179,7 +179,7 @@
     - cc: string, message cc emails 
     - attachments: [attachment](#attachment)[], attachment array
 - Response 
-    - [message](#message) list 
+    - [message](#message) 
 
 ### Update ticket 
 `put api/v2/ticket/tickets/{id}` 
@@ -370,7 +370,6 @@
 `put api/v2/ticket/portalTickets/{id}/close` 
 - Parameters: 
     - id, integer, ticket id,
-    - contactId, integer
 - Response: 
     - [portalTicket object](#portalticket) 
 
@@ -378,7 +377,6 @@
 `put api/v2/ticket/portalTickets/{id}/reopen` 
 - Parameters: 
     - id, integer, ticket id,
-    - contactId, integer
 - Response: 
     - [portalTicket object](#portalticket) 
 
