@@ -115,13 +115,13 @@
 `get api/v2/ticket/tickets` 
 + Max 50 tickets are responded for each request. 
 + Parameters 
-    - filterId: integer, filter id, optional 
-    - tagId: integer, tag id, optional 
-    - keywords: string, optional 
-    - pageIndex: integer, optional 
-    - sortBy: string, optional, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
-    - sortOrder: string, optional, `ascending` or `descending`, default value: `descending`
-    - conditions: optional, parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
+    - filterId: integer, filter id  
+    - tagId: integer, tag id
+    - keywords: string
+    - pageIndex: integer
+    - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
+    - sortOrder: string, `ascending` or `descending`, default value: `descending`
+    - conditions: , parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
 + Response 
     - tickets: [ticket object](#tickets) list, 
     - total: integer, total number of tickets 
@@ -141,13 +141,13 @@
 - Parameters 
     - subject: string, ticket subject, required
     - channel: string, `portal`, `email`, required 
-    - contactId: integer, the contact id or agent id, optional 
-    - agentAssignee: integer, agent id, optional
-    - departmentAssignee: integer, department id, optional
+    - contactId: integer, the contact id or agent id
+    - agentAssignee: integer, agent id
+    - departmentAssignee: integer, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
-    - tagIds: integer[], tag id array, optional
+    - tagIds: integer[], tag id array
     - message: the first message of the ticket, required
         - type: string, `note`, `email`, `reply`, required
         - source：string, `agentConsole`, `API`, default value: `API`
@@ -171,27 +171,27 @@
 `put api/v2/ticket/tickets/{id}` 
 - Parameters 
     - id: integer, ticket id
-    - subject: string, ticket subject, optional
-    - contactId: integer, the contact id or agent id, optional 
-    - agentAssignee: integer, agent id, optional
-    - departmentAssignee: integer, department id, optional
-    - priority: string, priority: `urgent`, `high`, `normal`, `low`, optional
-    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, optional
-    - isRead: boolean, optional 
+    - subject: string, ticket subject
+    - contactId: integer, the contact id or agent id
+    - agentAssignee: integer, agent id
+    - departmentAssignee: integer, department id
+    - priority: string, priority: `urgent`, `high`, `normal`, `low`
+    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
+    - isRead: boolean
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
-    - tagIds: integer[], tag id array, optional
+    - tagIds: integer[], tag id array
 - Response 
     - [ticket](#ticket) object 
 
 ### Batch update ticket 
 `put api/v2/ticket/tickets/` 
 + Parameters 
-    - ids: integer[], ticket id array, 
-    - status, string, optional 
-    - priority, string, optional 
-    - agentassigneeId, integer, optional 
-    - departmentAssigneeId, integer, optional 
-    - isRead, boolean, optional 
+    - ids: integer[], ticket id array
+    - status, string
+    - priority, string
+    - agentassigneeId, integer
+    - departmentAssigneeId, integer
+    - isRead, boolean
 + Response 
     - [ticket](#ticket) object list 
 
@@ -240,10 +240,10 @@
 ### Get deleted tickets 
 `get api/v2/ticket/deletedTickets/` 
 - Parameters 
-    - keywords: string, optional 
-    - pageIndex: integer, optional 
-    - timeFrom: DateTime, optional, default search the last 30 days. 
-    - timeTo: DateTime, optional, defautl value is the current time. 
+    - keywords: string
+    - pageIndex: integer
+    - timeFrom: DateTime, default search the last 30 days
+    - timeTo: DateTime, defautl value is the current time
 - Response 
     - tickets: [ticket object](#ticket) list 
     - total: integer, total number of tickets 
@@ -345,9 +345,9 @@
 ### Get ticket list
 `get api/v2/ticket/portalTickets`
 - Parameters:
-    - contactId, integer
-    - startTime, DateTime, optional
-    - endTime, DateTime, optional
+    - contactId, integer, required
+    - startTime, DateTime
+    - endTime, DateTime
 - Response: 
     - [portalTicket object ](#portalticket) list
 
@@ -514,7 +514,7 @@
 | - | - | - | 
 | `id` | integer | id | 
 | `email` | string | email or domain | 
-| `blockType` | string | `blockEmailasJunk`,<br> `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
+| `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
 ### Get block sender list 
@@ -626,10 +626,10 @@
 `get api/v2/ticket/junkEmails` 
 
 - Parameters 
-    - keywords: string, optional 
-    - pageIndex: integer, optional 
-    - timeFrom: DateTime, optional 
-    - timeTo: DateTime, optional 
+    - keywords: string
+    - pageIndex: integer
+    - timeFrom: DateTime
+    - timeTo: DateTime
 - Response 
     - junkEmails: [junk email object](#junkemail) list 
     - total: integer, 

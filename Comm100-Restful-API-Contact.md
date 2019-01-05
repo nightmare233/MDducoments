@@ -71,18 +71,18 @@
 - `get  /api/v2/account/contacts`
 - Parameters
     - pageIndex, integer, default 1
-    - email, string, optional
-    - SSOUserId, string, optional
-    - externalId, string, optional
-    - alias, string, optional
-    - company, string, optional
-    - title, string, optional
-    - phoneNumber, string, optional
-    - faxNumber, string, optional
-    - address, string, optional
-    - country, string, optional
-    - stateOrProvince, string, optional
-    - city, string, optional
+    - email, string
+    - SSOUserId, string
+    - externalId, string
+    - alias, string
+    - company, string
+    - title, string
+    - phoneNumber, string
+    - faxNumber, string
+    - address, string
+    - country, string
+    - stateOrProvince, string
+    - city, string
 - Response
     - contacts: [contact object](#contact) list
     - total: int, total number of contacts.
