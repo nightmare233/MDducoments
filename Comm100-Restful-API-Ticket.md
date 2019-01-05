@@ -500,9 +500,10 @@
 ## endpoints 
 ### Upload attachment 
 `post /api/v2/ticket/attachments` 
+- Content-type
+    - multipart/form-data
 - Parameters 
-    - content-type: string, for example: 'image/png', 'text/plain'
-    - file 
+    - file: file
 - Response 
     - [attachment object](#attachment) 
 
