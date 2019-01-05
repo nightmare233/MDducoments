@@ -53,7 +53,7 @@
 | `lastReplyTime` | datetime | last reply time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
 | `lastReplyBy` | integer | last replier: contact id or agent id | 
-| `hasDraft` | boolean | if has ticket draft | 
+| `hasDraft` | boolean | if has draft | 
 | `tagIds` | integer[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
 | `slaPolicyId` | integer | SLA id of this ticket matched | 
@@ -106,7 +106,7 @@
 | `from` | string | from email address | 
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
-| `savedTime` | datetime | draft save time | 
+| `savedTime` | datetime | | 
 | `savedBy` | integer | the agent id who saved the ticket draft | 
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
 
@@ -149,7 +149,7 @@
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
     - tagIds: integer[], tag id array, optional
     - message: the first message of the ticket, required
-        - type: string | `note`, `email`, `reply`, required
+        - type: string, `note`, `email`, `reply`, required
         - source：string, `agentConsole`, `API`, default value: `API`
         - subject: string, for email message, email subject
         - htmlBody: string, html body of message
