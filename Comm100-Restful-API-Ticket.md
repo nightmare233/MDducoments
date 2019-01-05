@@ -42,17 +42,17 @@
 | `contactId` | integer | the contact id | 
 | `receivingAccount` | string | `receiving email` | 
 | `channel` | string | `portal`, `email`| 
-| `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
+| `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `isRead` | boolean | if the ticket is read | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
-| `createdBy` | integer | creator id of ticket: contact id or agent id | 
-| `createdByType` |  string | creator type: agent or contact | 
+| `createdBy` | integer | contact id or agent id | 
+| `createdByType` |  string | agent or contact | 
 | `createdTime` | datetime | create time of ticket | 
 | `lastActivityTime` | datetime | last activity time of ticket | 
 | `lastReplyTime` | datetime | last reply time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
-| `lastReplyBy` | integer | last replier: contact id or agent id | 
+| `lastReplyBy` | integer | contact id or agent id | 
 | `hasDraft` | boolean | if has draft | 
 | `tagIds` | integer[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
@@ -144,7 +144,7 @@
     - contactId: integer, the contact id or agent id, optional 
     - agentAssignee: integer, agent id, optional
     - departmentAssignee: integer, department id, optional
-    - priority: string, priority: `urgent`, `high`, `normal`, `low`, default value: `normal` 
+    - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
     - tagIds: integer[], tag id array, optional
@@ -171,7 +171,7 @@
 `put api/v2/ticket/tickets/{id}` 
 - Parameters 
     - id: integer, ticket id
-    - subject: string, ticket subject,optional
+    - subject: string, ticket subject, optional
     - contactId: integer, the contact id or agent id, optional 
     - agentAssignee: integer, agent id, optional
     - departmentAssignee: integer, department id, optional
@@ -317,7 +317,7 @@
     - array including: 
         - filterId: integer, filter id 
         - unreadCount: integer, count unread tickets of a filter 
-        - unreadMentionedCount: integer, unread and metioned to me tickets number in filter 
+        - unreadMentionedCount: integer, the number of tickets which is unread and mentioned to me 
 
 # PortalTicket
 ## objects
@@ -413,7 +413,7 @@
 | - | - | - | 
 | `id` | integer | condition id | 
 | `fieldId` | integer | field id | 
-| `matchType` | string | matach type: `contains`, `notContains`, <br>`is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `matchType` | string | `contains`, `notContains`, <br>`is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 
 ## endpoints 
@@ -592,8 +592,8 @@
 | `id` | integer | id | 
 | `email` | string | email address |  
 | `type` | string | pop3 or exchange | 
-| `agentAssigneeId` | integer | agent assignee id | 
-| `departmentAssigneeId` | integer | agent assignee id | 
+| `agentAssigneeId` | integer | agent id | 
+| `departmentAssigneeId` | integer | depatment id | 
 | `isDefault` | boolean | if default email account | 
 
 
