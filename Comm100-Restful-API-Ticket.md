@@ -44,7 +44,7 @@
 | `channel` | string | `portal`, `email`| 
 | `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
-| `isRead` | boolean | if read of ticket | 
+| `isRead` | boolean | if the ticket is read | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
 | `createdBy` | integer | creator id of ticket: contact id or agent id | 
 | `createdByType` |  string | creator type: agent or contact | 
@@ -73,7 +73,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `agentId` | integer | the agent id of mentioned | 
-| `isRead`| boolean | if read | 
+| `isRead`| boolean | if the mentioned ticket is read | 
 | `messageId`| integer| message id| 
 
 ### message 
@@ -88,10 +88,10 @@
 | `senderId`| integer | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | | 
-| `subject` | string | message subject | 
-| `from` | string | message from email | 
+| `subject` | string | subject | 
+| `from` | string | from email address| 
 | `to` | string | | 
-| `cc` | string | message cc emails |  
+| `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
 
 ### ticketDraft 
@@ -198,7 +198,7 @@
 ### Reply ticket 
 `post api/v2/ticket/tickets/{id}/messages` 
 - Parameters  
-    - type: string | `note`, `email`, `reply`, required
+    - type: string, `note`, `email`, `reply`, required
     - source：string, `agentConsole`, `API`, default value: `API`
     - subject: string, for email message, email subject
     - htmlBody: string, html body of message

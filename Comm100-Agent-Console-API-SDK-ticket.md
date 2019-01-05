@@ -17,7 +17,9 @@
         title: '', //string	 
         bio: '', //string	 
         mobilePhone: '', //string	
-        isAdmin: false // boolean
+        isAdmin: false, // boolean
+        timeZone: '', //string
+        dateTimeFormat: '' //string
     },
     departmentAssignee: 
     {
@@ -27,7 +29,7 @@
     contact:
     {
         id: number, //number
-        name: '', //string  // todo：
+        name: '', //string
         identities:[
             {
                 id: 1, //number
@@ -142,7 +144,9 @@
     title: '', //string	 
     bio: '', //string	 
     mobilePhone: '', //string	
-    isAdmin: false // boolean
+    isAdmin: false, // boolean
+    timeZone: '', //string
+    dateTimeFormat: '', //string
   }
 ```
 
