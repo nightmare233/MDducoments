@@ -146,7 +146,7 @@
     - priority: string, priority: `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
-    - tagIds: integer[], tag id array, , optional
+    - tagIds: integer[], tag id array, optional
     - message: the first message of the ticket, required
         - type: string | `note`, `email`, `reply`, required
         - source：string, `agentConsole`, `API`, default value: `API`
