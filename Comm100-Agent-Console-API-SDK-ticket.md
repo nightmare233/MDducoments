@@ -51,7 +51,7 @@
     status: '', //string, new, pendingExternal, pendingInternal, onHold, closed
     priority: '', //string, low, normal, high, urgent
     isRead: false, //boolean
-    isHaveDraft: true, //boolean
+    hasDraft: true, //boolean
     receivingAccount: '', //string
     createdTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
     closedTime: '2018-12-08T12:03:07.563', //ISO 8601 time format

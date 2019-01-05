@@ -53,7 +53,7 @@
 | `lastReplyTime` | datetime | last reply time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
 | `lastReplyBy` | integer | last replier: contact id or agent id | 
-| `isHaveDraft` | boolean | if has ticket draft | 
+| `hasDraft` | boolean | if has ticket draft | 
 | `tagIds` | integer[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
 | `slaPolicyId` | integer | SLA id of this ticket matched | 
