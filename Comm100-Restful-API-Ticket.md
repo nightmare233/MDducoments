@@ -632,10 +632,10 @@
     - timeTo: DateTime
 - Response 
     - junkEmails: [junk email object](#junkemail) list 
-    - total: integer, 
-    - previousPage: string, next page uri, the first page return null. 
-    - nextPage: string, the last page return null. 
-    - currentPage: string, 
+    - total: integer
+    - previousPage: string, next page uri, the first page return null
+    - nextPage: string, the last page return null
+    - currentPage: string
 
 ### Get a junk email 
 `get api/v2/ticket/junkEmails/{id}` 
