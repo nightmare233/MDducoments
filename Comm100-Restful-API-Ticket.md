@@ -43,7 +43,7 @@
 | `channel` | string | `portal`, `email`| 
 | `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
-| `isRead` | bool | if read of ticket | 
+| `isRead` | boolean | if read of ticket | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
 | `createdBy` | integer | creator id of ticket: contact id or agent id | 
 | `createdByType` |  string | creator type: agent or contact | 
@@ -154,7 +154,7 @@
         - htmlBody: string, html body of message
         - plainBody: string, plain text body of message
         - from: string, for email type message, one of email account address 
-        - cc:string, message cc emails 
+        - cc: string, message cc emails 
         - attachments: [attachment](#attachment)[], attachment array
 + Response 
     - [ticket object](#tickets)
@@ -166,6 +166,33 @@
 + Response 
     - [message](#message) list 
 
+### Update ticket 
+`put api/v2/ticket/tickets/{id}` 
+- Parameters 
+    - id: integer, ticket id
+    - subject: string, ticket subject,optional
+    - contactId: integer, the contact id or agent id, optional 
+    - agentAssignee: integer, agent id, optional
+    - departmentAssignee: integer, department id, optional
+    - priority: string, priority: `urgent`, `high`, `normal`, `low`, optional
+    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, optional
+    - isRead: boolean, optional 
+    - customFields: [custom field value](#customfieldvalue)[], custom field value array
+    - tagIds: integer[], tag id array, optional
+- Response 
+    - [ticket](#ticket) object 
+
+### Batch update ticket 
+`put api/v2/ticket/tickets/` 
++ Parameters 
+    - ids: integer[], ticket id array, 
+    - status, string, optional 
+    - priority, string, optional 
+    - agentassigneeId, integer, optional 
+    - departmentAssigneeId, integer, optional 
+    - isRead, boolean, optional 
++ Response 
+    - [ticket](#ticket) object list 
 
 ### Reply ticket 
 `post api/v2/ticket/tickets/{id}/messages` 
@@ -180,36 +207,6 @@
     - attachments: [attachment](#attachment)[], attachment array
 - Response 
     - [message](#message) 
-
-### Update ticket 
-`put api/v2/ticket/tickets/{id}` 
-+ Parameters 
-
-| Name | Type | Description | 
-| - | - | - | 
-| `subject` | string | ticket subject | 
-| `agentAssignee` | integer | agent assignee | 
-| `departmentAssignee` | integer | department assignee | 
-| `contactId` | integer | the contact id | 
-| `priority` | string | priority: `urgent`, `high`, `normal`, `low` | 
-| `status` | string |  status of ticket: `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
-| `isRead` | bool | if read of ticket | 
-| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
-| `tagIds` | integer[] | tag id array | 
-+ Response 
-    - [ticket](#ticket) object 
-
-### Batch update ticket 
-`put api/v2/ticket/tickets/` 
-+ Parameters 
-    - ids: integer[], ticket id array, 
-    - status, string, optional 
-    - priority, string, optional 
-    - agentassigneeId, integer, optional 
-    - departmentAssigneeId, integer, optional 
-    - isRead, boolean, optional 
-+ Response 
-    - [ticket](#ticket) object list 
 
 ### Mark ticket read 
 `put api/v2/ticket/tickets/{id}/read` 
@@ -466,7 +463,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | field id | 
-| `dataType` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, <br/>`radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
+| `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, <br/>`radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
 | `name` | integer | field name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
@@ -553,7 +550,7 @@
 ### Get ticket configs of this site 
 `get api/v2/ticket/configs` 
 - Response 
-    - isEnabledDepartment: bool 
+    - isEnabledDepartment: boolean 
     - recipientLimitPerEmail: integer 
 
 # Department 
@@ -647,7 +644,7 @@
 ### Update junk email 
 `put api/v2/ticket/junkEmails/{id}` 
 - Parameters 
-    - isRead: bool, 
+    - isRead: boolean, 
 - Response 
     - [junk email object](#junkemail) 
 
