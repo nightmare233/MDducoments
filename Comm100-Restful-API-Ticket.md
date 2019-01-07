@@ -1,5 +1,5 @@
-# Generic 
-- Authorization: Comm100 Ticket API provides 2 authentication methods: 
+# Authentication 
+- Comm100 Ticket API provides 2 authentication methods: 
     - API_key Authentication 
     - OAuth Authentication 
 - [Reference document](https://www.comm100.com/doc/api/introduction.htm#/) 
@@ -11,7 +11,7 @@
     - DateTime Parameters： 
         - The input time parameter needs to conform to the standard format of is-8601, for reference：<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">wikipedia</a> 
     - The total size of all of a ticket's attachments cannot exceed 20MB.
-- All response time values are UTC time and the caller converts as their time zone as required. 
+- All time values are UTC time and the caller converts as their time zone as required. 
 
 # Resource List 
 |Name|EndPoint|Note| 
@@ -93,6 +93,7 @@
 | `to` | string | | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
+| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
 
 ### ticketDraft 
 | Name | Type | Description | 
