@@ -1,4 +1,3 @@
-# Catalogue 
 # Generic 
 - Authorization: Comm100 Ticket API provides 2 authentication methods: 
     - API_key Authentication 
@@ -53,6 +52,7 @@
 | `lastReplyTime` | datetime | last reply time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
 | `lastReplyBy` | integer | contact id or agent id | 
+| `lastReplyByType` | string | `agent` or `contact` or `system`| 
 | `hasDraft` | boolean | if has draft | 
 | `tagIds` | integer[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
