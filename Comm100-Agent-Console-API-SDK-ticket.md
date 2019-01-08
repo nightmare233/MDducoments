@@ -54,7 +54,7 @@
     priority: '', //string, low, normal, high, urgent
     isRead: false, //boolean
     hasDraft: true, //boolean
-    receivingAccount: '', //string
+    receivedFrom: '', //string
     createdTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
     closedTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
     lastActivityTime: '2018-12-08T12:03:07.563', //ISO 8601 time format
@@ -156,7 +156,7 @@
   ```javascript
   /** @type {object(agent)} **/
     Comm100AgentConsoleAPI.get('agentconsole.currentAgent');
-    Comm100AgentConsoleAPI.get('agentconsole.currentAgent.ticketStatus');   
+    Comm100AgentConsoleAPI.get('agentconsole.currentAgent.ticketStatus'); //ticketStatus: agent status for ticket auto allocation, available or unvailable
   ```
 
 ## Ticket

@@ -64,7 +64,7 @@
 | `postcode` | string | the postcode of the contact  |
 
 - Response
-    - [contact object](#contact)
+    - contact: [contact object](#contact)
 
 #### Search contacts
 - Max 50 contacts are responded for each request.
@@ -116,7 +116,7 @@
 | `postcode` | string | the postcode of the contact |
 
 - Response
-    - [contact object](#contact)
+    - contact: [contact object](#contact)
 
 #### Delete a contact
  `delete  /api/v2/account/contacts/{id}`
@@ -132,7 +132,7 @@
     - type: string, identity type
     - value: string, identity value
 - Response
-    - [identity object](#identity)
+    - identity: [identity object](#identity)
 
 #### Update contact identity
 `put  /api/v2/account/contacts/{contactId}/identities/{id}`
@@ -141,7 +141,7 @@
     - id, integer, contact identity id
     - value, string, the value of the identity
 - Response
-    - [identity object](#identity)
+    - identity: [identity object](#identity)
 
 #### Delete contact identity
  `delete  /api/v2/account/contacts/{contactId}/identities/{id}`

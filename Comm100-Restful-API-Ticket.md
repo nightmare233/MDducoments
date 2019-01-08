@@ -13,6 +13,27 @@
     - The total size of all of a ticket's attachments cannot exceed 20MB.
 - All time values are UTC time and the caller converts as their time zone as required. 
 
+# Includes
+- Some APIs support `Includes` to get related objects. for example:
+    - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&contact `
+    - response:
+
+        ``` javascript
+        {
+            "ticket": {
+                "id": 1
+                //...
+            },
+            "agentAssignee": {
+                "id": 12,
+                //...
+            },
+            "contact": {
+                "id": 23,
+                //...
+        }
+        ```
+
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
@@ -36,23 +57,23 @@
 | - | - | - | 
 | `id` | integer | id of ticket | 
 | `subject` | string | ticket subject | 
-| `agentAssignee` | integer | agent assignee | 
-| `departmentAssignee` | integer | department assignee | 
+| `agentAssigneeId` | integer | agent assignee | 
+| `departmentAssigneeId` | integer | department assignee | 
 | `contactId` | integer | the contact id | 
-| `receivingAccount` | string | `receiving email` | 
+| `receivedFrom` | string | email address for email channel | 
 | `channel` | string | `portal`, `email`| 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `isRead` | boolean | if the ticket is read | 
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
-| `createdBy` | integer | contact id or agent id | 
-| `createdByType` |  string | agent or contact | 
+| `createdById` | integer | contact id or agent id | 
+| `createdByType` |  string | agent or contact or system | 
 | `createdTime` | datetime | create time of ticket | 
 | `lastActivityTime` | datetime | last activity time of ticket | 
 | `lastReplyTime` | datetime | last reply time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
-| `lastReplyBy` | integer | contact id or agent id | 
-| `lastReplyByType` | string | `agent` or `contact` or `system`| 
+| `lastRepliedById` | integer | contact id or agent id | 
+| `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `hasDraft` | boolean | if has draft | 
 | `tagIds` | integer[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
@@ -108,7 +129,7 @@
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
 | `savedTime` | datetime | | 
-| `savedBy` | integer | the agent id who saved the ticket draft | 
+| `savedById` | integer | the agent id who saved the ticket draft | 
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
 
 ## endpoints 
@@ -130,12 +151,32 @@
     - nextPage: string, the last page return null. 
     - currentPage: string, current page uri. 
 
+| Includes | Description |
+| - | - |
+| agentAssignee | `get api/v2/ticket/tickets?include=agentAssignee` |
+| depatmentAssignee | `get api/v2/ticket/tickets?include=depatmentAssignee` |
+| contact | `get api/v2/ticket/tickets?include=contact` |
+| createBy | `get api/v2/ticket/tickets?include=createBy` |
+| lastRepliedBy | `get api/v2/ticket/tickets?include=lastRepliedBy` |
+| messages | `get api/v2/ticket/tickets?include=messages` |
+
+
 ### Get a ticket 
 `get api/v2/ticket/tickets/{id} ` 
 + Parameters 
     - id: integer, ticket  
 + Response 
-    - [ticket object](#ticket) 
+    - ticket: [ticket object](#ticket) 
+
+| Includes | Description |
+| - | - |
+| agentAssignee | `get api/v2/ticket/tickets/{id}?include=agentAssignee` |
+| depatmentAssignee | `get api/v2/ticket/tickets/{id}?include=depatmentAssignee` |
+| contact | `get api/v2/ticket/tickets/{id}?include=contact` |
+| createBy | `get api/v2/ticket/tickets/{id}?include=createBy` |
+| lastRepliedBy | `get api/v2/ticket/tickets/{id}?include=lastRepliedBy` |
+| messages | `get api/v2/ticket/tickets/{id}?include=messages` |
+ 
 
 ### Submit new ticket 
 `post api/v2/ticket/tickets` 
@@ -143,8 +184,8 @@
     - subject: string, ticket subject, required
     - channel: string, `portal`, `email`, required 
     - contactId: integer, the contact id or agent id
-    - agentAssignee: integer, agent id
-    - departmentAssignee: integer, department id
+    - agentAssigneeId: integer, agent id
+    - departmentAssigneeId: integer, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
@@ -159,14 +200,18 @@
         - cc: string, message cc emails 
         - attachments: [attachment](#attachment)[], attachment array
 + Response 
-    - [ticket object](#tickets)
+    - ticket: [ticket object](#tickets)
 
 ### Get ticket messages 
 `get api/v2/ticket/tickets/{id}/messages` 
 + Parameters 
     - id: integer, ticket id 
 + Response 
-    - [message](#message) list 
+    - messages: [message](#message) list 
+
+| Includes | Description |
+| - | - |
+| sender | `get api/v2/ticket/tickets/{id}/messages?include=sender` |
 
 ### Update ticket 
 `put api/v2/ticket/tickets/{id}` 
@@ -174,15 +219,15 @@
     - id: integer, ticket id
     - subject: string, ticket subject
     - contactId: integer, the contact id or agent id
-    - agentAssignee: integer, agent id
-    - departmentAssignee: integer, department id
+    - agentAssigneeId: integer, agent id
+    - departmentAssigneeId: integer, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
     - isRead: boolean
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
-    - [ticket](#ticket) object 
+    - ticket: [ticket](#ticket) object 
 
 ### Batch update ticket 
 `put api/v2/ticket/tickets/` 
@@ -194,7 +239,7 @@
     - departmentAssigneeId, integer
     - isRead, boolean
 + Response 
-    - [ticket](#ticket) object list 
+    - tickets: [ticket](#ticket) object list 
 
 ### Reply ticket 
 `post api/v2/ticket/tickets/{id}/messages` 
@@ -202,13 +247,13 @@
     - type: string, `note`, `email`, `reply`, required
     - source：string, `agentConsole`, `API`, default value: `API`
     - subject: string, for email message, email subject
-    - htmlBody: string, html body of message
+    - htmlBody: string, html body of message, if you want to @mention an agent in a note, you can use the format: `<span data-id=agentId class="athighlight">note body</span>`
     - plainBody: string, plain text body of message
     - from: string, for email type message, one of email account address 
     - cc: string, message cc emails 
     - attachments: [attachment](#attachment)[], attachment array
 - Response 
-    - [message](#message) 
+    - message: [message](#message) 
 
 ### Mark ticket read 
 `put api/v2/ticket/tickets/{id}/read` 
@@ -246,25 +291,26 @@
     - timeFrom: DateTime, default search the last 30 days
     - timeTo: DateTime, defautl value is the current time
 - Response 
-    - tickets: [ticket object](#ticket) list 
-    - total: integer, total number of tickets 
-    - previousPage: string, next page uri, the first page return null. 
-    - nextPage: string, the last page return null. 
-    - currentPage: string, current page uri. 
+    -  deletedTickets 
+        - tickets: [ticket object](#ticket) list 
+        - total: integer, total number of tickets 
+        - previousPage: string, next page uri, the first page return null. 
+        - nextPage: string, the last page return null. 
+        - currentPage: string, current page uri. 
 
 ### Get a deleted ticket 
 `get api/v2/ticket/deletedTickets/{id}` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - [ticket object](#ticket) 
+    - deletedTicket: [ticket object](#ticket) 
 
 ### Restore a deleted ticket 
 `post api/v2/ticket/deletedTickets/{id}/restore ` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - [ticket object](#ticket)  
+    - deletedTicket: [ticket object](#ticket)  
 
 ### Delete a ticket permanently 
 `delete api/v2/ticket/deletedTickets/{id}` 
@@ -278,21 +324,21 @@
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - [ticket draft object](#ticketdraft) 
+    - ticketDraft: [ticket draft object](#ticketdraft) 
 
 ### Create ticket draft 
 `post api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft object](#ticketdraft) 
 - Response 
-    - [ticket draft object](#ticketdraft) 
+    - ticketDraft: [ticket draft object](#ticketdraft) 
 
 ### Update ticket draft 
 `put api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft object](#ticketdraft) 
 - Response 
-    - [ticket draft object](#ticketdraft) 
+    - ticketDraft: [ticket draft object](#ticketdraft) 
 
 ### Delete ticket draft 
 `delete api/v2/ticket/tickets/{id}/draft` 
@@ -307,7 +353,7 @@
     - id: integer, target ticket id, 
     - sourceId: integer, source ticket id 
 - Response 
-    - [ticket object](#ticket) 
+    - ticket: [ticket object](#ticket) 
 
 ### Get unread tickets number in filters 
 `get api/v2/ticket/filters/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
@@ -333,6 +379,16 @@
 | `createdTime` | datetime | create time of ticket |
 | `closedTime` | datetime | close time of ticket |
 
+### portalMessage 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | id of message | 
+| `htmlBody` | string | html body of message | 
+| `plainBody` | string | plain text body of message | 
+| `senderId`| integer | id of agent or contact | 
+| `senderType`| string | `agent` or `contact` or `system` | 
+| `time` | datetime | |   
+| `attachments` | [attachment](#attachment)[] | attachment array| 
 
 ## endpoints
 ### Get a ticket by ticket id
@@ -341,8 +397,13 @@
     - id, integer, ticket id
     - contactId, integer
 - Response: 
-    - [portalTicket object](#portalticket) 
+    - portalTicket: [portalTicket object](#portalticket) 
 
+|Includes| Description |
+| - | - |
+| contact | `get api/v2/ticket/portalTickets/{id}?include=contact` | 
+| portalMessages | `get api/v2/ticket/portalTickets/{id}?include=portalMessages` |
+ 
 ### Get ticket list
 `get api/v2/ticket/portalTickets`
 - Parameters:
@@ -350,7 +411,12 @@
     - startTime, DateTime
     - endTime, DateTime
 - Response: 
-    - [portalTicket object ](#portalticket) list
+    - portalTickets: [portalTicket object ](#portalticket) list
+
+|Includes| Description |
+| - | - |
+| contact | `get api/v2/ticket/portalTickets?include=contact` | 
+| portalMessages | `get api/v2/ticket/portalTickets?include=portalMessages` |
 
 ### Submit new ticket
 `post api/v2/ticket/portalTickets`
@@ -363,21 +429,21 @@
         - plainBody: string, plain text of the message
         - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
-  - [portalTicket object](#portalticket) 
+  - portalTicket: [portalTicket object](#portalticket) 
 
 ### Close ticket
 `put api/v2/ticket/portalTickets/{id}/close` 
 - Parameters: 
     - id, integer, ticket id,
 - Response: 
-    - [portalTicket object](#portalticket) 
+    - portalTicket: [portalTicket object](#portalticket) 
 
 ### Reopen ticket
 `put api/v2/ticket/portalTickets/{id}/reopen` 
 - Parameters: 
     - id, integer, ticket id,
 - Response: 
-    - [portalTicket object](#portalticket) 
+    - portalTicket: [portalTicket object](#portalticket) 
 
 ### Get message list of ticket
 `get api/v2/ticket/portalTickets/{id}/messages`
@@ -385,7 +451,11 @@
     - id, integer, ticket id
     - contactId, integer
 - Response: 
-    - [message object](#message) list
+    - portalMessages: [portalMessage object](#portalMessage) list
+
+|Includes| Description |
+| - | - |
+| sender| `get api/v2/ticket/portalTickets/{id}/messages?include=sender` | 
 
 ### Reply ticket
  `post api/v2/ticket/portalTickets/{id}/messages`
@@ -396,7 +466,7 @@
     - plainBody: string, plain text of the message
     - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
-    - [message object](#message) list
+    - portalMessage: [portalMessage object](#portalMessage) list
 
 # Filters 
 ## objects 
@@ -406,7 +476,7 @@
 | `id` | integer | filter id | 
 | `name` | string | filter name | 
 | `isPrivate` | boolean | if private filter| 
-| `createdBy` | integer | agent id | 
+| `createdById` | integer | agent id | 
 | `conditions` | [condition](#condition)[] | array of filter condition | 
 
 ### condition 
@@ -423,7 +493,11 @@
 - Parameters 
     - no parameters 
 - Response 
-    - [filter object](#filter) list, without conditions. 
+    - filters: [filter object](#filter) list, without conditions
+
+|Includes| Description |
+| - | - |
+| createdBy | `get /api/v2/ticket/filters?include=createdBy` | 
 
 ### Create a new filter 
 `post api/v2/ticket/filters`
@@ -432,14 +506,14 @@
     - isPrivate: boolean, if private filter, default value: `false` 
     - conditions: [condition](#condition)[], array of filter condition
 - Response 
-    - [filter object](#filter) list 
+    - filters: [filter object](#filter) list 
 
 ### Get a filter and its conditions 
 `get api/v2/ticket/filters/{id}` 
 - Parameters 
     - id: integer, filter id 
 - Response 
-    - [filter object](#filter) 
+    - filter: [filter object](#filter) 
 
 ### Update filter 
 `put api/v2/ticket/filters/{id}` 
@@ -449,7 +523,7 @@
     - isPrivate: boolean, if private filter 
     - conditions: [condition](#condition)[], array of filter condition
 - Response 
-    - [filter object](#filter) 
+    - filter: [filter object](#filter) 
 
 ### Delete filter 
 `delete api/vi/ticket/filters/{id}` 
@@ -486,7 +560,7 @@
 ### Get fields and their options 
 `get api/v2/ticket/fields` 
 - Response 
-    - [field object](#field) list 
+    - fields: [field object](#field) list 
 
 # Attachments 
 ## objects 
@@ -506,7 +580,7 @@
 - Parameters 
     - file: file
 - Response 
-    - [attachment object](#attachment) 
+    - attachment: [attachment object](#attachment) 
 
 # BlockedSenders 
 ## objects 
@@ -523,14 +597,14 @@
 - Parameters 
     - domain: string, the domain of email address 
 - Response 
-    - [block sender object](#blockedsender) list 
+    - blockedSenders: [block sender object](#blockedsender) list 
 
 ### Add block sender 
 `post api/v2/ticket/blockedSenders` 
 - Parameters 
     - [block sender object](#blockedsender) 
 - Response 
-    - [block sender object](#blockedsender) 
+    - blockedSender: [block sender object](#blockedsender) 
 
 # CannedResponses 
 ## objects 
@@ -547,15 +621,16 @@
 ### Get canned responses 
 `get api/v2/ticket/cannedResponses` 
 - Response 
-    - [Canned responses object](#cannedresponse) list 
+    - cannedResponses: [Canned responses object](#cannedresponse) list 
 
 
 # Configs 
 ### Get ticket configs of this site 
 `get api/v2/ticket/configs` 
 - Response 
-    - isEnabledDepartment: boolean 
-    - recipientLimitPerEmail: integer 
+    - configs
+        - isEnabledDepartment: boolean 
+        - recipientLimitPerEmail: integer 
 
 # Department 
 ## objects 
@@ -578,12 +653,12 @@
 ### Get one department 
 `get api/v2/ticket/departments/{id} ` 
 - Response 
-    - [department object](#department) 
+    - department：[department object](#department) 
 
 ### Get all departments 
 `get api/v2/ticket/departments` 
 - Response 
-    - [department object](#department) List without department member. 
+    - departments: [department object](#department) List without department member. 
 
 # EmailAccounts 
 ## objects 
@@ -602,7 +677,7 @@
 ### Get all enabled email accounts 
 `get api/v2/ticket/emailAccounts` 
 - Response 
-    - [email account object](#emailaccount) list 
+    - emailAccounts: [email account object](#emailaccount) list 
 
 # JunkEmails 
 ## objects 
@@ -643,21 +718,21 @@
 - Parameters 
     - id: integer, email id 
 - Response 
-    - [junk email object](#junkemail) 
+    - junkEmail: [junk email object](#junkemail) 
 
 ### Update junk email 
 `put api/v2/ticket/junkEmails/{id}` 
 - Parameters 
     - isRead: boolean, 
 - Response 
-    - [junk email object](#junkemail) 
+    - junkEmail: [junk email object](#junkemail) 
 
 ### Restore a junk email to a normal ticket 
 `post api/v2/ticket/junkEmails/{id}/notJunk` 
 - Parameters 
     - id: integer, email id 
 - Response 
-    - [ticket object](#ticket) 
+    - ticket: [ticket object](#ticket) 
 
 ### Delete a junk email 
 `delete api/v2/ticket/junkEmails/{id}` 
@@ -678,14 +753,14 @@
 ### Get all tags 
 `Get api/v2/ticket/tags` 
 - Response 
-    - [tag object](#tag) list 
+    - tags: [tag object](#tag) list 
 
 ### Add a tag 
 `Post api/v2/ticket/tags` 
 - Parameters 
     - name: string, tag name 
 - Response 
-    - [tag object](#tag) 
+    - tag: [tag object](#tag) 
 
 ### Update One Tag 
 `Put api/v2/ticket/tags/{id}` 
@@ -693,7 +768,7 @@
     - id: integer, tag id 
     - name: string, tag name 
 - Response 
-    - [tag object](#tag) 
+    - tag: [tag object](#tag) 
 
 ### Delete a tag 
 `Delete api/v2/ticket/tags/{id}` 
@@ -701,6 +776,3 @@
     - id: integer, tag id 
 - Response 
     - http status code
-
-
-    
