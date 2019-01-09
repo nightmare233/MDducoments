@@ -19,7 +19,7 @@
         mobilePhone: '', //string	
         isAdmin: false, // boolean
         timeZone: '', //string
-    dateTimeFormat: '' //string
+        dateTimeFormat: '' //string
     },
     departmentAssignee: 
     {

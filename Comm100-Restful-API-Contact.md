@@ -31,7 +31,7 @@
 | - | - | - | 
 | `id` | integer | the id of identity |
 | `type` | string | `email`, `SSOUserId`, `externalId` |
-| `value` | string | the value of this identity, should be unique in the|
+| `value` | string | the value of this identity, should be unique |
 
 - Note: We currently only allow one for each type.
 
@@ -90,7 +90,7 @@
     - nextPage: string, the last page return null.
     - currentPage: string, current page uri.
 - Example
-    - <code>get  /api/v2/contact/contacts?country=canada&company=test`</code>
+    - `get  /api/v2/account/contacts?country=canada&company=test`
 - Note
     - Deleted contact will not be included in the results.
     - The query must be URL encoded.
