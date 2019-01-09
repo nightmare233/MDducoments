@@ -62,7 +62,6 @@
                         //...
                     }
                 ]
-                
             //...
             }
         }, 
@@ -269,7 +268,7 @@
     - ids: integer[], ticket id array
     - status, string
     - priority, string
-    - agentassigneeId, integer
+    - agentAssigneeId, integer
     - departmentAssigneeId, integer
     - isRead, boolean
 + Response 
