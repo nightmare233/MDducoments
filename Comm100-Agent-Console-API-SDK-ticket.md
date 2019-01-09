@@ -70,8 +70,8 @@
     ],
     customFields:[
         {
-            fieldId: 1, //number
-            fieldName:'', //string
+            id: 1, //number
+            name:'', //string
             value: '' //string
         }
     ], 

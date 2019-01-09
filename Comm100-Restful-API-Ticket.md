@@ -5,16 +5,31 @@
 - [Reference document](https://www.comm100.com/doc/api/introduction.htm#/) 
 
 # Parameter explanation 
-- Incoming parameters： 
+- Incoming parameters:
     - Get API passes parameters through the query string 
     - Put/Post API passes parameters through json data. 
-    - DateTime Parameters： 
-        - The input time parameter needs to conform to the standard format of is-8601, for reference：<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">wikipedia</a> 
+    - DateTime Parameters: 
+        - The input time parameter needs to conform to the standard format of is-8601, for reference: <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">wikipedia</a> 
     - The total size of all of a ticket's attachments cannot exceed 20MB.
 - All time values are UTC time and the caller converts as their time zone as required. 
 
 # Includes
-- Some APIs support `Includes` to get related objects. for example:
+- Following APIs support `Includes` to get related objects. 
+
+    | Endpoints | Support including parameters |
+    | - | - |
+    | `get api/v2/ticket/tickets` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/tickets/{id}` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/tickets/{id}/messages` | sender |
+    | `get api/v2/ticket/deletedTickets` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/deletedTickets/{id}` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/deletedTickets/{id}/messages` | sender |
+    | `get api/v2/ticket/portalTickets/{id}` | contact, portalMessages |
+    | `get api/v2/ticket/portalTickets` | contact, portalMessages |
+    | `get api/v2/ticket/portalTickets/{id}/portalMessages` | sender |
+    | `get /api/v2/ticket/filters` | createdBy |
+
+- Sxample:
     - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&contact `
     - response:
 
@@ -57,10 +72,10 @@
 | - | - | - | 
 | `id` | integer | id of ticket | 
 | `subject` | string | ticket subject | 
-| `agentAssigneeId` | integer | agent assignee | 
-| `departmentAssigneeId` | integer | department assignee | 
+| `agentAssigneeId` | integer | agent assignee id | 
+| `departmentAssigneeId` | integer | department assignee id | 
 | `contactId` | integer | the contact id | 
-| `receivedFrom` | string | email address for email channel | 
+| `receivedFrom` | string | received email address for email channel | 
 | `channel` | string | `portal`, `email`| 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
@@ -70,8 +85,8 @@
 | `createdByType` |  string | agent or contact or system | 
 | `createdTime` | datetime | create time of ticket | 
 | `lastActivityTime` | datetime | last activity time of ticket | 
-| `lastReplyTime` | datetime | last reply time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
+| `lastRepliedTime` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `hasDraft` | boolean | if has draft | 
@@ -150,16 +165,16 @@
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
     - currentPage: string, current page uri. 
++ Includes
 
-| Includes | Description |
-| - | - |
-| agentAssignee | `get api/v2/ticket/tickets?include=agentAssignee` |
-| depatmentAssignee | `get api/v2/ticket/tickets?include=depatmentAssignee` |
-| contact | `get api/v2/ticket/tickets?include=contact` |
-| createBy | `get api/v2/ticket/tickets?include=createBy` |
-| lastRepliedBy | `get api/v2/ticket/tickets?include=lastRepliedBy` |
-| messages | `get api/v2/ticket/tickets?include=messages` |
-
+    | Includes | Description |
+    | - | - |
+    | agentAssignee | `get api/v2/ticket/tickets?include=agentAssignee` |
+    | depatmentAssignee | `get api/v2/ticket/tickets?include=depatmentAssignee` |
+    | contact | `get api/v2/ticket/tickets?include=contact` |
+    | createBy | `get api/v2/ticket/tickets?include=createBy` |
+    | lastRepliedBy | `get api/v2/ticket/tickets?include=lastRepliedBy` |
+    | messages | `get api/v2/ticket/tickets?include=messages` |
 
 ### Get a ticket 
 `get api/v2/ticket/tickets/{id} ` 
@@ -167,23 +182,23 @@
     - id: integer, ticket  
 + Response 
     - ticket: [ticket object](#ticket) 
++ Includes
 
-| Includes | Description |
-| - | - |
-| agentAssignee | `get api/v2/ticket/tickets/{id}?include=agentAssignee` |
-| depatmentAssignee | `get api/v2/ticket/tickets/{id}?include=depatmentAssignee` |
-| contact | `get api/v2/ticket/tickets/{id}?include=contact` |
-| createBy | `get api/v2/ticket/tickets/{id}?include=createBy` |
-| lastRepliedBy | `get api/v2/ticket/tickets/{id}?include=lastRepliedBy` |
-| messages | `get api/v2/ticket/tickets/{id}?include=messages` |
+    | Includes | Description |
+    | - | - |
+    | agentAssignee | `get api/v2/ticket/tickets/{id}?include=agentAssignee` |
+    | depatmentAssignee | `get api/v2/ticket/tickets/{id}?include=depatmentAssignee` |
+    | contact | `get api/v2/ticket/tickets/{id}?include=contact` |
+    | createBy | `get api/v2/ticket/tickets/{id}?include=createBy` |
+    | lastRepliedBy | `get api/v2/ticket/tickets/{id}?include=lastRepliedBy` |
+    | messages | `get api/v2/ticket/tickets/{id}?include=messages` |
  
-
 ### Submit new ticket 
 `post api/v2/ticket/tickets` 
 - Parameters 
     - subject: string, ticket subject, required
     - channel: string, `portal`, `email`, required 
-    - contactId: integer, the contact id or agent id
+    - contactId: integer, contact id
     - agentAssigneeId: integer, agent id
     - departmentAssigneeId: integer, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
@@ -192,7 +207,7 @@
     - tagIds: integer[], tag id array
     - message: the first message of the ticket, required
         - type: string, `note`, `email`, `reply`, required
-        - source：string, `agentConsole`, `API`, default value: `API`
+        - source: string, `agentConsole`, `API`, default value: `API`
         - subject: string, for email message, email subject
         - htmlBody: string, html body of message
         - plainBody: string, plain text body of message
@@ -208,10 +223,11 @@
     - id: integer, ticket id 
 + Response 
     - messages: [message](#message) list 
++ Includes
 
-| Includes | Description |
-| - | - |
-| sender | `get api/v2/ticket/tickets/{id}/messages?include=sender` |
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v2/ticket/tickets/{id}/messages?include=sender` |
 
 ### Update ticket 
 `put api/v2/ticket/tickets/{id}` 
@@ -245,7 +261,7 @@
 `post api/v2/ticket/tickets/{id}/messages` 
 - Parameters  
     - type: string, `note`, `email`, `reply`, required
-    - source：string, `agentConsole`, `API`, default value: `API`
+    - source: string, `agentConsole`, `API`, default value: `API`
     - subject: string, for email message, email subject
     - htmlBody: string, html body of message, if you want to @mention an agent in a note, you can use the format: `<span data-id=agentId class="athighlight">note body</span>`
     - plainBody: string, plain text body of message
@@ -291,12 +307,21 @@
     - timeFrom: DateTime, default search the last 30 days
     - timeTo: DateTime, defautl value is the current time
 - Response 
-    -  deletedTickets 
-        - tickets: [ticket object](#ticket) list 
-        - total: integer, total number of tickets 
-        - previousPage: string, next page uri, the first page return null. 
-        - nextPage: string, the last page return null. 
-        - currentPage: string, current page uri. 
+    - deletedTickets: [ticket object](#ticket) list 
+    - total: integer, total number of tickets 
+    - previousPage: string, next page uri, the first page return null. 
+    - nextPage: string, the last page return null. 
+    - currentPage: string, current page uri. 
+- Includes
+
+    | Includes | Description |
+    | - | - |
+    | agentAssignee | `get api/v2/ticket/deletedTickets?include=agentAssignee` |
+    | depatmentAssignee | `get api/v2/ticket/deletedTickets?include=depatmentAssignee` |
+    | contact | `get api/v2/ticket/deletedTickets?include=contact` |
+    | createBy | `get api/v2/ticket/deletedTickets?include=createBy` |
+    | lastRepliedBy | `get api/v2/ticket/deletedTickets?include=lastRepliedBy` |
+    | messages | `get api/v2/ticket/deletedTickets?include=messages` |
 
 ### Get a deleted ticket 
 `get api/v2/ticket/deletedTickets/{id}` 
@@ -304,6 +329,29 @@
     - id: integer, ticket id 
 - Response 
     - deletedTicket: [ticket object](#ticket) 
+- Includes
+
+    | Includes | Description |
+    | - | - |
+    | agentAssignee | `get api/v2/ticket/deletedTickets/{id}?include=agentAssignee` |
+    | depatmentAssignee | `get api/v2/ticket/deletedTickets/{id}?include=depatmentAssignee` |
+    | contact | `get api/v2/ticket/deletedTickets/{id}?include=contact` |
+    | createBy | `get api/v2/ticket/deletedTickets/{id}?include=createBy` |
+    | lastRepliedBy | `get api/v2/ticket/deletedTickets/{id}?include=lastRepliedBy` |
+    | messages | `get api/v2/ticket/deletedTickets/{id}?include=messages` |
+
+### Get messages of a deleted ticket 
+`get api/v2/ticket/deletedTickets/{id}/messages` 
+- Parameters 
+    - id: integer 
+- Response 
+    - messages: [message object](#message) 
+- Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v2/ticket/deletedTickets/{id}/messages?include=sender` |
+
 
 ### Restore a deleted ticket 
 `post api/v2/ticket/deletedTickets/{id}/restore ` 
@@ -372,39 +420,40 @@
 | Name | Type | Description |
 | - | - | - |
 | `id` | integer | id of ticket |
-| `subject` | string | ticket subject |
-| `contactId` | integer | id of the contact who submit the ticket |
-| `isClosed` | boolean | if the ticket is closed |
+| `subject` | string | subject |
+| `contactId` | integer | id of the contact who submitted the portal ticket |
+| `isClosed` | boolean | if the portal ticket is closed |
 | `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
-| `createdTime` | datetime | create time of ticket |
-| `closedTime` | datetime | close time of ticket |
+| `createdTime` | datetime | create time |
+| `closedTime` | datetime | close time |
 
 ### portalMessage 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of message | 
-| `htmlBody` | string | html body of message | 
-| `plainBody` | string | plain text body of message | 
+| `htmlBody` | string | html body | 
+| `plainBody` | string | plain text body | 
 | `senderId`| integer | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | |   
 | `attachments` | [attachment](#attachment)[] | attachment array| 
 
 ## endpoints
-### Get a ticket by ticket id
+### Get a portalTicket by id
 `get api/v2/ticket/portalTickets/{id}`
-- Parameters: 
-    - id, integer, ticket id
+- Parameters
+    - id, integer, id
     - contactId, integer
-- Response: 
+- Response
     - portalTicket: [portalTicket object](#portalticket) 
+- Includes
 
-|Includes| Description |
-| - | - |
-| contact | `get api/v2/ticket/portalTickets/{id}?include=contact` | 
-| portalMessages | `get api/v2/ticket/portalTickets/{id}?include=portalMessages` |
+    |Includes| Description |
+    | - | - |
+    | contact | `get api/v2/ticket/portalTickets/{id}?include=contact` | 
+    | portalMessages | `get api/v2/ticket/portalTickets/{id}?include=portalMessages` |
  
-### Get ticket list
+### Get portalTicket list
 `get api/v2/ticket/portalTickets`
 - Parameters:
     - contactId, integer, required
@@ -412,59 +461,61 @@
     - endTime, DateTime
 - Response: 
     - portalTickets: [portalTicket object ](#portalticket) list
+- Includes
 
-|Includes| Description |
-| - | - |
-| contact | `get api/v2/ticket/portalTickets?include=contact` | 
-| portalMessages | `get api/v2/ticket/portalTickets?include=portalMessages` |
+    |Includes| Description |
+    | - | - |
+    | contact | `get api/v2/ticket/portalTickets?include=contact` | 
+    | portalMessages | `get api/v2/ticket/portalTickets?include=portalMessages` |
 
-### Submit new ticket
+### Submit a portalTicket
 `post api/v2/ticket/portalTickets`
 - Parameters: 
-    - subject: string, ticket subject, required
-    - contactId: integer, id of the contact who submit the ticket
+    - subject: string, subject, required
+    - contactId: integer, id of the contact who submitted the portal ticket
     - customFields: [custom field value](#customfieldvalue)[], custom field value array
-    - message:  the first message
-        - htmlBody: string, html body of the message
-        - plainBody: string, plain text of the message
+    - portalMessage:  the first portal message
+        - htmlBody: string, html body
+        - plainBody: string, plain text
         - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
   - portalTicket: [portalTicket object](#portalticket) 
 
-### Close ticket
+### Close portalTicket
 `put api/v2/ticket/portalTickets/{id}/close` 
 - Parameters: 
     - id, integer, ticket id,
 - Response: 
     - portalTicket: [portalTicket object](#portalticket) 
 
-### Reopen ticket
+### Reopen portalTicket
 `put api/v2/ticket/portalTickets/{id}/reopen` 
 - Parameters: 
     - id, integer, ticket id,
 - Response: 
     - portalTicket: [portalTicket object](#portalticket) 
 
-### Get message list of ticket
-`get api/v2/ticket/portalTickets/{id}/messages`
+### Get portalMessages of a portalTicket
+`get api/v2/ticket/portalTickets/{id}/portalMessages`
 - Parameters: 
-    - id, integer, ticket id
+    - id, integer
     - contactId, integer
 - Response: 
     - portalMessages: [portalMessage object](#portalMessage) list
+- Includes
 
-|Includes| Description |
-| - | - |
-| sender| `get api/v2/ticket/portalTickets/{id}/messages?include=sender` | 
+    |Includes| Description |
+    | - | - |
+    | sender| `get api/v2/ticket/portalTickets/{id}/portalMessages?include=sender` | 
 
-### Reply ticket
- `post api/v2/ticket/portalTickets/{id}/messages`
+### Reply portalTicket
+ `post api/v2/ticket/portalTickets/{id}/portalMessages`
 - Parameters:
-    - id: integer, ticket id
-    - contactId: integer, contact id
-    - htmlBody: string, html body of the message
-    - plainBody: string, plain text of the message
-    - attachments: [attachment](#attachment)[], attachment array of message
+    - id: integer
+    - contactId: integer
+    - htmlBody: string, html body
+    - plainBody: string, plain text
+    - attachments: [attachment](#attachment)[], attachment array
 - Response: 
     - portalMessage: [portalMessage object](#portalMessage) list
 
@@ -494,10 +545,11 @@
     - no parameters 
 - Response 
     - filters: [filter object](#filter) list, without conditions
+- Includes
 
-|Includes| Description |
-| - | - |
-| createdBy | `get /api/v2/ticket/filters?include=createdBy` | 
+    |Includes| Description |
+    | - | - |
+    | createdBy | `get /api/v2/ticket/filters?include=createdBy` | 
 
 ### Create a new filter 
 `post api/v2/ticket/filters`
@@ -653,7 +705,7 @@
 ### Get one department 
 `get api/v2/ticket/departments/{id} ` 
 - Response 
-    - department：[department object](#department) 
+    - department: [department object](#department) 
 
 ### Get all departments 
 `get api/v2/ticket/departments` 

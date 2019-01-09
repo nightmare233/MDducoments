@@ -125,7 +125,7 @@
 - Response
     - http status code and message
 
-#### Add contact identity
+#### Add identity
 `post  /api/v2/account/contacts/{contactId}/identities`
 - Parameters
     - contactId: integer, contact id
@@ -134,7 +134,7 @@
 - Response
     - identity: [identity object](#identity)
 
-#### Update contact identity
+#### Update identity
 `put  /api/v2/account/contacts/{contactId}/identities/{id}`
 - Parameters
     - contactId, integer, contact id
@@ -143,7 +143,7 @@
 - Response
     - identity: [identity object](#identity)
 
-#### Delete contact identity
+#### Delete identity
  `delete  /api/v2/account/contacts/{contactId}/identities/{id}`
 - Parameters
     - contactId, integer, contact id
