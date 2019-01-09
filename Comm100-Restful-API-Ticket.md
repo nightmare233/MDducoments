@@ -89,7 +89,7 @@
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `isRead` | boolean | if the ticket is read | 
-| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array | 
+| `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
 | `createdById` | integer | contact id or agent id | 
 | `createdByType` |  string | agent or contact or system | 
 | `createdTime` | datetime | create time of ticket | 
@@ -105,16 +105,16 @@
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first <br/> response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
-| `mentionedAgents`|[mentionedAgent](#mentionedagent)[]| mentioned agents list | 
+| `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 
-### customFieldValue
+### custom field value
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | the id of custom field |
 | `name` | string | the name of custom field |
 | `value` | string | the value of custom field |
 
-### mentionedAgent 
+### mentioned agent 
 | Name | Type | Description | 
 | - | - | - | 
 | `agentId` | integer | the agent id of mentioned | 
@@ -140,7 +140,7 @@
 | `attachments` | [attachment](#attachment)[] | attachment array| 
 | `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
 
-### ticketDraft 
+### ticket draft 
 | Name | Type | Description | 
 | - | - | - | 
 | `draftId` | integer | id of ticket draft | 
@@ -211,7 +211,7 @@
     - departmentAssigneeId: integer, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`, default value: `new`  
-    - customFields: [custom field value](#customfieldvalue)[], custom field value array
+    - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: integer[], tag id array
     - message: the first message of the ticket, required
         - type: string, `note`, `email`, `reply`, required
@@ -248,7 +248,7 @@
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
     - isRead: boolean
-    - customFields: [custom field value](#customfieldvalue)[], custom field value array
+    - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
     - ticket: [ticket](#ticket) object 
@@ -379,21 +379,21 @@
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - ticketDraft: [ticket draft object](#ticketdraft) 
+    - ticketDraft: [ticket draft object](#ticket-draft) 
 
 ### Create ticket draft 
 `post api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
-    - [ticket draft object](#ticketdraft) 
+    - [ticket draft object](#ticket-draft) 
 - Response 
-    - ticketDraft: [ticket draft object](#ticketdraft) 
+    - ticketDraft: [ticket draft object](#ticket-draft) 
 
 ### Update ticket draft 
 `put api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
-    - [ticket draft object](#ticketdraft) 
+    - [ticket draft object](#ticket-draft) 
 - Response 
-    - ticketDraft: [ticket draft object](#ticketdraft) 
+    - ticketDraft: [ticket draft object](#ticket-draft) 
 
 ### Delete ticket draft 
 `delete api/v2/ticket/tickets/{id}/draft` 
@@ -430,7 +430,7 @@
 | `subject` | string | subject |
 | `contactId` | integer | id of the contact who submitted the portal ticket |
 | `isClosed` | boolean | if the portal ticket is closed |
-| `customFields` | [custom field value](#customfieldvalue)[] | custom field value array |
+| `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
 | `createdTime` | datetime | create time |
 | `closedTime` | datetime | close time |
 
@@ -479,7 +479,7 @@
 - Parameters: 
     - subject: string, subject, required
     - contactId: integer, id of the contact who submitted the portal ticket
-    - customFields: [custom field value](#customfieldvalue)[], custom field value array
+    - customFields: [custom field value](#custom-field-value)[], custom field value array
     - portalMessage:  the first portal message
         - htmlBody: string, html body
         - plainBody: string, plain text
@@ -642,7 +642,7 @@
 
 # BlockedSenders 
 ## objects 
-### blockedSender 
+### blocked sender 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id | 
@@ -655,18 +655,18 @@
 - Parameters 
     - domain: string, the domain of email address 
 - Response 
-    - blockedSenders: [block sender object](#blockedsender) list 
+    - blockedSenders: [block sender object](#blocked-sender) list 
 
 ### Add block sender 
 `post api/v2/ticket/blockedSenders` 
 - Parameters 
-    - [block sender object](#blockedsender) 
+    - [block sender object](#blocked-sender) 
 - Response 
-    - blockedSender: [block sender object](#blockedsender) 
+    - blockedSender: [block sender object](#blocked-sender) 
 
 # CannedResponses 
 ## objects 
-### cannedResponse 
+### canned response 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id | 
@@ -679,7 +679,7 @@
 ### Get canned responses 
 `get api/v2/ticket/cannedResponses` 
 - Response 
-    - cannedResponses: [Canned responses object](#cannedresponse) list 
+    - cannedResponses: [Canned responses object](#canned-response) list 
 
 
 # Configs 
@@ -698,9 +698,9 @@
 | `id` | integer | id | 
 | `name` | string | department name | 
 | `description` | string | department description | 
-| `members` | [department member](#departmentmember)[] | department member array | 
+| `members` | [department member](#department-member)[] | department member array | 
 
-### departmentMember 
+### department member 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id | 
@@ -720,7 +720,7 @@
 
 # EmailAccounts 
 ## objects 
-### emailAccount 
+### email account 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id | 
@@ -735,11 +735,11 @@
 ### Get all enabled email accounts 
 `get api/v2/ticket/emailAccounts` 
 - Response 
-    - emailAccounts: [email account object](#emailaccount) list 
+    - emailAccounts: [email account object](#email-account) list 
 
 # JunkEmails 
 ## objects 
-### junkEmail 
+### junk email 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id | 
@@ -765,7 +765,7 @@
     - timeFrom: DateTime
     - timeTo: DateTime
 - Response 
-    - junkEmails: [junk email object](#junkemail) list 
+    - junkEmails: [junk email object](#junk-email) list 
     - total: integer
     - previousPage: string, next page uri, the first page return null
     - nextPage: string, the last page return null
@@ -776,14 +776,14 @@
 - Parameters 
     - id: integer, email id 
 - Response 
-    - junkEmail: [junk email object](#junkemail) 
+    - junkEmail: [junk email object](#junk-email) 
 
 ### Update junk email 
 `put api/v2/ticket/junkEmails/{id}` 
 - Parameters 
     - isRead: boolean, 
 - Response 
-    - junkEmail: [junk email object](#junkemail) 
+    - junkEmail: [junk email object](#junk-email) 
 
 ### Restore a junk email to a normal ticket 
 `post api/v2/ticket/junkEmails/{id}/notJunk` 
