@@ -169,7 +169,7 @@
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
     - conditions: parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
 + Response 
-    - tickets: [ticket object](#tickets) list, 
+    - tickets: [ticket](#tickets) list, 
     - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
@@ -189,7 +189,7 @@
 + Parameters 
     - id: integer, ticket  
 + Response 
-    - ticket: [ticket object](#ticket) 
+    - ticket: [ticket](#ticket) 
 + Includes
 
     | Includes | Description |
@@ -223,7 +223,7 @@
         - cc: string, message cc emails 
         - attachments: [attachment](#attachment)[], attachment array
 + Response 
-    - ticket: [ticket object](#tickets)
+    - ticket: [ticket](#tickets)
 
 ### Get ticket messages 
 `get api/v2/ticket/tickets/{id}/messages` 
@@ -251,7 +251,7 @@
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
-    - ticket: [ticket](#ticket) object 
+    - ticket: [ticket](#ticket) 
 
 ### Batch update ticket 
 `put api/v2/ticket/tickets/` 
@@ -263,7 +263,7 @@
     - departmentAssigneeId, integer
     - isRead, boolean
 + Response 
-    - tickets: [ticket](#ticket) object list 
+    - tickets: [ticket](#ticket) list 
 
 ### Reply ticket 
 `post api/v2/ticket/tickets/{id}/messages` 
@@ -315,7 +315,7 @@
     - timeFrom: DateTime, default search the last 30 days
     - timeTo: DateTime, defautl value is the current time
 - Response 
-    - deletedTickets: [ticket object](#ticket) list 
+    - deletedTickets: [ticket](#ticket) list 
     - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
@@ -335,7 +335,7 @@
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - deletedTicket: [ticket object](#ticket) 
+    - deletedTicket: [ticket](#ticket) 
 - Includes
 
     | Includes | Description |
@@ -352,7 +352,7 @@
 - Parameters 
     - id: integer 
 - Response 
-    - messages: [message object](#message) 
+    - messages: [message](#message) 
 - Includes
 
     | Includes | Description |
@@ -365,7 +365,7 @@
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - deletedTicket: [ticket object](#ticket)  
+    - deletedTicket: [ticket](#ticket)  
 
 ### Delete a ticket permanently 
 `delete api/v2/ticket/deletedTickets/{id}` 
@@ -379,21 +379,21 @@
 - Parameters 
     - id: integer, ticket id 
 - Response 
-    - ticketDraft: [ticket draft object](#ticket-draft) 
+    - ticketDraft: [ticket draft](#ticket-draft) 
 
 ### Create ticket draft 
 `post api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
-    - [ticket draft object](#ticket-draft) 
+    - [ticket draft](#ticket-draft) 
 - Response 
-    - ticketDraft: [ticket draft object](#ticket-draft) 
+    - ticketDraft: [ticket draft](#ticket-draft) 
 
 ### Update ticket draft 
 `put api/v2/ticket/tickets/{id}/draft` 
 - Parameters 
-    - [ticket draft object](#ticket-draft) 
+    - [ticket draft](#ticket-draft) 
 - Response 
-    - ticketDraft: [ticket draft object](#ticket-draft) 
+    - ticketDraft: [ticket draft](#ticket-draft) 
 
 ### Delete ticket draft 
 `delete api/v2/ticket/tickets/{id}/draft` 
@@ -408,7 +408,7 @@
     - id: integer, target ticket id, 
     - sourceId: integer, source ticket id 
 - Response 
-    - ticket: [ticket object](#ticket) 
+    - ticket: [ticket](#ticket) 
 
 ### Get unread tickets number in filters 
 `get api/v2/ticket/filters/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
@@ -550,7 +550,7 @@
 - Parameters 
     - no parameters 
 - Response 
-    - filters: [filter object](#filter) list, without conditions
+    - filters: [filter](#filter) list, without conditions
 - Includes
 
     |Includes| Description |
@@ -564,14 +564,14 @@
     - isPrivate: boolean, if private filter, default value: `false` 
     - conditions: [condition](#condition)[], array of filter condition
 - Response 
-    - filters: [filter object](#filter) list 
+    - filters: [filter](#filter) list 
 
 ### Get a filter and its conditions 
 `get api/v2/ticket/filters/{id}` 
 - Parameters 
     - id: integer, filter id 
 - Response 
-    - filter: [filter object](#filter) 
+    - filter: [filter](#filter) 
 
 ### Update filter 
 `put api/v2/ticket/filters/{id}` 
@@ -581,7 +581,7 @@
     - isPrivate: boolean, if private filter 
     - conditions: [condition](#condition)[], array of filter condition
 - Response 
-    - filter: [filter object](#filter) 
+    - filter: [filter](#filter) 
 
 ### Delete filter 
 `delete api/v2/ticket/filters/{id}` 
@@ -618,7 +618,7 @@
 ### Get fields and their options 
 `get api/v2/ticket/fields` 
 - Response 
-    - fields: [field object](#field) list 
+    - fields: [field](#field) list 
 
 # Attachments 
 ## objects 
@@ -638,7 +638,7 @@
 - Parameters 
     - file: file
 - Response 
-    - attachment: [attachment object](#attachment) 
+    - attachment: [attachment](#attachment) 
 
 # BlockedSenders 
 ## objects 
@@ -655,14 +655,14 @@
 - Parameters 
     - domain: string, the domain of email address 
 - Response 
-    - blockedSenders: [block sender object](#blocked-sender) list 
+    - blockedSenders: [block sender](#blocked-sender) list 
 
 ### Add block sender 
 `post api/v2/ticket/blockedSenders` 
 - Parameters 
-    - [block sender object](#blocked-sender) 
+    - [block sender](#blocked-sender) 
 - Response 
-    - blockedSender: [block sender object](#blocked-sender) 
+    - blockedSender: [block sender](#blocked-sender) 
 
 # CannedResponses 
 ## objects 
@@ -679,7 +679,7 @@
 ### Get canned responses 
 `get api/v2/ticket/cannedResponses` 
 - Response 
-    - cannedResponses: [Canned responses object](#canned-response) list 
+    - cannedResponses: [Canned responses](#canned-response) list 
 
 
 # Configs 
@@ -711,12 +711,12 @@
 ### Get one department 
 `get api/v2/ticket/departments/{id} ` 
 - Response 
-    - department: [department object](#department) 
+    - department: [department](#department) 
 
 ### Get all departments 
 `get api/v2/ticket/departments` 
 - Response 
-    - departments: [department object](#department) List without department member. 
+    - departments: [department](#department) List without department member. 
 
 # EmailAccounts 
 ## objects 
@@ -735,7 +735,7 @@
 ### Get all enabled email accounts 
 `get api/v2/ticket/emailAccounts` 
 - Response 
-    - emailAccounts: [email account object](#email-account) list 
+    - emailAccounts: [email account](#email-account) list 
 
 # JunkEmails 
 ## objects 
@@ -765,7 +765,7 @@
     - timeFrom: DateTime
     - timeTo: DateTime
 - Response 
-    - junkEmails: [junk email object](#junk-email) list 
+    - junkEmails: [junk email](#junk-email) list 
     - total: integer
     - previousPage: string, next page uri, the first page return null
     - nextPage: string, the last page return null
@@ -776,21 +776,21 @@
 - Parameters 
     - id: integer, email id 
 - Response 
-    - junkEmail: [junk email object](#junk-email) 
+    - junkEmail: [junk email](#junk-email) 
 
 ### Update junk email 
 `put api/v2/ticket/junkEmails/{id}` 
 - Parameters 
     - isRead: boolean, 
 - Response 
-    - junkEmail: [junk email object](#junk-email) 
+    - junkEmail: [junk email](#junk-email) 
 
 ### Restore a junk email to a normal ticket 
 `post api/v2/ticket/junkEmails/{id}/notJunk` 
 - Parameters 
     - id: integer, email id 
 - Response 
-    - ticket: [ticket object](#ticket) 
+    - ticket: [ticket](#ticket) 
 
 ### Delete a junk email 
 `delete api/v2/ticket/junkEmails/{id}` 
@@ -811,14 +811,14 @@
 ### Get all tags 
 `Get api/v2/ticket/tags` 
 - Response 
-    - tags: [tag object](#tag) list 
+    - tags: [tag](#tag) list 
 
 ### Add a tag 
 `Post api/v2/ticket/tags` 
 - Parameters 
     - name: string, tag name 
 - Response 
-    - tag: [tag object](#tag) 
+    - tag: [tag](#tag) 
 
 ### Update One Tag 
 `Put api/v2/ticket/tags/{id}` 
@@ -826,7 +826,7 @@
     - id: integer, tag id 
     - name: string, tag name 
 - Response 
-    - tag: [tag object](#tag) 
+    - tag: [tag](#tag) 
 
 ### Delete a tag 
 `Delete api/v2/ticket/tags/{id}` 
