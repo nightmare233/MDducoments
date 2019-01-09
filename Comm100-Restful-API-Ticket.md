@@ -164,7 +164,7 @@
 | `to` | string | to email address | 
 | `cc` | string | cc email addresses | 
 | `savedTime` | datetime | | 
-| `savedById` | integer | the agent id who saved the ticket draft | 
+| `savedById` | integer | the id of the agent who saved the ticket draft | 
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
 
 ## endpoints 
@@ -817,7 +817,7 @@
 | - | - | - | 
 | `id` | integer | id | 
 | `name` | string | tag name | 
-| `ticketCount` | integer | tickets number with this tag | 
+| `ticketCount` | integer | the count of tickets with the tag | 
 ## endpoints 
 ### Get all tags 
 `Get api/v2/ticket/tags` 
