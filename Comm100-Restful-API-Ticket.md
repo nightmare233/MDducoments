@@ -18,18 +18,18 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v2/ticket/tickets` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
-    | `get api/v2/ticket/tickets/{id}` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/tickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/tickets/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
     | `get api/v2/ticket/tickets/{id}/messages` | sender |
-    | `get api/v2/ticket/deletedTickets` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
-    | `get api/v2/ticket/deletedTickets/{id}` | agentAssignee, depatmentAssignee, contact, createBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/deletedTickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/deletedTickets/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
     | `get api/v2/ticket/deletedTickets/{id}/messages` | sender |
     | `get api/v2/ticket/portalTickets/{id}` | contact, portalMessages |
     | `get api/v2/ticket/portalTickets` | contact, portalMessages |
     | `get api/v2/ticket/portalTickets/{id}/portalMessages` | sender |
     | `get /api/v2/ticket/filters` | createdBy |
 
-- Sxample:
+- Sample:
     - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&contact `
     - response:
 
@@ -158,7 +158,7 @@
     - pageIndex: integer
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
-    - conditions: , parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
+    - conditions: parameter format: `conditions[0][field]=agent&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=agent&conditions[1][matchType]=is&conditions[1][value]=hello`, fields can be ticket system fields and custom fields.
 + Response 
     - tickets: [ticket object](#tickets) list, 
     - total: integer, total number of tickets 
@@ -170,9 +170,9 @@
     | Includes | Description |
     | - | - |
     | agentAssignee | `get api/v2/ticket/tickets?include=agentAssignee` |
-    | depatmentAssignee | `get api/v2/ticket/tickets?include=depatmentAssignee` |
+    | departmentAssignee | `get api/v2/ticket/tickets?include=departmentAssignee` |
     | contact | `get api/v2/ticket/tickets?include=contact` |
-    | createBy | `get api/v2/ticket/tickets?include=createBy` |
+    | createdBy | `get api/v2/ticket/tickets?include=createdBy` |
     | lastRepliedBy | `get api/v2/ticket/tickets?include=lastRepliedBy` |
     | messages | `get api/v2/ticket/tickets?include=messages` |
 
@@ -187,9 +187,9 @@
     | Includes | Description |
     | - | - |
     | agentAssignee | `get api/v2/ticket/tickets/{id}?include=agentAssignee` |
-    | depatmentAssignee | `get api/v2/ticket/tickets/{id}?include=depatmentAssignee` |
+    | departmentAssignee | `get api/v2/ticket/tickets/{id}?include=departmentAssignee` |
     | contact | `get api/v2/ticket/tickets/{id}?include=contact` |
-    | createBy | `get api/v2/ticket/tickets/{id}?include=createBy` |
+    | createdBy | `get api/v2/ticket/tickets/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v2/ticket/tickets/{id}?include=lastRepliedBy` |
     | messages | `get api/v2/ticket/tickets/{id}?include=messages` |
  
@@ -317,9 +317,9 @@
     | Includes | Description |
     | - | - |
     | agentAssignee | `get api/v2/ticket/deletedTickets?include=agentAssignee` |
-    | depatmentAssignee | `get api/v2/ticket/deletedTickets?include=depatmentAssignee` |
+    | departmentAssignee | `get api/v2/ticket/deletedTickets?include=departmentAssignee` |
     | contact | `get api/v2/ticket/deletedTickets?include=contact` |
-    | createBy | `get api/v2/ticket/deletedTickets?include=createBy` |
+    | createdBy | `get api/v2/ticket/deletedTickets?include=createdBy` |
     | lastRepliedBy | `get api/v2/ticket/deletedTickets?include=lastRepliedBy` |
     | messages | `get api/v2/ticket/deletedTickets?include=messages` |
 
@@ -334,9 +334,9 @@
     | Includes | Description |
     | - | - |
     | agentAssignee | `get api/v2/ticket/deletedTickets/{id}?include=agentAssignee` |
-    | depatmentAssignee | `get api/v2/ticket/deletedTickets/{id}?include=depatmentAssignee` |
+    | departmentAssignee | `get api/v2/ticket/deletedTickets/{id}?include=departmentAssignee` |
     | contact | `get api/v2/ticket/deletedTickets/{id}?include=contact` |
-    | createBy | `get api/v2/ticket/deletedTickets/{id}?include=createBy` |
+    | createdBy | `get api/v2/ticket/deletedTickets/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v2/ticket/deletedTickets/{id}?include=lastRepliedBy` |
     | messages | `get api/v2/ticket/deletedTickets/{id}?include=messages` |
 
