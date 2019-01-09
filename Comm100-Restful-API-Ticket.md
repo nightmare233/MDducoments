@@ -721,7 +721,7 @@
 | `email` | string | email address |  
 | `type` | string | pop3 or exchange | 
 | `agentAssigneeId` | integer | agent id | 
-| `departmentAssigneeId` | integer | depatment id | 
+| `departmentAssigneeId` | integer | department id | 
 | `isDefault` | boolean | if default email account | 
 
 
