@@ -26,8 +26,7 @@
     | `get api/v2/ticket/deletedTickets/{id}/messages` | sender |
     | `get api/v2/ticket/portalTickets/{id}` | contact, portalMessages |
     | `get api/v2/ticket/portalTickets` | contact |
-    | `get api/v2/ticket/portalTickets/{id}/messages` | sender |
-    | `get /api/v2/ticket/filters` | createdBy |
+    | `get api/v2/ticket/portalTickets/{id}/messages` | sender | 
 
 - Sample:
     - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&include=contact&include=createdBy&include=messages `
@@ -168,7 +167,7 @@
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
 
 ## endpoints 
-### Get or search ticket list 
+### List tickets 
 `get api/v2/ticket/tickets` 
 + Max 50 tickets are responded for each request. 
 + Parameters 
@@ -236,7 +235,7 @@
 + Response 
     - ticket: [ticket](#tickets)
 
-### Get ticket messages 
+### List ticket messages 
 `get api/v2/ticket/tickets/{id}/messages` 
 + Parameters 
     - id: integer, ticket id 
@@ -318,7 +317,7 @@
 + Response 
     - http status code 
 
-### Get deleted tickets 
+### List deleted tickets 
 `get api/v2/ticket/deletedTickets/` 
 - Parameters 
     - keywords: string
@@ -358,7 +357,7 @@
     | lastRepliedBy | `get api/v2/ticket/deletedTickets/{id}?include=lastRepliedBy` |
     | messages | `get api/v2/ticket/deletedTickets/{id}?include=messages` |
 
-### Get messages of a deleted ticket 
+### List deleted ticket messages
 `get api/v2/ticket/deletedTickets/{id}/messages` 
 - Parameters 
     - id: integer 
@@ -421,7 +420,7 @@
 - Response 
     - ticket: [ticket](#ticket) 
 
-### Get unread tickets number in filters 
+### List unread tickets number of filters 
 `get api/v2/ticket/filters/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
 - Parameters 
     - filterIds: filter id array 
@@ -471,7 +470,7 @@
     | contact | `get api/v2/ticket/portalTickets/{id}?include=contact` | 
     | portalMessages | `get api/v2/ticket/portalTickets/{id}?include=messages` |
  
-### Get portal ticket list
+### List portal tickets
 `get api/v2/ticket/portalTickets`
 - Parameters:
     - contactId, integer, required
@@ -512,7 +511,7 @@
 - Response: 
     - portalTicket: [portal ticket](#portal-ticket) 
 
-### Get messages of a portal ticket
+### List portal ticket messages
 `get api/v2/ticket/portalTickets/{id}/messages`
 - Parameters: 
     - id, integer
@@ -552,21 +551,16 @@
 | - | - | - | 
 | `id` | integer | condition id | 
 | `fieldId` | integer | field id | 
-| `matchType` | string | `contains`, `notContains`, <br>`is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 
 ## endpoints 
-### Get all public and private filters 
+### List all public and private filters 
 `get /api/v2/ticket/filters`
 - Parameters 
     - no parameters 
 - Response 
     - filters: [filter](#filter) list, without conditions
-- Includes
-
-    |Includes| Description |
-    | - | - |
-    | createdBy | `get /api/v2/ticket/filters?include=createdBy` | 
 
 ### Create a new filter 
 `post api/v2/ticket/filters`
@@ -626,8 +620,10 @@
 | `order` | integer | option order | 
 
 ## endpoints 
-### Get fields and their options 
+### List all fields and their options 
 `get api/v2/ticket/fields` 
+- Parameters
+    - no parameters
 - Response 
     - fields: [field](#field) list 
 
@@ -661,7 +657,7 @@
 | `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
-### Get block sender list 
+### List blocked senders 
 `get /api/v2/ticket/blockedSenders?domain={domain}` 
 - Parameters 
     - domain: string, the domain of email address 
@@ -687,15 +683,19 @@
 
 
 ## endpoints 
-### Get canned responses 
+### List all canned responses 
 `get api/v2/ticket/cannedResponses` 
+- Parameters 
+    - no parameters
 - Response 
     - cannedResponses: [Canned responses](#canned-response) list 
 
 
 # Configs 
-### Get ticket configs of this site 
+### Get site configs about ticket 
 `get api/v2/ticket/configs` 
+- Parameters 
+    - no parameters
 - Response 
     - configs
         - isEnabledDepartment: boolean 
@@ -724,7 +724,7 @@
 - Response 
     - department: [department](#department) 
 
-### Get all departments 
+### List all departments 
 `get api/v2/ticket/departments` 
 - Response 
     - departments: [department](#department) List without department member. 
@@ -743,7 +743,7 @@
 
 
 ## endpoints 
-### Get all enabled email accounts 
+### List all enabled email accounts 
 `get api/v2/ticket/emailAccounts` 
 - Response 
     - emailAccounts: [email account](#email-account) list 
@@ -767,7 +767,7 @@
 | `attachments` | [attachment](#attachment)[] | attachments | 
 
 ## endpoints 
-### Get junk email list 
+### List junk emails
 `get api/v2/ticket/junkEmails` 
 
 - Parameters 
@@ -819,7 +819,7 @@
 | `name` | string | tag name | 
 | `ticketCount` | integer | the count of tickets with the tag | 
 ## endpoints 
-### Get all tags 
+### List all tags 
 `Get api/v2/ticket/tags` 
 - Response 
     - tags: [tag](#tag) list 
