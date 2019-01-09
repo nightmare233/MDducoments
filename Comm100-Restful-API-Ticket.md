@@ -30,7 +30,7 @@
     | `get /api/v2/ticket/filters` | createdBy |
 
 - Sample:
-    - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&include=contact&include=createdBy `
+    - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&include=contact&include=createdBy&include=messages `
     - response:
 
         ``` javascript
@@ -52,7 +52,18 @@
                 "createdBy": {  //included the agent or contact object according to the createdByType.
                     "id": 34,
                     //...
-                }
+                },
+                "messages":[    //included the messages.
+                    {
+                        "id": 56, 
+                        //...
+                    },
+                    {
+                          "id": 57, 
+                        //...
+                    }
+                ]
+                
             //...
             }
         }, 
