@@ -24,7 +24,7 @@
 | `stateOrProvince` | string | the state or province of the contact |
 | `country` | string |  the country of the contact |
 | `postcode` | string | the postcode of the contact  |
-| `createTime` | datetime | the time the contact was created |
+| `createdTime` | datetime | the time the contact was created |
   
 ### identity
 | Name | Type | Description | 

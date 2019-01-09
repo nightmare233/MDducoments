@@ -24,7 +24,7 @@
     | `get api/v2/ticket/deletedTickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy |
     | `get api/v2/ticket/deletedTickets/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
     | `get api/v2/ticket/deletedTickets/{id}/messages` | sender |
-    | `get api/v2/ticket/portalTickets/{id}` | contact, portalMessages |
+    | `get api/v2/ticket/portalTickets/{id}` | contact, messages |
     | `get api/v2/ticket/portalTickets` | contact |
     | `get api/v2/ticket/portalTickets/{id}/messages` | sender | 
 
@@ -288,19 +288,19 @@
 - Response 
     - message: [message](#message) 
 
-### Mark ticket read 
+### Mark ticket as read 
 `put api/v2/ticket/tickets/{id}/read` 
 + Parameters 
     - id: ticketId 
 + Response 
-    - http status code 
+    - ticket: [ticket](#ticket)
 
-### Mark ticket unread 
+### Mark ticket as unread 
 `put api/v2/ticket/tickets/{id}/unread` 
 + Parameters 
     - id: ticketId 
 + Response 
-    - http status code 
+    - ticket: [ticket](#ticket)
 
 ### Delete a ticket 
 `delete api/v2/ticket/tickets/{id}` 
@@ -467,7 +467,7 @@
     |Includes| Description |
     | - | - |
     | contact | `get api/v2/ticket/portalTickets/{id}?include=contact` | 
-    | portalMessages | `get api/v2/ticket/portalTickets/{id}?include=messages` |
+    | messages | `get api/v2/ticket/portalTickets/{id}?include=messages` |
  
 ### List portal tickets
 `get api/v2/ticket/portalTickets`
@@ -489,7 +489,7 @@
     - subject: string, subject, required
     - contactId: integer, id of the contact who submitted the portal ticket
     - customFields: [custom field value](#custom-field-value)[], custom field value array
-    - portalMessage:  the first portal message
+    - message:  the first portal message
         - htmlBody: string, html body
         - plainBody: string, plain text
         - attachments: [attachment](#attachment)[], attachment array of message
@@ -516,7 +516,7 @@
     - id, integer
     - contactId, integer
 - Response: 
-    - portalMessages: [portal ticket message](#portal-ticket-message) list
+    - messages: [portal ticket message](#portal-ticket-message) list
 - Includes
 
     |Includes| Description |
@@ -532,7 +532,7 @@
     - plainBody: string, plain text
     - attachments: [attachment](#attachment)[], attachment array
 - Response: 
-    - portalMessage: [portal ticket message](#portal-ticket-message)
+    - message: [portal ticket message](#portal-ticket-message)
 
 # Filters 
 ## objects 
