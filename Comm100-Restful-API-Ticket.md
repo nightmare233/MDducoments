@@ -14,40 +14,49 @@
 - All time values are UTC time and the caller converts as their time zone as required. 
 
 # Includes
-- Following APIs support `Includes` to get related objects. 
+- Following APIs support `Includes` to get related objects.
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v2/ticket/tickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/tickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy |
     | `get api/v2/ticket/tickets/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
     | `get api/v2/ticket/tickets/{id}/messages` | sender |
-    | `get api/v2/ticket/deletedTickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v2/ticket/deletedTickets` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy |
     | `get api/v2/ticket/deletedTickets/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
     | `get api/v2/ticket/deletedTickets/{id}/messages` | sender |
     | `get api/v2/ticket/portalTickets/{id}` | contact, portalMessages |
-    | `get api/v2/ticket/portalTickets` | contact, portalMessages |
-    | `get api/v2/ticket/portalTickets/{id}/portalMessages` | sender |
+    | `get api/v2/ticket/portalTickets` | contact |
+    | `get api/v2/ticket/portalTickets/{id}/messages` | sender |
     | `get /api/v2/ticket/filters` | createdBy |
 
 - Sample:
-    - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&contact `
+    - request: `get api/v2/ticket/tickets/{id}?include=agentAssignee&include=contact&include=createdBy `
     - response:
 
         ``` javascript
         {
             "ticket": {
-                "id": 1
-                //...
-            },
-            "agentAssignee": {
-                "id": 12,
-                //...
-            },
-            "contact": {
-                "id": 23,
-                //...
-        }
-        ```
+                "id": 1,
+                "agentAssigneeId": 12,
+                "agentAssignee": {  //included the agent object
+                    "id": 12,
+                    //...
+                },
+                "contactId":23
+                "contact": {  //included the contact object
+                    "id": 23,
+                    //...
+                },
+                "createdById":34,
+                "createdByType": "agent",
+                "createdBy": {  //included the agent or contact object according to the createdByType.
+                    "id": 34,
+                    //...
+                }
+            //...
+            }
+        }, 
+        ``` 
 
 # Resource List 
 |Name|EndPoint|Note| 
@@ -173,8 +182,7 @@
     | departmentAssignee | `get api/v2/ticket/tickets?include=departmentAssignee` |
     | contact | `get api/v2/ticket/tickets?include=contact` |
     | createdBy | `get api/v2/ticket/tickets?include=createdBy` |
-    | lastRepliedBy | `get api/v2/ticket/tickets?include=lastRepliedBy` |
-    | messages | `get api/v2/ticket/tickets?include=messages` |
+    | lastRepliedBy | `get api/v2/ticket/tickets?include=lastRepliedBy` | 
 
 ### Get a ticket 
 `get api/v2/ticket/tickets/{id} ` 
@@ -320,8 +328,7 @@
     | departmentAssignee | `get api/v2/ticket/deletedTickets?include=departmentAssignee` |
     | contact | `get api/v2/ticket/deletedTickets?include=contact` |
     | createdBy | `get api/v2/ticket/deletedTickets?include=createdBy` |
-    | lastRepliedBy | `get api/v2/ticket/deletedTickets?include=lastRepliedBy` |
-    | messages | `get api/v2/ticket/deletedTickets?include=messages` |
+    | lastRepliedBy | `get api/v2/ticket/deletedTickets?include=lastRepliedBy` | 
 
 ### Get a deleted ticket 
 `get api/v2/ticket/deletedTickets/{id}` 
@@ -416,7 +423,7 @@
 
 # PortalTicket
 ## objects
-### portalTicket
+### portal ticket
 | Name | Type | Description |
 | - | - | - |
 | `id` | integer | id of ticket |
@@ -427,7 +434,7 @@
 | `createdTime` | datetime | create time |
 | `closedTime` | datetime | close time |
 
-### portalMessage 
+### portal ticket message 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of message | 
@@ -439,36 +446,35 @@
 | `attachments` | [attachment](#attachment)[] | attachment array| 
 
 ## endpoints
-### Get a portalTicket by id
+### Get a portal ticket by id
 `get api/v2/ticket/portalTickets/{id}`
 - Parameters
     - id, integer, id
     - contactId, integer
 - Response
-    - portalTicket: [portalTicket object](#portalticket) 
+    - portalTicket: [portal ticket](#portal-ticket) 
 - Includes
 
     |Includes| Description |
     | - | - |
     | contact | `get api/v2/ticket/portalTickets/{id}?include=contact` | 
-    | portalMessages | `get api/v2/ticket/portalTickets/{id}?include=portalMessages` |
+    | portalMessages | `get api/v2/ticket/portalTickets/{id}?include=messages` |
  
-### Get portalTicket list
+### Get portal ticket list
 `get api/v2/ticket/portalTickets`
 - Parameters:
     - contactId, integer, required
     - startTime, DateTime
     - endTime, DateTime
 - Response: 
-    - portalTickets: [portalTicket object ](#portalticket) list
+    - portalTickets: [portal ticket](#portal-ticket) list
 - Includes
 
     |Includes| Description |
     | - | - |
-    | contact | `get api/v2/ticket/portalTickets?include=contact` | 
-    | portalMessages | `get api/v2/ticket/portalTickets?include=portalMessages` |
+    | contact | `get api/v2/ticket/portalTickets?include=contact` |  
 
-### Submit a portalTicket
+### Submit a portal ticket
 `post api/v2/ticket/portalTickets`
 - Parameters: 
     - subject: string, subject, required
@@ -479,37 +485,37 @@
         - plainBody: string, plain text
         - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
-  - portalTicket: [portalTicket object](#portalticket) 
+  - portalTicket: [portal ticket](#portal-ticket) 
 
 ### Close portalTicket
 `put api/v2/ticket/portalTickets/{id}/close` 
 - Parameters: 
     - id, integer, ticket id,
 - Response: 
-    - portalTicket: [portalTicket object](#portalticket) 
+    - portalTicket: [portal ticket](#portal-ticket) 
 
 ### Reopen portalTicket
 `put api/v2/ticket/portalTickets/{id}/reopen` 
 - Parameters: 
     - id, integer, ticket id,
 - Response: 
-    - portalTicket: [portalTicket object](#portalticket) 
+    - portalTicket: [portal ticket](#portal-ticket) 
 
-### Get portalMessages of a portalTicket
-`get api/v2/ticket/portalTickets/{id}/portalMessages`
+### Get messages of a portal ticket
+`get api/v2/ticket/portalTickets/{id}/messages`
 - Parameters: 
     - id, integer
     - contactId, integer
 - Response: 
-    - portalMessages: [portalMessage object](#portalMessage) list
+    - portalMessages: [portal ticket message](#portal-ticket-message) list
 - Includes
 
     |Includes| Description |
     | - | - |
-    | sender| `get api/v2/ticket/portalTickets/{id}/portalMessages?include=sender` | 
+    | sender| `get api/v2/ticket/portalTickets/{id}/messages?include=sender` | 
 
-### Reply portalTicket
- `post api/v2/ticket/portalTickets/{id}/portalMessages`
+### Reply portal ticket
+ `post api/v2/ticket/portalTickets/{id}/messages`
 - Parameters:
     - id: integer
     - contactId: integer
@@ -517,7 +523,7 @@
     - plainBody: string, plain text
     - attachments: [attachment](#attachment)[], attachment array
 - Response: 
-    - portalMessage: [portalMessage object](#portalMessage) list
+    - portalMessage: [portal ticket message](#portal-ticket-message)
 
 # Filters 
 ## objects 
@@ -578,7 +584,7 @@
     - filter: [filter object](#filter) 
 
 ### Delete filter 
-`delete api/vi/ticket/filters/{id}` 
+`delete api/v2/ticket/filters/{id}` 
 - Parameters 
     - id: integer, filter id 
 - Response 

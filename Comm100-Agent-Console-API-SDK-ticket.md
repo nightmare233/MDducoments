@@ -47,7 +47,7 @@
         stateOrProvince: '', //string
         country: '', //string
         postcode: '', //string
-        createTime: '' //string
+        createdTime: '' //string
     },
     channel: '', // string, Portal, Email,
     status: '', //string, new, pendingExternal, pendingInternal, onHold, closed
