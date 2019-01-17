@@ -71,18 +71,7 @@
 - `get  /api/v3/contacts`
 - Parameters
     - pageIndex, integer, default 1
-    - email, string
-    - SSOUserId, string
-    - externalId, string
-    - alias, string
-    - company, string
-    - title, string
-    - phoneNumber, string
-    - faxNumber, string
-    - address, string
-    - country, string
-    - stateOrProvince, string
-    - city, string
+    - keywords, string, search scope includes: name/identity value/alias 
 - Response
     - contacts: [contact object](#contact) list
     - total: int, total number of contacts.
@@ -90,11 +79,11 @@
     - nextPage: string, the last page return null.
     - currentPage: string, current page uri.
 - Example
-    - `get  /api/v3/contacts?country=canada&company=test`
+    - `get  /api/v3/contacts??keywords=querystring&company=comm100`
 - Note
     - Deleted contact will not be included in the results.
     - The query must be URL encoded.
-    - Fuzzy search is not supported.
+    - Fuzzy search is supported.
 
 #### Update a contact
 `put  /api/v3/contacts/{id}`

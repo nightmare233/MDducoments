@@ -115,6 +115,13 @@
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
+| `permissions`|[permission](#permission)[]| the permissions that the current agent has | 
+
+### permission
+| Name | Type | Description | 
+| - | - | - | 
+| `canManage` | boolean | can manage ticket |
+| `canPermanentlyDelete` | boolean | can permanent delete ticket |
 
 ### custom field value
 | Name | Type | Description | 
