@@ -79,7 +79,7 @@
     - nextPage: string, the last page return null.
     - currentPage: string, current page uri.
 - Example
-    - `get  /api/v3/contacts??keywords=querystring&company=comm100`
+    - `get  /api/v3/contacts?keywords=comm100`
 - Note
     - Deleted contact will not be included in the results.
     - The query must be URL encoded.
