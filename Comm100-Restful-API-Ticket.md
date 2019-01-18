@@ -639,9 +639,8 @@
 ### attachment 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | attachment id | 
-| `fileName` | string | attachment file name| 
 | `guid` | string | attachment unique id | 
+| `fileName` | string | attachment file name| 
 | `url` | string | attachment download link | 
 | `isAvailable` | boolean | if the attachment is available | 
 ## endpoints 

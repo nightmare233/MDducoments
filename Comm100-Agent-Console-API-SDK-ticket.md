@@ -83,8 +83,7 @@
         }
     ],
     attachments:[
-        {
-            id: 1, //number
+        { 
             guid: "6a8f3e5f-4e31-4ee7-b074-13d0ea278eab", //string
             url: '', //string
             fileName:'', //string
@@ -115,8 +114,7 @@
             avatarUrl: '', //string
         }
         attachments:[
-            {
-                id: 1, //number
+            { 
                 guid: "6a8f3e5f-4e31-4ee7-b074-13d0ea278eab", //string
                 url: '', //string
                 fileName:'', //string
@@ -126,11 +124,10 @@
     }
 
  // attachment
-  const  attachment = {
-    id: 1,    // number
+  const  attachment = { 
+    guid: '', // string
     fileName: '', // string
     url: '',// string
-    guid: '', // string
     isAvailable: true //boolean
   }
   
