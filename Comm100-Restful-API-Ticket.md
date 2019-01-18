@@ -664,16 +664,16 @@
 
 ## endpoints 
 ### List blocked senders 
-`get /api/v3/tickets/blockedSenders?domain={domain}` 
+`get /api/v3/tickets/blockedSenders` 
 - Parameters 
-    - domain: string, the domain or email address 
+    - email: string, domain or email address 
 - Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
 ### Add/update block sender 
 `put api/v3/tickets/blockedSenders` 
 - Parameters 
-    - `email`, string, email or domain 
+    - `email`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 - Response 
     - blockedSender: [block sender](#blocked-sender) 
@@ -681,7 +681,7 @@
 ### Remove block sender 
 `delete api/v3/tickets/blockedSenders` 
 - Parameters 
-   - domain: string, the domain or email address 
+   - email: string, domain or email address 
 - Response 
     - http status code
 
