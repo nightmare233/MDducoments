@@ -120,7 +120,8 @@
 ### permission
 | Name | Type | Description | 
 | - | - | - | 
-| `canManage` | boolean | can manage ticket |
+| `canView` | boolean | can view the ticket |
+| `canManage` | boolean | can manage the ticket |
 | `canPermanentlyDelete` | boolean | can permanent delete ticket |
 
 ### custom field value
