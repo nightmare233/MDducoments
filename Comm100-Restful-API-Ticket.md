@@ -667,16 +667,24 @@
 ### List blocked senders 
 `get /api/v3/blockedSenders?domain={domain}` 
 - Parameters 
-    - domain: string, the domain of email address 
+    - domain: string, the domain or email address 
 - Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
-### Add block sender 
-`post api/v3/blockedSenders` 
+### Add/update block sender 
+`put api/v3/blockedSenders` 
 - Parameters 
-    - [block sender](#blocked-sender) 
+    - `email`, string, email or domain 
+    - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 - Response 
     - blockedSender: [block sender](#blocked-sender) 
+
+### Remove block sender 
+`delete api/v3/blockedSenders` 
+- Parameters 
+   - domain: string, the domain or email address 
+- Response 
+    - http status code
 
 # CannedResponses 
 ## objects 
