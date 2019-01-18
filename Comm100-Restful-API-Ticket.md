@@ -72,16 +72,16 @@
 |---|---|---| 
 |[Ticket](#ticket)|/api/v3/tickets|| 
 |[PortalTicket](#portalTicket)|/api/v3/portalTickets|for contact|
-|[Filter](#filter)|/api/v3/filters|| 
-|[Field](#field)|/api/v3/fields|| 
-|[Attachment](#attachment)|/api/v3/attachments|| 
-|[BlockedSender](#blockedsender)|/api/v3/blockedSenders|blocked email or domain| 
-|[CannedResponse](#cannedresponse)|/api/v3/cannedResponses||
-|[Config](#config)|/api/v3/configs|site settings| 
-|[Department](#department)|/api/v3/departments|| 
-|[EmailAccount](#emailaccount)|/api/v3/emailAccounts|| 
-|[JunkEmail](#junkemail)|/api/v3/junkEmails|emails from <br/>blocked senders| 
-|[Tag](#tag)|/api/v3/tags|| 
+|[Filter](#filter)|/api/v3/tickets/filters|| 
+|[Field](#field)|/api/v3/tickets/fields|| 
+|[Attachment](#attachment)|/api/v3/tickets/attachments|| 
+|[BlockedSender](#blockedsender)|/api/v3/tickets/blockedSenders|blocked email or domain| 
+|[CannedResponse](#cannedresponse)|/api/v3/tickets/cannedResponses||
+|[Config](#config)|/api/v3/tickets/configs|site settings| 
+|[Department](#department)|/api/v3/tickets/departments|| 
+|[EmailAccount](#emailaccount)|/api/v3/tickets/emailAccounts|| 
+|[JunkEmail](#junkemail)|/api/v3/tickets/junkEmails|emails from <br/>blocked senders| 
+|[Tag](#tag)|/api/v3/tickets/tags|| 
 
 # Tickets 
 ## objects 
@@ -428,7 +428,7 @@
     - ticket: [ticket](#ticket) 
 
 ### List unread tickets number of filters 
-`get api/v3/filters/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
+`get api/v3/tickets/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
 - Parameters 
     - filterIds: filter id array 
 - Response 
@@ -563,14 +563,14 @@
 
 ## endpoints 
 ### List all public and private filters 
-`get /api/v3/filters`
+`get /api/v3/tickets/filters`
 - Parameters 
     - no parameters 
 - Response 
     - filters: [filter](#filter) list, without conditions
 
 ### Create a new filter 
-`post api/v3/filters`
+`post api/v3/tickets/filters`
 - Parameters 
     - name: string, filter name, required 
     - isPrivate: boolean, if private filter, default value: `false` 
@@ -579,14 +579,14 @@
     - filters: [filter](#filter) list 
 
 ### Get a filter and its conditions 
-`get api/v3/filters/{id}` 
+`get api/v3/tickets/filters/{id}` 
 - Parameters 
     - id: integer, filter id 
 - Response 
     - filter: [filter](#filter) 
 
 ### Update filter 
-`put api/v3/filters/{id}` 
+`put api/v3/tickets/filters/{id}` 
 - Parameters 
     - id: integer, filter id 
     - name: string, filter name, required 
@@ -596,7 +596,7 @@
     - filter: [filter](#filter) 
 
 ### Delete filter 
-`delete api/v3/filters/{id}` 
+`delete api/v3/tickets/filters/{id}` 
 - Parameters 
     - id: integer, filter id 
 - Response 
@@ -628,7 +628,7 @@
 
 ## endpoints 
 ### List all fields and their options 
-`get api/v3/fields` 
+`get api/v3/tickets/fields` 
 - Parameters
     - no parameters
 - Response 
@@ -646,7 +646,7 @@
 | `isAvailable` | boolean | if the attachment is available | 
 ## endpoints 
 ### Upload attachment 
-`post /api/v3/attachments` 
+`post /api/v3/tickets/attachments` 
 - Content-type
     - multipart/form-data
 - Parameters 
@@ -665,14 +665,14 @@
 
 ## endpoints 
 ### List blocked senders 
-`get /api/v3/blockedSenders?domain={domain}` 
+`get /api/v3/tickets/blockedSenders?domain={domain}` 
 - Parameters 
     - domain: string, the domain or email address 
 - Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
 ### Add/update block sender 
-`put api/v3/blockedSenders` 
+`put api/v3/tickets/blockedSenders` 
 - Parameters 
     - `email`, string, email or domain 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
@@ -680,7 +680,7 @@
     - blockedSender: [block sender](#blocked-sender) 
 
 ### Remove block sender 
-`delete api/v3/blockedSenders` 
+`delete api/v3/tickets/blockedSenders` 
 - Parameters 
    - domain: string, the domain or email address 
 - Response 
@@ -699,7 +699,7 @@
 
 ## endpoints 
 ### List all canned responses 
-`get api/v3/cannedResponses` 
+`get api/v3/tickets/cannedResponses` 
 - Parameters 
     - no parameters
 - Response 
@@ -708,7 +708,7 @@
 
 # Configs 
 ### Get site configs about ticket 
-`get api/v3/configs` 
+`get api/v3/tickets/configs` 
 - Parameters 
     - no parameters
 - Response 
@@ -735,12 +735,12 @@
 
 ## endpoints 
 ### Get one department 
-`get api/v3/departments/{id} ` 
+`get api/v3/tickets/departments/{id} ` 
 - Response 
     - department: [department](#department) 
 
 ### List all departments 
-`get api/v3/departments` 
+`get api/v3/tickets/departments` 
 - Response 
     - departments: [department](#department) List without department member. 
 
@@ -759,7 +759,7 @@
 
 ## endpoints 
 ### List all enabled email accounts 
-`get api/v3/emailAccounts` 
+`get api/v3/tickets/emailAccounts` 
 - Response 
     - emailAccounts: [email account](#email-account) list 
 
@@ -783,7 +783,7 @@
 
 ## endpoints 
 ### List junk emails
-`get api/v3/junkEmails` 
+`get api/v3/tickets/junkEmails` 
 
 - Parameters 
     - keywords: string
@@ -798,28 +798,28 @@
     - currentPage: string
 
 ### Get a junk email 
-`get api/v3/junkEmails/{id}` 
+`get api/v3/tickets/junkEmails/{id}` 
 - Parameters 
     - id: integer, email id 
 - Response 
     - junkEmail: [junk email](#junk-email) 
 
 ### Update junk email 
-`put api/v3/junkEmails/{id}` 
+`put api/v3/tickets/junkEmails/{id}` 
 - Parameters 
     - isRead: boolean, 
 - Response 
     - junkEmail: [junk email](#junk-email) 
 
 ### Restore a junk email to a normal ticket 
-`post api/v3/junkEmails/{id}/notJunk` 
+`post api/v3/tickets/junkEmails/{id}/notJunk` 
 - Parameters 
     - id: integer, email id 
 - Response 
     - ticket: [ticket](#ticket) 
 
 ### Delete a junk email 
-`delete api/v3/junkEmails/{id}` 
+`delete api/v3/tickets/junkEmails/{id}` 
 - Parameters 
     - id: integer, junk email id 
 - Response 
@@ -835,19 +835,19 @@
 | `ticketCount` | integer | the count of tickets with the tag | 
 ## endpoints 
 ### List all tags 
-`Get api/v3/tags` 
+`Get api/v3/tickets/tags` 
 - Response 
     - tags: [tag](#tag) list 
 
 ### Add a tag 
-`Post api/v3/tags` 
+`Post api/v3/tickets/tags` 
 - Parameters 
     - name: string, tag name 
 - Response 
     - tag: [tag](#tag) 
 
 ### Update One Tag 
-`Put api/v3/tags/{id}` 
+`Put api/v3/tickets/tags/{id}` 
 - Parameters 
     - id: integer, tag id 
     - name: string, tag name 
@@ -855,7 +855,7 @@
     - tag: [tag](#tag) 
 
 ### Delete a tag 
-`Delete api/v3/tags/{id}` 
+`Delete api/v3/tickets/tags/{id}` 
 - Parameters 
     - id: integer, tag id 
 - Response 
