@@ -658,7 +658,6 @@
 ### blocked sender 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | id | 
 | `email` | string | email or domain | 
 | `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
