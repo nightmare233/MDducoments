@@ -115,14 +115,8 @@
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
-| `permissions`|[permission](#permission)[]| the permissions that the current agent has | 
-
-### permission
-| Name | Type | Description | 
-| - | - | - | 
-| `canView` | boolean | can view the ticket |
-| `canManage` | boolean | can manage the ticket |
-| `canPermanentlyDelete` | boolean | can permanent delete ticket |
+| `isEditable`| boolean | if the current agent can update\reply the ticket | 
+| `lastMessage`| string | plain text of last message | 
 
 ### custom field value
 | Name | Type | Description | 
