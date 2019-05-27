@@ -1,7 +1,7 @@
-# Authentication 
-- Comm100 Ticket API provides 2 authentication methods: 
-    - API_key Authentication 
-    - OAuth Authentication 
+# Authentication
+- Comm100 Ticket API provides 2 authentication methods:
+    - API_key Authentication
+    - OAuth Authentication
 - [Reference document](https://www.comm100.com/doc/api/introduction.htm#/) 
 
 # Parameter explanation 
