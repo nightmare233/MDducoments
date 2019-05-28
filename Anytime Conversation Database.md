@@ -89,19 +89,23 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of ticket | 
+| `guid` | string | guid of ticket | 
 | `subject` | string | ticket subject | 
-| `agentAssigneeId` | integer | agent assignee id | 
-| `departmentAssigneeId` | integer | department assignee id | 
-| `contactId` | integer | contact id | 
-| `receivedFrom` | string | received email address for email channel | 
-| `channel` | string | `portal`, `email`| 
+| `agentAssigneeId` | string | agent assignee id | 
+| `departmentAssigneeId` | string | department assignee id | 
+| `relatedType` | string | `contact`, `visitor`, `agent`| 
+| `relatedId` | string | contact id, visitor id, agent id | 
+| `channel` | string | `portal`, `email`, `chat`, `offlinemessage`, `facebookMessenger`, `facebookWallPost`, `Tweet`, etc.| 
+| `receivedBy` | string | receiving intergrated account id | 
+| `originalId` | string |  | 
+| `originalLink` | string |  | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
 | `isRead` | boolean | if the ticket is read | 
 | `isReadByContact` | boolean | if the portal ticket is read by contact |
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `createdById` | integer | contact id or agent id | 
-| `createdByType` |  string | agent or contact or system | 
+| `createdById` | string | contact id or agent id or visitor id| 
+| `createdByType` | string | agent or contact or system or visitor | 
 | `createdTime` | datetime | create time of ticket | 
 | `lastActivityTime` | datetime | last activity time of ticket | 
 | `lastStatusChangeTime` | datetime | last status change time of ticket | 
@@ -109,9 +113,9 @@
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `hasDraft` | boolean | if has draft | 
-| `tagIds` | integer[] | tag id array | 
+| `tagIds` | string[] | tag id array | 
 | `isDeleted` | boolean | if deleted | 
-| `slaPolicyId` | integer | SLA id of this ticket matched | 
+| `slaPolicyId` | string | SLA id of this ticket matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first <br/> response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is <br/> due to be resolved | 
@@ -122,36 +126,44 @@
 ### custom field value
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | the id of custom field |
+| `id` | string | the id of custom field |
 | `name` | string | the name of custom field |
 | `value` | string | the value of custom field |
 
 ### mentioned agent 
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | integer | the agent id of mentioned | 
+| `agentId` | string | the agent id of mentioned | 
 | `isRead`| boolean | if the mentioned ticket is read | 
-| `messageId`| integer| message id| 
+| `messageId`| string | message id| 
 
 ### message 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | id of message | 
+| `id` | string | id of message | 
 | `ticketId` | integer | id of ticket | 
-| `type` | string | `note`, `email`, `reply` | 
+| `type` | string | `note`, `email`, `reply`, `socialMessage`, `chat`, `offlineMessage` |
+| `directType` | string | `receive`, `send` |
+| `status` | string | `normal`, `draft`, `junk` |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
+| `originalMessageId` | string | original message id|
+| `originalMessageLink` | string | origial message link |
+| `parentId` | string | parent id |
+| `quoteTweetId` | string | quote tweet id |  
 | `htmlBody` | string | html body of message | 
 | `plainBody` | string | plain text body of message | 
 | `quote` | string | quoted content of the message, only for email message | 
-| `senderId`| integer | id of agent or contact | 
+| `accountId`| string | integrated account id | 
+| `contactIdentityId`| string | id of contact identity | 
+| `sendertId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
 | `subject` | string | subject | 
-| `from` | string | from email address| 
-| `to` | string | the to email addresses | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
 | `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
+| `isRead`| boolean | | 
+| `sendStatus` | string | `sucess`, `sending`, `fail` |
 
 ### ticket draft 
 | Name | Type | Description | 
@@ -168,6 +180,24 @@
 | `savedTime` | datetime | | 
 | `savedById` | integer | the id of the agent who saved the ticket draft | 
 | `attachments` | [attachment](#attachment)[] | draft attachments | 
+
+### attachment 
+| Name | Type | Description | 
+| - | - | - |
+
+| `id` | string | attachment unique id |
+| `messageId` | string | message id |
+| `type` | string | attachment type |
+| `mimetype` | string | attachment mime type |
+| `originalId` | string | message id |
+| `originalLink` | string | message id |
+| `text` | string | message id |
+| `fileName` | string | attachment file name| 
+| `url` | string | attachment download link | 
+| `previewUrl` | string | preview url | 
+| `size` | int | size |
+| `scale` | string | scale for location |
+| `isAvailable` | boolean | if the attachment is available | 
 
 ## endpoints 
 ### List tickets 
@@ -653,15 +683,7 @@
 - Response 
     - fields: [field](#field) list 
 
-# Attachments 
-## objects 
-### attachment 
-| Name | Type | Description | 
-| - | - | - | 
-| `guid` | string | attachment unique id | 
-| `fileName` | string | attachment file name| 
-| `url` | string | attachment download link | 
-| `isAvailable` | boolean | if the attachment is available | 
+# Attachments  
 ## endpoints 
 ### Upload attachment 
 `post /api/v2/ticket/attachments` 
