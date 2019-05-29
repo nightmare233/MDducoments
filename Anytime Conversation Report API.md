@@ -1,48 +1,22 @@
-# Social Report API
-###### 1. 概述
-- comm100 livechat 使用social api是通过cookie(LC_ASP.NET_SessionId)验证, 外面使用通过token方式验证.
-
-###### 2. 
- - enumDimension
-    - ByTime
-    - ByDepartment
-    - ByAgent
-    - BySocialAccount
-    - BySource
-
- - enumFilter
-    - Site
-    - Department
-    - Agent
-    - SocialAccount
-    - Source
-
-- enumUnit
-    - Daily
-    - Week
-    - Month
-
-###### 3. 接口列表
-
+#EndPoint List 
 | 接口 | 接口类型 | 接口说明 |
 | --- | --- | --- |
-| [/api/v1/social/reports/realtime/now](#right-now) | GET | 获取当前的指标 |
-| [/api/v1/social/reports/realtime/today](#realtime-today) | GET | 获取今天的指标 |
-| [/api/v1/social/reports/realtime/departments](#realtime-department) | GET | 获取当前各个department数据 |
-| [/api/v1/social/reports/realtime/agents](#realtime-agent) | GET | 获取当前各个agent的数据 |
-| [/api/v1/social/accounts](#accounts) | GET | 获取集成账号或者page的信息 |
-| [/api/v1/social/reports/volume/export](#export-volume) | GET | 导出volume报表 |
-| [/api/v1/social/reports/volume](#report-volume) | GET | 获取volume报表数据 |
-| [/api/v1/social/reports/source/export](#export-source) | GET | 导出social source报表 |
-| [/api/v1/social/reports/source](#report-source) | GET | 获取social source报表数据 |
-| [/api/v1/social/reports/efficiency/export](#export-efficiency) | GET | 导出social efficiency 报表 |
-| [/api/v1/social/reports/efficiency](#report-efficiency) | GET | 导出social efficiency 报表 |
+| [/api/v3/anytime/reports/realtime/now](#right-now) | GET | 获取当前的指标 |
+| [/api/v3/anytime/reports/realtime/today](#realtime-today) | GET | 获取今天的指标 |
+| [/api/v3/anytime/reports/realtime/departments](#realtime-department) | GET | 获取当前各个department数据 |
+| [/api/v3/anytime/reports/realtime/agents](#realtime-agent) | GET | 获取当前各个agent的数据 |
+| [/api/v3/anytime/reports/volume/export](#export-volume) | GET | 导出volume报表 |
+| [/api/v3/anytime/reports/volume](#report-volume) | GET | 获取volume报表数据 |
+| [/api/v3/anytime/reports/channel/export](#export-channel) | GET | 导出 channel报表 |
+| [/api/v3/anytime/reports/channel](#report-channel) | GET | 获取 channel报表数据 |
+| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | 导出efficiency 报表 |
+| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | 导出efficiency 报表 |
 
 
 ###### 接口描述
 
 ###### right now
-- 名称：/api/v1/social/reports/realtime/now
+- 名称：/api/v3/anytime/reports/realtime/now
 - 方式：GET
 - 参数：
 	- siteId: number
@@ -57,7 +31,7 @@
 	- highConversations: number
 
 ###### realtime today
-- 名称：/api/v1/social/reports/realtime/today
+- 名称：/api/v3/anytime/reports/realtime/today
 - 方式：GET
 - 参数:
 	- siteId: number
@@ -68,7 +42,7 @@
 	- reopenedConverstations: number
 
 ###### realtime department
-- 名称：/api/v1/social/reports/realtime/departments
+- 名称：/api/v3/anytime/reports/realtime/departments
 - 方式：GET
 - 参数：
 	- siteId: number
@@ -86,11 +60,11 @@
 		- highConversations: number,
 
 ###### realtime agent
-- 名称：/api/v1/social/reports/realtime/agents
+- 名称：/api/v3/anytime/reports/realtime/agents
 - 方式：GET
 - 参数：
 	- siteId: number,
-	- filterType: string(枚举),
+	- filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
 - 返回：
 	- dataList(列表): 
@@ -105,27 +79,14 @@
 		- urgentConversations: number,
 		- highConversations: number,
 	
-###### accounts
-- 名称：/api/v1/social/accounts
-- 方式：GET
-- 参数：
-	- siteId: number,
-- 返回：(数组）
-	- id: number,
-	- name: string,
-	- screenName: string,
-	- avatar: string,
-	- source: string,
-	- ifEnable: boolean,
-
 ###### export volume
-- 名称：/api/v1/social/reports/volume/export
+- 名称：/api/v3/anytime/reports/volume/export
 - 方式：GET 
 - 参数：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
-    - filterType: string(枚举),
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
@@ -135,13 +96,13 @@
 
 
 ###### report volume
-- 名称：/api/v1/social/reports/volume
+- 名称：/api/v3/anytime/reports/volume
 - 方式：GET 
 - 参数：
     - siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
-    - filterType: string(枚举),
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
@@ -166,14 +127,14 @@
 	- totalReopenedConversations: number,
 	- totalOpenConversations: number
 
-###### export source
-- 名称：/api/v1/social/reports/source/export
+###### export channel
+- 名称：/api/v3/anytime/reports/channel/export
 - 方式：GET 
 - 参数：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
-    - filterType: string(枚举),
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
@@ -181,52 +142,48 @@
     - dateFormat: string,
 - 返回：.csv文件（直接生成）
 
-###### report-source
-- 名称：/api/v1/social/reports/source
+###### report-channel
+- 名称：/api/v3/anytime/reports/channel
 - 方式：GET 
 - 参数：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
-    - filterType: string(枚举),
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
 - 返回：
-	- dataList（列表）: 
+	- dataList: 
 	    - id: number,
-		- facebookWallPost: number,
-		- facebookWallPostPercentage:  float,	
-		- facebookVisitorPost: number,
-		- facebookVisitorPostPercentage: float,
-		- facebookMessage: number,
-		- facebookMessagePercentage: float,
-		- facebook: number,
-		- facebookPercentage: float,
-		- twitterTweet: number,
-		- twitterTweetPercentage: float,
-		- twitterDirectMessage: number,
-		- twitterDirectMessagePercentage: float,
-		- twitter: number,
-		- twitterPercentage: float,
+		- name: string,
+		- channelEfficiencies, [channelEfficiencie](#channel-efficiency)[]
 		- startTime: string,
 		- endTime: string,
-	- totalFacebookWallPost: number,
-	- totalFacebookVisitorPost: number,
-	- totalFacebookMessage: number,
-	- totalFacebook: number,
-	- totalTwitterTweet: number,
-	- totalTwitterDirectMessage: number,
-	- totalTwitter: number,
+	- channel total number, [channel total number](#Channel-totoal-messages-number)[]
+
+##### Channel Efficiency
+| Name | Type | Description | 
+| - | - | - | 
+| `channelId` | string | channel id |
+| `channelName` | number | channel name |
+| `channelPercentage` | float |  |
+
+##### Channel totoal messages number
+| Name | Type | Description | 
+| - | - | - | 
+| `channelId` | string | channel id |
+| `channelName` | number | channel name |
+| `totalNumber` | number |  |
 
 ###### export efficiency
-- 名称：/api/v1/social/reports/efficiency/export
+- 名称：/api/v3/anytime/reports/efficiency/export
 - 方式：GET 
 - 参数：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
-    - filterType: string(枚举),
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
@@ -235,13 +192,13 @@
 - 返回：.csv文件（直接生成）
 
 ###### report efficiency
-- 名称：/api/v1/social/reports/efficiency
+- 名称：/api/v3/anytime/reports/efficiency
 - 方式：GET 
 - 参数：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
-    - filterType: string(枚举),
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
@@ -251,12 +208,12 @@
 		- avgAgentResponseTime: string,
 		- avgFirstResponseTime: string,
 		- avgConversationTime: string,
-		- avgSocialUserMessages: float,
+		- avgContactMessages: float,
 		- avgAgentMessages: float, 
 		- startTime: string,
 		- endTime: string,
 	- totalAvgAgentResponseTime: string,
 	- totalAvgFirstResponseTime: string,
 	- totalAvgConversationTime: string,
-	- totalAvgSocialUserMessages: float,
+	- totalAvgContactMessages: float,
 	- totalAvgAgentMessages: float,
