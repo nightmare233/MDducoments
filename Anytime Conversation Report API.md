@@ -2,7 +2,7 @@
 ###### 1. 概述
 - comm100 livechat 使用social api是通过cookie(LC_ASP.NET_SessionId)验证, 外面使用通过token方式验证.
 
-###### 2. 枚举
+###### 2. 
  - enumDimension
     - ByTime
     - ByDepartment
