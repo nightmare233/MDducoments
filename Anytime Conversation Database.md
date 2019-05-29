@@ -1,5 +1,5 @@
 # Authentication 
-- Comm100 Ticket API provides 2 authentication methods: 
+- Comm100 anytime Conversation API provides 2 authentication methods: 
     - API_key Authentication 
     - OAuth Authentication 
 - [document](https://www.comm100.com/doc/api/introduction.htm#/) 
@@ -18,26 +18,26 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v3/anytime/conversations` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/conversations/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy |
+    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy, messages |
     | `get api/v3/anytime/conversations/{id}/messages` | sender |
-    | `get api/v3/anytime/deletedConversations` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/deletedConversations/{id}` | agentAssignee, departmentAssignee, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy |
+    | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy, messages |
     | `get api/v3/anytime/deletedConversations/{id}/messages` | sender |
     | `get api/v3/anytime/portalConversations/{id}` | contact, messages |
     | `get api/v3/anytime/portalConversations` | contact |
     | `get api/v3/anytime/portalConversations/{id}/messages` | sender | 
 
 - Sample:
-    - request: `get api/v3/anytime/conversations/{id}?include=agentAssignee,contact,createdBy,messages`
+    - request: `get api/v3/anytime/conversations/{id}?include=assignedAgent,contact,createdBy,messages`
     - response:
 
         ``` javascript
         {
             "conversation": {
                 "id": 1,
-                "agentAssigneeId": 1,
-                "agentAssignee": {  //included the agent object
+                "assignedAgentId": 1,
+                "assignedAgent": {  //included the agent object
                     "id": 1,
                     //...
                 },
@@ -70,16 +70,14 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Ticket](#conversation)|/api/v3/anytime/conversations| Points for agent console| 
-|[PortalTicket](#portalTicket)|/api/v3/anytime/portalConversations| Points for portal and contacts |
+|[Conversation](#conversation)|/api/v3/anytime/conversations| Points for agent console| 
+|[PortalConversation](#portalConversation)|/api/v3/anytime/portalConversations| Points for portal and contacts |
 |[Filter](#filter)|/api/v3/anytime/filters| Agent console filters| 
 |[Field](#field)|/api/v3/anytime/fields| System fields and custom fields | 
 |[Attachment](#attachment)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[BlockedSender](#blockedsender)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
-|[CannedResponse](#cannedresponse)|/api/v3/anytime/cannedResponses| Canned response for quickly reply conversation in agent console |
 |[Config](#config)|/api/v3/anytime/configs| Get site settings| 
-|[Department](#department)|/api/v3/anytime/departments|Ticket departments | 
-|[EmailAccount](#emailaccount)|/api/v3/anytime/emailAccounts| Email accounts| 
+|[Department](#department)|/api/v3/anytime/departments|Conversation departments | 
 |[JunkEmail](#junkemails)|/api/v3/anytime/junkEmails| Emails from blocked senders| 
 |[Tag](#tag)|/api/v3/anytime/tags|| 
 
@@ -93,8 +91,8 @@
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
 | `relatedId` | string | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `agentAssigneeId` | string | agent assignee id | 
-| `departmentAssigneeId` | string | department assignee id | 
+| `assignedAgentId` | string | agent assignee id | 
+| `assignedDepartmentId` | string | department assignee id | 
 | `channel` | string | `portal`, `email`, `chat`, `offlinemessage`, `facebookMessenger`, `facebookWallPost`, `Tweet`, etc.| 
 | `receivedBy` | string | receiving intergrated account id | 
 | `originalId` | string | original id on social platform | 
@@ -106,6 +104,7 @@
 | `isRead` | boolean | if the conversation is read | 
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
+| `isActive`| boolean | if open in my active work area by agent | 
 | `lastMessage`| string | plain text of last message | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
@@ -119,9 +118,9 @@
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
-| `firstRespondBreachAt` | datetime | Timestamp that denotes when the first <br/> response is due | 
-| `nextRespondBreachAt` | datetime | Timestamp that denotes when the next <br/> response is due | 
-| `resolveBreachAt` | datetime | Timestamp that denotes when the conversation is <br/> due to be resolved | 
+| `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
+| `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
+| `resolveBreachAt` | datetime | Timestamp that denotes when the conversation is due to be resolved | 
 
 ### custom field value
 | Name | Type | Description | 
@@ -151,8 +150,7 @@
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
 | `quoteTweetId` | string | quote tweet id |  
-| `htmlBody` | string | html body of message | 
-| `plainBody` | string | plain text body of message | 
+| `texts` | [text](#text)[] | text of message |  
 | `quote` | string | quoted content of the message, only for email message |  
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
@@ -163,19 +161,18 @@
 | `sendertId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
-
+ 
 ### conversation draft 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage`,|
+| `type` | string | `note`, `email`, `reply`, `socialMessage` |
 | `accountId`| string | integrated account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
 | `quoteTweetId` | string | quote tweet id |  
-| `htmlBody` | string | html body of message | 
-| `plainBody` | string | plain text body of message | 
+| `texts` | [text](#text)[] | text of message |  
 | `quote` | string | quoted content of the message, only for email message |  
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
@@ -184,21 +181,28 @@
 | `sendertId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
 
+### text
+| Name | Type | Description | 
+| - | - | - |
+| `id` | string | id |
+| `format` | string | `plaintext`, `html` |
+| `content` | string | plain text or html body |
+
+
 ### attachment 
 | Name | Type | Description | 
 | - | - | - |
-
 | `id` | string | attachment unique id |
 | `messageId` | string | message id |
 | `type` | string | attachment type |
 | `mimetype` | string | attachment mime type |
-| `originalId` | string | message id |
-| `originalLink` | string | message id |
-| `text` | string | message id |
+| `originalId` | string | original id |
+| `originalLink` | string | original link |
+| `text` | string | attachment text or description |
 | `fileName` | string | attachment file name| 
 | `url` | string | attachment download link | 
 | `previewUrl` | string | preview url | 
-| `size` | int | size |
+| `size` | int | attachment size |
 | `scale` | string | scale for location |
 | `isAvailable` | boolean | if the attachment is available | 
 
@@ -207,8 +211,8 @@
 `get api/v3/anytime/conversations` 
 + Each request returns a maximum of 50 conversations. 
 + Parameters 
-    - filterId: integer, filter id  
-    - tagId: integer, tag id
+    - filterId: string, filter id  
+    - tagId: string, tag id
     - keywords: string
     - timeFrom: DateTime, last reply time, default search the last 30 days
     - timeTo: DateTime, last reply time, default value is the current time
@@ -230,8 +234,8 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v3/anytime/conversations?include=agentAssignee` |
-    | departmentAssignee | `get api/v3/anytime/conversations?include=departmentAssignee` |
+    | assignedAgent | `get api/v3/anytime/conversations?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/anytime/conversations?include=assignedDepartment` |
     | contact | `get api/v3/anytime/conversations?include=contact` |
     | createdBy | `get api/v3/anytime/conversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations?include=lastRepliedBy` | 
@@ -246,8 +250,8 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v3/anytime/conversations/{id}?include=agentAssignee` |
-    | departmentAssignee | `get api/v3/anytime/conversations/{id}?include=departmentAssignee` |
+    | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/anytime/conversations/{id}?include=assignedDepartment` |
     | contact | `get api/v3/anytime/conversations/{id}?include=contact` |
     | createdBy | `get api/v3/anytime/conversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
@@ -257,22 +261,26 @@
 `post api/v3/anytime/conversations` 
 - Parameters 
     - subject: string, conversation subject, required
-    - channel: string, `portal`, `email`, required 
-    - contactId: integer, contact id
-    - agentAssigneeId: integer, agent id
-    - departmentAssigneeId: integer, department id
+    - channel: string, `portal`, `email`, `chat`, `facebookMessenger`, etc.  required 
+    - relatedType: string, `contact`, `visitor`
+    - relatedId: string, contact id or visitor id
+    - assignedAgentId: string, agent id
+    - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
-    - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new`  
+    - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
+    - receivedBy: string, 
+    - originalId: string,
+    - originalLink: string,  
     - customFields: [custom field value](#custom-field-value)[], custom field value array
-    - tagIds: integer[], tag id array
+    - tagIds: string[], tag id array
     - message: the first message of the conversation, required
-        - type: string, `note`, `email`, `reply`, required
+        - type: string, `note`, `email`, `reply`, `socialMessage`, required
         - subject: string, for email message, email subject
-        - htmlBody: string, html body of message
-        - plainBody: string, plain text body of message
-        - quote: string
+        - text: [text](#text), 
         - from: string, for email type message, one of email account address 
         - cc: string, message cc emails 
+        - parentId: string
+        - quoteTweetId: string
         - attachments: [attachment](#attachment)[], attachment array
 + Response 
     - conversation: [conversation](#conversations)
@@ -294,12 +302,14 @@
 - Parameters 
     - id: integer, conversation id
     - subject: string, conversation subject
-    - contactId: integer, the contact id
-    - agentAssigneeId: integer, agent id
-    - departmentAssigneeId: integer, department id
+    - relatedType: string, `contact`, `visitor`
+    - relatedId: string, contact id or visitor id
+    - assignedAgentId: string, agent id
+    - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
     - isRead: boolean
+    - isActive: boolean
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
@@ -311,8 +321,8 @@
     - ids: integer[], conversation id array
     - status, string
     - priority, string
-    - agentAssigneeId, integer
-    - departmentAssigneeId, integer
+    - assignedAgentId, string
+    - assignedDepartmentId, string
     - isRead, boolean
 + Response 
     - conversations: [conversation](#conversation) list 
@@ -320,13 +330,20 @@
 ### Reply a conversation 
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
-    - type: string, `note`, `email`, `reply`, required
+    - type: string, `note`, `email`, `reply`, `socialMessage`, required
+    - accountId: string, channel account id,
+    - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
-    - htmlBody: string, html body of message, if you want to @mention an agent in a note, you can use the format: `<span data-id=agentId class="athighlight">note body</span>`
-    - plainBody: string, plain text body of message
+     - text: [text](#text) 
     - quote: string, quote content, only for email message
     - from: string, for email type message, one of email account address 
     - cc: string, message cc emails 
+    - parentId: string,
+    - quoteTweetId: string,
+    - originalId: string,
+    - originalLink: string,
+    - sendByType: string, `agent`, `contact`
+    - sendById: string, agent id or contact id
     - attachments: [attachment](#attachment)[], attachment array
 - Response 
     - message: [message](#message) 
@@ -342,6 +359,20 @@
 `put api/v3/anytime/conversations/{id}/unread` 
 + Parameters 
     - id: integer, conversation id 
++ Response 
+    - http status code
+
+### Mark a message as read 
+`put api/v3/anytime/conversations/messages/{id}/read` 
++ Parameters 
+    - id: string, message id 
++ Response 
+    - http status code
+
+### Mark a message as unread 
+`put api/v3/anytime/conversations/messages/{id}/unread` 
++ Parameters 
+    - id: string, message id 
 + Response 
     - http status code
 
@@ -376,8 +407,8 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v3/anytime/deletedConversations?include=agentAssignee` |
-    | departmentAssignee | `get api/v3/anytime/deletedConversations?include=departmentAssignee` |
+    | assignedAgent | `get api/v3/anytime/deletedConversations?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/anytime/deletedConversations?include=assignedDepartment` |
     | contact | `get api/v3/anytime/deletedConversations?include=contact` |
     | createdBy | `get api/v3/anytime/deletedConversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations?include=lastRepliedBy` | 
@@ -387,13 +418,13 @@
 - Parameters 
     - id: integer, conversation id 
 - Response 
-    - deletedTicket: [conversation](#conversation) 
+    - deletedConversation: [conversation](#conversation) 
 - Includes
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v3/anytime/deletedConversations/{id}?include=agentAssignee` |
-    | departmentAssignee | `get api/v3/anytime/deletedConversations/{id}?include=departmentAssignee` |
+    | assignedAgent | `get api/v3/anytime/deletedConversations/{id}?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/anytime/deletedConversations/{id}?include=assignedDepartment` |
     | contact | `get api/v3/anytime/deletedConversations/{id}?include=contact` |
     | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
@@ -417,7 +448,7 @@
 - Parameters 
     - id: integer, conversation id 
 - Response 
-    - deletedTicket: [conversation](#conversation)  
+    - deletedConversation: [conversation](#conversation)  
 
 ### Delete a conversation permanently 
 `delete api/v3/anytime/deletedConversations/{id}` 
@@ -469,18 +500,18 @@
 - Response 
     - allCount: integer, all unread conversation number. 
     - array including: 
-        - filterId: integer, filter id 
+        - filterId: string, filter id 
         - unreadCount: integer, count unread conversations of a filter 
         - unreadMentionedCount: integer, the number of conversations which is unread and mentioned to me 
 
-# PortalTicket
+# PortalConversation
 ## objects
 ### portal conversation
 | Name | Type | Description |
 | - | - | - |
 | `id` | integer | id of conversation |
 | `subject` | string | subject |
-| `contactId` | integer | id of the contact who submitted the portal conversation |
+| `contactId` | string | id of the contact who submitted the portal conversation |
 | `isClosed` | boolean | if the portal conversation is closed |
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
@@ -490,10 +521,9 @@
 ### portal conversation message 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | id of message | 
-| `htmlBody` | string | html body | 
-| `plainBody` | string | plain text body | 
-| `senderId`| integer | id of agent or contact | 
+| `id` | string | id of message | 
+| `text` | [text](#text) | text |  
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | |   
 | `attachments` | [attachment](#attachment)[] | attachment array| 
@@ -503,9 +533,9 @@
 `get api/v3/anytime/portalConversations/{id}`
 - Parameters
     - id, integer, portal conversation id
-    - contactId, integer
+    - contactId, string
 - Response
-    - portalTicket: [portal conversation](#portal-conversation) 
+    - portalConversation: [portal conversation](#portal-conversation) 
 - Includes
 
     |Includes| Description |
@@ -516,7 +546,7 @@
 ### List portal conversations
 `get api/v3/anytime/portalConversations`
 - Parameters:
-    - contactIds, integer array, required
+    - contactIds, string array, required
 - Response: 
     - portalConversations: [portal conversation](#portal-conversation) list
 - Includes
@@ -531,36 +561,35 @@
 `post api/v3/anytime/portalConversations`
 - Parameters: 
     - subject: string, subject, required
-    - contactId: integer, id of the contact who submitted the portal conversation
+    - contactId: string, id of the contact who submitted the portal conversation
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - message:  the first portal message
-        - htmlBody: string, html body
-        - plainBody: string, plain text
+        - text: [text](#text), 
         - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
-  - portalTicket: [portal conversation](#portal-conversation) 
+  - portalConversation: [portal conversation](#portal-conversation) 
 
-### Close a portalTicket
+### Close a portalConversation
 `put api/v3/anytime/portalConversations/{id}/close` 
 - Parameters: 
     - id, integer, portal conversation id,
-    - contactId, integer, required
+    - contactId, string, required
 - Response: 
-    - portalTicket: [portal conversation](#portal-conversation) 
+    - portalConversation: [portal conversation](#portal-conversation) 
 
-### Reopen a portalTicket
+### Reopen a portalConversation
 `put api/v3/anytime/portalConversations/{id}/reopen` 
 - Parameters: 
     - id, integer, portal conversation id,
-    - contactId, integer, required
+    - contactId, string, required
 - Response: 
-    - portalTicket: [portal conversation](#portal-conversation) 
+    - portalConversation: [portal conversation](#portal-conversation) 
 
 ### List messages of a portal conversation 
 `get api/v3/anytime/portalConversations/{id}/messages`
 - Parameters: 
-    - id, integer
-    - contactId, integer
+    - id, integer, conversation id
+    - contactId, string, contact id
 - Response: 
     - messages: [portal conversation message](#portal-conversation-message) list
 - Includes
@@ -573,9 +602,8 @@
  `post api/v3/anytime/portalConversations/{id}/messages`
 - Parameters:
     - id: integer
-    - contactId: integer required
-    - htmlBody: string, html body
-    - plainBody: string, plain text
+    - contactId: string required
+    - text: [text](#text), 
     - attachments: [attachment](#attachment)[], attachment array
 - Response: 
     - message: [portal conversation message](#portal-conversation-message)
@@ -599,17 +627,17 @@
 ### filter 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | filter id | 
+| `id` | string | filter id | 
 | `name` | string | filter name | 
 | `isPrivate` | boolean | if private filter| 
-| `createdById` | integer | agent id | 
+| `createdById` | string | agent id | 
 | `conditions` | [condition](#condition)[] | array of filter condition | 
 
 ### condition 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | condition id | 
-| `fieldId` | integer | field id | 
+| `id` | string | condition id | 
+| `fieldId` | string | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 
@@ -633,14 +661,14 @@
 ### Get a filter and its conditions 
 `get api/v3/anytime/filters/{id}` 
 - Parameters 
-    - id: integer, filter id 
+    - id: string, filter id 
 - Response 
     - filter: [filter](#filter) 
 
 ### Update a filter 
 `put api/v3/anytime/filters/{id}` 
 - Parameters 
-    - id: integer, filter id 
+    - id: string, filter id 
     - name: string, filter name, required 
     - isPrivate: boolean, if private filter 
     - conditions: [condition](#condition)[], array of filter condition
@@ -650,7 +678,7 @@
 ### Delete a filter 
 `delete api/v3/anytime/filters/{id}` 
 - Parameters 
-    - id: integer, filter id 
+    - id: string, filter id 
 - Response 
     - http status code 
 
@@ -660,9 +688,9 @@
 ### field 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | field id | 
+| `id` | string | field id | 
 | `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, <br/>`radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` | 
-| `name` | integer | field name | 
+| `name` | string | field name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
 | `defaultValue` | string | field default value | 
@@ -673,7 +701,7 @@
 ### fieldOption 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | option id | 
+| `id` | string | option id | 
 | `name` | string | option name | 
 | `value` | string | field value | 
 | `order` | integer | option order | 
@@ -743,25 +771,6 @@
 - Response 
     - http status code
 
-# CannedResponses 
-## objects 
-### canned response 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | integer | id | 
-| `name` | string | canned response name | 
-| `htmlContent` | string | html format content | 
-| `textContent` | string | text format content | 
-
-
-## endpoints 
-### List all canned responses 
-`get api/v3/anytime/cannedResponses` 
-- Parameters 
-    - no parameters
-- Response 
-    - cannedResponses: [Canned responses](#canned-response) list 
-
 
 # Configs 
 ### Get site configs about conversation 
@@ -773,56 +782,9 @@
         - isEnabledDepartment: boolean 
         - recipientLimitPerEmail: integer 
 
-# Department 
+# Junks 
 ## objects 
-### department 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | integer | id | 
-| `name` | string | department name | 
-| `description` | string | department description | 
-| `members` | [department member](#department-member)[] | department member array | 
-
-### department member 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | integer | id | 
-| `name` | string | member name | 
-| `type` | string | agent or group | 
-
-## endpoints 
-### Get a department 
-`get api/v3/anytime/departments/{id} ` 
-- Response 
-    - department: [department](#department) 
-
-### List all departments 
-`get api/v3/anytime/departments` 
-- Response 
-    - departments: [department](#department) List without department member. 
-
-# EmailAccounts 
-## objects 
-### email account 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | integer | id | 
-| `email` | string | email address |  
-| `type` | string | pop3 or exchange | 
-| `agentAssigneeId` | integer | agent id | 
-| `departmentAssigneeId` | integer | department id | 
-| `isDefault` | boolean | if default email account | 
-
-
-## endpoints 
-### List all enabled email accounts 
-`get api/v3/anytime/emailAccounts` 
-- Response 
-    - emailAccounts: [email account](#email-account) list 
-
-# JunkEmails 
-## objects 
-### junk email 
+### junk 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
@@ -834,9 +796,7 @@
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
 | `quoteTweetId` | string | quote tweet id |  
-| `htmlBody` | string | html body of message | 
-| `plainBody` | string | plain text body of message | 
-| `quote` | string | quoted content of the message, only for email message |  
+| `texts` | [text](#text)[] | text |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
@@ -847,7 +807,7 @@
 
 ## endpoints 
 ### List junk emails
-`get api/v3/anytime/junkEmails` 
+`get api/v3/anytime/junks` 
 
 - Parameters 
     - keywords: string
@@ -855,39 +815,45 @@
     - timeFrom: DateTime
     - timeTo: DateTime
 - Response 
-    - junkEmails: [junk email](#junk-email) list 
+    - junks: [junk](#junk) list 
     - total: integer
     - previousPage: string, next page uri, the first page return null
     - nextPage: string, the last page return null
     - currentPage: string
 
 ### Get a junk email 
-`get api/v3/anytime/junkEmails/{id}` 
+`get api/v3/anytime/junks/{id}` 
 - Parameters 
     - id: integer, email id 
 - Response 
-    - junkEmail: [junk email](#junk-email) 
+    - junk: [junk](#junk) 
 
-### Update a junk email 
-`put api/v3/anytime/junkEmails/{id}` 
+### Update a junk 
+`put api/v3/anytime/junks/{id}` 
 - Parameters 
     - isRead: boolean, 
 - Response 
-    - junkEmail: [junk email](#junk-email) 
+    - junk: [junk](#junk) 
 
 ### Restore a junk email to a normal conversation 
-`post api/v3/anytime/junkEmails/{id}/notJunk` 
+`post api/v3/anytime/junks/{id}/notJunk` 
 - Parameters 
     - id: integer, email id 
 - Response 
     - conversation: [conversation](#conversation) 
 
 ### Delete a junk email 
-`delete api/v3/anytime/junkEmails/{id}` 
+`delete api/v3/anytime/junks/{id}` 
 - Parameters 
     - id: integer, junk email id 
 - Response 
     - http status code 
+
+
+
+* * *
+
+# Abandon API
 
 # Tags 
 ## objects 
@@ -924,3 +890,70 @@
     - id: integer, tag id 
 - Response 
     - http status code
+
+# CannedResponses 
+## objects 
+### canned response 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | id | 
+| `name` | string | canned response name | 
+| `htmlContent` | string | html format content | 
+| `textContent` | string | text format content | 
+
+
+## endpoints 
+### List all canned responses 
+`get api/v3/anytime/cannedResponses` 
+- Parameters 
+    - no parameters
+- Response 
+    - cannedResponses: [Canned responses](#canned-response) list 
+
+
+# EmailAccounts 
+## objects 
+### email account 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | id | 
+| `email` | string | email address |  
+| `type` | string | pop3 or exchange | 
+| `assignedAgentId` | integer | agent id | 
+| `assignedDepartmentId` | integer | department id | 
+| `isDefault` | boolean | if default email account | 
+
+
+## endpoints 
+### List all enabled email accounts 
+`get api/v3/anytime/emailAccounts` 
+- Response 
+    - emailAccounts: [email account](#email-account) list 
+
+# Department 
+## objects 
+### department 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | id | 
+| `name` | string | department name | 
+| `description` | string | department description | 
+| `members` | [department member](#department-member)[] | department member array | 
+
+### department member 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | integer | id | 
+| `name` | string | member name | 
+| `type` | string | agent or group | 
+
+## endpoints 
+### Get a department 
+`get api/v3/anytime/departments/{id} ` 
+- Response 
+    - department: [department](#department) 
+
+### List all departments 
+`get api/v3/anytime/departments` 
+- Response 
+    - departments: [department](#department) List without department member. 
