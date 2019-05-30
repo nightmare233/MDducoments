@@ -77,9 +77,8 @@
 |[Attachment](#attachment)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[BlockedSender](#blockedsender)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
 |[Config](#config)|/api/v3/anytime/configs| Get site settings| 
-|[Department](#department)|/api/v3/anytime/departments|Conversation departments | 
-|[JunkEmail](#junkemails)|/api/v3/anytime/junkEmails| Emails from blocked senders| 
-|[Tag](#tag)|/api/v3/anytime/tags|| 
+|[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
+|[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports| 
 
 # Conversations 
 ## objects 
@@ -849,7 +848,218 @@
 - Response 
     - http status code 
 
+***
 
+# Reports
+
+## EndPoint List 
+| endpoint | type | note |
+| --- | --- | --- |
+| [/api/v3/anytime/reports/realtime/now](#right-now) | GET | real-time report of now |
+| [/api/v3/anytime/reports/realtime/today](#realtime-today) | GET | real-time report of today |
+| [/api/v3/anytime/reports/realtime/departments](#realtime-department) | GET | real-time report of departments |
+| [/api/v3/anytime/reports/realtime/agents](#realtime-agent) | GET | real-time report of agents |
+| [/api/v3/anytime/reports/volume/export](#export-volume) | GET | export volume report data |
+| [/api/v3/anytime/reports/volume](#report-volume) | GET | report of volume |
+| [/api/v3/anytime/reports/channel/export](#export-channel) | GET | export channel report data |
+| [/api/v3/anytime/reports/channel](#report-channel) | GET | channel report |
+| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report |
+| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | export efficiency report data |
+
+## EndPoints
+
+### right now
+`GET /api/v3/anytime/reports/realtime/now`
+- Parameters：
+	- siteId: number
+- Return：
+ 	- unassignedConversations: number
+	- openConversations: number
+	- newConversations: number
+	- pendingInternalConversations: number
+	- pendingExternalConversations: number
+	- onHoldConversations: number
+	- urgentConversations: number
+	- highConversations: number
+
+### realtime today
+- `GET /api/v3/anytime/reports/realtime/today`
+- Parameters:
+	- siteId: number
+- Return：
+ 	- createdConversations: number
+	- closedConversations: number
+	- repliedConversations: number
+	- reopenedConverstations: number
+
+### realtime department
+`GET /api/v3/anytime/reports/realtime/departments`
+- Parameters：
+	- siteId: number
+- Return：
+	- dataList:
+		- departmentId: number,
+		- openConversations: number,
+		- todayRepliedConversations: number,
+		- todayClosedConversations: number,
+		- newConversations: number,
+		- pendingInternalConversations: number,
+		- pendingExternalConversations: number,
+		- onHoldConversations: number,
+		- urgentConversations: number,
+		- highConversations: number,
+
+### realtime agent
+`GET/api/v3/anytime/reports/realtime/agents`
+- Parameters：
+	- siteId: number,
+	- filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+- Return：
+	- dataList: 
+		- agentId: number,
+		- openConversations: number,
+		- todayRepliedConversations: number,
+		- todayClosedConversations: number,
+		- newConversations: number,
+		- pendingInternalConversations: number,
+		- pendingExternalConversations: number,
+		- onHoldConversations: number,
+		- urgentConversations: number,
+		- highConversations: number,
+	
+### export volume
+`GET /api/v3/anytime/reports/volume/export`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+    - timeUnit: string,
+    - dimensionType: string,
+    - timeOffset： number,
+    - dateFormat: string,
+- Return：csv file
+
+
+### report volume
+`GET /api/v3/anytime/reports/volume`
+- Parameters：
+    - siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+    - timeUnit: string,
+    - dimensionType: string,
+- Return：
+	- dataList:
+	    - id: number,
+    	- createdConversations: number,
+    	- createdConversationsPercentage:  float,	
+    	- closedConversations: number,
+    	- closedConversationsPercentage: float,
+    	- repliedConversations: number,
+    	- repliedConversationsPercentage: float,
+    	- reopenedConversations: number,
+    	- reopenedConversationsPercentage: float,
+    	- openConversations: number,
+    	- openConversationsPercentage: float,
+    	- startTime: string,
+    	- endTime: string,
+	- totalCreatedConversations: number,
+	- totalClosedConversations: number,
+	- totalRepliedConversations: number,
+	- totalReopenedConversations: number,
+	- totalOpenConversations: number
+
+### export channel
+`GET /api/v3/anytime/reports/channel/export`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+    - timeUnit: string,
+    - dimensionType: string,
+    - timeOffset： number,
+    - dateFormat: string,
+- Return：csv file
+
+### report-channel
+`GET /api/v3/anytime/reports/channel`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+    - timeUnit: string,
+    - dimensionType: string,
+- Return：
+	- dataList: 
+	    - id: number,
+		- name: string,
+		- channelEfficiencies, [channelEfficiencie](#channel-efficiency)[]
+		- startTime: string,
+		- endTime: string,
+	- channel total number, [channel total number](#Channel-totoal-messages-number)[]
+
+### Channel Efficiency
+| Name | Type | Description | 
+| - | - | - | 
+| `channelId` | string | channel id |
+| `channelName` | number | channel name |
+| `channelPercentage` | float |  |
+
+### Channel totoal messages number
+| Name | Type | Description | 
+| - | - | - | 
+| `channelId` | string | channel id |
+| `channelName` | number | channel name |
+| `totalNumber` | number |  |
+
+### export efficiency
+`GET /api/v3/anytime/reports/efficiency/export`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+    - timeUnit: string,
+    - dimensionType: string,
+    - timeOffset： number,
+    - dateFormat: string,
+- Return：csv file
+
+### report efficiency
+`GET /api/v3/anytime/reports/efficiency`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
+	- filterValue: number,
+    - timeUnit: string,
+    - dimensionType: string,
+- Return：
+	- dataList:
+	    - id: number,
+		- avgAgentResponseTime: string,
+		- avgFirstResponseTime: string,
+		- avgConversationTime: string,
+		- avgContactMessages: float,
+		- avgAgentMessages: float, 
+		- startTime: string,
+		- endTime: string,
+	- totalAvgAgentResponseTime: string,
+	- totalAvgFirstResponseTime: string,
+	- totalAvgConversationTime: string,
+	- totalAvgContactMessages: float,
+	- totalAvgAgentMessages: float,
 
 * * *
 

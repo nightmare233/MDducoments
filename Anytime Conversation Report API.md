@@ -18,9 +18,9 @@
 ###### right now
 - 名称：/api/v3/anytime/reports/realtime/now
 - 方式：GET
-- 参数：
+- Parameters：
 	- siteId: number
-- 返回：
+- Return：
  	- unassignedConversations: number
 	- openConversations: number
 	- newConversations: number
@@ -31,23 +31,21 @@
 	- highConversations: number
 
 ###### realtime today
-- 名称：/api/v3/anytime/reports/realtime/today
-- 方式：GET
-- 参数:
+- `GET /api/v3/anytime/reports/realtime/today`
+- Parameters:
 	- siteId: number
-- 返回：
+- Return：
  	- createdConversations: number
 	- closedConversations: number
 	- repliedConversations: number
 	- reopenedConverstations: number
 
 ###### realtime department
-- 名称：/api/v3/anytime/reports/realtime/departments
-- 方式：GET
-- 参数：
+`GET /api/v3/anytime/reports/realtime/departments`
+- Parameters：
 	- siteId: number
-- 返回：
-	- dataList(列表):
+- Return：
+	- dataList:
 		- departmentId: number,
 		- openConversations: number,
 		- todayRepliedConversations: number,
@@ -60,14 +58,13 @@
 		- highConversations: number,
 
 ###### realtime agent
-- 名称：/api/v3/anytime/reports/realtime/agents
-- 方式：GET
-- 参数：
+`GET/api/v3/anytime/reports/realtime/agents`
+- Parameters：
 	- siteId: number,
 	- filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
-- 返回：
-	- dataList(列表): 
+- Return：
+	- dataList: 
 		- agentId: number,
 		- openConversations: number,
 		- todayRepliedConversations: number,
@@ -80,9 +77,8 @@
 		- highConversations: number,
 	
 ###### export volume
-- 名称：/api/v3/anytime/reports/volume/export
-- 方式：GET 
-- 参数：
+`GET /api/v3/anytime/reports/volume/export`
+- Parameters：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
@@ -92,13 +88,12 @@
     - dimensionType: string,
     - timeOffset： number,
     - dateFormat: string,
-- 返回：.csv文件（直接生成）
+- Return：csv file
 
 
 ###### report volume
-- 名称：/api/v3/anytime/reports/volume
-- 方式：GET 
-- 参数：
+`GET /api/v3/anytime/reports/volume`
+- Parameters：
     - siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
@@ -106,8 +101,8 @@
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
-- 返回：
-	- dataList(列表):
+- Return：
+	- dataList:
 	    - id: number,
     	- createdConversations: number,
     	- createdConversationsPercentage:  float,	
@@ -128,9 +123,8 @@
 	- totalOpenConversations: number
 
 ###### export channel
-- 名称：/api/v3/anytime/reports/channel/export
-- 方式：GET 
-- 参数：
+`GET /api/v3/anytime/reports/channel/export`
+- Parameters：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
@@ -140,12 +134,11 @@
     - dimensionType: string,
     - timeOffset： number,
     - dateFormat: string,
-- 返回：.csv文件（直接生成）
+- Return：csv file
 
 ###### report-channel
-- 名称：/api/v3/anytime/reports/channel
-- 方式：GET 
-- 参数：
+`GET /api/v3/anytime/reports/channel`
+- Parameters：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
@@ -153,7 +146,7 @@
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
-- 返回：
+- Return：
 	- dataList: 
 	    - id: number,
 		- name: string,
@@ -177,9 +170,8 @@
 | `totalNumber` | number |  |
 
 ###### export efficiency
-- 名称：/api/v3/anytime/reports/efficiency/export
-- 方式：GET 
-- 参数：
+`GET /api/v3/anytime/reports/efficiency/export`
+- Parameters：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
@@ -189,12 +181,11 @@
     - dimensionType: string,
     - timeOffset： number,
     - dateFormat: string,
-- 返回：.csv文件（直接生成）
+- Return：csv file
 
 ###### report efficiency
-- 名称：/api/v3/anytime/reports/efficiency
-- 方式：GET 
-- 参数：
+`GET /api/v3/anytime/reports/efficiency`
+- Parameters：
 	- siteId: number,
     - startTime: string(utc 时间),
     - endTime: string(utc 时间),
@@ -202,8 +193,8 @@
 	- filterValue: number,
     - timeUnit: string,
     - dimensionType: string,
-- 返回：
-	- dataList(列表):
+- Return：
+	- dataList:
 	    - id: number,
 		- avgAgentResponseTime: string,
 		- avgFirstResponseTime: string,
