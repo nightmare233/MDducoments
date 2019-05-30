@@ -860,6 +860,8 @@
 | [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report |
 | [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | export efficiency report data |
 
+| [/api/v3/anytime/reports/sla](#report-sla) | GET | export SLA report data |
+
 ## EndPoints
 
 ### right now
@@ -1038,7 +1040,7 @@
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
 	- filterValue: number,
     - timeUnit: string,
-    - dimensionType: string,
+    - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
 - Return：
 	- dataList:
 	    - id: number,
@@ -1053,7 +1055,45 @@
 	- totalAvgFirstResponseTime: string,
 	- totalAvgConversationTime: string,
 	- totalAvgContactMessages: float,
-	- totalAvgAgentMessages: float,
+	- totalAvgAgentMessages: float
+
+### export SLA report
+`GET /api/v3/anytime/reports/sla/export`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - timeUnit: string, `day`,`week`, `month`
+    - dimensionType: string, `slaPolicies`, `agent`, `department`
+- Return：
+	- dataList:
+	    - id: number,
+		- firstRespondTimeAchievedPercentage: float,
+		- avgFirstRespondTime: float,
+		- nextRespondTimeAchievedPercentage: float,
+		- avgNextRespondTime: float,
+		- ResolveTimeAchievedPercentage: float, 
+        - avgResolveTime: fload,
+        - breachedTickets: integer, 
+
+### report SLA
+`GET /api/v3/anytime/reports/sla`
+- Parameters：
+	- siteId: number,
+    - startTime: Datetime,
+    - endTime: Datetime,
+    - timeUnit: string, `day`,`week`, `month`
+    - dimensionType: string, `slaPolicies`, `agent`, `department`
+- Return：
+	- dataList:
+	   	    - id: number,
+		- firstRespondTimeAchievedPercentage: float,
+		- avgFirstRespondTime: float,
+		- nextRespondTimeAchievedPercentage: float,
+		- avgNextRespondTime: float,
+		- ResolveTimeAchievedPercentage: float, 
+        - avgResolveTime: fload,
+        - breachedTickets: integer
 
 * * *
 
