@@ -78,6 +78,7 @@
 |[BlockedSender](#blockedsender)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
 |[Config](#config)|/api/v3/anytime/configs| Get site settings| 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
+|[Account](#integrated-accounts)|/api/v3/anytime/accounts| integrated accounts| 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports| 
 
 # Conversations 
@@ -841,6 +842,43 @@
     - id: integer, junk email id 
 - Response 
     - http status code 
+
+# Integrated Accounts 
+## objects 
+### account 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id | 
+| `name` | string | account name |   
+| `channelId` | string | channel id |   
+
+## endpoints 
+### List integrated accounts 
+`get api/v3/anytime/accounts` 
+- Parameters
+    - channelId: string, optional
+- Response 
+    - accounts: [account](#account)[] 
+
+### Add an integrated account 
+`post api/v3/anytime/accounts` 
+- Parameters
+    - account: [account](#account) 
+- Response 
+    - account: [account](#account)
+
+### Update an integrated account 
+`put api/v3/anytime/accounts/{id}` 
+- Parameters
+    - name: string 
+- Response 
+    - account: [account](#account)
+
+### Delete an integrated account 
+`delete api/v3/anytime/accounts/{id}` 
+- Response 
+    - http status code
+
 
 ***
 
