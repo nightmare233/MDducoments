@@ -267,9 +267,7 @@
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
-    - receivedBy: string, 
-    - originalId: string,
-    - originalLink: string,  
+    - receivedBy: string,
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
@@ -278,8 +276,6 @@
         - text: [text](#text), 
         - from: string, for email type message, one of email account address 
         - cc: string, message cc emails 
-        - parentId: string
-        - quoteTweetId: string
         - attachments: [attachment](#attachment)[], attachment array
 + Response 
     - conversation: [conversation](#conversations)
@@ -333,16 +329,14 @@
     - accountId: string, channel account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
-     - text: [text](#text) 
+    - text: [text](#text) 
     - quote: string, quote content, only for email message
     - from: string, for email type message, one of email account address 
     - cc: string, message cc emails 
     - parentId: string,
     - quoteTweetId: string,
-    - originalId: string,
-    - originalLink: string,
-    - sendByType: string, `agent`, `contact`
-    - sendById: string, agent id or contact id
+    - sendByType: string, `agent`, 
+    - sendById: string, agent id
     - attachments: [attachment](#attachment)[], attachment array
 - Response 
     - message: [message](#message) 
