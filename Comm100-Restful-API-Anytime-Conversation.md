@@ -10,7 +10,6 @@
     - Put/Post API passes parameters through json data. 
     - DateTime Parameters: 
         - All time parameters need to be entered in the standard format of <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a>
-    - The maximum size for a conversation's attachments is 20MB.
 - All time values are UTC time. The caller can convert to different time zones where needed. 
 
 # Includes
@@ -70,12 +69,12 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Conversation](#conversation)|/api/v3/anytime/conversations| Points for agent console| 
-|[PortalConversation](#portalConversation)|/api/v3/anytime/portalConversations| Points for portal and contacts |
-|[Filter](#filter)|/api/v3/anytime/filters| Agent console filters| 
-|[Field](#field)|/api/v3/anytime/fields| System fields and custom fields | 
-|[Attachment](#attachment)|/api/v3/anytime/attachments| Upload attachment for conversations | 
-|[BlockedSender](#blockedsender)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
+|[Conversation](#conversations)|/api/v3/anytime/conversations| Points for agent console| 
+|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Points for portal and contacts |
+|[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
+|[Filter](#filters)|/api/v3/anytime/filters| Agent console filters| 
+|[Field](#fields)|/api/v3/anytime/fields| System fields and custom fields | 
+|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
 |[Config](#config)|/api/v3/anytime/configs| Get site settings| 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
 |[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts| 
@@ -616,6 +615,32 @@
 - Response 
     - http status code
 
+# Attachments  
+## endpoints 
+### Upload attachment 
+`post /api/v3/anytime/attachments` 
+- Content-type
+    - multipart/form-data
+- Parameters 
+    - file: file
+- Response 
+    - attachment: [attachment](#attachment) 
+    
+### Update status of attachment
+`Put /api/v2/livechat/attachments/{guid}`
+#### Parameters:
+    - isAvailable - boolean `true` or  `false`
+#### Response
+ - attachment: [attachment](#attachment) 
+
+### Delete attachment 
+`delete /api/v3/anytime/attachments/{guid}` 
+- Parameters 
+    - guid: string, the guid of the attachment
+- Response 
+    - httpStatusCode
+
+
 # Filters 
 ## objects 
 ### filter 
@@ -707,32 +732,6 @@
     - no parameters
 - Response 
     - fields: [field](#field) list 
-
-# Attachments  
-## endpoints 
-### Upload attachment 
-`post /api/v3/anytime/attachments` 
-- Content-type
-    - multipart/form-data
-- Parameters 
-    - file: file
-- Response 
-    - attachment: [attachment](#attachment) 
-    
-### Update status of attachment
-`Put /api/v2/livechat/attachments/{guid}`
-#### Parameters:
-- isAvailable - boolean `true` or  `false`
-#### Response
- - attachment: [attachment](#attachment) 
-
-### Delete attachment 
-`delete /api/v3/anytime/attachments/{guid}` 
-- Parameters 
-    - guid: string, the guid of the attachment
-- Response 
-    - httpStatusCode
-
 
 # BlockedSenders 
 ## objects 
@@ -844,7 +843,9 @@
     - http status code 
 
 # Integration Accounts 
+
 ## objects 
+
 ### integrationAccount 
 | Name | Type | Description | 
 | - | - | - | 

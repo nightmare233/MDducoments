@@ -78,9 +78,9 @@
     - originalId: string,
     - originalLink: string,
     - subject: string, for email message, email subject,
-    - text: [text](#text),
-    - quote: string, quote content, only for email message,
-    - from: string, for email type message, one of email account address,
+    - text: 
+        - format: string, `plaintext`, `html`
+        - content: string, 
     - cc: string, message cc emails, 
     - parentId: string,
     - quoteTweetId: string,
