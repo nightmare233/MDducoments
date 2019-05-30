@@ -78,7 +78,7 @@
 |[BlockedSender](#blockedsender)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
 |[Config](#config)|/api/v3/anytime/configs| Get site settings| 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
-|[Account](#integrated-accounts)|/api/v3/anytime/accounts| integrated accounts| 
+|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts| 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports| 
 
 # Conversations 
@@ -843,9 +843,9 @@
 - Response 
     - http status code 
 
-# Integrated Accounts 
+# Integration Accounts 
 ## objects 
-### account 
+### integrationAccount 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
@@ -853,29 +853,29 @@
 | `channelId` | string | channel id |   
 
 ## endpoints 
-### List integrated accounts 
-`get api/v3/anytime/accounts` 
+### List integration accounts 
+`get api/v3/anytime/integrationAccounts` 
 - Parameters
     - channelId: string, optional
 - Response 
-    - accounts: [account](#account)[] 
+    - integrationAccounts: [integrationAccount](#integrationAccount)[] 
 
-### Add an integrated account 
-`post api/v3/anytime/accounts` 
+### Add an integration account 
+`post api/v3/anytime/integrationAccounts` 
 - Parameters
-    - account: [account](#account) 
+    - integrationAccount: [integrationAccount](#integrationAccount) 
 - Response 
-    - account: [account](#account)
+    - integrationAccount: [integrationAccount](#integrationAccount)
 
-### Update an integrated account 
-`put api/v3/anytime/accounts/{id}` 
+### Update an integration account 
+`put api/v3/anytime/integrationAccounts/{id}` 
 - Parameters
     - name: string 
 - Response 
-    - account: [account](#account)
+    - integrationAccount: [integrationAccount](#integrationAccount)
 
-### Delete an integrated account 
-`delete api/v3/anytime/accounts/{id}` 
+### Delete an integration account 
+`delete api/v3/anytime/integrationAccounts/{id}` 
 - Response 
     - http status code
 

@@ -93,5 +93,5 @@
 ### Feedback result
 `post api/v3/anytime/platform/conversations/messages/{id}`
 - Parameters
-    - sendStatus: string, `success`, `fail`
+    - sendStatus: string, `success`, `failed`
     - message: string
