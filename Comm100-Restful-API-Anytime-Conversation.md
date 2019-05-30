@@ -75,7 +75,6 @@
 |[Filter](#filters)|/api/v3/anytime/filters| Agent console filters| 
 |[Field](#fields)|/api/v3/anytime/fields| System fields and custom fields | 
 |[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
-|[Config](#config)|/api/v3/anytime/configs| Get site settings| 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
 |[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts| 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports| 
@@ -273,7 +272,9 @@
     - message: the first message of the conversation, required
         - type: string, `note`, `email`, `reply`, `socialMessage`, required
         - subject: string, for email message, email subject
-        - text: [text](#text), 
+        - text:
+            - format: string, `plaintext`, `html`,
+            - content: string,
         - from: string, for email type message, one of email account address 
         - cc: string, message cc emails 
         - attachments: [attachment](#attachment)[], attachment array
@@ -329,7 +330,9 @@
     - accountId: string, channel account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
-    - text: [text](#text) 
+    - text:
+            - format: string, `plaintext`, `html`,
+            - content: string,
     - quote: string, quote content, only for email message
     - from: string, for email type message, one of email account address 
     - cc: string, message cc emails 
@@ -497,7 +500,7 @@
         - unreadCount: integer, count unread conversations of a filter 
         - unreadMentionedCount: integer, the number of conversations which is unread and mentioned to me 
 
-# PortalConversation
+# PortalConversations
 ## objects
 ### portal conversation
 | Name | Type | Description |
@@ -764,17 +767,6 @@
 - Response 
     - http status code
 
-
-# Configs 
-### Get site configs about conversation 
-`get api/v3/anytime/configs` 
-- Parameters 
-    - no parameters
-- Response 
-    - configs
-        - isEnabledDepartment: boolean 
-        - recipientLimitPerEmail: integer 
-
 # Junks 
 ## objects 
 ### junk 
@@ -877,6 +869,8 @@
 
 ### Delete an integration account 
 `delete api/v3/anytime/integrationAccounts/{id}` 
+- Parameters
+    - id: string,
 - Response 
     - http status code
 
@@ -898,144 +892,144 @@
 | [/api/v3/anytime/reports/channel](#report-channel) | GET | channel report |
 | [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report |
 | [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | export efficiency report data |
-
-| [/api/v3/anytime/reports/sla](#report-sla) | GET | export SLA report data |
+| [/api/v3/anytime/reports/sla/export](#export-SLA-report) | GET | export SLA report data |
+| [/api/v3/anytime/reports/sla](#report-sla) | GET | SLA report data |
 
 ## EndPoints
 
 ### right now
 `GET /api/v3/anytime/reports/realtime/now`
 - Parameters：
-	- siteId: number
-- Return：
- 	- unassignedConversations: number
-	- openConversations: number
-	- newConversations: number
-	- pendingInternalConversations: number
-	- pendingExternalConversations: number
-	- onHoldConversations: number
-	- urgentConversations: number
-	- highConversations: number
+	- siteId: integer
+- Response:
+ 	- unassignedConversations: integer
+	- openConversations: integer
+	- newConversations: integer
+	- pendingInternalConversations: integer
+	- pendingExternalConversations: integer
+	- onHoldConversations: integer
+	- urgentConversations: integer
+	- highConversations: integer
 
 ### realtime today
 - `GET /api/v3/anytime/reports/realtime/today`
 - Parameters:
-	- siteId: number
-- Return：
- 	- createdConversations: number
-	- closedConversations: number
-	- repliedConversations: number
-	- reopenedConverstations: number
+	- siteId: integer
+- Response:
+ 	- createdConversations: integer
+	- closedConversations: integer
+	- repliedConversations: integer
+	- reopenedConverstations: integer
 
 ### realtime department
 `GET /api/v3/anytime/reports/realtime/departments`
 - Parameters：
-	- siteId: number
-- Return：
+	- siteId: integer
+- Response:
 	- dataList:
-		- departmentId: number,
-		- openConversations: number,
-		- todayRepliedConversations: number,
-		- todayClosedConversations: number,
-		- newConversations: number,
-		- pendingInternalConversations: number,
-		- pendingExternalConversations: number,
-		- onHoldConversations: number,
-		- urgentConversations: number,
-		- highConversations: number,
+		- departmentId: integer,
+		- openConversations: integer,
+		- todayRepliedConversations: integer,
+		- todayClosedConversations: integer,
+		- newConversations: integer,
+		- pendingInternalConversations: integer,
+		- pendingExternalConversations: integer,
+		- onHoldConversations: integer,
+		- urgentConversations: integer,
+		- highConversations: integer,
 
 ### realtime agent
 `GET/api/v3/anytime/reports/realtime/agents`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
 	- filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
-- Return：
+	- filterValue: integer,
+- Response:
 	- dataList: 
-		- agentId: number,
-		- openConversations: number,
-		- todayRepliedConversations: number,
-		- todayClosedConversations: number,
-		- newConversations: number,
-		- pendingInternalConversations: number,
-		- pendingExternalConversations: number,
-		- onHoldConversations: number,
-		- urgentConversations: number,
-		- highConversations: number,
+		- agentId: integer,
+		- openConversations: integer,
+		- todayRepliedConversations: integer,
+		- todayClosedConversations: integer,
+		- newConversations: integer,
+		- pendingInternalConversations: integer,
+		- pendingExternalConversations: integer,
+		- onHoldConversations: integer,
+		- urgentConversations: integer,
+		- highConversations: integer,
 	
 ### export volume
 `GET /api/v3/anytime/reports/volume/export`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
+	- filterValue: integer,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： number,
+    - timeOffset： integer,
     - dateFormat: string,
-- Return：csv file
+- Response:csv file
 
 
 ### report volume
 `GET /api/v3/anytime/reports/volume`
 - Parameters：
-    - siteId: number,
+    - siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
+	- filterValue: integer,
     - timeUnit: string,
     - dimensionType: string,
-- Return：
+- Response:
 	- dataList:
-	    - id: number,
-    	- createdConversations: number,
+	    - id: integer,
+    	- createdConversations: integer,
     	- createdConversationsPercentage:  float,	
-    	- closedConversations: number,
+    	- closedConversations: integer,
     	- closedConversationsPercentage: float,
-    	- repliedConversations: number,
+    	- repliedConversations: integer,
     	- repliedConversationsPercentage: float,
-    	- reopenedConversations: number,
+    	- reopenedConversations: integer,
     	- reopenedConversationsPercentage: float,
-    	- openConversations: number,
+    	- openConversations: integer,
     	- openConversationsPercentage: float,
     	- startTime: string,
     	- endTime: string,
-	- totalCreatedConversations: number,
-	- totalClosedConversations: number,
-	- totalRepliedConversations: number,
-	- totalReopenedConversations: number,
-	- totalOpenConversations: number
+	- totalCreatedConversations: integer,
+	- totalClosedConversations: integer,
+	- totalRepliedConversations: integer,
+	- totalReopenedConversations: integer,
+	- totalOpenConversations: integer
 
 ### export channel
 `GET /api/v3/anytime/reports/channel/export`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
+	- filterValue: integer,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： number,
+    - timeOffset：integer,
     - dateFormat: string,
-- Return：csv file
+- Response:csv file
 
 ### report-channel
 `GET /api/v3/anytime/reports/channel`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
+	- filterValue: integer,
     - timeUnit: string,
     - dimensionType: string,
-- Return：
+- Response:
 	- dataList: 
-	    - id: number,
+	    - id: integer,
 		- name: string,
 		- channelEfficiencies, [channelEfficiencie](#channel-efficiency)[]
 		- startTime: string,
@@ -1046,43 +1040,43 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `channelId` | string | channel id |
-| `channelName` | number | channel name |
+| `channelName` | string | channel name |
 | `channelPercentage` | float |  |
 
 ### Channel totoal messages number
 | Name | Type | Description | 
 | - | - | - | 
 | `channelId` | string | channel id |
-| `channelName` | number | channel name |
-| `totalNumber` | number |  |
+| `channelName` | string | channel name |
+| `totalNumber` | integer |  |
 
 ### export efficiency
 `GET /api/v3/anytime/reports/efficiency/export`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
+	- filterValue: integer,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： number,
+    - timeOffset： integer,
     - dateFormat: string,
-- Return：csv file
+- Response:csv file
 
 ### report efficiency
 `GET /api/v3/anytime/reports/efficiency`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: number,
+	- filterValue: integer,
     - timeUnit: string,
     - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
-- Return：
+- Response:
 	- dataList:
-	    - id: number,
+	    - id: integer,
 		- avgAgentResponseTime: string,
 		- avgFirstResponseTime: string,
 		- avgConversationTime: string,
@@ -1099,14 +1093,14 @@
 ### export SLA report
 `GET /api/v3/anytime/reports/sla/export`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
     - dimensionType: string, `slaPolicies`, `agent`, `department`
-- Return：
+- Response:
 	- dataList:
-	    - id: number,
+	    - id: integer,
 		- firstRespondTimeAchievedPercentage: float,
 		- avgFirstRespondTime: float,
 		- nextRespondTimeAchievedPercentage: float,
@@ -1118,14 +1112,14 @@
 ### report SLA
 `GET /api/v3/anytime/reports/sla`
 - Parameters：
-	- siteId: number,
+	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
     - dimensionType: string, `slaPolicies`, `agent`, `department`
-- Return：
+- Response:
 	- dataList:
-	   	    - id: number,
+	   	    - id: integer,
 		- firstRespondTimeAchievedPercentage: float,
 		- avgFirstRespondTime: float,
 		- nextRespondTimeAchievedPercentage: float,
@@ -1240,3 +1234,13 @@
 `get api/v3/anytime/departments` 
 - Response 
     - departments: [department](#department) List without department member. 
+
+# Configs 
+### Get site configs about conversation 
+`get api/v3/anytime/configs` 
+- Parameters 
+    - no parameters
+- Response 
+    - configs
+        - isEnabledDepartment: boolean 
+        - recipientLimitPerEmail: integer 

@@ -82,7 +82,7 @@
         - format: string, `plaintext`, `html`
         - content: string, 
     - cc: string, message cc emails, 
-    - parentId: string,
+    - parentId: string, 
     - quoteTweetId: string,
     - sendByType: string, `agent`, 
     - sendById: string, agent id,
