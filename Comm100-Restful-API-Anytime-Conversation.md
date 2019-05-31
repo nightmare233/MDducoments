@@ -921,7 +921,7 @@
 + Parameters 
     - no parameters
 + Response
-    - triggers: [trigger](#trigger) list
+    - [trigger](#trigger) list
 
 ### Get a trigger
 `get api/v3/anytime/triggers/{id}`
@@ -1016,7 +1016,7 @@
 + Parameters
     - no parameters
 + Response
-    - SLAPolicies: [SLAPolicy](#SLApolicy) list
+    - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
 `get api/v2/anytime/SLAPolicies/{id}`
@@ -1090,7 +1090,7 @@
 + Parameters
     - no parameters
 + Response
-    - workingTimes: [workingTime](#workingTime) list
+    - [workingTime](#workingTime) list
 
 ### Update working time settings
 `put api/v3/anytime/workingTime`
@@ -1104,7 +1104,7 @@
 + Parameters
     - no parameters
 + Response
-    - holidays: [holiday](#holiday) list
+    - [holiday](#holiday) list
 
 ### Get a holiday
 `get api/v3/anytime/holidays/{id}`
@@ -1176,7 +1176,7 @@
 + Parameters
     - isSystemField: boolean, if is system field 
 + Response 
-    - fields: [field](#field) list 
+    - [field](#field) list 
 
 ### Get a field
 `get api/v3/anytime/fields/{id}`
@@ -1244,7 +1244,7 @@
 + Parameters 
     - value: string, domain or email address 
 + Response 
-    - blockedSenders: [block sender](#blocked-sender) list 
+    - [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
 `get /api/v3/anytime/blockedSenders/{id}`
