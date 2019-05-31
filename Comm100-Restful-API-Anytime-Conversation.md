@@ -71,7 +71,7 @@
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Points for portal and contacts |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[Filter](#filters)|/api/v3/anytime/filters| Agent console filters| 
-|[RoutingRules](#RoutingRules)|/api/v3/anytime/routingRules| Agent console filters| 
+|[RoutingRules](#RoutingRules)|/api/v3/anytime/routingRules| routting rules | 
 |[AutoAllocation](#AutoAllocation)|/api/v3/anytime/autoAllocation| Agent console filters| 
 |[Triggers](#Triggers)|/api/v3/anytime/triggers| Agent console filters| 
 |[SLAPolicies](#SLAPolicies)|/api/v3/anytime/SLAPolicies| Agent console filters| 
