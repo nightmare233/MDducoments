@@ -33,37 +33,35 @@
 
         ``` javascript
         {
-            "conversation": {
+            "id": 1,
+            "assignedAgentId": 1,
+            "assignedAgent": {  //included the agent object
                 "id": 1,
-                "assignedAgentId": 1,
-                "assignedAgent": {  //included the agent object
-                    "id": 1,
+                //...
+            },
+            "contactId":2
+            "contact": {  //included the contact object
+                "id": 2,
+                //...
+            },
+            "createdById": 3,
+            "createdByType": "agent",
+            "createdBy": {  //included the agent or contact object according to the createdByType.
+                "id": 3,
+                //...
+            },
+            "messages":[    //included the messages.
+                {
+                    "id": 56, 
                     //...
                 },
-                "contactId":2
-                "contact": {  //included the contact object
-                    "id": 2,
+                {
+                        "id": 57, 
                     //...
-                },
-                "createdById": 3,
-                "createdByType": "agent",
-                "createdBy": {  //included the agent or contact object according to the createdByType.
-                    "id": 3,
-                    //...
-                },
-                "messages":[    //included the messages.
-                    {
-                        "id": 56, 
-                        //...
-                    },
-                    {
-                          "id": 57, 
-                        //...
-                    }
-                ]
+                }
+            ]
             //...
-            }
-        }, 
+        } 
         ``` 
 
 # Resource List 
@@ -243,9 +241,8 @@
 + Parameters 
     - id: integer, conversation  
 + Response 
-    - conversation: [conversation](#conversation) 
+    - [conversation](#conversation) 
 + Includes
-
     | Includes | Description |
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
@@ -279,14 +276,14 @@
         - cc: string, message cc emails 
         - attachments: [attachment](#attachment)[], attachment array
 + Response 
-    - conversation: [conversation](#conversations)
+    - [conversation](#conversations)
 
 ### List messages of a conversation 
 `get api/v3/anytime/conversations/{id}/messages` 
 + Parameters 
     - id: integer, conversation id 
 + Response 
-    - messages: [message](#message) list 
+    - [message](#message) list 
 + Includes
 
     | Includes | Description |
@@ -309,7 +306,7 @@
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
-    - conversation: [conversation](#conversation) 
+    - [conversation](#conversation) 
 
 ### Batch update conversations
 `put api/v3/anytime/conversations/` 
@@ -321,7 +318,7 @@
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
-    - conversations: [conversation](#conversation) list 
+    - [conversation](#conversation) list 
 
 ### Reply a conversation 
 `post api/v3/anytime/conversations/{id}/messages` 
@@ -342,7 +339,7 @@
     - sendById: string, agent id
     - attachments: [attachment](#attachment)[], attachment array
 - Response 
-    - message: [message](#message) 
+    - [message](#message) 
 
 ### Mark a conversation as read 
 `put api/v3/anytime/conversations/{id}/read` 
@@ -414,7 +411,7 @@
 - Parameters 
     - id: integer, conversation id 
 - Response 
-    - deletedConversation: [conversation](#conversation) 
+    - [conversation](#conversation) 
 - Includes
 
     | Includes | Description |
@@ -431,9 +428,8 @@
 - Parameters 
     - id: integer, conversation id
 - Response 
-    - messages: [message](#message) 
+    - [message](#message) 
 - Includes
-
     | Includes | Description |
     | - | - |
     | sender | `get api/v3/anytime/deletedConversations/{id}/messages?include=sender` |
@@ -444,7 +440,7 @@
 - Parameters 
     - id: integer, conversation id 
 - Response 
-    - deletedConversation: [conversation](#conversation)  
+    - [conversation](#conversation)  
 
 ### Delete a conversation permanently 
 `delete api/v3/anytime/deletedConversations/{id}` 
@@ -458,21 +454,21 @@
 - Parameters 
     - id: integer, conversation id 
 - Response 
-    - conversationDraft: [conversation draft](#conversation-draft) 
+    - [conversation draft](#conversation-draft) 
 
 ### Create a conversation draft 
 `post api/v3/anytime/conversations/{id}/draft` 
 - Parameters 
     - [conversation draft](#conversation-draft) 
 - Response 
-    - conversationDraft: [conversation draft](#conversation-draft) 
+    - [conversation draft](#conversation-draft) 
 
 ### Update a conversation draft 
 `put api/v3/anytime/conversations/{id}/draft` 
 - Parameters 
     - [conversation draft](#conversation-draft) 
 - Response 
-    - conversationDraft: [conversation draft](#conversation-draft) 
+    - [conversation draft](#conversation-draft) 
 
 ### Delete a conversation draft 
 `delete api/v3/anytime/conversations/{id}/draft` 
@@ -487,7 +483,7 @@
     - id: integer, target conversation id, 
     - sourceId: integer, source conversation id 
 - Response 
-    - conversation: [conversation](#conversation) 
+    - [conversation](#conversation) 
 
 ### List unread conversations number for filters 
 `get api/v3/anytime/conversations/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
@@ -531,7 +527,7 @@
     - id, integer, portal conversation id
     - contactId, string
 - Response
-    - portalConversation: [portal conversation](#portal-conversation) 
+    - [portal conversation](#portal-conversation) 
 - Includes
 
     |Includes| Description |
@@ -544,7 +540,7 @@
 - Parameters:
     - contactIds, string array, required
 - Response: 
-    - portalConversations: [portal conversation](#portal-conversation) list
+    - [portal conversation](#portal-conversation) list
 - Includes
 
     |Includes| Description |
@@ -563,7 +559,7 @@
         - text: [text](#text), 
         - attachments: [attachment](#attachment)[], attachment array of message
 - Response: 
-  - portalConversation: [portal conversation](#portal-conversation) 
+  - [portal conversation](#portal-conversation) 
 
 ### Close a portalConversation
 `put api/v3/anytime/portalConversations/{id}/close` 
@@ -571,7 +567,7 @@
     - id, integer, portal conversation id,
     - contactId, string, required
 - Response: 
-    - portalConversation: [portal conversation](#portal-conversation) 
+    - [portal conversation](#portal-conversation) 
 
 ### Reopen a portalConversation
 `put api/v3/anytime/portalConversations/{id}/reopen` 
@@ -579,7 +575,7 @@
     - id, integer, portal conversation id,
     - contactId, string, required
 - Response: 
-    - portalConversation: [portal conversation](#portal-conversation) 
+    - [portal conversation](#portal-conversation) 
 
 ### List messages of a portal conversation 
 `get api/v3/anytime/portalConversations/{id}/messages`
@@ -587,7 +583,7 @@
     - id, integer, conversation id
     - contactId, string, contact id
 - Response: 
-    - messages: [portal conversation message](#portal-conversation-message) list
+    - [portal conversation message](#portal-conversation-message) list
 - Includes
 
     |Includes| Description |
@@ -602,7 +598,7 @@
     - text: [text](#text), 
     - attachments: [attachment](#attachment)[], attachment array
 - Response: 
-    - message: [portal conversation message](#portal-conversation-message)
+    - [portal conversation message](#portal-conversation-message)
 
 ### Contact mark a portal conversation as read
 `put api/v3/anytime/portalConversations/{id}/read`
@@ -627,14 +623,14 @@
 - Parameters 
     - file: file
 - Response 
-    - attachment: [attachment](#attachment) 
+    - [attachment](#attachment) 
     
 ### Update status of attachment
 `Put /api/v2/livechat/attachments/{guid}`
 #### Parameters:
-    - isAvailable - boolean `true` or  `false`
+- isAvailable - boolean `true` or  `false`
 #### Response
- - attachment: [attachment](#attachment) 
+- [attachment](#attachment) 
 
 ### Delete attachment 
 `delete /api/v3/anytime/attachments/{guid}` 
@@ -669,7 +665,7 @@
 - Parameters 
     - no parameters 
 - Response 
-    - filters: [filter](#filter) list, without conditions
+    - [filter](#filter) list, without conditions
 
 ### Create a new filter 
 `post api/v3/anytime/filters`
@@ -678,14 +674,14 @@
     - isPrivate: boolean, if private filter, default value: `false` 
     - conditions: [condition](#condition)[], array of filter condition
 - Response 
-    - filters: [filter](#filter) list 
+    - [filter](#filter) list 
 
 ### Get a filter and its conditions 
 `get api/v3/anytime/filters/{id}` 
 - Parameters 
     - id: string, filter id 
 - Response 
-    - filter: [filter](#filter) 
+    - [filter](#filter) 
 
 ### Update a filter 
 `put api/v3/anytime/filters/{id}` 
@@ -695,7 +691,7 @@
     - isPrivate: boolean, if private filter 
     - conditions: [condition](#condition)[], array of filter condition
 - Response 
-    - filter: [filter](#filter) 
+    - [filter](#filter) 
 
 ### Delete a filter 
 `delete api/v3/anytime/filters/{id}` 
@@ -734,7 +730,7 @@
 - Parameters
     - no parameters
 - Response 
-    - fields: [field](#field) list 
+    - [field](#field) list 
 
 # BlockedSenders 
 ## objects 
@@ -750,7 +746,7 @@
 - Parameters 
     - email: string, domain or email address 
 - Response 
-    - blockedSenders: [block sender](#blocked-sender) list 
+    - [block sender](#blocked-sender) list 
 
 ### Add/update a block sender 
 `put api/v3/anytime/blockedSenders` 
@@ -758,7 +754,7 @@
     - `email`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 - Response 
-    - blockedSender: [block sender](#blocked-sender) 
+    - [block sender](#blocked-sender) 
 
 ### Remove a block sender 
 `delete api/v3/anytime/blockedSenders` 
@@ -811,21 +807,21 @@
 - Parameters 
     - id: integer, email id 
 - Response 
-    - junk: [junk](#junk) 
+    - [junk](#junk) 
 
 ### Update a junk 
 `put api/v3/anytime/junks/{id}` 
 - Parameters 
     - isRead: boolean, 
 - Response 
-    - junk: [junk](#junk) 
+    - [junk](#junk) 
 
 ### Restore a junk email to a normal conversation 
 `post api/v3/anytime/junks/{id}/notJunk` 
 - Parameters 
     - id: integer, email id 
 - Response 
-    - conversation: [conversation](#conversation) 
+    - [conversation](#conversation) 
 
 ### Delete a junk email 
 `delete api/v3/anytime/junks/{id}` 
@@ -851,21 +847,21 @@
 - Parameters
     - channelId: string, optional
 - Response 
-    - integrationAccounts: [integrationAccount](#integrationAccount)[] 
+    - [integrationAccount](#integrationAccount)[] 
 
 ### Add an integration account 
 `post api/v3/anytime/integrationAccounts` 
 - Parameters
     - integrationAccount: [integrationAccount](#integrationAccount) 
 - Response 
-    - integrationAccount: [integrationAccount](#integrationAccount)
+    - [integrationAccount](#integrationAccount)
 
 ### Update an integration account 
 `put api/v3/anytime/integrationAccounts/{id}` 
 - Parameters
     - name: string 
 - Response 
-    - integrationAccount: [integrationAccount](#integrationAccount)
+    - [integrationAccount](#integrationAccount)
 
 ### Delete an integration account 
 `delete api/v3/anytime/integrationAccounts/{id}` 
@@ -1130,7 +1126,7 @@
 
 * * *
 
-# Abandon API
+# Abandon API（Please Igore！）
 
 # Tags 
 ## objects 
