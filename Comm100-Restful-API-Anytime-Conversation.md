@@ -64,19 +64,19 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Conversation](#conversations)|/api/v3/anytime/conversations| Points for agent console| 
-|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Points for portal and contacts |
+|[Conversation](#conversations)|/api/v3/anytime/conversations| EntPoints for agents | 
+|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| EndPoints for contacts |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
-|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| routting rules | 
-|[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| auto allocations | 
-|[Trigger](#Triggers)|/api/v3/anytime/triggers| triggers| 
+|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routting rules | 
+|[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| Auto allocations | 
+|[Trigger](#Triggers)|/api/v3/anytime/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
-|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| work time and holiday | 
+|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| Work time and holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v3/anytime/fields| System fields and custom fields | 
-|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders|Blocked email or domain | 
+|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
-|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts | 
+|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| Integration accounts | 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
 # Conversations 
