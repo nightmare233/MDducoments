@@ -67,7 +67,7 @@
 |[Conversation](#conversations)|/api/v3/anytime/conversations| Points for agent console| 
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Points for portal and contacts |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
-|[Filter](#filters)|/api/v3/anytime/filters| Agent console filters| 
+|[View](#views)|/api/v3/anytime/views| Agent console views| 
 |[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| routting rules | 
 |[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| auto allocations | 
 |[Trigger](#Triggers)|/api/v3/anytime/triggers| triggers| 
@@ -209,7 +209,7 @@
 `get api/v3/anytime/conversations` 
 + Each request returns a maximum of 50 conversations. 
 + Parameters 
-    - filterId: string, filter id  
+    - viewId: string, view id  
     - tagId: string, tag id
     - keywords: string
     - timeFrom: DateTime, last reply time, default search the last 30 days
@@ -489,15 +489,15 @@
 - Response 
     - [conversation](#conversation) 
 
-### List unread conversations number for filters 
-`get api/v3/anytime/conversations/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
+### List unread conversations number for views 
+`get api/v3/anytime/conversations/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
 - Parameters 
-    - filterIds: filter id array 
+    - viewIds: view id array 
 - Response 
     - allCount: integer, all unread conversation number. 
     - array including: 
-        - filterId: string, filter id 
-        - unreadCount: integer, count unread conversations of a filter 
+        - viewId: string, view id 
+        - unreadCount: integer, count unread conversations of a view 
         - unreadMentionedCount: integer, the number of conversations which is unread and mentioned to me 
 
 # PortalConversations
@@ -644,16 +644,16 @@
     - httpStatusCode
 
 
-# Filters 
+# Views 
 ## objects 
-### filter 
+### view 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | filter id | 
-| `name` | string | filter name | 
-| `isPrivate` | boolean | if private filter| 
+| `id` | string | view id | 
+| `name` | string | view name | 
+| `isPrivate` | boolean | if private view| 
 | `createdById` | string | agent id | 
-| `conditions` | [condition](#condition)[] | array of filter condition | 
+| `conditions` | [condition](#condition)[] | array of view condition | 
 
 ### condition 
 | Name | Type | Description | 
@@ -664,43 +664,43 @@
 | `value` | string | condition value | 
 
 ## endpoints 
-### List all public and private filters 
-`get /api/v3/anytime/filters`
+### List all public and private views 
+`get /api/v3/anytime/views`
 - Parameters 
     - no parameters 
 - Response 
-    - [filter](#filter) list, without conditions
+    - [view](#view) list, without conditions
 
-### Create a new filter 
-`post api/v3/anytime/filters`
+### Create a new view 
+`post api/v3/anytime/views`
 - Parameters 
-    - name: string, filter name, required 
-    - isPrivate: boolean, if private filter, default value: `false` 
-    - conditions: [condition](#condition)[], array of filter condition
+    - name: string, view name, required 
+    - isPrivate: boolean, if private view, default value: `false` 
+    - conditions: [condition](#condition)[], array of view condition
 - Response 
-    - [filter](#filter) list 
+    - [view](#view) list 
 
-### Get a filter and its conditions 
-`get api/v3/anytime/filters/{id}` 
+### Get a view and its conditions 
+`get api/v3/anytime/views/{id}` 
 - Parameters 
-    - id: string, filter id 
+    - id: string, view id 
 - Response 
-    - [filter](#filter) 
+    - [view](#view) 
 
-### Update a filter 
-`put api/v3/anytime/filters/{id}` 
+### Update a view 
+`put api/v3/anytime/views/{id}` 
 - Parameters 
-    - id: string, filter id 
-    - name: string, filter name, required 
-    - isPrivate: boolean, if private filter 
-    - conditions: [condition](#condition)[], array of filter condition
+    - id: string, view id 
+    - name: string, view name, required 
+    - isPrivate: boolean, if private view 
+    - conditions: [condition](#condition)[], array of view condition
 - Response 
-    - [filter](#filter) 
+    - [view](#view) 
 
-### Delete a filter 
-`delete api/v3/anytime/filters/{id}` 
+### Delete a view 
+`delete api/v3/anytime/views/{id}` 
 - Parameters 
-    - id: string, filter id 
+    - id: string, view id 
 - Response 
     - http status code 
 
@@ -1443,8 +1443,8 @@
 `GET/api/v3/anytime/reports/realtime/agents`
 - Parameters：
 	- siteId: integer,
-	- filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+	- viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
 - Response:
 	- dataList: 
 		- agentId: integer,
@@ -1464,8 +1464,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset： integer,
@@ -1479,8 +1479,8 @@
     - siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
 - Response:
@@ -1510,8 +1510,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset：integer,
@@ -1524,8 +1524,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
 - Response:
@@ -1557,8 +1557,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset： integer,
@@ -1571,8 +1571,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
 - Response:
