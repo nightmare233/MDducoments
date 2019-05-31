@@ -153,7 +153,7 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
-| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
+| `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | | 
 | `sendStatus` | string | `sucess`, `sending`, `fail` |
 | `sendertId`| string | id of agent or contact | 
@@ -175,7 +175,7 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
-| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
+| `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `sendertId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
 
@@ -854,7 +854,7 @@
 | - | - | - | 
 | `agentId` | string | agent id |
 | `maxConcurrentCount` | integer | the maximum number of the conversations a agent can accept at the same time |
-| `ifAcceptAllocation` | boolean | if the agent accept conversations |
+| `isAcceptAllocation` | boolean | if the agent accept conversations |
 
 ## endpoints
 ### Get auto allocation settings
@@ -899,7 +899,7 @@
 | `sendEmail` | boolean | if send email |
 | `sendToContacts` | boolean | if send email |
 | `sendToAgents` | boolean | if send email |
-| `toAgents` | integer[] | send  email to agent(s) |
+| `toAgents` | string[] | send  email to agent(s) |
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
 | `plainText` | string | plain text |
@@ -942,7 +942,7 @@
     - sendEmail, boolean, if send email
     - sendToContacts, boolean, if send email
     - sendToAgents, boolean, if send email
-    - toAgents, integer[], send  email to agent(s)
+    - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
@@ -964,7 +964,7 @@
     - sendEmail, boolean, if send email
     - sendToContacts, boolean, if send email
     - sendToAgents, boolean, if send email
-    - toAgents, integer[], send  email to agent(s)
+    - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
@@ -1235,14 +1235,14 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | the id of blocked sender |
-| `email` | string | email or domain | 
+| `value` | string | email or domain | 
 | `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
 ### List blocked senders 
 `get /api/v3/anytime/blockedSenders` 
 + Parameters 
-    - email: string, domain or email address 
+    - value: string, domain or email address 
 + Response 
     - blockedSenders: [block sender](#blocked-sender) list 
 
@@ -1256,7 +1256,7 @@
 ### Add/update a blocked sender 
 `put api/v3/anytime/blockedSenders` 
 + Parameters 
-    - `email`, string, domain or email address 
+    - `value`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 + Response 
     - [block sender](#blocked-sender) 
@@ -1264,7 +1264,7 @@
 ### Remove a blocked sender 
 `delete api/v3/anytime/blockedSenders` 
 + Parameters 
-   - email: string, domain or email address 
+   - value: string, domain or email address 
 + Response 
     - http status code
 
@@ -1310,13 +1310,14 @@
 ### Get a junk email 
 `get api/v3/anytime/junks/{id}` 
 - Parameters 
-    - id: integer, email id 
+    - id: string, email id 
 - Response 
     - [junk](#junk) 
 
 ### Update a junk 
 `put api/v3/anytime/junks/{id}` 
 - Parameters 
+    - id: string, email id 
     - isRead: boolean, 
 - Response 
     - [junk](#junk) 
@@ -1401,7 +1402,7 @@
 ### right now
 `GET /api/v3/anytime/reports/realtime/now`
 - Parameters：
-	- siteId: integer
+	- no parameter
 - Response:
  	- unassignedConversations: integer
 	- openConversations: integer
@@ -1415,7 +1416,7 @@
 ### realtime today
 - `GET /api/v3/anytime/reports/realtime/today`
 - Parameters:
-	- siteId: integer
+    - no parameter
 - Response:
  	- createdConversations: integer
 	- closedConversations: integer
@@ -1425,7 +1426,7 @@
 ### realtime department
 `GET /api/v3/anytime/reports/realtime/departments`
 - Parameters：
-	- siteId: integer
+    - no parameter
 - Response:
 	- dataList:
 		- departmentId: integer,
@@ -1442,7 +1443,6 @@
 ### realtime agent
 `GET/api/v3/anytime/reports/realtime/agents`
 - Parameters：
-	- siteId: integer,
 	- viewType: string, `site`, `agent`, `department`, `account`, `channel`
 	- viewValue: integer,
 - Response:
@@ -1461,7 +1461,6 @@
 ### export volume
 `GET /api/v3/anytime/reports/volume/export`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - viewType: string, `site`, `agent`, `department`, `account`, `channel`
@@ -1476,7 +1475,6 @@
 ### report volume
 `GET /api/v3/anytime/reports/volume`
 - Parameters：
-    - siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - viewType: string, `site`, `agent`, `department`, `account`, `channel`
@@ -1521,7 +1519,6 @@
 ### report-channel
 `GET /api/v3/anytime/reports/channel`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - viewType: string, `site`, `agent`, `department`, `account`, `channel`
@@ -1554,7 +1551,6 @@
 ### export efficiency
 `GET /api/v3/anytime/reports/efficiency/export`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - viewType: string, `site`, `agent`, `department`, `account`, `channel`
@@ -1568,7 +1564,6 @@
 ### report efficiency
 `GET /api/v3/anytime/reports/efficiency`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - viewType: string, `site`, `agent`, `department`, `account`, `channel`
@@ -1594,7 +1589,6 @@
 ### export SLA report
 `GET /api/v3/anytime/reports/sla/export`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
@@ -1613,7 +1607,6 @@
 ### report SLA
 `GET /api/v3/anytime/reports/sla`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
