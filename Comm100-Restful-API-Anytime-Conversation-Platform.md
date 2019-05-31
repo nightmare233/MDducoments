@@ -72,7 +72,7 @@
 ### Post a message 
 `post api/v3/anytime/platform/conversations/{id}/messages` 
 - Parameters  
-    - type: string, `note`, `email`, `reply`, `socialMessage`, required
+    - type: string, required, `note`, `email`, `reply`, `socialMessage`,
     - accountId: string, channel account id,
     - contactIdentityId: string, contact identity id,
     - originalId: string,

@@ -28,7 +28,7 @@
     | `get api/v3/anytime/portalConversations/{id}/messages` | sender | 
 
 - Sample:
-    - request: `get api/v3/anytime/conversations/{id}?include=assignedAgent,contact,createdBy,messages`
+    - request: `get api/v3/anytime/conversations/{id}?include=assignedAgent,createdBy,messages`
     - response:
 
         ``` javascript
@@ -39,11 +39,8 @@
                 "id": 1,
                 //...
             },
-            "contactId":2
-            "contact": {  //included the contact object
-                "id": 2,
-                //...
-            },
+            "relatedType": "contact",
+            "relatedId":2,
             "createdById": 3,
             "createdByType": "agent",
             "createdBy": {  //included the agent or contact object according to the createdByType.
@@ -71,16 +68,16 @@
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Points for portal and contacts |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[Filter](#filters)|/api/v3/anytime/filters| Agent console filters| 
-|[RoutingRules](#RoutingRules)|/api/v3/anytime/routingRules| routting rules | 
-|[AutoAllocation](#AutoAllocation)|/api/v3/anytime/autoAllocation| Agent console filters| 
-|[Triggers](#Triggers)|/api/v3/anytime/triggers| Agent console filters| 
-|[SLAPolicies](#SLAPolicies)|/api/v3/anytime/SLAPolicies| Agent console filters| 
-|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| Agent console filters| 
+|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| routting rules | 
+|[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| auto allocations | 
+|[Trigger](#Triggers)|/api/v3/anytime/triggers| triggers| 
+|[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
+|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| work time and holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v3/anytime/fields| System fields and custom fields | 
-|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
-|[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
-|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts| 
-|[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports| 
+|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders|Blocked email or domain | 
+|[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
+|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts | 
+|[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
 # Conversations 
 ## objects 
@@ -248,6 +245,7 @@
 + Response 
     - [conversation](#conversation) 
 + Includes
+
     | Includes | Description |
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
@@ -435,6 +433,7 @@
 - Response 
     - [message](#message) 
 - Includes
+
     | Includes | Description |
     | - | - |
     | sender | `get api/v3/anytime/deletedConversations/{id}/messages?include=sender` |
@@ -827,7 +826,7 @@
 + Response
     - http status code
 
-# AutoAllocation
+# AutoAllocations
 ## objects
 ### autoAllocationSetting
 | Name | Type | Description | 
