@@ -88,7 +88,7 @@
     - sendById: string, agent id,
     - attachments: [attachment](#new-attachment)[], attachment array
 - Response 
-    - message: [message](#message) 
+    - [message](#message) 
 
 ### Feedback result
 `post api/v3/anytime/platform/conversations/messages/{id}`
