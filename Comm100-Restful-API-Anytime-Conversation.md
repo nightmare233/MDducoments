@@ -186,7 +186,6 @@
 | - | - | - | 
 | `id` | string | content unique id |
 | `messageId` | string | message id |
-| `type` | string | content type, `file`| 
 | `name` | string | file name| 
 | `url` | string | download link | 
 
@@ -195,7 +194,7 @@
 | - | - | - |  
 | `id` | string | content unique id |
 | `messageId` | string | message id |
-| `type` | string | content type, `media`| 
+| `type` | string | media type, `video`, `audio`, `picture`| 
 | `title` | string | media title| 
 | `url` | string | download link | 
 
@@ -203,8 +202,7 @@
 | Name | Type | Description |  
 | - | - | - | 
 | `id` | string | content unique id |
-| `messageId` | string | message id |
-| `type` | string | content type, `location`| 
+| `messageId` | string | message id | 
 | `latitude` | string | latitude | 
 | `longitude` | string | longitude | 
 | `scale` | string | scale for location |
