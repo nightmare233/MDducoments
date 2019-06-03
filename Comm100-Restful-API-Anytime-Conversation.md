@@ -90,10 +90,10 @@
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
 | `relatedId` | string | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | agent assignee id | 
-| `assignedDepartmentId` | string | department assignee id | 
+| `assignedAgentId` | string | assigned agent id | 
+| `assignedDepartmentId` | string | assigned department id | 
 | `channel` | string | `portal`, `email`, `chat`, `offlinemessage`, `facebookMessenger`, `facebookWallPost`, `Tweet`, etc.| 
-| `receivedBy` | string | receiving intergrated account id | 
+| `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
 | `originalLink` | string | original link on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -104,7 +104,7 @@
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
 | `isActive`| boolean | if open in my active work area by agent | 
-| `lastMessage`| string | plain text of last message | 
+| `lastMessage`| string | plain text of the last message | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
@@ -721,7 +721,7 @@
 ### routingRule
 | Name | Type | Description |
 | - | - | - |
-| `enable` | boolean |whether the routing rules is enabled or not.
+| `isEnabled` | boolean |whether the routing rules is enabled or not.
 | `type` |string | the type of routing, including `simple`and `rules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
@@ -737,7 +737,7 @@
 | `id` | string | id of the custom rule |
 | `routeId` | string | id of the routingRuleId |
 | `orderIndex` | integer | order of the custom rule |
-| `enable` | boolean | whether the custom rule is enabled or not. |
+| `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
@@ -780,7 +780,7 @@
 `put api/v3/anytime/routingRules/{id}`
 + Parameters
     - id: string
-    - enable: boolean
+    - isEnabled: boolean
     - type: string, simple or custromRules
     - simpleRouteType: string, department and agent
     - simpleRouteToId: string
@@ -796,7 +796,7 @@
 `put api/v3/anytime/routingRules/customRules/{id}/enable`
 + Parameters
     - id: string
-    - enable: boolean
+    - isEnabled: boolean
 + Response
     - [customRule](#customRule) 
 
@@ -842,7 +842,7 @@
 ### autoAllocationSetting
 | Name | Type | Description | 
 | - | - | - | 
-| `enable` | boolean | if enable Auto Allocation |
+| `isEnabled` | boolean | if enabled Auto Allocation |
 | `departmentAllocationRule`| [allocationRule](#allocationRule)[] | array of department allocation rules |
 | `defaultRule`| string | `loadBalancing`, `roundRobin` |
 | `defaultPreferLastAssignee`| boolean | prefer to allocate to the last assignee |
@@ -876,16 +876,16 @@
     - [autoAllocationSetting](#autoAllocationSetting)
 
 ### Enable/Disable auto allocation
-`put api/v3/anytime/autoAllocation/enable `
+`put api/v3/anytime/autoAllocation/enable`
 + Parameters
-    - enable: boolean, if enable auto allocation
+    - isEnabled: boolean, if enabled auto allocation
 + Response
     - http status code
 
 ### Update auto allocation settings
 `put api/v3/anytime/autoAllocation `
 + Parameters
-    - enable: boolean, if enable auto allocation
+    - isEnabled: boolean, if enabled auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
     - setMaxNumberForEachAgent: boolean, if set max conversation for each agent
     - maxNumberForAllAgents: integer, max conversation number for all agents
@@ -902,7 +902,7 @@
 | - | - | - | 
 | `id` | string | id of the trigger |
 | `description` | string | description of the trigger |
-| `enable` | boolean | if enable the trigger |
+| `isEnabled` | boolean | if enabled the trigger |
 | `event` | string |  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` |
 | `conditions` | [condition](#condition)[] | conditions | 
 | `setValue` | boolean | if set value |
@@ -945,7 +945,7 @@
 `post api/v3/anytime/triggers`
 + Parameters
     - description, string, description of the trigger
-    - enable, boolean, if enable the trigger
+    - isEnabled, boolean, if enabled the trigger
     - event, string, `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime`
     - conditions, [condition](#condition)[], conditions 
     - setValue, boolean, if set value
@@ -967,7 +967,7 @@
 + Parameters
     - id, string, id of the trigger
     - description, string, description of the trigger
-    - enable, boolean, if enable the trigger
+    - isEnabled, boolean, if enabled the trigger
     - event, string,  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` 
     - conditions, [condition](#condition)[], conditions 
     - setValue, boolean, if set value
@@ -996,7 +996,7 @@
 `put api/v3/anytime/triggers/{id}`
 + Parameters
     - id: string, trigger id
-    - enable: boolean, if enable the trigger
+    - isEnabled: boolean, if enabled the trigger
 + Response
     - http status code
 
@@ -1013,7 +1013,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | SLA policy id |
-| `enable` | boolean | if enable this SLA policy |
+| `isEnabled` | boolean | if enabled this SLA policy |
 | `firstRespondWithin` | integer | the hours first reply within |
 | `nextRespondWithin` | integer | the hours next reply within |
 | `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
@@ -1039,7 +1039,7 @@
 ### Create a SLA policy
 `post api/v2/anytime/SLAPolicies`
 + Parameters
-    - enable: boolean, if enable this SLA policy 
+    - isEnabled: boolean, if enabled this SLA policy 
     - firstRespondWithin: integer, 
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer, 
@@ -1052,7 +1052,7 @@
 `put api/v2/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id 
-    - enable: boolean, if enable this SLA policy 
+    - isEnabled: boolean, if enabled this SLA policy 
     - firstRespondWithin: integer,  
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer,  
