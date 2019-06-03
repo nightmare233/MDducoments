@@ -630,7 +630,7 @@
     - [attachment](#attachment) 
     
 ### Update status of attachment
-`Put /api/v2/livechat/attachments/{guid}`
+`Put /api/v2/anytime/attachments/{guid}`
 #### Parameters:
 - isAvailable - boolean `true` or  `false`
 #### Response
@@ -1274,10 +1274,10 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage` |
+| `type` | string | `email`, `reply`, `socialMessage` |
 | `accountId`| string | integrated account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
