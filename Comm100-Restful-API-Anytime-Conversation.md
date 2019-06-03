@@ -64,8 +64,8 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Conversation](#conversations)|/api/v3/anytime/conversations| EntPoints for agents | 
-|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| EndPoints for contacts |
+|[Conversation](#conversations)|/api/v3/anytime/conversations| Conversations | 
+|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
 |[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routting rules | 
@@ -77,6 +77,7 @@
 |[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
 |[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| Integration accounts | 
+|[Channel](#channels)|/api/v3/anytime/channels| channels | 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
 # Conversations 
@@ -531,11 +532,10 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message | 
-| `text` | [text](#text) | text |  
+| `contents` | [content](#content)[] | content array |
 | `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | |   
-| `attachments` | [attachment](#attachment)[] | attachment array| 
 
 ## endpoints
 ### Get a portal conversation by id
@@ -573,8 +573,7 @@
     - contactId: string, id of the contact who submitted the portal conversation
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - message:  the first portal message
-        - text: [text](#text), 
-        - attachments: [attachment](#attachment)[], attachment array of message
+        contents: [content](#content)[]
 - Response: 
   - [portal conversation](#portal-conversation) 
 
@@ -612,7 +611,7 @@
 - Parameters:
     - id: integer
     - contactId: string required
-    - text: [text](#text), 
+    - contents: [content](#content)[], 
     - attachments: [attachment](#attachment)[], attachment array
 - Response: 
     - [portal conversation message](#portal-conversation-message)
@@ -1396,6 +1395,28 @@
     - id: string,
 - Response 
     - http status code
+
+
+# Channels 
+## objects 
+### channel 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id | 
+| `name` | string | channle name | 
+| `icon` | string | icon url |     
+| `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
+| `messageMaxLength` | int | outgoing message max length |
+| `messageCapability` | string | outgoing message support message type |
+| `isSupportReplyWithDiffAccount` | bool | If support reply with different integration account |  
+
+## endpoints 
+### List all integrated channels 
+`get api/v3/anytime/channels` 
+- Parameters
+    - no parameter
+- Response 
+    - [channel](#channel)[] 
 
 
 ***
