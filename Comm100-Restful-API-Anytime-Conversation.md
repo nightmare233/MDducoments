@@ -141,18 +141,16 @@
 | `conversationId` | integer | id of conversation | 
 | `type` | string | `note`, `email`, `reply`, `socialMessage`, `chat`, `offlineMessage` |
 | `directType` | string | `receive`, `send` |
-| `accountId`| string | integrated account id | 
+| `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |  
-| `texts` | [text](#text)[] | text of message |  
-| `quote` | string | quoted content of the message, only for email message |  
+| `quoteTweetId` | string | quote tweet id |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `attachments` | [attachment](#attachment)[] | attachment array| 
+| `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | | 
 | `sendStatus` | string | `sucess`, `sending`, `fail` |
@@ -160,56 +158,81 @@
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
+### content
+| Name | Type | Description | 
+| - | - | - | 
+| `type` | string | content type, `text`, `htmlText`, `media`, `file`, `location` |  
+| `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content)| 
+
+### text content
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | content unique id |
+| `messageId` | string | message id |
+| `type` | string | content type, `text`| 
+| `text` | string | text | 
+
+### html text content
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | content unique id |
+| `messageId` | string | message id |
+| `type` | string | content type, `htmlText`| 
+| `htmlText` | string | html text |
+
+### file message content
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | content unique id |
+| `messageId` | string | message id |
+| `type` | string | content type, `file`| 
+| `name` | string | file name| 
+| `url` | string | download link | 
+
+### media message content
+| Name | Type | Description |
+| - | - | - |  
+| `id` | string | content unique id |
+| `messageId` | string | message id |
+| `type` | string | content type, `media`| 
+| `title` | string | media title| 
+| `url` | string | download link | 
+
+### location message content
+| Name | Type | Description |  
+| - | - | - | 
+| `id` | string | content unique id |
+| `messageId` | string | message id |
+| `type` | string | content type, `location`| 
+| `latitude` | string | latitude | 
+| `longitude` | string | longitude | 
+| `scale` | string | scale for location |
+| `desc` | string | description | 
+
 ### conversation draft 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
 | `type` | string | `note`, `email`, `reply`, `socialMessage` |
-| `accountId`| string | integrated account id | 
+| `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |  
-| `texts` | [text](#text)[] | text of message |  
-| `quote` | string | quoted content of the message, only for email message |  
+| `quoteTweetId` | string | quote tweet id |    
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `attachments` | [attachment](#attachment)[] | attachment array| 
+| `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `sendertId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
-
-### text
-| Name | Type | Description | 
-| - | - | - |
-| `id` | string | id |
-| `format` | string | `plaintext`, `html` |
-| `content` | string | plain text or html body |
-
-
-### attachment 
-| Name | Type | Description | 
-| - | - | - |
-| `id` | string | attachment unique id |
-| `messageId` | string | message id |
-| `type` | string | attachment type |
-| `mimetype` | string | attachment mime type |
-| `originalId` | string | original id |
-| `originalLink` | string | original link |
-| `text` | string | attachment text or description |
-| `fileName` | string | attachment file name| 
-| `url` | string | attachment download link | 
-| `previewUrl` | string | preview url | 
-| `size` | int | attachment size |
-| `scale` | string | scale for location |
-| `isAvailable` | boolean | if the attachment is available | 
-
+  
+ 
 ## endpoints 
 ### List conversations 
 `get api/v3/anytime/conversations` 
 + Each request returns a maximum of 50 conversations. 
 + Parameters 
-    - viewId: string, view id  
+    - viewId: string, view id
     - tagId: string, tag id
     - keywords: string
     - timeFrom: DateTime, last reply time, default search the last 30 days
@@ -272,12 +295,9 @@
     - message: the first message of the conversation, required
         - type: string, `note`, `email`, `reply`, `socialMessage`, required
         - subject: string, for email message, email subject
-        - text:
-            - format: string, `plaintext`, `html`,
-            - content: string,
         - from: string, for email type message, one of email account address 
-        - cc: string, message cc emails 
-        - attachments: [attachment](#attachment)[], attachment array
+        - cc: string, message cc emails
+        - contents: [content](#content)[],
 + Response 
     - [conversation](#conversations)
 
@@ -327,20 +347,13 @@
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
     - type: string, `note`, `email`, `reply`, `socialMessage`, required
-    - accountId: string, channel account id,
+    - integrationAccountId: string, integration account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
-    - text:
-            - format: string, `plaintext`, `html`,
-            - content: string,
-    - quote: string, quote content, only for email message
-    - from: string, for email type message, one of email account address 
     - cc: string, message cc emails 
     - parentId: string,
     - quoteTweetId: string,
-    - sendByType: string, `agent`, 
-    - sendById: string, agent id
-    - attachments: [attachment](#attachment)[], attachment array
+    - contents: [content](#content)[]
 - Response 
     - [message](#message) 
 
@@ -619,6 +632,15 @@
     - http status code
 
 # Attachments  
+## objects
+### attachment 
+| Name | Type | Description | 
+| - | - | - |
+| `id` | string | attachment unique id |  
+| `fileName` | string | attachment file name| 
+| `url` | string | attachment download link |   
+| `isAvailable` | boolean | if the attachment is available | 
+
 ## endpoints 
 ### Upload attachment 
 `post /api/v3/anytime/attachments` 
@@ -1275,21 +1297,20 @@
 | - | - | - | 
 | `id` | string | id of junk | 
 | `type` | string | `email`, `reply`, `socialMessage` |
-| `accountId`| string | integrated account id | 
+| `integrationAccount`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
 | `quoteTweetId` | string | quote tweet id |  
-| `texts` | [text](#text)[] | text |   
+| `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `attachments` | [attachment](#attachment)[] | attachment array| 
 | `isRead`| boolean | | 
 | `sendertId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
-| `time` | datetime | the sent time of the message | 
+| `time` | datetime | the sent time of the junk message | 
 
 ## endpoints 
 ### List junk emails

@@ -8,8 +8,6 @@
 | - | - | - | 
 | `id` | string | id of message | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage`, `chat`, `offlineMessage` |
-| `directType` | string | `receive`, `send` |
 | `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
