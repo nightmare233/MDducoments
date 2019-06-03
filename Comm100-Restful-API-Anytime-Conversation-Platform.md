@@ -33,33 +33,33 @@
 | `type` | string | content type, `text`, `htmlText`, `media`, `file`, `location` |  
 | `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content)| 
 
-### text conent
+### text content
 | Name | Type | Description | 
 | - | - | - | 
 | `type` | string | content type, `text`| 
 | `text` | string | text | 
 
-### html text conent
+### html text content
 | Name | Type | Description | 
 | - | - | - | 
 | `type` | string | content type, `htmlText`| 
 | `htmlText` | string | html text |
 
-### file message conent
+### file message content
 | Name | Type | Description | 
 | `id` | string | content unique id |
 | `type` | string | content type, `file`| 
 | `name` | string | file name| 
 | `url` | string | download link | 
 
-### media message conent
+### media message content
 | Name | Type | Description | 
 | `id` | string | content unique id |
 | `type` | string | content type, `media`| 
 | `title` | string | media title| 
 | `url` | string | download link | 
 
-### location message conent
+### location message content
 | Name | Type | Description |  
 | `type` | string | content type, `location`| 
 | `latitude` | string | latitude | 
