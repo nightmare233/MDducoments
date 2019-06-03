@@ -77,7 +77,7 @@
 |[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
 |[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| Integration accounts | 
-|[Channel](#channels)|/api/v3/anytime/channels| channels | 
+|[Channel](#channels)|/api/v3/anytime/channels| integrated channels | 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
 # Conversations 
@@ -1407,7 +1407,7 @@
 | `icon` | string | icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `messageMaxLength` | int | outgoing message max length |
-| `messageCapability` | string | outgoing message support message type |
+| `messageCapability` | string[] | outgoing message support message type |
 | `isSupportReplyWithDiffAccount` | bool | If support reply with different integration account |  
 
 ## endpoints 
@@ -1571,19 +1571,20 @@
 	- dataList: 
 	    - id: integer,
 		- name: string,
-		- channelEfficiencies, [channelEfficiencie](#channel-efficiency)[]
+		- channelEfficiencies: [channelEfficiencie](#channel-efficiency)[]
 		- startTime: string,
 		- endTime: string,
-	- channel total number, [channel total number](#Channel-totoal-messages-number)[]
+	- channel total number: [channel total number](#channel-total-messages-number)[]
 
-### Channel Efficiency
+### channel efficiency
 | Name | Type | Description | 
 | - | - | - | 
 | `channelId` | string | channel id |
 | `channelName` | string | channel name |
-| `channelPercentage` | float |  |
+| `channelMessageNumber` | integer | channel message number |
+| `channelPercentage` | float | channel percentage |
 
-### Channel totoal messages number
+### channel total messages number
 | Name | Type | Description | 
 | - | - | - | 
 | `channelId` | string | channel id |
