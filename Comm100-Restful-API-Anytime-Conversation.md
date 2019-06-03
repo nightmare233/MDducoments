@@ -167,42 +167,34 @@
 
 ### text content
 | Name | Type | Description | 
-| - | - | - | 
-| `id` | string | content unique id |
-| `messageId` | string | message id |
+| - | - | - |  
 | `type` | string | content type, `text`| 
 | `text` | string | text | 
 
 ### html text content
 | Name | Type | Description | 
-| - | - | - | 
-| `id` | string | content unique id |
-| `messageId` | string | message id |
+| - | - | - |  
 | `type` | string | content type, `htmlText`| 
 | `htmlText` | string | html text |
 
 ### file message content
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | content unique id |
-| `messageId` | string | message id |
+| `id` | string | guid | 
 | `name` | string | file name| 
 | `url` | string | download link | 
 
 ### media message content
 | Name | Type | Description |
 | - | - | - |  
-| `id` | string | content unique id |
-| `messageId` | string | message id |
+| `id` | string | guid | 
 | `type` | string | media type, `video`, `audio`, `picture`| 
 | `title` | string | media title| 
 | `url` | string | download link | 
 
 ### location message content
 | Name | Type | Description |  
-| - | - | - | 
-| `id` | string | content unique id |
-| `messageId` | string | message id | 
+| - | - | - |  
 | `latitude` | string | latitude | 
 | `longitude` | string | longitude | 
 | `scale` | string | scale for location |
