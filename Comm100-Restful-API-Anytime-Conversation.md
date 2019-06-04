@@ -1433,8 +1433,8 @@
 	- pendingInternalConversations: integer
 	- pendingExternalConversations: integer
 	- onHoldConversations: integer
-	- urgentConversations: integer
-	- highConversations: integer
+	- urgentPriorityConversations: integer
+	- highPriorityConversations: integer
 
 ### realtime today
 - `GET /api/v3/anytime/reports/realtime/today`
@@ -1460,8 +1460,8 @@
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
 		- onHoldConversations: integer,
-		- urgentConversations: integer,
-		- highConversations: integer,
+		- urgentPriorityConversations: integer,
+		- highPriorityConversations: integer,
 
 ### realtime agent
 `GET/api/v3/anytime/reports/realtime/agents`
@@ -1478,8 +1478,8 @@
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
 		- onHoldConversations: integer,
-		- urgentConversations: integer,
-		- highConversations: integer,
+		- urgentPriorityConversations: integer,
+		- highPriorityConversations: integer,
 	
 ### export volume
 `GET /api/v3/anytime/reports/volume/export`
