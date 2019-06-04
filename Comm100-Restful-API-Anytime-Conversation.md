@@ -68,7 +68,7 @@
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
-|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routing rules | 
+|[Routing](#Routing)|/api/v3/anytime/routing| Routing | 
 |[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| Auto allocations | 
 |[Trigger](#Triggers)|/api/v3/anytime/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
@@ -712,17 +712,17 @@
     - http status code 
 
 
-# RoutingRules
+# Routing
 ## objects
-### routingRule
+### routing
 | Name | Type | Description |
 | - | - | - |
-| `isEnabled` | boolean |whether the routing rules is enabled or not.
-| `type` |string | the type of routing, including `simple`and `rules`. |
+| `isEnabled` | boolean | whether the routing is enabled or not.
+| `type` |string | the type of routing, including `simple`and `customRules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
+| `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
@@ -731,7 +731,7 @@
 | Name | Type | Description |
 | - | - | - |
 | `id` | string | id of the custom rule |
-| `routeId` | string | id of the routingRuleId |
+| `routingId` | string | id of the routingId |
 | `orderNum` | integer | order of the custom rule |
 | `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
@@ -758,26 +758,26 @@
 | `value` | string | condition value | 
 
 ## endpoints
-### List all routingRules
-`get api/v3/anytime/routingRules`
+### get routing
+`get api/v3/anytime/routing`
 + Parameters
     - no parameters
 + Response
     - [routingRule](#routingRule)
 
-### Enable/Disable routingRules
-`put api/v3/anytime/routingRules/enable`
+### Enable/Disable routing
+`put api/v3/anytime/routing/enable`
 + Parameters
     - isEnabled: boolean,
 + Response
     - http status code
 
-### Update a routingRule
-`put api/v3/anytime/routingRules/{id}`
+### Update routing
+`put api/v3/anytime/routing/{id}`
 + Parameters
     - id: string
     - isEnabled: boolean
-    - type: string, simple or custromRules
+    - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
     - simpleRouteToId: string
     - simpleRouteWithPriority: string,
@@ -786,10 +786,10 @@
     - matchFailedWithPriority: string
     - orderNum: int, rules execute and display order
 + Response
-    - [routingRule](#routingRule)
+    - [routing](#routing)
 
 ### Enable/Disable a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}/enable`
+`put api/v3/anytime/routing/customRules/{id}/enable`
 + Parameters
     - id: string
     - isEnabled: boolean
@@ -797,21 +797,21 @@
     - [customRule](#customRule) 
 
 ### Create a custom rule
-`post api/v3/anytime/routingRules/customRules`
+`post api/v3/anytime/routing/customRules`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
     - [customRule](#customRule)
 
 ### Get a custom rule
-`get api/v3/anytime/routingRules/customRules/{id}`
+`get api/v3/anytime/routing/customRules/{id}`
 + Parameters
     - id: string
 + Response
     - [customRule](#customRule)
 
 ### Update a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}`
+`put api/v3/anytime/routing/customRules/{id}`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
@@ -819,14 +819,14 @@
 
 
 ### Delete a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}`
+`put api/v3/anytime/routing/customRules/{id}`
 + Parameters
     - id: string
 + Response
     - http status code
 
 ### update the order number of a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}/sort`
+`put api/v3/anytime/routing/customRules/{id}/sort`
 + Parameters
     - id: string
     - type: string, `up`, `down`
@@ -879,7 +879,7 @@
     - http status code
 
 ### Update auto allocation settings
-`put api/v3/anytime/autoAllocation `
+`put api/v3/anytime/autoAllocation`
 + Parameters
     - isEnabled: boolean, if enabled auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
@@ -904,8 +904,8 @@
 | `ifSetValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
 | `ifSendEmail` | boolean | if send email |
-| `ifSendToContacts` | boolean | if send email |
-| `ifSendToAgents` | boolean | if send email |
+| `ifSendToContacts` | boolean | if send email to contacts|
+| `ifSendToAgents` | boolean | if send email to agents |
 | `toAgents` | string[] | send  email to agent(s) |
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
@@ -947,8 +947,8 @@
     - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
     - ifSendEmail, boolean, if send email
-    - ifSendToContacts, boolean, if send email
-    - ifSendToAgents, boolean, if send email
+    - ifSendToContacts, boolean, if send email to contacts
+    - ifSendToAgents, boolean, if send email to agents
     - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
@@ -969,8 +969,8 @@
     - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
     - ifSendEmail, boolean, if send email
-    - ifSendToContacts, boolean, if send email
-    - ifSendToAgents, boolean, if send email
+    - ifSendToContacts, boolean, if send email to contacts
+    - ifSendToAgents, boolean, if send email to agents
     - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
