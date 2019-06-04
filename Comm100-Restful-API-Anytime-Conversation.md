@@ -763,12 +763,12 @@
 + Parameters
     - no parameters
 + Response
-    - routingRules: [routingRule](#routingRule) list
+    - [routingRule](#routingRule)
 
 ### Enable/Disable routingRules
 `put api/v3/anytime/routingRules/enable`
 + Parameters
-    - no parameters
+    - isEnabled: boolean,
 + Response
     - http status code
 
@@ -1197,7 +1197,6 @@
 + Parameters
     - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
-    - isSystemField, boolean, if is system field 
     - isRequired, boolean, value if is required 
     - defaultValue, string, field default value 
     - helpText, string, field help text 
@@ -1210,9 +1209,7 @@
 `put api/v3/anytime/fields/{id}`
 + Parameters
     - id, string, field id 
-    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
-    - isSystemField, boolean, if is system field 
     - isRequired, boolean, value if is required 
     - defaultValue, string, field default value 
     - helpText, string, field help text 
