@@ -10,16 +10,15 @@
 | `conversationId` | integer | id of conversation | 
 | `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |    
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `contents` | [content](#content)[] | content array| 
 | `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
-| `isRead`| boolean | | 
+| `isRead`| boolean | if the message read by agent | 
 | `sendStatus` | string | `sucess`, `sending`, `failed` |
 | `sendertId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
@@ -71,14 +70,13 @@
 ### Post a message 
 `post api/v3/anytime/platform/conversations/{id}/messages` 
 - Parameters  
-    - type: string, required, `email`, `reply`, `socialMessage`,
+    - channelId： string, channel Id, required,
     - integrationAccountId: string, channel account id,
     - contactIdentityId: string, contact identity id,
     - originalId: string,
     - originalLink: string,
     - subject: string, for email message, email subject,
     - parentId: string, 
-    - quoteTweetId: string,
     - cc: string, message cc emails, 
     - contents: [content](#content)[],
     - sendByType: string, `agent`, 

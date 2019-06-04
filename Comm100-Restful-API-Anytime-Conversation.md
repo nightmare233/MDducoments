@@ -92,7 +92,7 @@
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
-| `channel` | string | `portal`, `email`, `chat`, `offlinemessage`, `facebookMessenger`, `facebookWallPost`, `Tweet`, etc.| 
+| `channelId` | string | channel Id | 
 | `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
 | `originalLink` | string | original link on social platform | 
@@ -140,21 +140,20 @@
 | - | - | - | 
 | `id` | string | id of message | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage`, `chat`, `offlineMessage` |
+| `type` | string | `note`, `message`, `chat`, `offlineMessage` |
 | `directType` | string | `receive`, `send` |
 | `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
-| `originalMessageId` | string | original message id|
+| `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
-| `isRead`| boolean | | 
-| `sendStatus` | string | `sucess`, `sending`, `fail` |
+| `isRead`| boolean | if the message read by agent| 
+| `sendStatus` | string | `sucess`, `sending`, `failed` |
 | `sendertId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
@@ -163,7 +162,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `type` | string | content type, `text`, `htmlText`, `media`, `file`, `location` |  
-| `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content)| 
+| `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content) | 
 
 ### text content
 | Name | Type | Description | 
@@ -205,11 +204,9 @@
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage` |
 | `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |    
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `contents` | [content](#content)[] | content array | 
@@ -273,7 +270,7 @@
 `post api/v3/anytime/conversations` 
 - Parameters 
     - subject: string, conversation subject, required
-    - channel: string, `portal`, `email`, `chat`, `facebookMessenger`, etc.  required 
+    - channelId: string, channel Id, required 
     - relatedType: string, `contact`, `visitor`
     - relatedId: string, contact id or visitor id
     - assignedAgentId: string, agent id
@@ -343,7 +340,6 @@
     - subject: string, for email message, email subject
     - cc: string, message cc emails 
     - parentId: string,
-    - quoteTweetId: string,
     - contents: [content](#content)[]
 - Response 
     - [message](#message) 
@@ -727,7 +723,7 @@
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteToPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
-| `matchFailedType` | string | the rule of fail route  including `department` and `agent` |
+| `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedToPriority` | string | `urgent`, `high`, `normal`, `low` |
 
@@ -1292,7 +1288,6 @@
 | `originalMessageId` | string | original message id|
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |  
 | `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
