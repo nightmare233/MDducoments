@@ -68,7 +68,7 @@
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
-|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routting rules | 
+|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routing rules | 
 |[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| Auto allocations | 
 |[Trigger](#Triggers)|/api/v3/anytime/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
