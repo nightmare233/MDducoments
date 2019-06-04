@@ -842,8 +842,8 @@
 | `departmentAllocationRule`| [allocationRule](#allocationRule)[] | array of department allocation rules |
 | `defaultRule`| string | `loadBalancing`, `roundRobin` |
 | `defaultPreferLastAssignee`| boolean | prefer to allocate to the last assignee |
-| `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
-| `maxNumberForAllAgents` | integer | max conversation number for all agents |
+| `ifEnableConversationLimitForEachAgent` | boolean | if set maximum number of conversations an agent can be allocated to |
+| `conversationLimitForAllAgents` | integer | maximum number of conversations all agents can be allocated to |
 | `agentPreferences` | [agentPreference](#agentPreference)[] | agent preference for allocation |
 | `excludePendingExternal` | boolean | if exclude `Pending Extenal` status while validating if an agent has reached the max number |
 | `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
@@ -883,8 +883,8 @@
 + Parameters
     - isEnabled: boolean, if enabled auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
-    - ifSetMaxNumberForEachAgent: boolean, if set max conversation for each agent
-    - maxNumberForAllAgents: integer, max conversation number for all agents
+    - ifEnableConversationLimitForEachAgent: boolean, if set maximum number of conversations an agent can be allocated to
+    - conversationLimitForAllAgents: integer, maximum number of conversations all agents can be allocated to
     - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
     - ifExcludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
     - ifExcludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
