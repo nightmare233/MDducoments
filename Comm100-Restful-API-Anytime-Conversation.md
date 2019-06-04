@@ -153,8 +153,8 @@
 | `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
-| `sendStatus` | string | `sucess`, `sending`, `failed` |
-| `sendertId`| string | id of agent or contact | 
+| `sendStatus` | string | `success`, `sending`, `failed` |
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
@@ -721,11 +721,11 @@
 | `type` |string | the type of routing, including `simple`and `rules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
-| `simpleRouteToPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
-| `matchFailedToPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 
 ### customRule
 | Name | Type | Description |
@@ -738,7 +738,7 @@
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
-| `routeToPriority` | string | conversation priority enum number|
+| `routeWithPriority` | string | conversation priority enum number|
 
 ### Conditions 
   | Name | Type |Description |
@@ -780,10 +780,10 @@
     - type: string, simple or custromRules
     - simpleRouteType: string, department and agent
     - simpleRouteToId: string
-    - simpleRoutePriority: string,
+    - simpleRouteWithPriority: string,
     - matchFailedType: string, department and agent
     - matchFailedToId: string
-    - matchFailedToPriority: string
+    - matchFailedWithPriority: string
     - orderNum: int, rules execute and display order
 + Response
     - [routingRule](#routingRule)
@@ -825,7 +825,7 @@
 + Response
     - http status code
 
-### Upgrade/Downgrade a custom rule
+### update the order number of a custom rule
 `put api/v3/anytime/routingRules/customRules/{id}/sort`
 + Parameters
     - id: string
