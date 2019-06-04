@@ -392,7 +392,7 @@
     - keywords: string
     - pageIndex: integer
     - timeFrom: DateTime, last reply time, default search the last 30 days
-    - timeTo: DateTime, last reply time, defautl value is the current time
+    - timeTo: DateTime, last reply time, default value is the current time
 - Response 
     - deletedConversations: [conversation](#conversation) list 
     - total: integer, total number of conversations 
