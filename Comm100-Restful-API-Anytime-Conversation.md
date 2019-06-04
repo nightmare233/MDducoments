@@ -1384,7 +1384,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `name` | string | channle name | 
+| `name` | string | channel name | 
 | `icon` | string | icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `messageMaxLength` | int | outgoing message max length |
@@ -1415,8 +1415,8 @@
 | [/api/v3/anytime/reports/volume](#report-volume) | GET | report of volume |
 | [/api/v3/anytime/reports/channel/export](#export-channel) | GET | export channel report data |
 | [/api/v3/anytime/reports/channel](#report-channel) | GET | channel report |
-| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report |
-| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | export efficiency report data |
+| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report data|
+| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | efficiency report |
 | [/api/v3/anytime/reports/sla/export](#export-SLA-report) | GET | export SLA report data |
 | [/api/v3/anytime/reports/sla](#report-sla) | GET | SLA report data |
 
