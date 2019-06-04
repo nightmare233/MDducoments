@@ -637,7 +637,7 @@
     - [attachment](#attachment) 
     
 ### Update status of attachment
-`Put /api/v2/anytime/attachments/{guid}`
+`Put /api/v3/anytime/attachments/{guid}`
 #### Parameters:
 - isAvailable - boolean `true` or  `false`
 #### Response
@@ -906,11 +906,11 @@
 | `ifSendEmail` | boolean | if send email |
 | `ifSendToContacts` | boolean | if send email to contacts|
 | `ifSendToAgents` | boolean | if send email to agents |
-| `toAgents` | string[] | send  email to agent(s) |
+| `recipientAgentIds` | string[] | agent id array of recipient |
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
 | `plainText` | string | plain text |
-| `attachment` | [attachment](#attachment) | attachment |
+| `attachments` | [attachment](#attachment)[] | attachments |
 | `ifShowInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
 | `orderNum` | integer | trigger execute and display order |
 
@@ -949,11 +949,11 @@
     - ifSendEmail, boolean, if send email
     - ifSendToContacts, boolean, if send email to contacts
     - ifSendToAgents, boolean, if send email to agents
-    - toAgents, string[], send  email to agent(s)
+    - recipientAgentIds, string[], agent id array of recipient
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
-    - attachment, [attachment](#attachment), attachment
+    - attachments, [attachment](#attachment)[], attachment array
     - ifShowInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - [trigger](#trigger)
@@ -971,11 +971,11 @@
     - ifSendEmail, boolean, if send email
     - ifSendToContacts, boolean, if send email to contacts
     - ifSendToAgents, boolean, if send email to agents
-    - toAgents, string[], send  email to agent(s)
+    - recipientAgentIds, string[], agent id array of recipient
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
-    - attachment, [attachment](#attachment), attachment
+    - attachments, [attachment](#attachment)[], attachment array
     - ifShowInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - [trigger](#trigger)
@@ -1019,21 +1019,21 @@
 
 ## endpoints
 ### List all SLA policies
-`get api/v2/anytime/SLAPolicies`
+`get api/v3/anytime/SLAPolicies`
 + Parameters
     - no parameters
 + Response
     - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
-`get api/v2/anytime/SLAPolicies/{id}`
+`get api/v3/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
-`post api/v2/anytime/SLAPolicies`
+`post api/v3/anytime/SLAPolicies`
 + Parameters
     - isEnabled: boolean, if enabled this SLA policy 
     - firstRespondWithin: integer, 
@@ -1045,7 +1045,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
-`put api/v2/anytime/SLAPolicies/{id}`
+`put api/v3/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id 
     - isEnabled: boolean, if enabled this SLA policy 
@@ -1058,7 +1058,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Delete a SLA policy
-`delete api/v2/anytime/SLAPolicies/{id}`
+`delete api/v3/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
