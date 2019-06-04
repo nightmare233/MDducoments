@@ -732,7 +732,7 @@
 | - | - | - |
 | `id` | string | id of the custom rule |
 | `routeId` | string | id of the routingRuleId |
-| `orderIndex` | integer | order of the custom rule |
+| `orderNum` | integer | order of the custom rule |
 | `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
@@ -784,7 +784,7 @@
     - matchFailedType: string, department and agent
     - matchFailedToId: string
     - matchFailedToPriority: string
-    - orderIndex: int, rules execute and display order
+    - orderNum: int, rules execute and display order
 + Response
     - [routingRule](#routingRule)
 
@@ -883,11 +883,11 @@
 + Parameters
     - isEnabled: boolean, if enabled auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
-    - setMaxNumberForEachAgent: boolean, if set max conversation for each agent
+    - ifSetMaxNumberForEachAgent: boolean, if set max conversation for each agent
     - maxNumberForAllAgents: integer, max conversation number for all agents
     - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
-    - excludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
-    - excludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
+    - ifExcludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
+    - ifExcludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
 + Response
     - [autoAllocationSetting](#autoAllocationSetting)
 
@@ -901,18 +901,18 @@
 | `isEnabled` | boolean | if enabled the trigger |
 | `event` | string |  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` |
 | `conditions` | [condition](#condition)[] | conditions | 
-| `setValue` | boolean | if set value |
+| `ifSetValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
-| `sendEmail` | boolean | if send email |
-| `sendToContacts` | boolean | if send email |
-| `sendToAgents` | boolean | if send email |
+| `ifSendEmail` | boolean | if send email |
+| `ifSendToContacts` | boolean | if send email |
+| `ifSendToAgents` | boolean | if send email |
 | `toAgents` | string[] | send  email to agent(s) |
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
 | `plainText` | string | plain text |
 | `attachment` | [attachment](#attachment) | attachment |
-| `showInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
-| `orderIndex` | integer | trigger execute and display order |
+| `ifShowInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
+| `orderNum` | integer | trigger execute and display order |
 
 ### autoUpdate
 | Name | Type | Description | 
@@ -944,17 +944,17 @@
     - isEnabled, boolean, if enabled the trigger
     - event, string, `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime`
     - conditions, [condition](#condition)[], conditions 
-    - setValue, boolean, if set value
+    - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
-    - sendEmail, boolean, if send email
-    - sendToContacts, boolean, if send email
-    - sendToAgents, boolean, if send email
+    - ifSendEmail, boolean, if send email
+    - ifSendToContacts, boolean, if send email
+    - ifSendToAgents, boolean, if send email
     - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
     - attachment, [attachment](#attachment), attachment
-    - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
+    - ifShowInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - [trigger](#trigger)
 
@@ -966,17 +966,17 @@
     - isEnabled, boolean, if enabled the trigger
     - event, string,  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` 
     - conditions, [condition](#condition)[], conditions 
-    - setValue, boolean, if set value
+    - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
-    - sendEmail, boolean, if send email
-    - sendToContacts, boolean, if send email
-    - sendToAgents, boolean, if send email
+    - ifSendEmail, boolean, if send email
+    - ifSendToContacts, boolean, if send email
+    - ifSendToAgents, boolean, if send email
     - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
     - attachment, [attachment](#attachment), attachment
-    - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
+    - ifShowInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - [trigger](#trigger)
 
@@ -1013,9 +1013,9 @@
 | `firstRespondWithin` | integer | the hours first reply within |
 | `nextRespondWithin` | integer | the hours next reply within |
 | `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
-| `businessHours`| boolean | `businessHours` or `calenderHours` |
+| `isBusinessHours`| boolean | if `businessHours` or `calenderHours` |
 | `conditions` | [condition](#condition)[] | conditions | 
-| `orderIndex` | integer | SLA execute and display order |
+| `orderNum` | integer | SLA execute and display order |
 
 ## endpoints
 ### List all SLA policies
@@ -1039,7 +1039,7 @@
     - firstRespondWithin: integer, 
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer, 
-    - businessHours: boolean, `businessHours` or `calenderHours` 
+    - isBusinessHours: boolean, `businessHours` or `calenderHours` 
     - conditions: [condition](#condition)[]
 + Response
     - [SLAPolicy](#SLApolicy)
@@ -1168,7 +1168,7 @@
 | `id` | string | option id | 
 | `name` | string | option name | 
 | `value` | string | field value | 
-| `order` | integer | option order | 
+| `orderNum` | integer | option order | 
 
 ### fieldMapping
 | Name | Type | Description | 
