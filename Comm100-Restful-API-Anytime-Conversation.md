@@ -281,7 +281,7 @@
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
-        - type: string, `note`, `email`, `reply`, `socialMessage`, required
+        - type: string, `note`, `message`, required
         - subject: string, for email message, email subject
         - from: string, for email type message, one of email account address 
         - cc: string, message cc emails
@@ -334,7 +334,7 @@
 ### Reply a conversation 
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
-    - type: string, `note`, `email`, `reply`, `socialMessage`, required
+    - type: string, `note`, `message`, required
     - integrationAccountId: string, integration account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
@@ -1281,7 +1281,6 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
-| `type` | string | `email`, `reply`, `socialMessage` |
 | `integrationAccount`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
