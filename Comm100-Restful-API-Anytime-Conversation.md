@@ -211,7 +211,7 @@
 | `cc` | string | cc email addresses |  
 | `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
-| `sendertId`| string | id of agent| 
+| `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
   
  
@@ -671,7 +671,7 @@
 | `value` | string | condition value | 
 
 ## endpoints 
-### List all public and private views 
+### List views 
 `get /api/v3/anytime/views`
 - Parameters 
     - no parameters 
@@ -1178,10 +1178,10 @@
 | `offlineMessageFieldMapping` | string | offline message field id |
 
 ## endpoints 
-### List all fields and their options 
+### List fields and their options 
 `get api/v3/anytime/fields` 
 + Parameters
-    - isSystemField: boolean, if is system field 
+    - isSystemField: boolean, if is system field, optional
 + Response 
     - [field](#field) list 
 
@@ -1288,7 +1288,7 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `isRead`| boolean | | 
-| `sendertId`| string | id of agent or contact | 
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the junk message | 
 
