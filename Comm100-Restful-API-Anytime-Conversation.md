@@ -1552,7 +1552,7 @@
 	- dataList: 
 	    - id: integer,
 		- name: string,
-		- channelEfficiencies: [channelEfficiencie](#channel-efficiency)[]
+		- channelEfficiencies: [channelEfficiencies](#channel-efficiency)[]
 		- startTime: string,
 		- endTime: string,
 	- channel total number: [channel total number](#channel-total-messages-number)[]
