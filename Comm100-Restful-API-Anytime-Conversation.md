@@ -1625,7 +1625,7 @@
 		- nextRespondTimeAchievedPercentage: float,
 		- avgNextRespondTime: float,
 		- ResolveTimeAchievedPercentage: float, 
-        - avgResolveTime: fload,
+        - avgResolveTime: float,
         - breachedTickets: integer, 
 
 ### report SLA
@@ -1643,7 +1643,7 @@
 		- nextRespondTimeAchievedPercentage: float,
 		- avgNextRespondTime: float,
 		- ResolveTimeAchievedPercentage: float, 
-        - avgResolveTime: fload,
+        - avgResolveTime: float,
         - breachedTickets: integer
 
 * * *
