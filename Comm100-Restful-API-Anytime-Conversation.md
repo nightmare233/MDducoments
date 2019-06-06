@@ -1429,13 +1429,13 @@
 	- urgentPriorityConversations: integer
 	- highPriorityConversations: integer
 
-### realtime today
-- `GET /api/v3/anytime/reports/realtime/today`
+### realtime of lastest sereral days
+- `GET /api/v3/anytime/reports/realtime/bytime`
 - Parameters:
-    - no parameter
+    - days: int, days number, maximum number 15. 
 - Response:
  	- createdConversations: integer
-	- closedConversations: integer
+	- resolvedConversations: integer
 	- repliedConversations: integer
 	- reopenedConverstations: integer
 
@@ -1448,7 +1448,7 @@
 		- departmentId: integer,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
-		- todayClosedConversations: integer,
+		- todayResolvedConversations: integer,
 		- newConversations: integer,
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
@@ -1466,7 +1466,7 @@
 		- agentId: integer,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
-		- todayClosedConversations: integer,
+		- todayResolvedConversations: integer,
 		- newConversations: integer,
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
