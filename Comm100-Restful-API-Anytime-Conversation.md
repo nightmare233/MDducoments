@@ -92,7 +92,6 @@
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
-| `channelId` | string | channel Id | 
 | `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
 | `originalLink` | string | original link on social platform | 
@@ -104,7 +103,6 @@
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
 | `isActive`| boolean | if open in my active work area by agent | 
-| `lastMessage`| string | the lastest message | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
@@ -140,11 +138,11 @@
 | - | - | - | 
 | `id` | string | id of message | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `message`, `chat`, `offlineMessage` |
+| `channelId` | string | channel Id | 
+| `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
 | `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
