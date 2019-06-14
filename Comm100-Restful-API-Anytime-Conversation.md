@@ -301,6 +301,19 @@
     | - | - |
     | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
 
+### Get a message 
+`get api/v3/anytime/conversations/messages/{id}` 
++ Parameters 
+    - id: string, message id 
++ Response 
+    - [message](#message)
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/anytime/conversations/messages/{id}?include=sender` |
+
+
 ### Update a conversation 
 `put api/v3/anytime/conversations/{id}` 
 - Parameters 
@@ -344,6 +357,13 @@
 - Response 
     - [message](#message) 
 
+### Update send status of a message 
+`put api/v3/anytime/conversations/messages/{id}` 
+- Parameters  
+    - sendStatus: string, `success`, `sending`, `failed` 
+- Response 
+    - [message](#message) 
+
 ### Mark a conversation as read 
 `put api/v3/anytime/conversations/{id}/read` 
 + Parameters 
@@ -371,6 +391,27 @@
     - id: string, message id 
 + Response 
     - http status code
+
+### Batch mark messages as read 
+`put api/v3/anytime/conversations/messages/read` 
++ Parameters 
+    - ids: string[], message id array, 
++ Response 
+    - http status code
+
+### Batch mark messages as unread 
+`put api/v3/anytime/conversations/messages/unread` 
++ Parameters 
+    - ids: string[], message id array, 
++ Response 
+    - http status code
+
+### Get agents of openning conversation 
+`get api/v3/anytime/conversations/{id}/agents` 
++ Parameters 
+    - no parameter,
++ Response 
+    - agent list
 
 ### Delete a conversation 
 `delete api/v3/anytime/conversations/{id}` 
@@ -615,6 +656,21 @@
     - id: integer, conversation id 
 - Response 
     - http status code
+
+### event log
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | event log id | 
+| `conversationId` | integer | id of conversation | 
+| `text` | string | event log text | 
+| `time` | datetime | event time | 
+
+### List conversation event logs
+`get api/v3/anytime/conversations/{id}/eventLogs`
+- Parameters 
+    - id: integer, conversation id 
+- Response 
+    - [event log](#event-log)
 
 # Attachments  
 ## objects
