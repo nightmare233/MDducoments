@@ -159,33 +159,17 @@
 ### content
 | Name | Type | Description | 
 | - | - | - | 
-| `type` | string | content type, `text`, `htmlText`, `media`, `file`, `location` |  
-| `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content) | 
-
-### text content
-| Name | Type | Description | 
-| - | - | - |  
-| `text` | string | text | 
-
-### html text content
-| Name | Type | Description | 
-| - | - | - |  
-| `htmlText` | string | html text |
-
-### file message content
-| Name | Type | Description | 
-| - | - | - | 
 | `id` | string | guid | 
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location` |  
+| `text` | string | text | 
+| `htmlText` | string | html text |
 | `name` | string | file name| 
 | `url` | string | download link | 
-
-### media message content
-| Name | Type | Description |
-| - | - | - |  
-| `id` | string | guid | 
-| `type` | string | media type, `video`, `audio`, `picture`| 
 | `title` | string | media title| 
-| `url` | string | download link | 
+| `latitude` | string | latitude | 
+| `longitude` | string | longitude | 
+| `scale` | string | scale for location |
+| `desc` | string | description | 
 
 ### location message content
 | Name | Type | Description |  
