@@ -165,13 +165,11 @@
 ### text content
 | Name | Type | Description | 
 | - | - | - |  
-| `type` | string | content type, `text`| 
 | `text` | string | text | 
 
 ### html text content
 | Name | Type | Description | 
 | - | - | - |  
-| `type` | string | content type, `htmlText`| 
 | `htmlText` | string | html text |
 
 ### file message content
