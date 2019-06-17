@@ -171,14 +171,6 @@
 | `scale` | string | scale for location |
 | `desc` | string | description | 
 
-### location message content
-| Name | Type | Description |  
-| - | - | - |  
-| `latitude` | string | latitude | 
-| `longitude` | string | longitude | 
-| `scale` | string | scale for location |
-| `desc` | string | description | 
-
 ### conversation draft 
 | Name | Type | Description | 
 | - | - | - | 
