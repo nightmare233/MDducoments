@@ -142,7 +142,7 @@
 | `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
 | `integrationAccountId`| string | integration account id | 
-| `contactIdentityId`| string | id of contact identity |
+| `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
@@ -156,6 +156,15 @@
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
+### contactIdentity 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id of contact identity | 
+| `contactIdentity` | string | contact identity, email, facebook id, twitter id, sms number... |
+| `name` | string | original channel name |
+| `avatarUrl` | string | original channel avatar url |
+| `originalContactInfoUrl` | string | original channel contact info URL | 
+
 ### content
 | Name | Type | Description | 
 | - | - | - | 
