@@ -17,11 +17,11 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
     | `get api/v3/anytime/conversations/{id}/messages` | sender |
-    | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
     | `get api/v3/anytime/deletedConversations/{id}/messages` | sender |
     | `get api/v3/anytime/portalConversations/{id}` | contact, messages |
     | `get api/v3/anytime/portalConversations` | contact |
@@ -226,7 +226,7 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/conversations?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/conversations?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/conversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/conversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations?include=lastRepliedBy` | 
 
@@ -242,7 +242,7 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/conversations/{id}?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/conversations/{id}?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/conversations/{id}?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/conversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
@@ -431,7 +431,7 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/deletedConversations?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/deletedConversations?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/deletedConversations?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/deletedConversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/deletedConversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations?include=lastRepliedBy` | 
 
@@ -447,7 +447,7 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/deletedConversations/{id}?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/deletedConversations/{id}?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/deletedConversations/{id}?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/deletedConversations/{id}?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/deletedConversations/{id}?include=messages` |
