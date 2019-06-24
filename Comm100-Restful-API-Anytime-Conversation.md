@@ -18,7 +18,7 @@
     | Endpoints | Support including parameters |
     | - | - |
     | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
     | `get api/v3/anytime/conversations/{id}/messages` | sender |
     | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
     | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
@@ -235,6 +235,7 @@
     | createdBy | `get api/v3/anytime/conversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/anytime/conversations/{id}?include=eventLogs` |
  
 ### Submit a new conversation
 `post api/v3/anytime/conversations` 
@@ -446,6 +447,7 @@
     | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/deletedConversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/anytime/deletedConversations/{id}?include=eventLogs` |
 
 ### List messages of a deleted conversation
 `get api/v3/anytime/deletedConversations/{id}/messages` 
