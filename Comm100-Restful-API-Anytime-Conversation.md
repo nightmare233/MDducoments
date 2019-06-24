@@ -1414,11 +1414,13 @@
 | - | - | - | 
 | `id` | string | id | 
 | `name` | string | channel name | 
+| `contactIdentityType` | string | contact identity type |
 | `icon` | string | icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `messageMaxLength` | int | outgoing message max length |
 | `messageCapability` | string[] | outgoing message support message type |
 | `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
+| `isSupportDirectlyReply` | bool | If support directyly reply to a contact |  
 
 ## endpoints 
 ### List all integrated channels 
