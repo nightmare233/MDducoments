@@ -142,7 +142,7 @@
 | `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
 | `channelAccountId`| string | channel account id | 
-| `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
+| `contactIdentityId`| string | contact identity id |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageUrl` | string | origial message link |
 | `parentId` | string | parent id |
@@ -156,15 +156,6 @@
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
-### contactIdentity 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | id of contact identity | 
-| `contactIdentity` | string | contact identity, email, facebook id, twitter id, sms number... |
-| `name` | string | original channel name |
-| `avatarUrl` | string | original channel avatar url |
-| `originalContactInfoUrl` | string | original channel contact info URL | 
-
 ### content
 | Name | Type | Description | 
 | - | - | - | 
@@ -250,8 +241,7 @@
 ### Submit a new conversation 
 `post api/v3/anytime/conversations` 
 - Parameters 
-    - subject: string, conversation subject, required
-    - channelId: string, channel Id, required 
+    - subject: string, conversation subject, required 
     - relatedType: string, `contact`, `visitor`
     - relatedId: string, contact id or visitor id
     - assignedAgentId: string, agent id
@@ -263,6 +253,8 @@
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
         - type: string, `note`, `message`, required
+        - channelId: string, channel Id, required
+        - contactIdentityId: string, 
         - subject: string, for email message, email subject
         - from: string, for email type message, one of email account address 
         - cc: string, message cc emails
@@ -328,6 +320,7 @@
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
     - type: string, `note`, `message`, required
+    - channelId: string, channel Id, required
     - channelAccountId: string, channel account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
@@ -348,6 +341,14 @@
         - url: string
 - Response 
     - [message](#message) 
+
+### Resend a message 
+`put api/v3/anytime/conversations/messages/{id}/resend` 
+- Parameters  
+    - No parameter
+- Response 
+    - [message](#message) 
+
 
 ### Mark a conversation as read 
 `put api/v3/anytime/conversations/{id}/read` 
