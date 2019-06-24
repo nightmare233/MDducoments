@@ -92,7 +92,6 @@
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
-| `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
@@ -237,25 +236,21 @@
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
  
-### Submit a new conversation 
+### Submit a new conversation
 `post api/v3/anytime/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
-    - relatedType: string, `contact`, `visitor`
-    - relatedId: string, contact id or visitor id
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
-    - receivedBy: string,
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
-        - type: string, `note`, `message`, required
         - channelId: string, channel Id, required
-        - contactIdentityId: string, 
-        - subject: string, for email message, email subject
-        - from: string, for email type message, one of email account address 
+        - channelAccountId: string, channel account id,
+        - contactIdentityId: string, contact identity id,
+        - subject: string, for email message, email subject 
         - cc: string, message cc emails
         - contents: [content](#content)[],
 + Response 
