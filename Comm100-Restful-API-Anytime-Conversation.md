@@ -94,7 +94,6 @@
 | `assignedDepartmentId` | string | assigned department id | 
 | `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
-| `originalLink` | string | original link on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
 | `hasDraft` | boolean | if has draft | 
