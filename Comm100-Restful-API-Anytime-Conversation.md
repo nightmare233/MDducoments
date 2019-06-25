@@ -250,7 +250,7 @@
     - message: the first message of the conversation, required
         - channelId: string, channel Id, required
         - channelAccountId: string, channel account id,
-        - contactIdentityId: string, contact identity id,
+        - contactId: string, contact id,
         - subject: string, for email message, email subject 
         - cc: string, message cc emails
         - contents: [content](#content)[],
@@ -317,8 +317,7 @@
 - Parameters  
     - type: string, `note`, `message`, required
     - channelId: string, channel Id, required
-    - channelAccountId: string, channel account id,
-    - contactIdentityId: string, contact identity id,
+    - channelAccountId: string, channel account id, 
     - subject: string, for email message, email subject
     - cc: string, message cc emails 
     - parentId: string,
