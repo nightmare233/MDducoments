@@ -300,9 +300,10 @@
     | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
 
 ### Get a message 
-`get api/v3/anytime/conversations/messages/{id}` 
+`get api/v3/anytime/conversations{id}/messages/{messageId}` 
 + Parameters 
-    - id: string, message id 
+    - id: string, conversation id 
+    - messageId: string, message id
 + Response 
     - [message](#message)
 + Includes
