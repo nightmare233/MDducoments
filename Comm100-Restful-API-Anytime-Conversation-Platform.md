@@ -28,7 +28,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of contact identity | 
-| `contactIdentity` | string | contact identity, email, facebook id, twitter id, sms number... |
+| `account` | string | contact account, email address, facebook id, twitter id, sms number... |
 | `name` | string | original channel name |
 | `avatarUrl` | string | original channel avatar url |
 | `originalContactInfoUrl` | string | original channel contact info URL | 
