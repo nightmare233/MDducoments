@@ -184,7 +184,14 @@
 | `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
   
- 
+ ### event log
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | event log id | 
+| `conversationId` | integer | id of conversation | 
+| `text` | string | event log text | 
+| `time` | datetime | event time | 
+
 ## endpoints 
 |EndPoint|Note| 
 |---|---|
@@ -198,6 +205,7 @@
 | `post api/v3/anytime/conversations/{id}/merge` | [ Merge a conversation ](#Merge-a-conversation) |
 | `get api/v3/anytime/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-of-openning-conversation) |
 | `get api/v3/anytime/conversations/unreadCount` | [List unread conversations number for views](#List-unread-conversations-number-for-views) |
+| `get api/v3/anytime/conversations/{id}/eventLogs` | [ List conversation event logs ](#List-conversation-event-logs) |
 | `delete api/v3/anytime/conversations/{id}` | [Delete a conversation ](#Delete-a-conversation ) |
 | `delete api/v3/anytime/conversations`  | [Batch delete conversations ](#Batch-delete-conversations ) |
 | `get api/v3/anytime/conversations/{id}/messages` | [List messages of a conversation](#List-messages-of-a-conversation) |
@@ -318,6 +326,13 @@
     - isRead, boolean
 + Response 
     - [conversation](#conversation) list 
+
+### List conversation event logs
+`get api/v3/anytime/conversations/{id}/eventLogs`
+- Parameters 
+    - id: integer, conversation id 
+- Response 
+    - [event log](#event-log)
 
 ### List messages of a conversation 
 `get api/v3/anytime/conversations/{id}/messages` 
@@ -677,21 +692,7 @@
 - Response 
     - http status code
 
-### event log
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | event log id | 
-| `conversationId` | integer | id of conversation | 
-| `text` | string | event log text | 
-| `time` | datetime | event time | 
-
-### List conversation event logs
-`get api/v3/anytime/conversations/{id}/eventLogs`
-- Parameters 
-    - id: integer, conversation id 
-- Response 
-    - [event log](#event-log)
-
+ 
 # Attachments  
 ## objects
 ### attachment 
