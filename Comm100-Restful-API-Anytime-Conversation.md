@@ -570,6 +570,21 @@
 | `time` | datetime | |   
 
 ## endpoints
+
+## endpoints 
+
+|EndPoint|Note| 
+|---|---|
+| `get api/v3/anytime/portalConversations/{id}`  | [Get a portal conversation by id](#Get-a-portal-conversation-by-id)  |
+| `get api/v3/anytime/portalConversations` | [List portal conversations](#List-portal-conversations) |
+| `post api/v3/anytime/portalConversations` | [Submit a portal conversation](#Submit-a-portal-conversation) |
+| `put api/v3/anytime/portalConversations/{id}/close` | [Close a portalConversation](#Close-a-portalConversation) |
+| `put api/v3/anytime/portalConversations/{id}/reopen`  | [Reopen a portalConversation](#Reopen-a-portalConversation) |
+| `get api/v3/anytime/portalConversations/{id}/messages` | [List messages of a portal conversation ](#List-messages-of-a-portal-conversation) |
+| `post api/v3/anytime/portalConversations/{id}/messages` | [Reply a portal conversation](#Reply-a-portal-conversation) |
+| `put api/v3/anytime/portalConversations/{id}/read` | [Contact mark a portal conversation as read](#Contact-mark-a-portal-conversation-as-read) |
+| `put api/v3/anytime/portalConversations/{id}/unread` | [Contact mark a portal conversation as unread](#Contact-mark-a-portal-conversation-as-unread) |
+
 ### Get a portal conversation by id
 `get api/v3/anytime/portalConversations/{id}`
 - Parameters
