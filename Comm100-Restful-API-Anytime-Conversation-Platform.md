@@ -84,3 +84,11 @@
         - url: string 
 - Response 
     - httpStatusCode
+
+### Update Cache
+`put api/v3/anytime/platform/caches`
+- Parameters
+    - cacheItem: `channel`, `channelAccount`, `version`, `app`, `versionChannel`
+    - actionType: `updated`
+- Response
+    - httpStatusCode
