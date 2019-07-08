@@ -1,4 +1,6 @@
+#这个文档作废了， 挪到同一个文档中了。
 #EndPoint List 
+
 | 接口 | 接口类型 | 接口说明 |
 | --- | --- | --- |
 | [/api/v3/anytime/reports/realtime/now](#right-now) | GET | 获取当前的指标 |
