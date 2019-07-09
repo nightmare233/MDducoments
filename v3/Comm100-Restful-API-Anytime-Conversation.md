@@ -66,7 +66,7 @@
 |---|---|---| 
 |[Conversation](#conversations)|/api/v3/anytime/conversations| Conversations | 
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
-|[DeletedConversation](#DeletedConversations)|/api/v3/anytime/deletedConversations| Deleted conversations |
+|[DeletedConversation](#DeletedConversation)|/api/v3/anytime/deletedConversations| Deleted conversations |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
 |[Routing](#Routing)|/api/v3/anytime/routing| Routing | 
