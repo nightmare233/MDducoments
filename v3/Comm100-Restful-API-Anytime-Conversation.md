@@ -211,7 +211,7 @@
 | `put api/v3/anytime/conversations/{id}/read`  | [Mark a conversation as read](#Mark-a-conversation-as-read) |
 | `put api/v3/anytime/conversations/{id}/unread`  | [Mark-a-conversation-as-unread ](#) |
 | `post api/v3/anytime/conversations/{id}/merge` | [ Merge a conversation ](#Merge-a-conversation) |
-| `get api/v3/anytime/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-of-openning-conversation) |
+| `get api/v3/anytime/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-who-are-openning-the-conversation) |
 | `get api/v3/anytime/conversations/unreadCount` | [List unread conversations number for views](#List-unread-conversations-number-for-views) |
 | `get api/v3/anytime/conversations/{id}/eventLogs` | [ List conversation event logs ](#List-conversation-event-logs) |
 | `delete api/v3/anytime/conversations/{id}` | [Delete a conversation ](#Delete-a-conversation ) |
@@ -428,7 +428,7 @@
 + Response 
     - http status code
 
-### Get agents of openning conversation 
+### Get agents who are openning the conversation 
 `get api/v3/anytime/conversations/{id}/agents` 
 + Parameters 
     - id: number, conversation id,
