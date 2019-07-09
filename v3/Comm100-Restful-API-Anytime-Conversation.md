@@ -118,6 +118,7 @@
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the conversation is due to be resolved | 
+| `nextSLABreachAt` | datetime | Timestamp that the next sla breach time | 
 
 ### custom field value
 | Name | Type | Description | 
