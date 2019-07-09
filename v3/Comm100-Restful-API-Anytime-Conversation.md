@@ -109,7 +109,7 @@
 | `createdById` | string | contact id or agent id or visitor id| 
 | `createdByType` | string | agent or contact or system or visitor | 
 | `createdAt` | datetime | create time of conversation | 
-| `lastUpdateAt` | datetime | last updated time of conversation | 
+| `lastUpdatedAt` | datetime | last updated time of conversation | 
 | `lastStatusChangedAt` | datetime | last status change time of conversation | 
 | `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
