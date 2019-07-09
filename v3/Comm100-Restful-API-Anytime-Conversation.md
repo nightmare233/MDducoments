@@ -108,10 +108,10 @@
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
 | `createdById` | string | contact id or agent id or visitor id| 
 | `createdByType` | string | agent or contact or system or visitor | 
-| `createdTime` | datetime | create time of conversation | 
-| `lastActivityTime` | datetime | last activity time of conversation | 
-| `lastStatusChangeTime` | datetime | last status change time of conversation | 
-| `lastRepliedTime` | datetime | last replied time | 
+| `createdAt` | datetime | create time of conversation | 
+| `lastUpdateAt` | datetime | last updated time of conversation | 
+| `lastStatusChangedAt` | datetime | last status change time of conversation | 
+| `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
@@ -507,8 +507,8 @@
 | `isClosed` | boolean | if the portal conversation is closed |
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
-| `createdTime` | datetime | create time |
-| `closedTime` | datetime | close time |
+| `createdAt` | datetime | create time |
+| `closedAt` | datetime | close time |
 
 ### portal conversation message 
 | Name | Type | Description | 
