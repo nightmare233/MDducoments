@@ -279,6 +279,7 @@
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
     | eventLogs | `get api/v3/anytime/conversations/{id}?include=eventLogs` |
+    | lastMessage | `get api/v3/anytime/conversations/{id}?include=lastMessage` |
  
 ### Submit a new conversation
 `post api/v3/anytime/conversations` 
