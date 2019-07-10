@@ -1,5 +1,5 @@
 ## Note 
-- 这2个API是共享平台提供给APP中心调用的，用于转发Message和回调消息发送的结果。不需要开放给客户。
+- 这里的API是共享平台提供给APP中心调用的，用于转发第三方APP过来的外部的Message，回调更新消息发送结果，以及更新缓层，不需要开放给客户。
 
 ## Objects
 
@@ -67,8 +67,6 @@
     - subject: string, for email message, email subject,
     - cc: string, message cc emails, 
     - contents: [content](#content)[],
-    - sendByType: string, `agent`, 
-    - sendById: string, agent id,
 - Response 
     - code: string
     - message: string

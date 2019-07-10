@@ -314,7 +314,7 @@
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
     - isRead: boolean
-    - isActive: boolean
+    - isInMyActive: boolean
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
