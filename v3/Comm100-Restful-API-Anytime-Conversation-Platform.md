@@ -56,7 +56,7 @@
     - channelId： string, channel Id, required,
     - channelAccountId: string, channel account id,
     - contactIdentity: 
-        - contactIdentity: string, 
+        - account: string, 
         - name: string,
         - avatarUrl: string,
         - originalContactInfoUrl: string
