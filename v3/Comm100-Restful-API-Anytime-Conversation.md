@@ -1474,7 +1474,7 @@
 | `messageMaxLength` | int | outgoing message max length |
 | `messageCapability` | string[] | outgoing message support message type |
 | `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
-| `isSupportDirectlyReply` | bool | If support directyly reply to a contact |  
+| `isAllowActiveCreation` | bool | If allow active create message by agent |  
 
 ## endpoints 
 ### List all integrated channels 

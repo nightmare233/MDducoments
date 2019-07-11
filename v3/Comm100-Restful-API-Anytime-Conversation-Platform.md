@@ -90,3 +90,9 @@
     - actionType: `updated`
 - Response
     - httpStatusCode
+
+### Notify the contact is modified
+`post api/v3/anytime/platform/contact/{id}`
+- No Parameters
+- Response
+    - httpStatusCode
