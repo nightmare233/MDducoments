@@ -101,7 +101,7 @@
 | `isRead` | boolean | if the conversation is read | 
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
-| `isInMyActive`| boolean | if open in my active work area by agent | 
+| `isActive`| boolean | if open in my active work area by agent | 
 | `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
@@ -314,7 +314,7 @@
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
     - isRead: boolean
-    - isInMyActive: boolean
+    - isActive: boolean
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
