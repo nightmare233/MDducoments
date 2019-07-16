@@ -490,6 +490,12 @@
 `get api/v2/ticket/portalTickets`
 - Parameters:
     - contactIds, integer array, required
+    - timeFrom: DateTime, last reply time, default search the last 90 days
+    - timeTo: DateTime, last reply time, default value is the current time
+    - conditions: can be ticket system field and custom fields.
+        - field: string, field name
+        - matchType: string 
+        - value: string
 - Response: 
     - portalTickets: [portal ticket](#portal-ticket) list
 - Includes
@@ -498,8 +504,7 @@
     | - | - |
     | contact | `get api/v2/ticket/portalTickets?include=contact` |  
 - Sample
-    - `get api/v2/ticket/portalTickets?contactIds=1&contactIds=2&contactIds=3`
-
+    - `get api/v2/ticket/portalTickets?contactIds=1&contactIds=2&contactIds=3&conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=new`
 ### Submit a portal ticket
 `post api/v2/ticket/portalTickets`
 - Parameters: 
