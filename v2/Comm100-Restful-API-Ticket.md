@@ -454,16 +454,33 @@
 | `id` | integer | id of ticket |
 | `subject` | string | subject |
 | `contactId` | integer | id of the contact who submitted the portal ticket |
-| `isClosed` | boolean | if the portal ticket is closed |
+| `isRead` | boolean | if the ticket is read | 
 | `isReadByContact` | boolean | if the portal ticket is read by contact |
-| `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
-| `createdTime` | datetime | create time |
+| `agentAssigneeId` | integer | agent assignee id | 
+| `departmentAssigneeId` | integer | department assignee id | 
+| `receivedFrom` | string | received email address for email channel | 
+| `channel` | string | `portal`, `email`| 
+| `priority` | string | `urgent`, `high`, `normal`, `low` | 
+| `status` | string | `new`, `pendingInternal`, <br/>`pendingExternal`, `onHold`, `closed` | 
 | `closedTime` | datetime | close time |
+| `createdById` | integer | contact id or agent id | 
+| `createdByType` |  string | agent or contact or system | 
+| `createdTime` | datetime | create time of ticket | 
+| `lastActivityTime` | datetime | last activity time of ticket | 
+| `lastStatusChangeTime` | datetime | last status change time of ticket | 
+| `lastRepliedTime` | datetime | last replied time | 
+| `lastRepliedById` | integer | contact id or agent id | 
+| `lastRepliedByType` | string | `agent` or `contact` or `system`| 
+| `lastMessage`| string | plain text of last message | 
+| `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
 
 ### portal ticket message 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of message | 
+| `ticketId` | integer | id of ticket | 
+| `type` | string | `email`, `reply` | 
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
 | `htmlBody` | string | html body | 
 | `plainBody` | string | plain text body | 
 | `senderId`| integer | id of agent or contact | 
@@ -490,8 +507,10 @@
 `get api/v2/ticket/portalTickets`
 - Parameters:
     - contactIds, integer array, required
-    - timeFrom: DateTime, last reply time, default search the last 90 days
+    - keywords: string
+    - timeFrom: DateTime, last reply time, default search the last 30 days
     - timeTo: DateTime, last reply time, default value is the current time
+    - timeZoneOffset, float, time zone of your time parameters
     - conditions: can be ticket system field and custom fields.
         - field: string, field name
         - matchType: string 
