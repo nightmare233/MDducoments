@@ -118,6 +118,7 @@
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `isEditable`| boolean | if the current agent can update\reply the ticket | 
 | `lastMessage`| string | plain text of last message | 
+| `totalReplies`| int | total replies number | 
 
 ### custom field value
 | Name | Type | Description | 
@@ -472,6 +473,7 @@
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `lastMessage`| string | plain text of last message | 
+| `totalReplies`| int | total replies number | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
 
 ### portal ticket message 
