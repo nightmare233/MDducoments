@@ -510,7 +510,7 @@
 - Parameters:
     - contactIds, integer array, required
     - keywords: string
-    - timeFrom: DateTime, last reply time, default search the last 30 days
+    - timeFrom: DateTime, last reply time, default search the last 90 days
     - timeTo: DateTime, last reply time, default value is the current time
     - timeZoneOffset, float, time zone of your time parameters
     - conditions: can be ticket system field and custom fields.
