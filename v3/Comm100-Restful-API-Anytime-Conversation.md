@@ -114,6 +114,9 @@
 | `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
+| `firstMessageId` | string | the id of the first message | 
+| `lastMessageId` | string | the id of the last message | 
+| `totalReplies`| int | total replies number | 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
@@ -262,6 +265,7 @@
     | contactOrVisitor | `get api/v3/anytime/conversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/conversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations?include=lastRepliedBy` | 
+    | lastMessage | `get api/v3/anytime/conversations?include=lastMessage` |
 
 ### Get a conversation 
 `get api/v3/anytime/conversations/{id}` 
@@ -503,23 +507,53 @@
 ### portal conversation
 | Name | Type | Description |
 | - | - | - |
-| `id` | integer | id of conversation |
-| `subject` | string | subject |
-| `contactId` | string | id of the contact who submitted the portal conversation |
-| `isClosed` | boolean | if the portal conversation is closed |
+| `id` | integer | id of conversation | 
+| `guid` | string | guid of conversation | 
+| `relatedType` | string | `contact`, `visitor`, `agent`| 
+| `relatedId` | string | contact id, visitor id, agent id | 
+| `subject` | string | conversation subject | 
+| `assignedAgentId` | string | assigned agent id | 
+| `assignedDepartmentId` | string | assigned department id | 
+| `originalId` | string | original id on social platform | 
+| `priority` | string | `urgent`, `high`, `normal`, `low` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
+| `isRead` | boolean | if the conversation is read | 
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
-| `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
-| `createdAt` | datetime | create time |
-| `closedAt` | datetime | close time |
+| `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
+| `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
+| `createdById` | string | contact id or agent id or visitor id| 
+| `createdByType` | string | agent or contact or system or visitor | 
+| `createdAt` | datetime | create time of conversation | 
+| `lastUpdatedAt` | datetime | last updated time of conversation | 
+| `lastStatusChangedAt` | datetime | last status change time of conversation | 
+| `lastRepliedAt` | datetime | last replied time | 
+| `lastRepliedById` | integer | contact id or agent id | 
+| `lastRepliedByType` | string | `agent` or `contact` or `system`| 
+| `firstMessageId` | string | the id of the first message | 
+| `lastMessageId` | string | the id of the last message | 
+| `totalReplies`| int | total replies number | 
 
 ### portal conversation message 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message | 
-| `contents` | [content](#content)[] | content array |
+| `conversationId` | integer | id of conversation | 
+| `channelId` | string | channel Id | 
+| `type` | string | `message` |
+| `directType` | string | `receive`, `send` |
+| `channelAccountId`| string | channel account id | 
+| `contactIdentityId`| string | contact identity id |
+| `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
+| `originalMessageUrl` | string | origial message link |
+| `parentId` | string | parent id |
+| `subject` | string | subject | 
+| `cc` | string | cc email addresses |  
+| `contents` | [content](#content)[] | content array | 
+| `isRead`| boolean | if the message read by agent | 
+| `sendStatus` | string | `success`, `sending`, `failed` |
 | `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
-| `time` | datetime | |   
+| `time` | datetime | the sent time of the message | 
 
 ## endpoints 
 
