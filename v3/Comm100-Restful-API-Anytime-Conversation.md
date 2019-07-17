@@ -246,7 +246,7 @@
     - pageIndex: integer
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
-    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=new`, fields can be conversation system fields and custom fields.
+    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, fields can be conversation system fields and custom fields.  
         - field: string, field name
         - matchType: string 
         - value: string

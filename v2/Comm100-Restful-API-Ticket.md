@@ -525,7 +525,7 @@
     | - | - |
     | contact | `get api/v2/ticket/portalTickets?include=contact` |  
 - Sample
-    - `get api/v2/ticket/portalTickets?contactIds=1&contactIds=2&contactIds=3&conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=new`
+    - `get api/v2/ticket/portalTickets?contactIds=1&contactIds=2&contactIds=3&conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, note: pass the option id of dropdownlist field as the value.
 ### Submit a portal ticket
 `post api/v2/ticket/portalTickets`
 - Parameters: 
