@@ -146,7 +146,6 @@
 | `id` | integer | id of message | 
 | `ticketId` | integer | id of ticket | 
 | `type` | string | `note`, `email`, `reply` | 
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
 | `htmlBody` | string | html body of message | 
 | `plainBody` | string | plain text body of message | 
 | `quote` | string | quoted content of the message, only for email message | 
@@ -481,8 +480,6 @@
 | - | - | - | 
 | `id` | integer | id of message | 
 | `ticketId` | integer | id of ticket | 
-| `type` | string | `email`, `reply` | 
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
 | `htmlBody` | string | html body | 
 | `plainBody` | string | plain text body | 
 | `senderId`| integer | id of agent or contact | 
