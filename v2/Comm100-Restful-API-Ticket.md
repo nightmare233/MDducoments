@@ -183,9 +183,9 @@
     - filterId: integer, filter id  
     - tagId: integer, tag id
     - keywords: string
-    - timeFrom: DateTime, last reply time, default search the last 30 days
-    - timeTo: DateTime, last reply time, default value is the current time
-    - timeZoneOffset, float, time zone of your time parameters
+    - timeFrom: DateTime, last reply time, default search the last 30 days, UTC time,
+    - timeTo: DateTime, last reply time, default value is the current time, UTC time,
+    - timeZoneOffset, float, time zone based on your date parameters in ticket conditions. Such data parameters might be @today, @last 7 days for example.
     - pageIndex: integer
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
@@ -507,9 +507,9 @@
 - Parameters:
     - contactIds, integer array, required
     - keywords: string
-    - timeFrom: DateTime, last reply time, default search the last 90 days
-    - timeTo: DateTime, last reply time, default value is the current time
-    - timeZoneOffset, float, time zone of your time parameters
+    - timeFrom: DateTime, last reply time, default search the last 90 days, UTC time
+    - timeTo: DateTime, last reply time, default value is the current time, UTC time
+    - timeZoneOffset, float, time zone based on your date parameters in ticket conditions. Such data parameters might be @today, @last 7 days for example.
     - conditions: can be ticket system field and custom fields.
         - field: string, field name
         - matchType: string 
@@ -692,14 +692,12 @@
 | `url` | string | attachment download link | 
 | `isAvailable` | boolean | if the attachment is available | 
 ## endpoints 
-### Upload attachment 
+### Upload attachment
 `post /api/v2/ticket/attachments` 
-- Content-type
-    - multipart/form-data
 - Parameters 
-    - file: file
+    - file: file, support to upload multiple files at a time
 - Response 
-    - attachment: [attachment](#attachment) 
+    - attachments: [attachment](#attachment) array
     
 ### Update status of attachment
 `Put /api/v2/livechat/attachments/{guid}`
