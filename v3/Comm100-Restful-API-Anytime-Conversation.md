@@ -643,7 +643,6 @@
     - id: integer
     - contactId: string required
     - contents: [content](#content)[], 
-    - attachments: [attachment](#attachment)[], attachment array
 - Response: 
     - [portal conversation message](#portal-conversation-message)
 
