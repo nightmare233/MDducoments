@@ -186,6 +186,7 @@
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
+| `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
@@ -1394,7 +1395,8 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
-| `channelAccount`| string | channel account id | 
+| `channelId` | string | channel id | 
+| `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message link |
