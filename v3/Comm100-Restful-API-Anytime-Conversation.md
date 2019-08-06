@@ -1396,7 +1396,6 @@
 | `id` | string | id of junk | 
 | `channelAccount`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message link |
 | `parentId` | string | parent id |
