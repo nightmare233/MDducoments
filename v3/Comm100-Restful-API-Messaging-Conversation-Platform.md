@@ -51,7 +51,7 @@
 ## EndPoints
 
 ### Post a message 
-`post api/v3/anytime/platform/conversations/messages` 
+`post api/v3/messaging/platform/conversations/messages` 
 - Parameters  
     - channelId： string, channel Id, required,
     - channelAccountId: string, channel account id,
@@ -72,7 +72,7 @@
     - message: string
 
 ### Callback result
-`put api/v3/anytime/platform/conversations/messages/{id}`
+`put api/v3/messaging/platform/conversations/messages/{id}`
 - Parameters
     - sendStatus: string, `success`, `failed`
     - originalMessageId: string, 
@@ -84,7 +84,7 @@
     - httpStatusCode
 
 ### Update Cache
-`put api/v3/anytime/platform/caches`
+`put api/v3/messaging/platform/caches`
 - Parameters
     - cacheItem: `channel`, `channelAccount`, `version`, `app`, `versionChannel`
     - actionType: `updated`
@@ -92,7 +92,7 @@
     - httpStatusCode
 
 ### Notify the contact is modified
-`post api/v3/anytime/platform/contact/{id}`
+`post api/v3/messaging/platform/contact/{id}`
 - No Parameters
 - Response
     - httpStatusCode
