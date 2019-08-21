@@ -516,6 +516,7 @@
         - value: string
 
     Here is the list of match types and values supported by ticket system field.    
+    
     | Field | Match Type | Values |
     | - | - | - |
     | Ticket Id | Is, IsNot  | number |
@@ -524,7 +525,7 @@
     | Agent Assignee | Is, IsNot  | Agent Id |
     | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
-    | Channel | Is, IsNot  | `portal`, `email`, `chat`, `offlineMessage` | 
+    | Channel | Is, IsNot  | number, 7:`portal`, 1:`email`, 2:`chat`,3:`offlineMessage` | 
     | Date Created | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Last Activity Time | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Last Status Change Time | Is, IsNot, Before, After | time format: `2019-01-03` |
@@ -534,6 +535,7 @@
     | @Mentioned Agent | Is, IsNot | number, agent Id |
     
     Here is the list of match types and values supported by ticket custom field.    
+
     | Field DataType | Match Type | Values |
     | - | - | - |
     | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
