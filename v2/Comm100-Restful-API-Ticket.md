@@ -542,7 +542,7 @@
     | Drop-down list | Is, IsNot | option text |
     | Check-box list | Is, IsNot | option text |
     | Radio button | Is, IsNot | option text |
-    | Check-box | Is, IsNot | `true`, `false` |
+    | Check-box | Is, IsNot | `true` or 1, `false` or 0 |
     | Single-line text box | Contains, NotContains | string |
     | Multi-line text box | Contains, NotContains | string |
     | Agent | Is, IsNot | agent id |
