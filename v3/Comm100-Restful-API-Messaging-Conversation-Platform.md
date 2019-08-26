@@ -75,6 +75,7 @@
 `put api/v3/messaging/platform/conversations/messages/{id}`
 - Parameters
     - sendStatus: string, `success`, `failed`
+    - errorMessage: string, error message
     - originalMessageId: string, 
     - originalMessageUrl: string,
     - content[]: 

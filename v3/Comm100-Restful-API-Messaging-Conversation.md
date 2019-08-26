@@ -383,20 +383,6 @@
 - Response 
     - [message](#message) 
 
-### Update a message 
-`put api/v3/messaging/conversations/{id}/messages/{messageId}` 
-- Parameters  
-    - id: number, conversation id,
-    - messageId: string, message id,
-    - sendStatus: string, `success`, `sending`, `failed` 
-    - originalMessageId: string, 
-    - originalMessageUrl: string,
-    - content[]: 
-        - id: string
-        - url: string
-- Response 
-    - [message](#message) 
-
 ### Resend a message 
 `put api/v3/messaging/conversations/{id}/messages/{messageId}/resend` 
 - Parameters  
