@@ -731,8 +731,9 @@
 ## endpoints 
 
 ### Get attachment
+`Get /api/v2/ticket/attachments/{guid}`
 #### Parameters:
-- id - guid, attachment id
+- guid - attachment guid
 #### Response
 - attachment: [attachment](#attachment) 
 
