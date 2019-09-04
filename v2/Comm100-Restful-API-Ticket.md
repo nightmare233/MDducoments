@@ -736,6 +736,8 @@
 - guid - attachment guid
 #### Response
 - attachment: [attachment](#attachment) 
+#### Note
+- This API does not apply to Live Chat attachments or Offline Message attachments
 
 ### Upload attachment
 `post /api/v2/ticket/attachments` 
