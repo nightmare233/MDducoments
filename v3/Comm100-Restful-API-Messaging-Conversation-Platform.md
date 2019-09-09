@@ -53,15 +53,16 @@
 ### Post a message 
 `post api/v3/messaging/platform/conversations/messages` 
 - Parameters  
-    - channelId： string, channel Id, required,
+  
     - channelAccountId: string, channel account id,
     - isReceive: bool, if the message sent from contact
     - contactIdentity: 
-        - account: string, 
+        - channelaccount: string, 
         - name: string,
         - avatarUrl: string,
         - originalContactInfoUrl: string
     - message
+        - channelId： string, channel Id, required,
         - originalParentId: string, 
         - originalConversationId: string
         - originalMessageId: string,
