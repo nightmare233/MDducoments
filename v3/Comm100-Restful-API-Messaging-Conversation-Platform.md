@@ -3,36 +3,6 @@
 
 ## Objects
 
-### message 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | id of message | 
-| `channelId` | string | channel id | 
-| `channelAccountId`| string | channel account id | 
-| `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
-| `originalConversationId` | integer | id of conversation | 
-| `originalMessageId` | string | original message id|
-| `originalMessageUrl` | string | origial message url |
-| `originalParentId` | string | parent id |
-| `subject` | string | subject | 
-| `cc` | string | cc email addresses |  
-| `contents` | [content](#content)[] | content array| 
-| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
-| `isRead`| boolean | if the message read by agent | 
-| `sendStatus` | string | `sucess`, `sending`, `failed` |
-| `senderId`| string | id of contact | 
-| `senderType`| string | `contact` | 
-| `time` | datetime | the sent time of the message | 
- 
-### contactIdentity 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | id of contact identity | 
-| `channelAccount` | string | contact account, email address, facebook id, twitter id, sms number... |
-| `name` | string | original channel name |
-| `avatarUrl` | string | original channel avatar url |
-| `originalContactInfoUrl` | string | original channel contact info URL | 
-
  ### content
 | Name | Type | Description | 
 | - | - | - | 
@@ -53,9 +23,9 @@
 ### Post a message 
 `post api/v3/messaging/platform/conversations/messages` 
 - Parameters  
-  
     - channelAccountId: string, channel account id,
     - isReceive: bool, if the message sent from contact
+    - createTime: datetime
     - contactIdentity: 
         - channelaccount: string, 
         - name: string,
@@ -66,11 +36,10 @@
         - originalParentId: string, 
         - originalConversationId: string
         - originalMessageId: string,
-        - originalMessageUrl: string,
+        - originalUrl: string,
         - subject: string, for email message, email subject,
         - cc: string, message cc emails, 
         - contents: [content](#content)[],
-        - createTime: datetime
 - Response 
     - guid: string, message guid
 
