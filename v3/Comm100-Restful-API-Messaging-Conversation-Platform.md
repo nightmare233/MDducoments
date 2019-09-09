@@ -28,7 +28,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of contact identity | 
-| `account` | string | contact account, email address, facebook id, twitter id, sms number... |
+| `channelAccount` | string | contact account, email address, facebook id, twitter id, sms number... |
 | `name` | string | original channel name |
 | `avatarUrl` | string | original channel avatar url |
 | `originalContactInfoUrl` | string | original channel contact info URL | 
@@ -55,21 +55,23 @@
 - Parameters  
     - channelId： string, channel Id, required,
     - channelAccountId: string, channel account id,
+    - isReceive: bool, if the message sent from contact
     - contactIdentity: 
         - account: string, 
         - name: string,
         - avatarUrl: string,
         - originalContactInfoUrl: string
-    - originalParentId: string, 
-    - originalConversationId: string
-    - originalMessageId: string,
-    - originalMessageUrl: string,
-    - subject: string, for email message, email subject,
-    - cc: string, message cc emails, 
-    - contents: [content](#content)[],
+    - message
+        - originalParentId: string, 
+        - originalConversationId: string
+        - originalMessageId: string,
+        - originalMessageUrl: string,
+        - subject: string, for email message, email subject,
+        - cc: string, message cc emails, 
+        - contents: [content](#content)[],
+        - createTime: datetime
 - Response 
-    - code: string
-    - message: string
+    - guid: string, message guid
 
 ### Callback result
 `put api/v3/messaging/platform/conversations/messages/{id}`
