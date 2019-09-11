@@ -588,8 +588,8 @@
     | - | - | - |
     | Conversation Id | Is, IsNot  | number |
     | Subject | Contains, NotContains  | string |
-    | Department Assignee | Is, IsNot  | Department Id |
-    | Agent Assignee | Is, IsNot  | Agent Id |
+    | Assigned Department | Is, IsNot  | Department Id |
+    | Assigned Agent | Is, IsNot  | Agent Id |
     | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
