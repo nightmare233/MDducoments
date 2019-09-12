@@ -89,7 +89,7 @@
 | - | - | - | 
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
-| `relatedType` | string | `contact`, `visitor`, `agent`| 
+| `relatedType` | string | `contact`, `visitor`, `agent` | 
 | `relatedId` | string | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
@@ -179,8 +179,9 @@
 | `title` | string | media title| 
 | `latitude` | string | latitude | 
 | `longitude` | string | longitude | 
-| `scale` | string | scale for location |
-| `desc` | string | description | 
+| `mime` | string | mime type |
+| `previewUrl` | string | preview URL of Video |
+| `desc` | string | description |
 
 ### conversation draft 
 | Name | Type | Description | 
@@ -250,6 +251,46 @@
         - field: string, field name
         - matchType: string 
         - value: string
+
+ Here is the list of match types and values supported by ticket system field.    
+    
+    | Field | Match Type | Values |
+    | - | - | - |
+    | Conversation Id | Is, IsNot  | number |
+    | Subject | Contains, NotContains  | string |
+    | Assigned Department | Is, IsNot  | Department Id |
+    | Assigned Agent | Is, IsNot  | Agent Id |
+    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
+    | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
+    | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Status Changed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Closed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
+    | @Mentioned Agent | Is, IsNot | number, agent Id |
+    | First Message Channel | Is, IsNot | guid, channel Id |
+    | First Message Channel Account | Is, IsNot | guid, channel account Id |
+    | last Message Channel | Is, IsNot | guid, channel Id |
+    | last Message Channel Account | Is, IsNot | guid, channel account Id |
+    | is Multi Channel | Is, IsNot | bool, if the conversation is multi channel conversation |
+
+    Here is the list of match types and values supported by ticket custom field.    
+
+    | Field DataType | Match Type | Values |
+    | - | - | - |
+    | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
+    | Drop-down list | Is, IsNot | option text |
+    | Check-box list | Is, IsNot | option text |
+    | Radio button | Is, IsNot | option text |
+    | Check-box | Is, IsNot | `true` or 1, `false` or 0 |
+    | Single-line text box | Contains, NotContains | string |
+    | Multi-line text box | Contains, NotContains | string |
+    | Agent | Is, IsNot | agent id |
+    | Department | Is, IsNot | department id |
+    | Link | Contains, NotContains | string |
+    | Url | Contains, NotContains | string |
+
+
 + Response 
     - conversations: [conversation](#conversations) list, 
     - total: integer, total number of conversations 
@@ -581,23 +622,28 @@
         - field: string, field name
         - matchType: string 
         - value: string
-
+ 
     Here is the list of match types and values supported by ticket system field.    
     
     | Field | Match Type | Values |
     | - | - | - |
-    | Conversation Id | Is, IsNot  | number |
+       | Conversation Id | Is, IsNot  | number |
     | Subject | Contains, NotContains  | string |
     | Assigned Department | Is, IsNot  | Department Id |
     | Assigned Agent | Is, IsNot  | Agent Id |
     | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Activity Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Status Change Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Close Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Status Changed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Closed At | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
     | @Mentioned Agent | Is, IsNot | number, agent Id |
+    | First Message Channel | Is, IsNot | guid, channel Id |
+    | First Message Channel Account | Is, IsNot | guid, channel account Id |
+    | last Message Channel | Is, IsNot | guid, channel Id |
+    | last Message Channel Account | Is, IsNot | guid, channel account Id |
+    | is Multi Channel | Is, IsNot | bool, if the conversation is multi channel conversation |
     
     Here is the list of match types and values supported by ticket custom field.    
 
