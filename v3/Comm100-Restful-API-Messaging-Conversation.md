@@ -407,7 +407,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v3/messaging/conversations/messages/{id}?include=sender` |
+    | sender | `get api/v3/messaging/conversations/{id}/messages/{messageId}?include=sender` |
 
 ### Reply a message 
 `post api/v3/messaging/conversations/{id}/messages` 
