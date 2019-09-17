@@ -252,7 +252,7 @@
         - matchType: string 
         - value: string
 
- Here is the list of match types and values supported by ticket system field.    
+    Here is the list of match types and values supported by ticket system field.    
     
     | Field | Match Type | Values |
     | - | - | - |
