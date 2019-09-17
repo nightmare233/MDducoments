@@ -1371,6 +1371,7 @@
 `get api/v3/messaging/fields` 
 + Parameters
     - isSystemField: boolean, if is system field, optional
+    - usageType: string, `all`, `views`, `routingRules`, `SLA`, `triggers`， optional, default `all`
 + Response 
     - [field](#field) list 
 
