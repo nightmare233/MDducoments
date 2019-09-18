@@ -1585,8 +1585,8 @@
 | `contactIdentityType` | string | contact identity type |
 | `icon` | string | icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
-| `messageMaxLength` | int | outgoing message max length |
-| `messageCapability` | string[] | outgoing message support message type |
+| `outgoingMessageMaxLength` | int | outgoing message max length |
+| `outgoingMessageCapability` | string[] | outgoing message support message type |
 | `ifSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
 | `ifAllowActiveCreation` | bool | If allow active create message by agent |  
 | `ifDisplaySubject` | bool | If display subject in agent console |  
