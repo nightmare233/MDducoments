@@ -1582,12 +1582,12 @@
 | `id` | string | id | 
 | `appId` | string | channel app id | 
 | `name` | string | channel name | 
-| `contactIdentityType` | string | contact identity type |
+| `contactIdentityTypeId` | string | contact identity type |
 | `icon` | string | icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `outgoingMessageMaxLength` | int | outgoing message max length |
 | `outgoingMessageCapability` | string[] | outgoing message support message type |
-| `ifSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
+| `ifSupportDiffAccountReply` | bool | If support reply with different channel account |  
 | `ifAllowActiveCreation` | bool | If allow active create message by agent |  
 | `ifDisplaySubject` | bool | If display subject in agent console |  
 | `ifDisplayContact` | bool | If display contact in agent console |  
