@@ -35,26 +35,26 @@
         ``` javascript
         {
             "id": 1,
-            "assignedAgentId": 1,
+            "assignedAgentId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "assignedAgent": {  //included the agent object
-                "id": 1,
+                "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
                 //...
             },
             "relatedType": "contact",
-            "relatedId":2,
-            "createdById": 3,
+            "relatedId":"f9928d68-92e6-4487-a2e8-8234fc9d1f43",
+            "createdById": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "createdByType": "agent",
             "createdBy": {  //included the agent or contact object according to the createdByType.
-                "id": 3,
+                "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
                 //...
             },
             "messages":[    //included the messages.
                 {
-                    "id": 56, 
+                    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1fe8", 
                     //...
                 },
                 {
-                        "id": 57, 
+                        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1d48", 
                     //...
                 }
             ]
@@ -90,13 +90,13 @@
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
 | `relatedType` | string | `contact`, `visitor`, `agent` | 
-| `relatedId` | string | contact id, visitor id, agent id | 
+| `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
 | `hasDraft` | boolean | if has draft | 
 | `isDeleted` | boolean | if deleted | 
 | `isRead` | boolean | if the conversation is read | 
@@ -260,7 +260,7 @@
     | Subject | Contains, NotContains  | string |
     | Assigned Department | Is, IsNot  | Department Id |
     | Assigned Agent | Is, IsNot  | Agent Id |
-    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
+    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
@@ -334,7 +334,7 @@
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
-    - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
+    - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
@@ -353,11 +353,11 @@
     - id: integer, conversation id
     - subject: string, conversation subject
     - relatedType: string, `contact`, `visitor`
-    - relatedId: string, contact id or visitor id
+    - relatedId: guid, contact id or visitor id
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
-    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
+    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
     - isRead: boolean
     - isActive: boolean
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
@@ -537,13 +537,13 @@
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
-| `relatedId` | string | contact id, visitor id, agent id | 
+| `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
 | `isRead` | boolean | if the conversation is read | 
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
@@ -631,7 +631,7 @@
     | Subject | Contains, NotContains  | string |
     | Assigned Department | Is, IsNot  | Department Id |
     | Assigned Agent | Is, IsNot  | Agent Id |
-    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
+    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
