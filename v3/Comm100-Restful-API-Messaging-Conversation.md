@@ -1541,14 +1541,15 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `name` | string | account name |   
-| `channelId` | string | channel id |   
+| `accountName` | string | account name |   
+| `appId` | string | app id |
+| `accountOriginalId` | string | channel account original id |
+| `isEnabled` | bool | is  enabled |
 
 ## endpoints 
 ### List channel accounts 
 `get api/v3/messaging/channelAccounts` 
 - Parameters
-    - channelId: string, optional
 - Response 
     - [channelAccount](#channelAccount)[] 
 
@@ -1583,7 +1584,7 @@
 | `appId` | string | channel app id | 
 | `name` | string | channel name | 
 | `contactIdentityTypeId` | string | contact identity type |
-| `icon` | string | icon url |     
+| `icon` | string | identity type icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `outgoingMessageMaxLength` | int | outgoing message max length |
 | `outgoingMessageCapability` | string[] | outgoing message support message type |
