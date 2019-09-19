@@ -769,6 +769,7 @@
     | contactOrVisitor | `get api/v3/messaging/deletedConversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/messaging/deletedConversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/messaging/deletedConversations?include=lastRepliedBy` | 
+    | lastMessage | `get api/v3/messaging/deletedConversations?include=lastMessage` | 
 
 ### Get a deleted conversation 
 `get api/v3/messaging/deletedConversations/{id}` 
