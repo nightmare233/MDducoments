@@ -1545,6 +1545,7 @@
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | is  enabled |
+| `channelIds` | string[] | channel id array|
 
 ## endpoints 
 ### List channel accounts 
@@ -1582,6 +1583,7 @@
 | - | - | - | 
 | `id` | string | id | 
 | `appId` | string | channel app id | 
+| `channelAccountIds` | string[] | channel account id array |
 | `name` | string | channel name | 
 | `contactIdentityTypeId` | string | contact identity type |
 | `icon` | string | identity type icon url |     
