@@ -1541,7 +1541,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `accountName` | string | account name |   
+| `name` | string | account name |   
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | is  enabled |
