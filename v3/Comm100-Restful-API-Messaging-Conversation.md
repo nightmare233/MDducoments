@@ -1542,7 +1542,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `name` | string | account name |   
+| `accountName` | string | account name |   
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | is  enabled |
@@ -1565,7 +1565,7 @@
 ### Update an channel account 
 `put api/v3/messaging/channelAccounts/{id}` 
 - Parameters
-    - name: string 
+    - accountName: string 
 - Response 
     - [channelAccount](#channelAccount)
 
