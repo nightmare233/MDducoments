@@ -1555,6 +1555,13 @@
 - Response 
     - [channelAccount](#channelAccount)[] 
 
+### Get channel account by id
+`get api/v3/messaging/channelAccounts/{id}` 
+- Parameters
+    - id: string
+- Response 
+    - [channelAccount](#channelAccount) 
+
 ### Add an channel account 
 `post api/v3/messaging/channelAccounts` 
 - Parameters
