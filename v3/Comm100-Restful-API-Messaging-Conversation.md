@@ -19,7 +19,7 @@
     | - | - |
     | `get api/v3/messaging/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
     | `get api/v3/messaging/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
-    | `get api/v3/messaging/conversations/{id}/messages` | sender |
+    | `get api/v3/messaging/conversations/{id}/messages` | sender, messageContact |
     | `get api/v3/messaging/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
     | `get api/v3/messaging/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
     | `get api/v3/messaging/deletedConversations/{id}/messages` | sender |
@@ -395,6 +395,7 @@
     | Includes | Description |
     | - | - |
     | sender | `get api/v3/messaging/conversations/{id}/messages?include=sender` |
+    | messagecontact | `get api/v3/messaging/conversations/{id}/messages?include=messagecontact` |
 
 ### Get a message 
 `get api/v3/messaging/conversations{id}/messages/{messageId}` 
