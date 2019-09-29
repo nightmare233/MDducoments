@@ -1546,7 +1546,8 @@
 | `accountName` | string | account name |   
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
-| `isEnabled` | bool | is  enabled |
+| `isEnabled` | bool | if is enabled |
+| `isDefault` | bool | if is default channel account |
 | `channelIds` | string[] | channel id array|
 
 ## endpoints 
