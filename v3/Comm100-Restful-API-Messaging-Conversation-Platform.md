@@ -26,7 +26,7 @@
     - channelAccountId: string, channel account id,
     - isReceive: bool, if the message sent from contact
     - createTime: datetime
-    - contactIdentity: 
+    - channelAppContactIdentity: 
         - channelaccount: string, 
         - name: string,
         - avatarUrl: string,
