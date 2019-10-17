@@ -436,9 +436,10 @@
     - ticket: [ticket](#ticket) 
 
 ### List unread tickets number for filters 
-`get api/v2/ticket/tickets/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
+`get api/v2/ticket/tickets/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}&timeZoneOffset=480`
 - Parameters 
-    - filterIds: filter id array 
+    - filterIds: filter id array
+    - timeZoneOffset, float, time zone based on your date parameters in ticket conditions. Such date parameters might be @today, @last 7 days for example.
 - Response 
     - allCount: integer, all unread ticket number. 
     - array including: 

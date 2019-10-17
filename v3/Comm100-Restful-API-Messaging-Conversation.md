@@ -965,9 +965,8 @@
     - http status code
 
 ### Update routing
-`put api/v3/messaging/routing/{id}`
+`put api/v3/messaging/routing/`
 + Parameters
-    - id: string
     - isEnabled: boolean
     - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
