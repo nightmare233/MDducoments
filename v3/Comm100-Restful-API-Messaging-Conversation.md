@@ -1349,8 +1349,8 @@
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
 | `options` | [field option](#fieldoption)[] | value option | 
-| `chatFieldMapping` | string | chat field id |
-| `offlineMessageFieldMapping` | string | offline message field id |
+| `chatFieldMapping` | string | chat field name |
+| `offlineMessageFieldMapping` | string | offline message field name |
 
 ### fieldOption 
 | Name | Type | Description | 
@@ -1364,8 +1364,8 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `fieldId` | string | field id | 
-| `chatFieldMapping` | string | chat field id |
-| `offlineMessageFieldMapping` | string | offline message field id |
+| `chatFieldMapping` | string | chat field name |
+| `offlineMessageFieldMapping` | string | offline message field name |
 
 ## endpoints 
 ### List fields and their options 
