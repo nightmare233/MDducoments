@@ -420,6 +420,7 @@
     - cc: string, message cc emails 
     - parentId: string,
     - contents: [content](#content)[]
+    - time: datetime, send time
 - Response 
     - [message](#message) 
 
@@ -719,6 +720,7 @@
     - id: integer
     - contactId: string required
     - contents: [content](#content)[], 
+    - time: datetime, send time
 - Response: 
     - [portal conversation message](#portal-conversation-message)
 
