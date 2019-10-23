@@ -1548,7 +1548,7 @@
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | if is enabled |
-| `isDefault` | bool | if is default channel account |
+| `screenName` | bool | screen name |
 | `channelIds` | string[] | channel id array|
 
 ## endpoints 
@@ -1614,6 +1614,7 @@
 | `ifHasNote` | bool | If has note |  
 | `ifEnableSaveAsDraft` | bool | If enable save draft |  
 | `ifAllowAtFeature` | bool | If allow @ |  
+| `ifAllowActiveReply` | bool | If allow active reply |  
 
 
 ## endpoints 
