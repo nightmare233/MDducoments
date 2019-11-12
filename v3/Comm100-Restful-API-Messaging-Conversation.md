@@ -159,7 +159,9 @@
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
+| `bcc` | string | bcc email addresses |  
 | `contents` | [content](#content)[] | content array | 
+| `quote` | string | quote content | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
