@@ -1,3 +1,7 @@
+  | Change Version | API Version | Change nots | Change Date | Author |
+  | - | - | - | - | - |
+  | 3.0 | v3 | Messaging Restful API | 2019-5-1 | Frank |  
+
 # Authentication 
 - Comm100 messaging Conversation API provides 2 authentication methods: 
     - API_key Authentication 
