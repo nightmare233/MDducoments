@@ -1,6 +1,7 @@
   | Change Version | API Version | Change nots | Change Date | Author |
   | - | - | - | - | - |
   | 3.0 | v3 | Messaging Restful API | 2019-5-1 | Frank |  
+  | 3.1 | v3 | Social bot for messaging | 2019-11-18 | Frank |  
 
 # Authentication 
 - Comm100 messaging Conversation API provides 2 authentication methods: 
@@ -120,6 +121,8 @@
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `firstMessageId` | string | the id of the first message | 
+| `firstMessageChannelId` | string | the channel id of the first message | 
+| `firstMessageChannelAccountId` | string | the channel account id of the first message | 
 | `lastMessageId` | string | the id of the last message | 
 | `totalReplies`| int | total replies number | 
 | `slaPolicyId` | string | SLA id of this conversation matched | 

@@ -1,3 +1,7 @@
+  | Change Version | API Version | Change nots | Change Date | Author |
+  | - | - | - | - | - |
+  | 3.0 | v3 | Messaging Restful API | 2019-5-1 | Frank |  
+
 # Authentication 
 - Comm100 messaging Conversation API provides 2 authentication methods: 
     - API_key Authentication 
@@ -92,7 +96,8 @@
 | `relatedType` | string | `contact`, `visitor`, `agent` | 
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | assigned agent id | 
+| `assignedType` | string | `agent`, `bot` | 
+| `assignedId` | string | assigned agent id or bot id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -173,7 +178,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickreply`, `webview` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
