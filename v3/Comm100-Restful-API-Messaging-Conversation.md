@@ -40,7 +40,7 @@
         ``` javascript
         {
             "id": 1,
-            "assignedAgentId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+            "assignedId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "assignedAgent": {  //included the agent object
                 "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
                 //...
@@ -97,7 +97,8 @@
 | `relatedType` | string | `contact`, `visitor`, `agent` | 
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | assigned agent id | 
+| `assignedType` | string | `agent`, `bot` | 
+| `assignedId` | string | assigned agent id or bot id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -180,7 +181,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickreply`, `webview` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -340,7 +341,7 @@
 `post api/v3/messaging/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
-    - assignedAgentId: string, agent id
+    - assignedId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
@@ -363,7 +364,8 @@
     - subject: string, conversation subject
     - relatedType: string, `contact`, `visitor`
     - relatedId: guid, contact id or visitor id
-    - assignedAgentId: string, agent id
+    - assignedType: string, `agent`, `bot`
+    - assignedId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
@@ -380,7 +382,8 @@
     - ids: integer[], conversation id array
     - status, string
     - priority, string
-    - assignedAgentId, string
+    - assignedType: string, `agent`, `bot`
+    - assignedId: string, agent id
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
@@ -550,7 +553,8 @@
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | assigned agent id | 
+| `assignedType` | string | `agent` or `bot` | 
+| `assignedId` | string | assigned agent id or bot id| 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
