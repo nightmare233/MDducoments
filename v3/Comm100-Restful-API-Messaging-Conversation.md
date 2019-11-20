@@ -98,7 +98,8 @@
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedType` | string | `agent`, `bot` | 
-| `assignedId` | string | assigned agent id or bot id | 
+| `assignedBotId` | string | assigned bot id | 
+| `assignedAgentId` | string | assigned agent id| 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -181,7 +182,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickreply`, `webview` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -365,7 +366,8 @@
     - relatedType: string, `contact`, `visitor`
     - relatedId: guid, contact id or visitor id
     - assignedType: string, `agent`, `bot`
-    - assignedId: string, agent id
+    - assignedBotId: string, bot id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
@@ -383,7 +385,8 @@
     - status, string
     - priority, string
     - assignedType: string, `agent`, `bot`
-    - assignedId: string, agent id
+    - assignedBotId: string, bot id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
@@ -554,7 +557,8 @@
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedType` | string | `agent` or `bot` | 
-| `assignedId` | string | assigned agent id or bot id| 
+| `assignedAgentId` | string | assigned agent id | 
+| `assignedBotId` | string | assigned bot id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
