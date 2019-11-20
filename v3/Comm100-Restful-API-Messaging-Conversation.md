@@ -946,10 +946,14 @@
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
+| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
 | `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
+| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
 
 ### customRule
 | Name | Type | Description |
@@ -962,7 +966,8 @@
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
 | `routeWithPriority` | string | conversation priority enum number|
-
+| `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
+| `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
 ## endpoints
 ### get routing
@@ -986,10 +991,14 @@
     - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
     - simpleRouteToId: string
+    - simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOnline: integer
+    - simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOffline: integer
     - simpleRouteWithPriority: string,
     - matchFailedType: string, department and agent
     - matchFailedToId: string
     - matchFailedWithPriority: string
+    - matchFailedPercentageOfNewConversationToBotWhenAgentsAreOnline: integer
+    - matchFailedPercentageOfNewConversationToBotWhenAgentsAreOffline: integer 
 + Response
     - [routing](#routing)
 
@@ -1562,7 +1571,11 @@
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | if is enabled |
 | `screenName` | bool | screen name |
-| `channelIds` | string[] | channel id array|
+| `channelIds` | string[] | channel id array |
+| `isEnabledBot` | bool | if is enabled bot |
+| `selectedBot` | string | selected bot id |
+| `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
+| `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
 ## endpoints 
 ### List channel accounts 
@@ -1749,8 +1762,8 @@
         - name: string,
     	- createdConversations: integer,
     	- createdConversationsPercentage:  float,	
-    	- closedConversations: integer,
-    	- closedConversationsPercentage: float,
+    	- resolvedConversations: integer,
+    	- resolvedConversationsPercentage: float,
     	- repliedConversations: integer,
     	- repliedConversationsPercentage: float,
     	- reopenedConversations: integer,
@@ -1760,7 +1773,7 @@
     	- startTime: string,
     	- endTime: string,
 	- totalCreatedConversations: integer,
-	- totalClosedConversations: integer,
+	- totalResolvedConversations: integer,
 	- totalRepliedConversations: integer,
 	- totalReopenedConversations: integer,
 	- totalOpenConversations: integer
