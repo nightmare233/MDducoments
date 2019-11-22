@@ -208,6 +208,7 @@
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
+| `quote` | string | email quote | 
 | `contents` | [content](#content)[] | content array | 
 | `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
