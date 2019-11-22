@@ -182,7 +182,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickReply` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webview`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -193,6 +193,9 @@
 | `mime` | string | mime type |
 | `previewUrl` | string | preview URL of Video |
 | `desc` | string | description |
+| `fallbackurl` | string | fallback url |
+| `size` | string | |
+| `payload` | string | |
 
 ### conversation draft 
 | Name | Type | Description | 
