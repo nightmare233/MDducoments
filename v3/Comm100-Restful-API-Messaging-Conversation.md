@@ -1695,7 +1695,8 @@
 ### realtime of lastest sereral days
 - `GET /api/v3/messaging/reports/realtime/bytime`
 - Parameters:
-    - days: int, days number, maximum number 15. 
+    - days: integer, days number, maximum number 15
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
  	- createdConversations: integer
 	- resolvedConversations: integer
@@ -1705,10 +1706,11 @@
 ### realtime department
 `GET /api/v3/messaging/reports/realtime/departments`
 - Parameters：
-    - no parameter
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
-		- departmentId: string,
+		- id: string, department id,
+        - name: string, department name,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
 		- todayResolvedConversations: integer,
@@ -1726,7 +1728,8 @@
 	- viewValue: integer,
 - Response:
 	- dataList: 
-		- agentId: string,
+		- id: string, agent id,
+        - name: string, agent name,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
 		- todayResolvedConversations: integer,
@@ -1746,7 +1749,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： integer,
+    - timezoneOffset： integer,
     - dateFormat: string,
 - Response:csv file
 
@@ -1760,6 +1763,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	    - id: string,
@@ -1792,7 +1796,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset：integer,
+    - timezoneOffset：integer,
     - dateFormat: string,
 - Response:csv file
 
@@ -1805,6 +1809,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList: 
 	    - id: string,
@@ -1840,7 +1845,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： integer,
+    - timezoneOffset： integer,
     - dateFormat: string,
 - Response:csv file
 
@@ -1852,7 +1857,8 @@
     - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
 	- viewValue: string,
     - timeUnit: string,
-    - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
+    - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	    - id: string,
@@ -1876,7 +1882,8 @@
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
-    - dimensionType: string, `slaPolicies`, `agent`, `department`
+    - dimensionType: string, `slaPolicies`, `agent`, `department`,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	    - id: string,
@@ -1895,7 +1902,8 @@
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
-    - dimensionType: string, `slaPolicies`, `agent`, `department`
+    - dimensionType: string, `slaPolicies`, `agent`, `department`,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	   	- id: string,
