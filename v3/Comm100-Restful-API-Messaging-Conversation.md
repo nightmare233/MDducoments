@@ -194,8 +194,8 @@
 | `previewUrl` | string | preview URL of Video |
 | `desc` | string | description |
 | `fallbackurl` | string | fallback url |
-| `size` | string | |
-| `payload` | string | |
+| `webviewHeight` | string | webview height：compact/tall/full|
+| `payload` | string | payload data |
 
 ### conversation draft 
 | Name | Type | Description | 
@@ -346,7 +346,7 @@
 `post api/v3/messaging/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
-    - assignedId: string, agent id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
@@ -954,14 +954,14 @@
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
-| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
+| `percentageToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
+| `percentageToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
 | `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
-| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
+| `matchFailedPercentageToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
+| `matchFailedPercentageToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
 
 ### customRule
 | Name | Type | Description |
@@ -974,8 +974,8 @@
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
 | `routeWithPriority` | string | conversation priority enum number|
-| `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
-| `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
+| `percentageToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
+| `percentageToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
 ## endpoints
 ### get routing
@@ -1581,7 +1581,7 @@
 | `screenName` | bool | screen name |
 | `channelIds` | string[] | channel id array |
 | `isEnabledBot` | bool | if is enabled bot |
-| `selectedBot` | string | selected bot id |
+| `selectedBotId` | string | selected bot id |
 | `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
 | `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
@@ -1728,8 +1728,8 @@
 ### realtime agent
 `GET/api/v3/messaging/reports/realtime/agents`
 - Parameters：
-	- viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: integer,
+	- filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: integer,
 - Response:
 	- dataList: 
 		- id: string, agent id,
@@ -1749,8 +1749,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset： integer,
@@ -1763,8 +1763,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset, integer, agent timezoneOffset
@@ -1796,8 +1796,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset：integer,
@@ -1809,8 +1809,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset, integer, agent timezoneOffset
@@ -1845,8 +1845,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset： integer,
@@ -1858,8 +1858,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`,
     - timezoneOffset, integer, agent timezoneOffset
