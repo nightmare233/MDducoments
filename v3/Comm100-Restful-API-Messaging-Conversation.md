@@ -348,6 +348,8 @@
     - subject: string, conversation subject, required 
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
+    - assignedBotId: string, bot id
+    - assignedType: string, `agent`, `bot`
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
