@@ -174,15 +174,15 @@
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
-| `senderId`| string | id of agent or contact | 
-| `senderType`| string | `agent` or `contact` or `system` | 
+| `senderId`| string | id of agent or contact or bot | 
+| `senderType`| string | `agent` or `contact` or `system` or `bot` | 
 | `time` | datetime | the sent time of the message | 
  
 ### content
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webview`, `quickReply` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webView`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
