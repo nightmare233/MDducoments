@@ -453,6 +453,16 @@
 - Response 
     - [message](#message) 
 
+### Reply bot response with an intent
+`post api/v3/messaging/conversations/{id}/messages/botIntent`
+- Parameters  
+    - id: number, conversation id,
+    - channelId: string, channel id, required
+    - channelAccountId: string, required
+    - botId: string, bot id, required
+    - intentId: string, bot intent id, required
+- Response 
+    - http status code
 
 ### Mark a conversation as read 
 `put api/v3/messaging/conversations/{id}/read` 
