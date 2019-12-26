@@ -25,12 +25,13 @@
 - Parameters  
     - channelAccountId: string, channel account id,
     - isReceive: bool, if the message sent from contact
-    - createTime: datetime
     - channelAppContactIdentity: 
-        - channelaccount: string, 
+        - account: string, 
         - name: string,
         - avatarUrl: string,
-        - originalContactInfoUrl: string
+        - originalContactInfoUrl: string,
+        - originalContactPageUrl: string,
+        - screenName: string
     - message
         - channelId： string, channel Id, required,
         - originalParentId: string, 
@@ -40,17 +41,19 @@
         - subject: string, for email message, email subject,
         - cc: string, message cc emails, 
         - contents: [content](#content)[],
+        - createTime: datetime
 - Response 
     - guid: string, message guid
 
 ### Callback result
 `put api/v3/messaging/platform/conversations/messages/{id}`
 - Parameters
-    - sendStatus: string, `success`, `failed`
+    - isSync: boolean, if sync callback
+    - IsSuccessful: boolean, if send successful
     - errorMessage: string, error message
     - originalMessageId: string, 
     - originalMessageUrl: string,
-    - content[]: 
+    - urls[]: 
         - id: string
         - url: string 
 - Response 

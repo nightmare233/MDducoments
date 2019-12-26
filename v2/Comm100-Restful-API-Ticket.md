@@ -278,6 +278,16 @@
 - Response 
     - ticket: [ticket](#ticket) 
 
+### Update a ticket message
+`put api/v2/ticket/tickets/{id}/messages/{messageId}` 
+- Parameters 
+    - id: integer, ticket id
+    - messageId: string, message id 
+    - htmlBody: string, message html content
+    - plainBody: string, message plaintext content
+- Response 
+    - message: [message](#message)
+
 ### Batch update tickets
 `put api/v2/ticket/tickets/` 
 + Parameters 
