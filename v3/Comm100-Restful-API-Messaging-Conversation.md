@@ -564,10 +564,8 @@
     - allCount: integer, all unread conversation number. 
     - array including: 
         - viewId: string, view id 
-        - unreadCount: integer, count unread conversations of a view
-        - unreadTicketIds： integer[], unread conversations Id array
-        - unreadMentionedMeCount: integer, the number of conversations which is unread and mentioned to me 
-        - unreadMentionedMeTicketIds: integer[], unread mentioned me conversations Id array
+        - unreadCount: integer, count unread conversations of a view 
+        - unreadMentionedCount: integer, the number of conversations which is unread and mentioned to me 
 
 # PortalConversations
 ## objects
@@ -1395,7 +1393,6 @@
 | `id` | string | field id | 
 | `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` |
 | `name` | string | field name | 
-| `displayName` | string | field display name | 
 | `isSystemField` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
 | `defaultValue` | string | field default value | 
