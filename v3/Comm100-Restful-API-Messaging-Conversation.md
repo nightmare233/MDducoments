@@ -46,7 +46,7 @@
                 //...
             },
             "relatedType": "contact",
-            "relatedId":"f9928d68-92e6-4487-a2e8-8234fc9d1f43",
+            "relatedId":"1234",
             "createdById": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "createdByType": "agent",
             "createdBy": {  //included the agent or contact object according to the createdByType.
@@ -95,11 +95,11 @@
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
 | `relatedType` | string | `contact`, `visitor`, `agent` | 
-| `relatedId` | guid | contact id, visitor id, agent id | 
+| `relatedId` | integer | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedType` | string | `agent`, `bot` | 
 | `assignedBotId` | string | assigned bot id | 
-| `assignedAgentId` | string | assigned agent id| 
+| `assignedAgentId` | integer | assigned agent id| 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -114,7 +114,7 @@
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `createdById` | string | contact id or agent id or visitor id| 
+| `createdById` | integer | contact id or agent id or visitor id| 
 | `createdByType` | string | agent or contact or system or visitor | 
 | `createdAt` | datetime | create time of conversation | 
 | `lastUpdatedAt` | datetime | last updated time of conversation | 
@@ -122,10 +122,10 @@
 | `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
-| `firstMessageId` | string | the id of the first message | 
+| `firstMessageId` | integer | the id of the first message | 
 | `firstMessageChannelId` | string | the channel id of the first message | 
 | `firstMessageChannelAccountId` | string | the channel account id of the first message | 
-| `lastMessageId` | string | the id of the last message | 
+| `lastMessageId` | integer | the id of the last message | 
 | `totalReplies`| int | total replies number | 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
@@ -156,16 +156,16 @@
 ### message 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | id of message | 
+| `id` | integer | id of message | 
 | `conversationId` | integer | id of conversation | 
 | `channelId` | string | channel Id | 
 | `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| string | contact identity id |
+| `contactIdentityId`| integer | contact identity id |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageUrl` | string | origial message link |
-| `parentId` | string | parent id |
+| `parentId` | integer | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `bcc` | string | bcc email addresses |  
@@ -174,15 +174,16 @@
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
-| `senderId`| string | id of agent or contact or bot | 
-| `senderType`| string | `agent` or `contact` or `system` or `bot` | 
-| `time` | datetime | the sent time of the message | 
+| `sentById`| integer | id of agent or contact or visitor |
+| `sentByBotId`| string | id bot| 
+| `sentByType`| string | `agent` or `contact` or `system` or `bot` | 
+| `sentTime` | datetime | the sent time of the message | 
 | `errorMessage`| string | error message |  
 
 ### content
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | guid | 
+| `id` | integer | content id | 
 | `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webView`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
@@ -203,24 +204,24 @@
 ### conversation draft 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | id of message draft | 
+| `id` | integer | id of message draft | 
 | `conversationId` | integer | id of conversation | 
 | `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `parentId` | string | parent id |
+| `parentId` | integer | parent id |
 | `subject` | string | subject | 
 | `quote` | string | quote for email | 
 | `cc` | string | cc email addresses |  
 | `quote` | string | email quote | 
 | `contents` | [content](#content)[] | content array | 
-| `senderId`| string | id of agent| 
-| `time` | datetime | the sent time of the message | 
+| `sentById`| string | id of agent| 
+| `sentTime` | datetime | the sent time of the message | 
   
  ### event log
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | event log id | 
+| `id` | integer | event log id | 
 | `conversationId` | integer | id of conversation | 
 | `text` | string | event log text | 
 | `time` | datetime | event time | 
@@ -351,7 +352,7 @@
 `post api/v3/messaging/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
-    - assignedAgentId: string, agent id
+    - assignedAgentId: integer, agent id
     - assignedDepartmentId: string, department id
     - assignedBotId: string, bot id
     - assignedType: string, `agent`, `bot`
@@ -362,7 +363,7 @@
     - message: the first message of the conversation, required
         - channelId: string, channel Id, required
         - channelAccountId: string, channel account id,
-        - contactIdentityId: string, contact identity id,
+        - contactIdentityId: int, contact identity id,
         - subject: string, for email message, email subject 
         - cc: string, message cc emails
         - contents: [content](#content)[],
@@ -375,10 +376,10 @@
     - id: integer, conversation id
     - subject: string, conversation subject
     - relatedType: string, `contact`, `visitor`
-    - relatedId: guid, contact id or visitor id
+    - relatedId: integer, contact id or visitor id
     - assignedType: string, `agent`, `bot`
     - assignedBotId: string, bot id
-    - assignedAgentId: string, agent id
+    - assignedAgentId: integer, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
@@ -397,7 +398,7 @@
     - priority, string
     - assignedType: string, `agent`, `bot`
     - assignedBotId: string, bot id
-    - assignedAgentId: string, agent id
+    - assignedAgentId: integer, agent id
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
@@ -426,8 +427,8 @@
 ### Get a message 
 `get api/v3/messaging/conversations{id}/messages/{messageId}` 
 + Parameters 
-    - id: number, conversation id 
-    - messageId: string, message id
+    - id: integer, conversation id 
+    - messageId: integer, message id
 + Response 
     - [message](#message)
 + Includes
@@ -444,17 +445,17 @@
     - channelAccountId: string, channel account id, 
     - subject: string, for email message, email subject
     - cc: string, message cc emails 
-    - parentId: string,
+    - parentId: integer,
     - contents: [content](#content)[]
-    - time: datetime, send time
+    - sentTime: datetime, send time
 - Response 
     - [message](#message) 
 
 ### Resend a message 
 `put api/v3/messaging/conversations/{id}/messages/{messageId}/resend` 
 - Parameters  
-    - id: number, conversation id,
-    - messageId: string, message id,
+    - id: integer, conversation id,
+    - messageId: integer, message id,
 - Response 
     - [message](#message) 
 
@@ -487,7 +488,7 @@
 `put api/v3/messaging/conversations/{id}/messages/{messageId}/read` 
 + Parameters 
     - id: number, conversation id,
-    - messageId: string, message id,
+    - messageId: integer, message id,
 + Response 
     - http status code
 
@@ -495,7 +496,7 @@
 `put api/v3/messaging/conversations/{id}/messages/{messageId}/unread` 
 + Parameters 
     - id: number, conversation id,
-    - messageId: string, message id,
+    - messageId: integer, message id,
 + Response 
     - http status code
 
@@ -575,10 +576,10 @@
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
-| `relatedId` | guid | contact id, visitor id, agent id | 
+| `relatedId` | integer | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedType` | string | `agent` or `bot` | 
-| `assignedAgentId` | string | assigned agent id | 
+| `assignedAgentId` | integer | assigned agent id | 
 | `assignedBotId` | string | assigned bot id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
@@ -588,7 +589,7 @@
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `createdById` | string | contact id or agent id or visitor id| 
+| `createdById` | integer | contact id or agent id or visitor id| 
 | `createdByType` | string | agent or contact or system or visitor | 
 | `createdAt` | datetime | create time of conversation | 
 | `lastUpdatedAt` | datetime | last updated time of conversation | 
@@ -596,14 +597,14 @@
 | `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
-| `firstMessageId` | string | the id of the first message | 
-| `lastMessageId` | string | the id of the last message | 
+| `firstMessageId` | integer | the id of the first message | 
+| `lastMessageId` | integer | the id of the last message | 
 | `totalReplies`| int | total replies number | 
 
 ### portal conversation message 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | id of message | 
+| `id` | integer | id of message | 
 | `conversationId` | integer | id of conversation | 
 | `channelId` | string | channel Id | 
 | `type` | string | `message` |
@@ -612,15 +613,16 @@
 | `contactIdentityId`| string | contact identity id |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageUrl` | string | origial message link |
-| `parentId` | string | parent id |
+| `parentId` | integer | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `contents` | [content](#content)[] | content array | 
 | `isRead`| boolean | if the message read by agent | 
 | `sendStatus` | string | `success`, `sending`, `failed` |
-| `senderId`| string | id of agent or contact | 
-| `senderType`| string | `agent` or `contact` or `system` | 
-| `time` | datetime | the sent time of the message | 
+| `sentById`| integer | id of agent or contact | 
+| `sentByBotId`| string | id of bot | 
+| `sentByType`| string | `agent` or `contact` or `system` | 
+| `sentTime` | datetime | the sent time of the message | 
 
 ## endpoints 
 
@@ -640,7 +642,7 @@
 `get api/v3/messaging/portalConversations/{id}`
 - Parameters
     - id, integer, portal conversation id
-    - contactId, string
+    - contactId, integer
 - Response
     - [portal conversation](#portal-conversation) 
 - Includes
@@ -653,7 +655,7 @@
 ### List portal conversations
 `get api/v3/messaging/portalConversations`
 - Parameters: 
-    - contactIds: guid array,
+    - contactIds: integer array,
     - keywords: string,
     - timeFrom: DateTime, last reply time, default search the last 90 days, ISO-8601 time format,
     - timeTo: DateTime, last reply time, default value is the current time, ISO-8601 time format,
@@ -716,7 +718,7 @@
 `post api/v3/messaging/portalConversations`
 - Parameters: 
     - subject: string, subject, required
-    - contactId: string, id of the contact who submitted the portal conversation
+    - contactId: integer, id of the contact who submitted the portal conversation
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - message:  the first portal message
         contents: [content](#content)[]
@@ -727,7 +729,7 @@
 `put api/v3/messaging/portalConversations/{id}/close` 
 - Parameters: 
     - id, integer, portal conversation id,
-    - contactId, string, required
+    - contactId, integer, required
 - Response: 
     - [portal conversation](#portal-conversation) 
 
@@ -735,7 +737,7 @@
 `put api/v3/messaging/portalConversations/{id}/reopen` 
 - Parameters: 
     - id, integer, portal conversation id,
-    - contactId, string, required
+    - contactId, integer, required
 - Response: 
     - [portal conversation](#portal-conversation) 
 
@@ -743,7 +745,7 @@
 `get api/v3/messaging/portalConversations/{id}/messages`
 - Parameters: 
     - id, integer, conversation id
-    - contactId, string, contact id
+    - contactId, integer, contact id
 - Response: 
     - [portal conversation message](#portal-conversation-message) list
 - Includes
@@ -756,9 +758,9 @@
  `post api/v3/messaging/portalConversations/{id}/messages`
 - Parameters:
     - id: integer
-    - contactId: string required
+    - contactId: integer, required
     - contents: [content](#content)[], 
-    - time: datetime, send time
+    - sentTime: datetime, sent time
 - Response: 
     - [portal conversation message](#portal-conversation-message)
 
@@ -970,13 +972,15 @@
 | `isEnabled` | boolean | whether the routing is enabled or not.
 | `type` |string | the type of routing, including `simple`and `customRules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
-| `simpleRouteToId` | string | id of the route object |
+| `simpleRouteToId` | integer | route to agent id |
+| `simpleRouteToDepartmentId` | string | route to department id |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `percentageToBotWhenAgentsOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
 | `percentageToBotWhenAgentsOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
 | `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
-| `matchFailedrouteToId` | string | id of the routeobject |
+| `matchFailedrouteToId` | integer | match failed route to agent id |
+| `matchFailedrouteToDepartmentId` | string | match failed route to department id |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `matchFailedPercentageToBotWhenAgentsOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
 | `matchFailedPercentageToBotWhenAgentsOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
@@ -990,7 +994,8 @@
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
-| `routeToId` | string |id of the route object |
+| `routeToId` | integer | route to agent id  |
+| `routeToDepartmentId` | string | route to department id |
 | `routeWithPriority` | string | conversation priority enum number|
 | `percentageToBotWhenAgentsOnline` | integer | Percentage of new conversation to bot when agents are online |
 | `percentageToBotWhenAgentsOffline` | integer | Percentage of new conversation to bot when agents are offline |
@@ -1016,12 +1021,14 @@
     - isEnabled: boolean
     - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
-    - simpleRouteToId: string
+    - simpleRouteToId: integer, simple route to agent id
+    - simpleRouteToDepartmentId, string, simple route to department id
     - simpleRoutePercentageOfNewConversationToBotWhenAgentsOnline: integer
     - simpleRoutePercentageOfNewConversationToBotWhenAgentsOffline: integer
     - simpleRouteWithPriority: string,
     - matchFailedType: string, department and agent
-    - matchFailedToId: string
+    - matchFailedToId: integer
+    - matchFailedToDepartmentId: string
     - matchFailedWithPriority: string
     - matchFailedPercentageOfNewConversationToBotWhenAgentsOnline: integer
     - matchFailedPercentageOfNewConversationToBotWhenAgentsOffline: integer 
@@ -1099,7 +1106,7 @@
 ### agentPreference
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | string | agent id |
+| `agentId` | integer | agent id |
 | `maxConcurrentCount` | integer | the maximum number of the conversations a agent can accept at the same time |
 | `isAcceptAllocation` | boolean | if the agent accept conversations |
 
@@ -1211,7 +1218,7 @@
     - ifSendEmail, boolean, if send email
     - ifSendToContacts, boolean, if send email to contacts
     - ifSendToAgents, boolean, if send email to agents
-    - recipientAgentIds, string[], agent id array of recipient
+    - recipientAgentIds, integer[], agent id array of recipient
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
@@ -1518,20 +1525,20 @@
 ### junk 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | id of junk | 
+| `id` | integer | id of junk | 
 | `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message link |
-| `parentId` | string | parent id |
+| `parentId` | integer | parent id |
 | `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `isRead`| boolean | | 
-| `senderId`| string | id of contact or visitor | 
-| `senderType`| string | `contact` or `visitor` or `system` | 
-| `time` | datetime | the sent time of the junk message | 
+| `sentById`| string | id of contact or visitor | 
+| `sentByType`| string | `contact` or `visitor` or `system` | 
+| `sentTime` | datetime | the sent time of the junk message | 
 
 ## endpoints 
 ### List junk emails
@@ -1559,14 +1566,14 @@
 ### Get a junk email 
 `get api/v3/messaging/junks/{id}` 
 - Parameters 
-    - id: string, email id 
+    - id: integer, email id 
 - Response 
     - [junk](#junk) 
 
 ### Update a junk 
 `put api/v3/messaging/junks/{id}` 
 - Parameters 
-    - id: string, email id 
+    - id: integer, email id 
     - isRead: boolean, 
 - Response 
     - [junk](#junk) 
@@ -1758,7 +1765,7 @@
 	- filterValue: integer,
 - Response:
 	- dataList: 
-		- id: string, agent id,
+		- id: integer, agent id,
         - name: string, agent name,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
