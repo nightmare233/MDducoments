@@ -6,7 +6,7 @@
  ### content
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | guid | 
+| `id` | integer | content id | 
 | `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
@@ -43,7 +43,7 @@
         - contents: [content](#content)[],
         - createTime: datetime
 - Response 
-    - guid: string, message guid
+    - id: integer, message id
 
 ### Callback result
 `put api/v3/messaging/platform/conversations/messages/{id}`
@@ -54,7 +54,7 @@
     - originalMessageId: string, 
     - originalMessageUrl: string,
     - urls[]: 
-        - id: string
+        - id: integer
         - url: string 
 - Response 
     - httpStatusCode
