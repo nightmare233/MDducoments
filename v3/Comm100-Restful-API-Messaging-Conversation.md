@@ -47,19 +47,19 @@
             },
             "relatedType": "contact",
             "relatedId":"1234",
-            "createdById": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+            "createdById": "1234",
             "createdByType": "agent",
             "createdBy": {  //included the agent or contact object according to the createdByType.
-                "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+                "id": "1234",
                 //...
             },
             "messages":[    //included the messages.
                 {
-                    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1fe8", 
+                    "id": "1024", 
                     //...
                 },
                 {
-                        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1d48", 
+                        "id": "1025", 
                     //...
                 }
             ]
@@ -149,9 +149,9 @@
 ### mentioned agent 
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | string | the agent id of mentioned | 
+| `agentId` | integer | the agent id of mentioned | 
 | `isRead`| boolean | if the mentioned conversation is read | 
-| `messageId`| string | message id| 
+| `messageId`| integer | message id| 
 
 ### message 
 | Name | Type | Description | 
@@ -171,7 +171,7 @@
 | `bcc` | string | bcc email addresses |  
 | `contents` | [content](#content)[] | content array | 
 | `quote` | string | quote content, only for email | 
-| `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
+| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
 | `sentById`| integer | id of agent or contact or visitor |
@@ -208,14 +208,14 @@
 | `conversationId` | integer | id of conversation | 
 | `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| string | id of contact identity |
+| `contactIdentityId`| integer | id of contact identity |
 | `parentId` | integer | parent id |
 | `subject` | string | subject | 
 | `quote` | string | quote for email | 
 | `cc` | string | cc email addresses |  
 | `quote` | string | email quote | 
 | `contents` | [content](#content)[] | content array | 
-| `sentById`| string | id of agent| 
+| `sentById`| integer | id of agent| 
 | `sentTime` | datetime | the sent time of the message | 
   
  ### event log
@@ -610,7 +610,7 @@
 | `type` | string | `message` |
 | `directType` | string | `receive`, `send` |
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| string | contact identity id |
+| `contactIdentityId`| integer | contact identity id |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageUrl` | string | origial message link |
 | `parentId` | integer | parent id |
@@ -1528,7 +1528,7 @@
 | `id` | integer | id of junk | 
 | `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| string | id of contact identity |
+| `contactIdentityId`| integer | id of contact identity |
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message link |
 | `parentId` | integer | parent id |
@@ -1536,7 +1536,7 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `isRead`| boolean | | 
-| `sentById`| string | id of contact or visitor | 
+| `sentById`| integer | id of contact or visitor | 
 | `sentByType`| string | `contact` or `visitor` or `system` | 
 | `sentTime` | datetime | the sent time of the junk message | 
 
