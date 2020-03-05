@@ -70,8 +70,10 @@
 - Max 50 contacts are responded for each request.
 - `get  /api/v3/contacts`
 - Parameters
-    - pageIndex, integer, default 1
-    - keywords, string, search scope includes: name/identity value/alias 
+    - identityType: string, optional, such as: 'SSOUserId',
+    - identityValue: string, optional, such as: 'Bene@12'
+    - pageIndex, integer, optional, default 1
+    - keywords, string, optional, search scope includes: name/identity value/alias 
 - Response
     - contacts: [contact object](#contact) list
     - total: int, total number of contacts.
