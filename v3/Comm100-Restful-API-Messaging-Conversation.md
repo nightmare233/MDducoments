@@ -179,6 +179,7 @@
 | `sentByType`| string | `agent` or `contact` or `system` or `bot` | 
 | `sentTime` | datetime | the sent time of the message | 
 | `errorMessage`| string | error message |  
+| `hasAttachmentButNotReceived`| boolean | if the message has attachment but not received |  
 
 ### content
 | Name | Type | Description | 
