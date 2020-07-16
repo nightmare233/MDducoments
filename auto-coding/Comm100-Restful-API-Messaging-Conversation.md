@@ -191,7 +191,6 @@
 | `post api/v3/ticketing/tickets/{id}:unread`  | [Mark-a-ticket-as-unread ](#) |
 | `post api/v3/ticketing/tickets/{id}:merge` | [ Merge a ticket ](#Merge-a-ticket) |
 | `get api/v3/ticketing/tickets:unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
-| `get api/v3/ticketing/tickets/{id}/eventLogs` | [ List ticket event logs ](#List-ticket-event-logs) |
 | `delete api/v3/ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
 | `delete api/v3/ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
 | `get api/v3/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
@@ -204,6 +203,7 @@
 | `delete api/v3/ticketing/tickets/{id}/draft`  | [ Delete a ticket draft ](#Delete-a-ticket-draft) |
 | `get api/v3/ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
 | `post api/v3/ticketing/tickets/{id}/notes` | [ post a note](#Post-a-note) |
+| `get api/v3/ticketing/tickets/{id}/eventLogs` | [ List ticket event logs ](#List-ticket-event-logs) |
 
 ### List tickets 
 `get api/v3/ticketing/tickets` 
@@ -809,13 +809,17 @@
 | `isEnabled` | boolean | if enabled the trigger |
 | `order` | integer | trigger execute and display order |
 | `event` | string |  `ticketCreated`, `ticketReplyReceived`, `agentReplied`, `ticketAssigneeChanged`, `ticketStatusChanged`, ` ticketStatusLastForCertainTime` |
-| `conditions` | [conditions](#conditions) | trigger conditions | 
-| `ifSetValue` | boolean | if set value |
+| `status` | string | ticket status |
+| `statusDuration` | string | ticket status duration |
+| `isValueSettingEnabled` | boolean | if set value |
 | `triggerActionUpdateField` | [triggerActionUpdateField](#triggerActionUpdateField)[] | auto update field value |
 | `ifSendEmail` | boolean | if send email |
-| `ifSendToContacts` | boolean | if send email to contacts|
-| `ifSendToAgents` | boolean | if send email to agents |
-| `recipientAgentIds` | string[] | agent id array of recipient |
+| `ifSendEmailToContacts` | boolean | if send email to contacts|
+| `ifSendEmailToAgents` | boolean | if send email to agents |
+| `conditionMetType` | string | `any`,`all`,`logicalExpression` |
+| `logicalExpression` | string | logic expression |
+| `triggerConditions` | [triggerConditions](#conditions) | trigger conditions | 
+| `triggerActionAgentRecipient` | string[] | agent id array of recipient |
 | `triggerActionEmailContent` | [triggerActionEmailContent](#triggerActionEmailContent)[] | |
 
 
