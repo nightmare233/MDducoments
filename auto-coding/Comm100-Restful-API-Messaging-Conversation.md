@@ -187,24 +187,23 @@
 | `post api/v3/ticketing/tickets` | [Submit a new ticket](#Submit-a-new-ticket) |
 | `put api/v3/ticketing/tickets/{id}` | [Update a ticket ](#Update-a-ticket ) |
 | `put api/v3/ticketing/tickets/`  | [Batch update tickets](#Batch-update-tickets) |
-| `put api/v3/ticketing/tickets/{id}/read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
-| `put api/v3/ticketing/tickets/{id}/unread`  | [Mark-a-ticket-as-unread ](#) |
-| `post api/v3/ticketing/tickets/{id}/merge` | [ Merge a ticket ](#Merge-a-ticket) |
-| `get api/v3/ticketing/tickets/unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
+| `post api/v3/ticketing/tickets/{id}:read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
+| `post api/v3/ticketing/tickets/{id}:unread`  | [Mark-a-ticket-as-unread ](#) |
+| `post api/v3/ticketing/tickets/{id}:merge` | [ Merge a ticket ](#Merge-a-ticket) |
+| `get api/v3/ticketing/tickets:unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
 | `get api/v3/ticketing/tickets/{id}/eventLogs` | [ List ticket event logs ](#List-ticket-event-logs) |
 | `delete api/v3/ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
 | `delete api/v3/ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
-| `get api/v3/ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
-| `post api/v3/ticketing/notes` | [ post a note](#Reply-a-message) |
 | `get api/v3/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
-| `get api/v3/ticketing/tickets{id}/messages/{messageId}`  | [Get a message](#Get-a-message) |
-| `post api/v3/ticketing/tickets/{id}/messages` | [Reply a message](#Reply-a-message) |
-| `put api/v3/ticketing/tickets/{id}/messages/{messageId}/resend`  | [Resend a message](#Resend-a-message) |
+| `post api/v3/ticketing/tickets/{id}/messages` | [Post a message](#Post-a-message) |
+| `get api/v3/ticketing/messages/{id}`  | [Get a message](#Get-a-message) |
+| `post api/v3/ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
 | `get api/v3/ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) |
 | `post api/v3/ticketing/tickets/{id}/draft`  | [Create a ticket draft ](#Create-a-ticket-draft) |
 | `put api/v3/ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
 | `delete api/v3/ticketing/tickets/{id}/draft`  | [ Delete a ticket draft ](#Delete-a-ticket-draft) |
-
+| `get api/v3/ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
+| `post api/v3/ticketing/tickets/{id}/notes` | [ post a note](#Post-a-note) |
 
 ### List tickets 
 `get api/v3/ticketing/tickets` 
@@ -370,11 +369,23 @@
     | sender | `get api/v3/ticketing/tickets/{id}/messages?include=sender` |
     | messagecontact | `get api/v3/ticketing/tickets/{id}/messages?include=messagecontact` |
 
+### Post a message 
+`post api/v3/ticketing/tickets/{id}/messages` 
+- Parameters  
+    - type: string, required
+    - body: string, required
+    - metadata: string, json
+    - parentId: string
+    - sentByType: string
+    - sentById: string
+    - time: datetime
+- Response 
+    - [message](#message) 
+
 ### Get a message 
-`get api/v3/ticketing/tickets{id}/messages/{messageId}` 
+`get api/v3/ticketing/messages/{id}` 
 + Parameters 
-    - id: integer, ticket id 
-    - messageId: string, message id
+    - id: string, message id
 + Response 
     - [message](#message)
 + Includes
@@ -383,26 +394,15 @@
     | - | - |
     | sender | `get api/v3/ticketing/tickets/{id}/messages/{messageId}?include=sender` |
 
-### Reply a message 
-`post api/v3/ticketing/tickets/{id}/messages` 
-- Parameters  
-    - type: string, required
-    - body: string, required
-    - metadata: string, json
-    - parentId: string
-- Response 
-    - [message](#message) 
-
 ### Resend a message 
-`put api/v3/ticketing/tickets/{id}/messages/{messageId}/resend` 
+`post api/v3/ticketing/messages/{id}:resend` 
 - Parameters  
-    - id: integer, ticket id,
-    - messageId: string, message id,
+    - id: string, message id, 
 - Response 
     - [message](#message) 
 
 ### Reply bot response with an intent
-`post api/v3/ticketing/tickets/{id}/messages/botIntent`
+`post api/v3/ticketing/tickets/{id}/messages:botIntent`
 - Parameters  
     - id: number, ticket id,
     - botId: string, bot id, required
@@ -412,32 +412,16 @@
     - http status code
 
 ### Mark a ticket as read 
-`put api/v3/ticketing/tickets/{id}/read` 
+`post api/v3/ticketing/tickets/{id}:read` 
 + Parameters 
     - id: integer, ticket id 
 + Response 
     - http status code
 
 ### Mark a ticket as unread 
-`put api/v3/ticketing/tickets/{id}/unread` 
+`post api/v3/ticketing/tickets/{id}:unread` 
 + Parameters 
     - id: integer, ticket id 
-+ Response 
-    - http status code
-
-### Mark a message as read 
-`put api/v3/ticketing/tickets/{id}/messages/{messageId}/read` 
-+ Parameters 
-    - id: number, ticket id,
-    - messageId: string, message id,
-+ Response 
-    - http status code
-
-### Mark a message as unread 
-`put api/v3/ticketing/tickets/{id}/messages/{messageId}/unread` 
-+ Parameters 
-    - id: number, ticket id,
-    - messageId: string, message id,
 + Response 
     - http status code
 
@@ -456,35 +440,55 @@
     - http status code 
 
 ### Get a ticket draft 
-`get api/v3/ticketing/draft/` 
+`get api/v3/ticketing/tickets/{id}/draft/` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Create a ticket draft 
-`post api/v3/ticketing/draft` 
+`post api/v3/ticketing/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft](#ticket-draft) 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Update a ticket draft 
-`put api/v3/ticketing/draft` 
+`put api/v3/ticketing/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft](#ticket-draft) 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Delete a ticket draft 
-`delete api/v3/ticketing/draft` 
+`delete api/v3/ticketing/tickets/{id}/draft` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - http status code 
 
+### List notes of a ticket 
+`get api/v3/ticketing/tickets/{id}/notes` 
++ Parameters 
+    - id: integer, ticket id 
++ Response 
+    - [note](#note) list 
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/ticketing/tickets/{id}/notes?include=sender` |
+
+### Post a note 
+`post api/v3/ticketing/tickets/{id}/notes` 
+- Parameters  
+    - text: string, required
+    - attachments, attachment[]
+- Response 
+    - [note](#note) 
+
 ### Merge a ticket 
-`post api/v3/ticketing/tickets/{id}/merge`
+`post api/v3/ticketing/tickets/{id}:merge`
 - Parameters 
     - id: integer, target ticket id, 
     - sourceId: integer, source ticket id 
@@ -800,24 +804,29 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of the trigger |
+| `name` | string | name of the trigger |
 | `description` | string | description of the trigger |
 | `isEnabled` | boolean | if enabled the trigger |
+| `order` | integer | trigger execute and display order |
 | `event` | string |  `ticketCreated`, `ticketReplyReceived`, `agentReplied`, `ticketAssigneeChanged`, `ticketStatusChanged`, ` ticketStatusLastForCertainTime` |
 | `conditions` | [conditions](#conditions) | trigger conditions | 
 | `ifSetValue` | boolean | if set value |
-| `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
+| `triggerActionUpdateField` | [triggerActionUpdateField](#triggerActionUpdateField)[] | auto update field value |
 | `ifSendEmail` | boolean | if send email |
 | `ifSendToContacts` | boolean | if send email to contacts|
 | `ifSendToAgents` | boolean | if send email to agents |
 | `recipientAgentIds` | string[] | agent id array of recipient |
+| `triggerActionEmailContent` | [triggerActionEmailContent](#triggerActionEmailContent)[] | |
+
+
+### triggerActionEmailContent
+| Name | Type | Description | 
+| - | - | - | 
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
 | `plainText` | string | plain text |
-| `attachments` | [attachment](#attachment)[] | attachments |
-| `ifShowInTicketCorrespondences` | boolean | if show trigger email in Ticket Correspondence |
-| `order` | integer | trigger execute and display order |
 
-### autoUpdate
+### triggerActionUpdateField
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of the autoUpdate |
