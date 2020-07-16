@@ -19,11 +19,11 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v3/ticketing/tickets` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
-    | `get api/v3/ticketing/tickets/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
+    | `get api/v3/ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
+    | `get api/v3/ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
     | `get api/v3/ticketing/tickets/{id}/messages` | sender, messageContact |
-    | `get api/v3/ticketing/deletedTickets` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v3/ticketing/deletedTickets/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
+    | `get api/v3/ticketing/deletedTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/ticketing/deletedTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
     | `get api/v3/ticketing/deletedTickets/{id}/messages` | sender |
     | `get api/v3/ticketing/portalTickets/{id}` | contact, messages |
     | `get api/v3/ticketing/portalTickets` | contact |
@@ -31,7 +31,7 @@
     | `get api/v3/ticketing/junks/` | sender | 
 
 - Sample:
-    - request: `get api/v3/ticketing/tickets/{id}?include=assignedAgent,createdBy,messages`
+    - request: `get api/v3/ticketing/tickets/{id}?include=agentAssignee,createdBy,messages`
     - response: 
 
 # Resource List 
@@ -43,7 +43,7 @@
 |[Attachment](#attachments)|/api/v3/ticketing/attachments| Upload attachment for tickets | 
 |[View](#views)|/api/v3/ticketing/views| Agent console views| 
 |[Routing](#Routing)|/api/v3/ticketing/routing| Routing | 
-|[AutoAllocation](#AutoAllocations)|/api/v3/ticketing/autoAllocation| Auto allocations | 
+|[AutoDistribution](#AutoDistributions)|/api/v3/ticketing/autoDistribution| Auto distributions | 
 |[Trigger](#Triggers)|/api/v3/ticketing/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/ticketing/SLAPolicies| SLA policies | 
 |[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/ticketing/workingTime| Work time and holiday | 
@@ -117,7 +117,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `agentId` | string | the agent id of mentioned | 
-| `isRead`| boolean | if the mentioned ticket is read | 
+| `isReadByAgent`| boolean | if the mentioned ticket is read | 
 | `messageId`| string | message id| 
 
 ### message 
@@ -142,23 +142,35 @@
 | `status` | string | send status：`waitForSending`,`sending`,`failed` | 
 | `failReason` | string | fail reason | 
 
+### note 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id of message | 
+| `ticketId` | integer | id of ticket | 
+| `text` | string | note text | 
+| `createdTime` | datetime | created time | 
+| `sentById`| string | id of agent |
+| `attachments`| [attachment](#attachment)[] | attachment array |  
+
 ### ticket draft 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message draft | 
-| `ticketId` | integer | id of ticket | 
-| `channelId` | string | channel id | 
-| `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| string | id of contact identity |
-| `parentId` | string | parent id |
-| `subject` | string | subject | 
-| `quote` | string | quote for email | 
-| `cc` | string | cc email addresses |  
-| `quote` | string | email quote | 
-| `contents` | [content](#content)[] | content array | 
-| `sentById`| string | id of agent| 
-| `sentTime` | datetime | the sent time of the message | 
-  
+| `ticketId` | integer | id of ticket |     
+| `body` | string | json of draft | 
+| `lastUpdatedById`| string | id of agent| 
+| `LastUpdatedTime` | datetime | the last updated time |
+| `attachments`| [attachment](#attachment)[] | attachment array | 
+
+ ### attachment 
+| Name | Type | Description | 
+| - | - | - |
+| `id` | string | attachment unique id |  
+| `fileKey` | string | file key |  
+| `name` | string | attachment file name| 
+| `size` | int | size file name| 
+| `url` | string | attachment download link |    
+
  ### event log
 | Name | Type | Description | 
 | - | - | - | 
@@ -178,17 +190,16 @@
 | `put api/v3/ticketing/tickets/{id}/read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
 | `put api/v3/ticketing/tickets/{id}/unread`  | [Mark-a-ticket-as-unread ](#) |
 | `post api/v3/ticketing/tickets/{id}/merge` | [ Merge a ticket ](#Merge-a-ticket) |
-| `get api/v3/ticketing/tickets/{id}/agents`  | [Get agents of openning ticket](#Get-agents-who-are-openning-the-ticket) |
 | `get api/v3/ticketing/tickets/unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
 | `get api/v3/ticketing/tickets/{id}/eventLogs` | [ List ticket event logs ](#List-ticket-event-logs) |
 | `delete api/v3/ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
 | `delete api/v3/ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
+| `get api/v3/ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
+| `post api/v3/ticketing/notes` | [ post a note](#Reply-a-message) |
 | `get api/v3/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
 | `get api/v3/ticketing/tickets{id}/messages/{messageId}`  | [Get a message](#Get-a-message) |
 | `post api/v3/ticketing/tickets/{id}/messages` | [Reply a message](#Reply-a-message) |
 | `put api/v3/ticketing/tickets/{id}/messages/{messageId}/resend`  | [Resend a message](#Resend-a-message) |
-| `put api/v3/ticketing/tickets/{id}/messages/{messageId}/read` | [Mark a message as read](#Mark-a-message-as-read) |
-| `put api/v3/ticketing/tickets/{id}/messages/{messageId}/unread`   | [Mark a message as unread ](#Mark-a-message-as-unread) | 
 | `get api/v3/ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) |
 | `post api/v3/ticketing/tickets/{id}/draft`  | [Create a ticket draft ](#Create-a-ticket-draft) |
 | `put api/v3/ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
@@ -202,12 +213,12 @@
     - viewId: string, view id
     - tagId: string, tag id
     - keywords: string
-    - timeFrom: DateTime, last reply time, default search the last 30 days
-    - timeTo: DateTime, last reply time, default value is the current time
+    - timeFrom: DateTime, last updated time, default search the last 90 days
+    - timeTo: DateTime, last updated time, default value is the current time
     - timeZoneOffset, float, time zone of your time parameters
     - pageIndex: integer, default 1
     - pageSize: integer, default 20, max value 50
-    - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
+    - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastUpdatedTime`, `priority`, `status` , default value: `lastUpdatedTime`
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
     - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, fields can be ticket system fields and custom fields.  
         - field: string, field name
@@ -220,8 +231,8 @@
     | - | - | - |
     | Ticket Id | Is, IsNot  | number |
     | Subject | Contains, NotContains  | string |
-    | Assigned Department | Is, IsNot  | Department Id |
-    | Assigned Agent | Is, IsNot  | Agent Id |
+    | DepartmentAssignee | Is, IsNot  | Department Id |
+    | AgentAssignee | Is, IsNot  | Agent Id |
     | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created Time | Is, IsNot, Before, After | time format: `2019-01-03` |
@@ -263,8 +274,8 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/ticketing/tickets?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/ticketing/tickets?include=assignedDepartment` |
+    | agentAssignee | `get api/v3/ticketing/tickets?include=agentAssignee` |
+    | departmentAssignee | `get api/v3/ticketing/tickets?include=departmentAssignee` |
     | contactOrVisitor | `get api/v3/ticketing/tickets?include=contactOrVisitor` |
     | createdBy | `get api/v3/ticketing/tickets?include=createdBy` |
     | lastRepliedBy | `get api/v3/ticketing/tickets?include=lastRepliedBy` | 
@@ -280,8 +291,8 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/ticketing/tickets/{id}?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/ticketing/tickets/{id}?include=assignedDepartment` |
+    | agentAssignee | `get api/v3/ticketing/tickets/{id}?include=agentAssignee` |
+    | departmentAssignee | `get api/v3/ticketing/tickets/{id}?include=departmentAssignee` |
     | contactOrVisitor | `get api/v3/ticketing/tickets/{id}?include=contactOrVisitor` |
     | createdBy | `get api/v3/ticketing/tickets/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/ticketing/tickets/{id}?include=lastRepliedBy` |
@@ -293,8 +304,8 @@
 `post api/v3/ticketing/tickets` 
 - Parameters 
     - subject: string, ticket subject, required 
-    - assignedAgentId: string, agent id
-    - assignedDepartmentId: string, department id
+    - agentAssigneeId: string, agent id
+    - departmentAssigneeId: string, department id
     - assignedBotId: string, bot id
     - assignedType: string, `agent`, `bot`
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
@@ -302,12 +313,9 @@
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the ticket, required
-        - channelId: string, channel Id, required
-        - channelAccountId: string, channel account id,
-        - contactIdentityId: int, contact identity id,
-        - subject: string, for email message, email subject 
-        - cc: string, message cc emails
-        - contents: [content](#content)[],
+        - body: string, required
+        - type: string, message type,
+        - metadata: string, json of message content
 + Response 
     - [ticket](#tickets)
 
@@ -319,13 +327,11 @@
     - relatedType: string, `contact`, `visitor`
     - relatedId: integer, contact id or visitor id
     - assignedType: string, `agent`, `bot`
-    - assignedBotId: string, bot id
-    - assignedAgentId: integer, agent id
-    - assignedDepartmentId: string, department id
+    - assigneeId: string, bot or agent id
+    - departmentAssigneeId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
-    - isRead: boolean
-    - isActive: boolean
+    - isReadByAgent: boolean
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
 - Response 
@@ -338,10 +344,9 @@
     - status, string
     - priority, string
     - assignedType: string, `agent`, `bot`
-    - assignedBotId: string, bot id
-    - assignedAgentId: string, agent id
-    - assignedDepartmentId, string
-    - isRead, boolean
+    - assigneeId: string
+    - departmentAssigneeId, string
+    - isReadByAgent, boolean
 + Response 
     - [ticket](#ticket) list 
 
@@ -381,14 +386,10 @@
 ### Reply a message 
 `post api/v3/ticketing/tickets/{id}/messages` 
 - Parameters  
-    - type: string, `note`, `message`, required
-    - channelId: string, channel Id, required
-    - channelAccountId: string, channel account id, 
-    - subject: string, for email message, email subject
-    - cc: string, message cc emails 
-    - parentId: string,
-    - contents: [content](#content)[]
-    - sentTime: datetime, send time
+    - type: string, required
+    - body: string, required
+    - metadata: string, json
+    - parentId: string
 - Response 
     - [message](#message) 
 
@@ -404,10 +405,9 @@
 `post api/v3/ticketing/tickets/{id}/messages/botIntent`
 - Parameters  
     - id: number, ticket id,
-    - channelId: string, channel id, required
-    - channelAccountId: string, required
     - botId: string, bot id, required
     - intentId: string, bot intent id, required
+    - metadata: string
 - Response 
     - http status code
 
@@ -441,13 +441,6 @@
 + Response 
     - http status code
 
-### Get agents who are openning the ticket 
-`get api/v3/ticketing/tickets/{id}/activedAgents` 
-+ Parameters 
-    - id: number, ticket id,
-+ Response 
-    - agent list
-
 ### Delete a ticket 
 `delete api/v3/ticketing/tickets/{id}` 
 - Parameters 
@@ -463,28 +456,28 @@
     - http status code 
 
 ### Get a ticket draft 
-`get api/v3/ticketing/tickets/{id}/draft` 
+`get api/v3/ticketing/draft/` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Create a ticket draft 
-`post api/v3/ticketing/tickets/{id}/draft` 
+`post api/v3/ticketing/draft` 
 - Parameters 
     - [ticket draft](#ticket-draft) 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Update a ticket draft 
-`put api/v3/ticketing/tickets/{id}/draft` 
+`put api/v3/ticketing/draft` 
 - Parameters 
     - [ticket draft](#ticket-draft) 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Delete a ticket draft 
-`delete api/v3/ticketing/tickets/{id}/draft` 
+`delete api/v3/ticketing/draft` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
@@ -507,7 +500,9 @@
     - array including: 
         - viewId: string, view id 
         - unreadCount: integer, count unread tickets of a view 
+        - unreadTicketIds: integer[],
         - unreadMentionedCount: integer, the number of tickets which is unread and mentioned to me 
+        - unreadMentionedTicketIds: integer[]
 
 # DeletedTicket
 
@@ -539,8 +534,8 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/ticketing/deletedTickets?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/ticketing/deletedTickets?include=assignedDepartment` |
+    | agentAssignee | `get api/v3/ticketing/deletedTickets?include=agentAssignee` |
+    | departmentAssignee | `get api/v3/ticketing/deletedTickets?include=departmentAssignee` |
     | contactOrVisitor | `get api/v3/ticketing/deletedTickets?include=contactOrVisitor` |
     | createdBy | `get api/v3/ticketing/deletedTickets?include=createdBy` |
     | lastRepliedBy | `get api/v3/ticketing/deletedTickets?include=lastRepliedBy` | 
@@ -556,8 +551,8 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/ticketing/deletedTickets/{id}?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/ticketing/deletedTickets/{id}?include=assignedDepartment` |
+    | agentAssignee | `get api/v3/ticketing/deletedTickets/{id}?include=agentAssignee` |
+    | departmentAssignee | `get api/v3/ticketing/deletedTickets/{id}?include=departmentAssignee` |
     | contactOrVisitor | `get api/v3/ticketing/deletedTickets/{id}?include=contactOrVisitor` |
     | createdBy | `get api/v3/ticketing/deletedTickets/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/ticketing/deletedTickets/{id}?include=lastRepliedBy` |
@@ -589,33 +584,6 @@
     - id: integer, ticket id 
 - Response 
     - [ticket](#ticket)  
- 
-# Attachments  
-## objects
-### attachment 
-| Name | Type | Description | 
-| - | - | - |
-| `id` | string | attachment unique id |  
-| `fileKey` | string | file key |  
-| `name` | string | attachment file name| 
-| `size` | int | size file name| 
-| `url` | string | attachment download link |   
-
-## endpoints 
-### Update status of attachment
-`Put /api/v3/ticketing/attachments/{guid}`
-#### Parameters:
-- isAvailable - boolean `true` or  `false`
-#### Response
-- [attachment](#attachment) 
-
-### Delete attachment 
-`delete /api/v3/ticketing/attachments/{guid}` 
-- Parameters 
-    - guid: string, the guid of the attachment
-- Response 
-    - httpStatusCode
-
 
 # Views 
 ## objects 
@@ -638,12 +606,11 @@
 ### condition
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | id of the condition |
-| `type` | string | `view`, `trigger`, `sla`, `routingRule` |
+| `id` | string | id of the condition | 
 | `fieldId` | string | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
-| `orderNum` | integer | order number | 
+| `order` | integer | order number | 
 
 ## endpoints 
 ### List views 
@@ -694,94 +661,82 @@
 | - | - | - |
 | `isEnabled` | boolean | whether the routing is enabled or not.
 | `type` |string | the type of routing, including `simple`and `customRules`. |
-| `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
-| `simpleRouteToId` | string | route to agent id |
-| `simpleRouteToDepartmentId` | string | route to department id |
-| `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `percentageToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online when simple routing |
-| `percentageToBotWhenAgentsOffline` | integer | Percentage of new ticket to bot when agents are offline when simple routing |
-| `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
-| `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
-| `matchFailedrouteToId` | string | match failed route to agent id |
-| `matchFailedrouteToDepartmentId` | string | match failed route to department id |
-| `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `matchFailedPercentageToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online when match failed|
-| `matchFailedPercentageToBotWhenAgentsOffline` | integer | Percentage of new ticket to bot when agents are offline when match failed |
+| `routeTypeForSimpleRouting` | string | the rule of route ,including `department` and `agent` |
+| `routeToAgentIdForSimpleRouting` | string | route to agent id |
+| `routeToDepartmentIdForSimpleRouting` | string | route to department id |
+| `priorityForSimpleRouting` | string | `urgent`, `high`, `normal`, `low` |
+| `percentageToBotWhenOnline` | integer | Percentage of new ticket to bot when agents are online when simple routing |
+| `percentageToBotWhenOffline` | integer | Percentage of new ticket to bot when agents are offline when simple routing |
+| `routingRules` | [routingRule](#routingRule)[] | an array of [routingRule](#routingRule) json object. |
+| `routeToTypeWhenNoRuleMatched` | string | the rule of failed route  including `department` and `agent` |
+| `routeToAgentIdWhenNoRuleMatched` | string | match failed route to agent id |
+| `RouteToDepartmentIdWhenNoRuleMatched` | string | match failed route to department id |
+| `priorityWhenNoRuleMatched` | string | `urgent`, `high`, `normal`, `low` |
+| `percentageToBotWhenOnlineWhenNoRuleMatched` | integer | Percentage of new ticket to bot when agents are online when match failed |
+| `percentageToBotWhenOfflineWhenNoRuleMatched` | integer | Percentage of new ticket to bot when agents are offline when match failed |
 
-### customRule
+### routingRule
 | Name | Type | Description |
 | - | - | - |
 | `id` | string | id of the custom rule |
-| `orderNum` | integer | order of the custom rule |
 | `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
+| `conditionMetType` | string | `any`,`all`,`logicalExpression` |
+| `logicalExpression` | string | logic expression |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
-| `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
-| `routeToId` | string | route to agent id  |
+| `routeToType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
+| `routeToAgentId` | string | route to agent id  |
 | `routeToDepartmentId` | string | route to department id |
-| `routeWithPriority` | string | ticket priority enum number|
-| `percentageToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online |
-| `percentageToBotWhenAgentsOffline` | integer | Percentage of new ticket to bot when agents are offline |
+| `priority` | string | ticket priority enum number|
+| `percentageToBotWhenOnline` | integer | Percentage of new ticket to bot when agents are online |
+| `percentageToBotWhenOffline` | integer | Percentage of new ticket to bot when agents are offline |
+| `order` | integer | order of the custom rule |
 
 ## endpoints
-### get routing
-`get api/v3/ticketing/routing`
+### get routingConfig
+`get api/v3/ticketing/routingConfig`
 + Parameters
     - no parameters
 + Response
     - [routingRule](#routingRule)
 
-### Enable/Disable routing
-`put api/v3/ticketing/routing/enable`
-+ Parameters
-    - isEnabled: boolean,
-+ Response
-    - http status code
-
 ### Update routing
-`put api/v3/ticketing/routing/`
+`put api/v3/ticketing/routingConfig`
 + Parameters
     - isEnabled: boolean
     - type: string, `simple` or `customRules`
-    - simpleRouteType: string, department and agent
-    - simpleRouteToId: string, simple route to agent id
-    - simpleRouteToDepartmentId, string, simple route to department id
-    - simpleRoutePercentageOfNewTicketToBotWhenAgentsOnline: integer
-    - simpleRoutePercentageOfNewTicketToBotWhenAgentsOffline: integer
-    - simpleRouteWithPriority: string,
-    - matchFailedType: string, department and agent
-    - matchFailedToId: string
-    - matchFailedToDepartmentId: string
-    - matchFailedWithPriority: string
-    - matchFailedPercentageOfNewTicketToBotWhenAgentsOnline: integer
-    - matchFailedPercentageOfNewTicketToBotWhenAgentsOffline: integer 
+    - routeTypeForSimpleRouting: string, department and agent
+    - routeToAgentIdForSimpleRouting: string, simple route to agent id
+    - routeToDepartmentIdForSimpleRouting, string, simple route to department id
+    - percentageToBotWhenOnline: integer
+    - percentageToBotWhenOffline: integer
+    - priorityForSimpleRouting: string,
+    - routeToTypeWhenNoRuleMatched: string, department and agent
+    - routeToAgentIdWhenNoRuleMatched: string
+    - RouteToDepartmentIdWhenNoRuleMatched: string
+    - priorityWhenNoRuleMatched: string
+    - percentageToBotWhenOnlineWhenNoRuleMatched: integer
+    - percentageToBotWhenOfflineWhenNoRuleMatched: integer 
 + Response
     - [routing](#routing)
 
-### Enable/Disable a custom rule
-`put api/v3/ticketing/routing/customRules/{id}/enable`
-+ Parameters
-    - id: string
-    - isEnabled: boolean
-+ Response
-    - [customRule](#customRule) 
 
 ### Create a custom rule
-`post api/v3/ticketing/routing/customRules`
+`post api/v3/ticketing/routingRules`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
     - [customRule](#customRule)
 
 ### Get a custom rule
-`get api/v3/ticketing/routing/customRules/{id}`
+`get api/v3/ticketing/routingRules/{id}`
 + Parameters
     - id: string
 + Response
     - [customRule](#customRule)
 
 ### Update a custom rule
-`put api/v3/ticketing/routing/customRules/{id}`
+`put api/v3/ticketing/routingRules/{id}`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
@@ -789,77 +744,55 @@
 
 
 ### Delete a custom rule
-`put api/v3/ticketing/routing/customRules/{id}`
+`put api/v3/ticketing/routingRules/{id}`
 + Parameters
     - id: string
 + Response
     - http status code
 
-### update the order number of a custom rule
-`put api/v3/ticketing/routing/customRules/{id}/sort`
-+ Parameters
-    - id: string
-    - type: string, `up`, `down`
-+ Response
-    - http status code
-
-# AutoAllocations
+# AutoDistributions
 ## objects
-### autoAllocationSetting
+### autoDistributionConfig
 | Name | Type | Description | 
 | - | - | - | 
-| `isEnabled` | boolean | if enabled Auto Allocation |
-| `departmentAllocationRule`| [allocationRule](#allocationRule)[] | array of department allocation rules |
-| `defaultRule`| string | `loadBalancing`, `roundRobin` |
-| `defaultPreferLastAssignee`| boolean | prefer to allocate to the last assignee |
-| `ifEnableTicketLimitForEachAgent` | boolean | if set maximum number of tickets an agent can be allocated to |
-| `ticketLimitForAllAgents` | integer | maximum number of tickets all agents can be allocated to |
-| `agentPreferences` | [agentPreference](#agentPreference)[] | agent preference for allocation |
+| `isEnabled` | boolean | if enabled Auto Distribution |
+| `autoDistributionMethod`| string | `loadBalancing`, `roundRobin` |
+| `isLastAssignedAgentPreferred`| boolean | prefer to allocate to the last assignee |
+| `ifLimitMaxTicketsForAllAgents` | boolean | if set maximum number of tickets an agent can be allocated to |
+| `maxTicketsForAllAgents` | integer | maximum number of tickets all agents can be allocated to |
 | `excludePendingExternal` | boolean | if exclude `Pending External` status while validating if an agent has reached the max number |
 | `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
+| `agentAutoDistributions` | [agentAutoDistribution](#agentAutoDistribution)[] | agent preference for distribution |
+| `departmentAutoDistributions`| [departmentAutoDistribution](#departmentAutoDistribution)[] | array of department distribution rules |
 
-### allocationRule
+### departmentAutoDistribution
 | Name | Type | Description | 
 | - | - | - | 
 | `departmentId` | string | department id |
-| `departmentName` | string | department name |
-| `allocationRule`| string | `loadBalancing`, `roundRobin` |
-| `preferLastAssignee` | boolean | prefer to allocate to the last assignee |
+| `autoDistributionMethod`| string | `loadBalancing`, `roundRobin` |
+| `isLastAssignedAgentPreferred` | boolean | prefer to allocate to the last assignee |
 
-### agentPreference
+### agentAutoDistribution
 | Name | Type | Description | 
 | - | - | - | 
 | `agentId` | string | agent id |
-| `maxConcurrentCount` | integer | the maximum number of the tickets a agent can accept at the same time |
-| `isAcceptAllocation` | boolean | if the agent accept tickets |
+| `maxTickets` | integer | the maximum number of the tickets a agent can accept at the same time |
+| `ifParticipateInAutoDistribution` | boolean | if the agent participate in auto distribution |
 
 ## endpoints
-### Get auto allocation settings
-`get api/v3/ticketing/autoAllocation`
+### Get auto distribution config
+`get api/v3/ticketing/autoDistributionConfig`
 + Parameters
     - no parameters
 + Response
-    - [autoAllocationSetting](#autoAllocationSetting)
+    - [autoDistributionConfig](#autoDistributionConfig)
 
-### Enable/Disable auto allocation
-`put api/v3/ticketing/autoAllocation/enable`
+### Update auto distribution config
+`put api/v3/ticketing/autoDistributionConfig`
 + Parameters
-    - isEnabled: boolean, if enabled auto allocation
+     - [autoDistributionConfig](#autoDistributionConfig)
 + Response
-    - http status code
-
-### Update auto allocation settings
-`put api/v3/ticketing/autoAllocation`
-+ Parameters
-    - isEnabled: boolean, if enabled auto allocation
-    - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
-    - ifEnableTicketLimitForEachAgent: boolean, if set maximum number of tickets an agent can be allocated to
-    - ticketLimitForAllAgents: integer, maximum number of tickets all agents can be allocated to
-    - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
-    - ifExcludePendingExternal: boolean, if exclude `Pending External` status while validating if an agent has reached the max number
-    - ifExcludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
-+ Response
-    - [autoAllocationSetting](#autoAllocationSetting)
+    - [autoDistributionConfig](#autoDistributionConfig)
 
 # Triggers
 ## object
@@ -882,7 +815,7 @@
 | `plainText` | string | plain text |
 | `attachments` | [attachment](#attachment)[] | attachments |
 | `ifShowInTicketCorrespondences` | boolean | if show trigger email in Ticket Correspondence |
-| `orderNum` | integer | trigger execute and display order |
+| `order` | integer | trigger execute and display order |
 
 ### autoUpdate
 | Name | Type | Description | 
@@ -985,7 +918,7 @@
 | `resolveRespondWithin` | integer | the hours a ticket should be resolved within |
 | `isBusinessHours`| boolean | if `businessHours` or `calenderHours` |
 | `conditions` | [conditions](#conditions) | conditions | 
-| `orderNum` | integer | SLA execute and display order |
+| `order` | integer | SLA execute and display order |
 
 ## endpoints
 ### List all SLA policies
@@ -1138,7 +1071,7 @@
 | `id` | string | option id | 
 | `name` | string | option name | 
 | `value` | string | field value | 
-| `orderNum` | integer | option order | 
+| `order` | integer | option order | 
 
 ### fieldMapping
 | Name | Type | Description | 
@@ -1258,7 +1191,7 @@
 | `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `isRead`| boolean | | 
+| `isReadByAgent`| boolean | | 
 | `sentById`| string | id of contact or visitor | 
 | `sentByType`| string | `contact` or `visitor` or `system` | 
 | `sentTime` | datetime | the sent time of the junk message | 
@@ -1297,7 +1230,7 @@
 `put api/v3/ticketing/junks/{id}` 
 - Parameters 
     - id: string, email id 
-    - isRead: boolean, 
+    - isReadByAgent: boolean, 
 - Response 
     - [junk](#junk) 
 
