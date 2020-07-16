@@ -60,46 +60,46 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | integer | id of ticket | 
-| `guid` | string | guid of ticket | 
-| `relatedType` | string | `contact`, `visitor`, `agent` | 
-| `relatedId` | integer | contact id, visitor id, agent id | 
 | `subject` | string | ticket subject | 
-| `assignedType` | string | `agent`, `bot` | 
-| `assignedBotId` | string | assigned bot id | 
-| `assignedAgentId` | integer | assigned agent id| 
-| `assignedDepartmentId` | string | assigned department id | 
-| `originalId` | string | original id on social platform | 
+| `relatedType` | string | `contact`, `visitor`, `agent` | 
+| `relatedId` | string | contact id, visitor id, agent id | 
+| `assigneeType` | string | `agent`, `bot` | 
+| `assigneeId` | string | assignee id | 
+| `departmentAssigneeId` | string | department assignee id | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
 | `hasDraft` | boolean | if has draft | 
-| `isDeleted` | boolean | if deleted | 
-| `isRead` | boolean | if the ticket is read | 
-| `isReadByContact` | boolean | if the portal ticket is read by contact |
-| `isEditable`| boolean | if the current agent can update\reply the ticket | 
-| `isActive`| boolean | if open in my active work area by agent | 
-| `isMultiChannel`| boolean | if the ticket has multiple channel messages | 
-| `tagIds` | string[] | tag id array | 
-| `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
-| `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `createdById` | integer | contact id or agent id or visitor id| 
-| `createdByType` | string | agent or contact or system or visitor | 
-| `createdAt` | datetime | create time of ticket | 
-| `lastUpdatedAt` | datetime | last updated time of ticket | 
-| `lastStatusChangedAt` | datetime | last status change time of ticket | 
-| `lastRepliedAt` | datetime | last replied time | 
-| `lastRepliedById` | integer | contact id or agent id | 
-| `lastRepliedByType` | string | `agent` or `contact` or `system`| 
-| `firstMessageId` | integer | the id of the first message | 
+| `mergedToTargetId` | int | merged ticket id | 
+| `isReadByAgent` | boolean | if the ticket is read by agent | 
+| `isReadByContact` | boolean | if the portal ticket is read by contact | 
+| `createdById` | string | contact id or agent id or visitor id| 
+| `createdByType` | string | `agent` or `contact` or `visitor` | 
+| `createdTime` | datetime | create time of ticket | 
+| `lastUpdatedTime` | datetime | last updated time of ticket | 
+| `lastStatusChangedTime` | datetime | last status change time of ticket | 
+| `lastRepliedTime` | datetime | last replied time | 
+| `lastRepliedById` | string | contact id or agent id | 
+| `lastRepliedByType` | string | `agent` or `contact` or `channelAccount` or `bot`|
+| `resolvedById` | string | contact id or agent id| 
+| `resolvedByType` | string | `agent` or `contact` or `system` | 
+| `resolvedTime` | datetime | resolved time of ticket | 
+| `firstMessageId` | string | the id of the first message | 
 | `firstMessageChannelId` | string | the channel id of the first message | 
 | `firstMessageChannelAccountId` | string | the channel account id of the first message | 
-| `lastMessageId` | integer | the id of the last message | 
+| `lastMessageId` | string | the id of the last message | 
+| `lastMessageChannelId` | string | the channel id of the last message | 
+| `lastMessageChannelAccountId` | string | the channel account id of the last message | 
 | `totalReplies`| int | total replies number | 
-| `slaPolicyId` | string | SLA id of this ticket matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is due to be resolved | 
 | `nextSLABreachAt` | datetime | Timestamp that the next sla breach time | 
-
+| `isEditable`| boolean | if the current agent can update\reply the ticket | 
+| `originalConversationId` | string | original id on social platform | 
+| `isDeleted` | boolean | if deleted | 
+| `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
+| `tagIds` | string[] | tag id array | 
+| `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 ### custom field value
 | Name | Type | Description | 
 | - | - | - | 
@@ -116,81 +116,53 @@
 ### mentioned agent 
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | integer | the agent id of mentioned | 
+| `agentId` | string | the agent id of mentioned | 
 | `isRead`| boolean | if the mentioned ticket is read | 
-| `messageId`| integer | message id| 
+| `messageId`| string | message id| 
 
 ### message 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | id of message | 
+| `id` | string | id of message | 
 | `ticketId` | integer | id of ticket | 
-| `channelId` | string | channel Id | 
-| `type` | string | `note`, `message` |
-| `directType` | string | `receive`, `send` |
-| `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| integer | contact identity id |
-| `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
-| `originalMessageUrl` | string | origial message link |
-| `parentId` | integer | parent id |
-| `subject` | string | subject | 
-| `cc` | string | cc email addresses |  
-| `bcc` | string | bcc email addresses |  
-| `contents` | [content](#content)[] | content array | 
-| `quote` | string | quote content, only for email | 
-| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
-| `isRead`| boolean | if the message read by agent| 
-| `sendStatus` | string | `success`, `sending`, `failed` |
-| `sentById`| integer | id of agent or contact or visitor |
-| `sentByBotId`| string | id bot| 
-| `sentByType`| string | `agent` or `contact` or `system` or `bot` | 
-| `sentTime` | datetime | the sent time of the message | 
-| `errorMessage`| string | error message |  
-| `hasAttachmentButNotReceived`| boolean | if the message has attachment but not received |  
+| `body` | string | message text | 
+| `type` | string | `text`, `html`,`audio`,`video`,`image`,`file`,`location`|
+| `metadata` | string | json fomat, content of message |
+| `parentId` | string | parent id |
+| `time` | datetime | received time for incoming message, sent time for outgoing message | 
+| `sentById`| string | id of agent or contact or visitor |
+| `sentByType`| string | `agent` or `contact` or `system` or `bot` or `channelAccount` or `visitor` |  
+| `attachments`| [attachment](#attachment)[] | attachment array |  
+| `messageDelivery` | [messageDelivery](#messageDelivery) | message delivery object |  
 
-### content
+### messageDelivery
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | content id | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webView`, `quickReply` |  
-| `text` | string | text | 
-| `htmlText` | string | html text |
-| `name` | string | file name | 
-| `attachmentId` | string | file key |
-| `url` | string | download link | 
-| `title` | string | media title| 
-| `latitude` | string | latitude | 
-| `longitude` | string | longitude | 
-| `mime` | string | mime type |
-| `previewUrl` | string | preview URL of Video |
-| `desc` | string | description |
-| `fallbackurl` | string | fallback url |
-| `webviewHeight` | string | webview height：compact/tall/full|
-| `payload` | string | payload data |
-| `orderNum` | integer | order number |
-
+| `messageId` | string | id of message | 
+| `status` | string | send status：`waitForSending`,`sending`,`failed` | 
+| `failReason` | string | fail reason | 
 
 ### ticket draft 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | id of message draft | 
+| `id` | string | id of message draft | 
 | `ticketId` | integer | id of ticket | 
 | `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| integer | id of contact identity |
-| `parentId` | integer | parent id |
+| `contactIdentityId`| string | id of contact identity |
+| `parentId` | string | parent id |
 | `subject` | string | subject | 
 | `quote` | string | quote for email | 
 | `cc` | string | cc email addresses |  
 | `quote` | string | email quote | 
 | `contents` | [content](#content)[] | content array | 
-| `sentById`| integer | id of agent| 
+| `sentById`| string | id of agent| 
 | `sentTime` | datetime | the sent time of the message | 
   
  ### event log
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | event log id | 
+| `id` | string | event log id | 
 | `ticketId` | integer | id of ticket | 
 | `text` | string | event log text | 
 | `time` | datetime | event time | 
@@ -252,10 +224,10 @@
     | Assigned Agent | Is, IsNot  | Agent Id |
     | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
-    | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Status Changed At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Closed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Created Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Updated Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Status Changed Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Closed Time | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
     | @Mentioned Agent | Is, IsNot | number, agent Id |
     | First Message Channel | Is, IsNot | guid, channel Id |
@@ -321,7 +293,7 @@
 `post api/v3/ticketing/tickets` 
 - Parameters 
     - subject: string, ticket subject, required 
-    - assignedAgentId: integer, agent id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - assignedBotId: string, bot id
     - assignedType: string, `agent`, `bot`
@@ -355,7 +327,7 @@
     - isRead: boolean
     - isActive: boolean
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
-    - tagIds: integer[], tag id array
+    - tagIds: string[], tag id array
 - Response 
     - [ticket](#ticket) 
 
@@ -367,7 +339,7 @@
     - priority, string
     - assignedType: string, `agent`, `bot`
     - assignedBotId: string, bot id
-    - assignedAgentId: integer, agent id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
@@ -397,7 +369,7 @@
 `get api/v3/ticketing/tickets{id}/messages/{messageId}` 
 + Parameters 
     - id: integer, ticket id 
-    - messageId: integer, message id
+    - messageId: string, message id
 + Response 
     - [message](#message)
 + Includes
@@ -414,7 +386,7 @@
     - channelAccountId: string, channel account id, 
     - subject: string, for email message, email subject
     - cc: string, message cc emails 
-    - parentId: integer,
+    - parentId: string,
     - contents: [content](#content)[]
     - sentTime: datetime, send time
 - Response 
@@ -424,7 +396,7 @@
 `put api/v3/ticketing/tickets/{id}/messages/{messageId}/resend` 
 - Parameters  
     - id: integer, ticket id,
-    - messageId: integer, message id,
+    - messageId: string, message id,
 - Response 
     - [message](#message) 
 
@@ -457,7 +429,7 @@
 `put api/v3/ticketing/tickets/{id}/messages/{messageId}/read` 
 + Parameters 
     - id: number, ticket id,
-    - messageId: integer, message id,
+    - messageId: string, message id,
 + Response 
     - http status code
 
@@ -465,7 +437,7 @@
 `put api/v3/ticketing/tickets/{id}/messages/{messageId}/unread` 
 + Parameters 
     - id: number, ticket id,
-    - messageId: integer, message id,
+    - messageId: string, message id,
 + Response 
     - http status code
 
@@ -536,216 +508,6 @@
         - viewId: string, view id 
         - unreadCount: integer, count unread tickets of a view 
         - unreadMentionedCount: integer, the number of tickets which is unread and mentioned to me 
-
-# PortalTickets
-## objects
-### portal ticket
-| Name | Type | Description |
-| - | - | - |
-| `id` | integer | id of ticket | 
-| `guid` | string | guid of ticket | 
-| `relatedType` | string | `contact`, `visitor`, `agent`| 
-| `relatedId` | integer | contact id, visitor id, agent id | 
-| `subject` | string | ticket subject | 
-| `assignedType` | string | `agent` or `bot` | 
-| `assignedAgentId` | integer | assigned agent id | 
-| `assignedBotId` | string | assigned bot id | 
-| `assignedDepartmentId` | string | assigned department id | 
-| `originalId` | string | original id on social platform | 
-| `priority` | string | `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
-| `isRead` | boolean | if the ticket is read | 
-| `isReadByContact` | boolean | if the portal ticket is read by contact |
-| `isMultiChannel`| boolean | if the ticket has multiple channel messages | 
-| `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `createdById` | integer | contact id or agent id or visitor id| 
-| `createdByType` | string | agent or contact or system or visitor | 
-| `createdAt` | datetime | create time of ticket | 
-| `lastUpdatedAt` | datetime | last updated time of ticket | 
-| `lastStatusChangedAt` | datetime | last status change time of ticket | 
-| `lastRepliedAt` | datetime | last replied time | 
-| `lastRepliedById` | integer | contact id or agent id | 
-| `lastRepliedByType` | string | `agent` or `contact` or `system`| 
-| `firstMessageId` | integer | the id of the first message | 
-| `lastMessageId` | integer | the id of the last message | 
-| `totalReplies`| int | total replies number | 
-
-### portal ticket message 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | integer | id of message | 
-| `ticketId` | integer | id of ticket | 
-| `channelId` | string | channel Id | 
-| `type` | string | `message` |
-| `directType` | string | `receive`, `send` |
-| `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| integer | contact identity id |
-| `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
-| `originalMessageUrl` | string | origial message link |
-| `parentId` | integer | parent id |
-| `subject` | string | subject | 
-| `cc` | string | cc email addresses |  
-| `contents` | [content](#content)[] | content array | 
-| `isRead`| boolean | if the message read by agent | 
-| `sendStatus` | string | `success`, `sending`, `failed` |
-| `sentById`| integer | id of agent or contact | 
-| `sentByBotId`| string | id of bot | 
-| `sentByType`| string | `agent` or `contact` or `system` | 
-| `sentTime` | datetime | the sent time of the message | 
-
-## endpoints 
-
-|EndPoint|Note| 
-|---|---|
-| `get api/v3/ticketing/portalTickets/{id}`  | [Get a portal ticket by id](#Get-a-portal-ticket-by-id)  |
-| `get api/v3/ticketing/portalTickets` | [List portal tickets](#List-portal-tickets) |
-| `post api/v3/ticketing/portalTickets` | [Submit a portal ticket](#Submit-a-portal-ticket) |
-| `put api/v3/ticketing/portalTickets/{id}/close` | [Close a portalTicket](#Close-a-portalTicket) |
-| `put api/v3/ticketing/portalTickets/{id}/reopen`  | [Reopen a portalTicket](#Reopen-a-portalTicket) |
-| `get api/v3/ticketing/portalTickets/{id}/messages` | [List messages of a portal ticket ](#List-messages-of-a-portal-ticket) |
-| `post api/v3/ticketing/portalTickets/{id}/messages` | [Reply a portal ticket](#Reply-a-portal-ticket) |
-| `put api/v3/ticketing/portalTickets/{id}/read` | [Contact mark a portal ticket as read](#Contact-mark-a-portal-ticket-as-read) |
-| `put api/v3/ticketing/portalTickets/{id}/unread` | [Contact mark a portal ticket as unread](#Contact-mark-a-portal-ticket-as-unread) |
-
-### Get a portal ticket by id
-`get api/v3/ticketing/portalTickets/{id}`
-- Parameters
-    - id, integer, portal ticket id
-    - contactId, integer
-- Response
-    - [portal ticket](#portal-ticket) 
-- Includes
-
-    |Includes| Description |
-    | - | - |
-    | contact | `get api/v3/ticketing/portalTickets/{id}?include=contact` | 
-    | messages | `get api/v3/ticketing/portalTickets/{id}?include=messages` |
- 
-### List portal tickets
-`get api/v3/ticketing/portalTickets`
-- Parameters: 
-    - contactIds: integer array,
-    - keywords: string,
-    - timeFrom: DateTime, last reply time, default search the last 90 days, ISO-8601 time format,
-    - timeTo: DateTime, last reply time, default value is the current time, ISO-8601 time format,
-    - timeZoneOffset, float, time zone based on your date parameters in ticket conditions. Such date parameters might be @today, @last 7 days for example.
-    - conditions: can be ticket system field and custom fields.
-        - field: string, field name
-        - matchType: string 
-        - value: string
- 
-    Here is the list of match types and values supported by ticket system field.    
-    
-    | Field | Match Type | Values |
-    | - | - | - |
-       | Ticket Id | Is, IsNot  | number |
-    | Subject | Contains, NotContains  | string |
-    | Assigned Department | Is, IsNot  | Department Id |
-    | Assigned Agent | Is, IsNot  | Agent Id |
-    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
-    | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
-    | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Status Changed At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Closed At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
-    | @Mentioned Agent | Is, IsNot | number, agent Id |
-    | First Message Channel | Is, IsNot | guid, channel Id |
-    | First Message Channel Account | Is, IsNot | guid, channel account Id |
-    | last Message Channel | Is, IsNot | guid, channel Id |
-    | last Message Channel Account | Is, IsNot | guid, channel account Id |
-    | is Multi Channel | Is, IsNot | bool, if the ticket is multi channel ticket |
-    
-    Here is the list of match types and values supported by ticket custom field.    
-
-    | Field DataType | Match Type | Values |
-    | - | - | - |
-    | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
-    | Drop-down list | Is, IsNot | option text |
-    | Check-box list | Is, IsNot | option text |
-    | Radio button | Is, IsNot | option text |
-    | Check-box | Is, IsNot | `true` or 1, `false` or 0 |
-    | Single-line text box | Contains, NotContains | string |
-    | Multi-line text box | Contains, NotContains | string |
-    | Agent | Is, IsNot | agent id |
-    | Department | Is, IsNot | department id |
-    | Link | Contains, NotContains | string |
-    | Url | Contains, NotContains | string |
-
-
-- Response: 
-    - portalTickets: [portal ticket](#portal-ticket) list, returns a maximum of 100 records. 
-- Includes
-
-    |Includes| Description |
-    | - | - |
-    | contact | `get api/v2/ticket/portalTickets?include=contact` |  
-- Sample
-    - `get api/v2/ticket/portalTickets?contactIds=1&contactIds=2&contactIds=3&conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, note: pass the option id of dropdownlist field as the value.
-
-### Submit a portal ticket
-`post api/v3/ticketing/portalTickets`
-- Parameters: 
-    - subject: string, subject, required
-    - contactId: integer, id of the contact who submitted the portal ticket
-    - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
-    - message:  the first portal message
-        contents: [content](#content)[]
-- Response: 
-  - [portal ticket](#portal-ticket) 
-
-### Close a portalTicket
-`put api/v3/ticketing/portalTickets/{id}/close` 
-- Parameters: 
-    - id, integer, portal ticket id,
-    - contactId, integer, required
-- Response: 
-    - [portal ticket](#portal-ticket) 
-
-### Reopen a portalTicket
-`put api/v3/ticketing/portalTickets/{id}/reopen` 
-- Parameters: 
-    - id, integer, portal ticket id,
-    - contactId, integer, required
-- Response: 
-    - [portal ticket](#portal-ticket) 
-
-### List messages of a portal ticket 
-`get api/v3/ticketing/portalTickets/{id}/messages`
-- Parameters: 
-    - id, integer, ticket id
-    - contactId, integer, contact id
-- Response: 
-    - [portal ticket message](#portal-ticket-message) list
-- Includes
-
-    |Includes| Description |
-    | - | - |
-    | sender| `get api/v3/ticketing/portalTickets/{id}/messages?include=sender` | 
-
-### Reply a portal ticket
- `post api/v3/ticketing/portalTickets/{id}/messages`
-- Parameters:
-    - id: integer
-    - contactId: integer, required
-    - contents: [content](#content)[], 
-    - sentTime: datetime, sent time
-- Response: 
-    - [portal ticket message](#portal-ticket-message)
-
-### Contact mark a portal ticket as read
-`put api/v3/ticketing/portalTickets/{id}/read`
-- Parameters 
-    - id: integer, ticket id 
-- Response 
-    - http status code
-
-### Contact mark a portal ticket as unread
-`put api/v3/ticketing/portalTickets/{id}/unread`
-- Parameters 
-    - id: integer, ticket id 
-- Response 
-    - http status code
 
 # DeletedTicket
 
@@ -834,20 +596,12 @@
 | Name | Type | Description | 
 | - | - | - |
 | `id` | string | attachment unique id |  
-| `fileName` | string | attachment file name| 
+| `fileKey` | string | file key |  
+| `name` | string | attachment file name| 
+| `size` | int | size file name| 
 | `url` | string | attachment download link |   
-| `isAvailable` | boolean | if the attachment is available | 
 
 ## endpoints 
-### Upload attachment 
-`post /api/v3/ticketing/attachments` 
-- Content-type
-    - multipart/form-data
-- Parameters 
-    - file: file
-- Response 
-    - [attachment](#attachment) 
-    
 ### Update status of attachment
 `Put /api/v3/ticketing/attachments/{guid}`
 #### Parameters:
@@ -941,14 +695,14 @@
 | `isEnabled` | boolean | whether the routing is enabled or not.
 | `type` |string | the type of routing, including `simple`and `customRules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
-| `simpleRouteToId` | integer | route to agent id |
+| `simpleRouteToId` | string | route to agent id |
 | `simpleRouteToDepartmentId` | string | route to department id |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `percentageToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online when simple routing |
 | `percentageToBotWhenAgentsOffline` | integer | Percentage of new ticket to bot when agents are offline when simple routing |
 | `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
-| `matchFailedrouteToId` | integer | match failed route to agent id |
+| `matchFailedrouteToId` | string | match failed route to agent id |
 | `matchFailedrouteToDepartmentId` | string | match failed route to department id |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 | `matchFailedPercentageToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online when match failed|
@@ -963,7 +717,7 @@
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
-| `routeToId` | integer | route to agent id  |
+| `routeToId` | string | route to agent id  |
 | `routeToDepartmentId` | string | route to department id |
 | `routeWithPriority` | string | ticket priority enum number|
 | `percentageToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online |
@@ -990,13 +744,13 @@
     - isEnabled: boolean
     - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
-    - simpleRouteToId: integer, simple route to agent id
+    - simpleRouteToId: string, simple route to agent id
     - simpleRouteToDepartmentId, string, simple route to department id
     - simpleRoutePercentageOfNewTicketToBotWhenAgentsOnline: integer
     - simpleRoutePercentageOfNewTicketToBotWhenAgentsOffline: integer
     - simpleRouteWithPriority: string,
     - matchFailedType: string, department and agent
-    - matchFailedToId: integer
+    - matchFailedToId: string
     - matchFailedToDepartmentId: string
     - matchFailedWithPriority: string
     - matchFailedPercentageOfNewTicketToBotWhenAgentsOnline: integer
@@ -1075,7 +829,7 @@
 ### agentPreference
 | Name | Type | Description | 
 | - | - | - | 
-| `agentId` | integer | agent id |
+| `agentId` | string | agent id |
 | `maxConcurrentCount` | integer | the maximum number of the tickets a agent can accept at the same time |
 | `isAcceptAllocation` | boolean | if the agent accept tickets |
 
@@ -1494,18 +1248,18 @@
 ### junk 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | integer | id of junk | 
+| `id` | string | id of junk | 
 | `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| integer | id of contact identity |
+| `contactIdentityId`| string | id of contact identity |
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message link |
-| `parentId` | integer | parent id |
+| `parentId` | string | parent id |
 | `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `isRead`| boolean | | 
-| `sentById`| integer | id of contact or visitor | 
+| `sentById`| string | id of contact or visitor | 
 | `sentByType`| string | `contact` or `visitor` or `system` | 
 | `sentTime` | datetime | the sent time of the junk message | 
 
@@ -1535,14 +1289,14 @@
 ### Get a junk email 
 `get api/v3/ticketing/junks/{id}` 
 - Parameters 
-    - id: integer, email id 
+    - id: string, email id 
 - Response 
     - [junk](#junk) 
 
 ### Update a junk 
 `put api/v3/ticketing/junks/{id}` 
 - Parameters 
-    - id: integer, email id 
+    - id: string, email id 
     - isRead: boolean, 
 - Response 
     - [junk](#junk) 
@@ -1550,14 +1304,14 @@
 ### Restore a junk email to a normal ticket 
 `post api/v3/ticketing/junks/{id}/notJunk` 
 - Parameters 
-    - id: integer, email id 
+    - id: string, email id 
 - Response 
     - [ticket](#ticket) 
 
 ### Delete a junk email 
 `delete api/v3/ticketing/junks/{id}` 
 - Parameters 
-    - id: integer, junk email id 
+    - id: string, junk email id 
 - Response 
     - http status code 
 
