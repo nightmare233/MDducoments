@@ -37,9 +37,10 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Ticket](#tickets)|/api/v3/ticketing/tickets| Tickets | 
-|[PortalTicket](#portalTickets)|/api/v3/ticketing/portalTickets| Portal tickets |
+|[Ticket](#tickets)|/api/v3/ticketing/tickets| Tickets |  
 |[DeletedTicket](#DeletedTicket)|/api/v3/ticketing/deletedTickets| Deleted tickets |
+|[Message](#message)|/api/v3/ticketing/messages| Messages |  
+|[Note](#note)|/api/v3/ticketing/notes| Messages | 
 |[View](#views)|/api/v3/ticketing/views| Agent console views| 
 |[Routing](#Routing)|/api/v3/ticketing/routingConfig | Routing | 
 |[AutoDistribution](#AutoDistributions)|/api/v3/ticketing/autoDistribution| Auto distributions | 
@@ -48,11 +49,9 @@
 |[WorkingHour](#WorkingHour)|/api/v3/ticketing/workingHourConfig| Work time | 
 |[Holiday](#Holiday)|/api/v3/ticketing/holidays| Holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v3/ticketing/fields| System fields and custom fields | 
-|[BlockedSender](#blockedsenders)|/api/v3/ticketing/blockedSenders| Blocked email or domain | 
+|[BlockedEmailSender](#blockedemailsenders)|/api/v3/ticketing/blockedEmailSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/ticketing/junks| Emails from blocked senders | 
-|[ChannelAccount](#channel-accounts)|/api/v3/ticketing/channelAccounts| Channel accounts | 
-|[Channel](#channels)|/api/v3/ticketing/channels| integrated channels | 
-|[Report](#reports)|/api/v3/ticketing/reports| Ticketing ticket reports | 
+|[ChannelAccount](#channel-accounts)|/api/v3/ticketing/channelAccounts| Channel accounts |  
 
 # Tickets 
 ## objects 
