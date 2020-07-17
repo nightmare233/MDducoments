@@ -63,7 +63,7 @@
 | `relatedType` | string | `contact`, `visitor`, `agent` | 
 | `relatedId` | string | contact id, visitor id, agent id | 
 | `assigneeType` | string | `agent`, `bot` | 
-| `assigneeId` | string | assignee id | 
+| `assigneeId` | string | agent id, bot id| 
 | `departmentAssigneeId` | string | department assignee id | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
@@ -92,7 +92,6 @@
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is due to be resolved | 
-| `nextSLABreachAt` | datetime | Timestamp that the next sla breach time | 
 | `isEditable`| boolean | if the current agent can update\reply the ticket | 
 | `originalConversationId` | string | original id on social platform | 
 | `isDeleted` | boolean | if deleted | 
@@ -187,7 +186,7 @@
 | `put api/v3/ticketing/tickets/{id}` | [Update a ticket ](#Update-a-ticket ) |
 | `put api/v3/ticketing/tickets/`  | [Batch update tickets](#Batch-update-tickets) |
 | `post api/v3/ticketing/tickets/{id}:read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
-| `post api/v3/ticketing/tickets/{id}:unread`  | [Mark-a-ticket-as-unread ](#) |
+| `post api/v3/ticketing/tickets/{id}:unread`  | [Mark a ticket as unread ](#Mark-a-ticket-as-unread) |
 | `post api/v3/ticketing/tickets/{id}:merge` | [ Merge a ticket ](#Merge-a-ticket) |
 | `get api/v3/ticketing/tickets:unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
 | `delete api/v3/ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
@@ -1008,7 +1007,6 @@
 ### Create a holiday
 `post api/v3/ticketing/holidays`
 + Parameters
-    - id: string
     - title: string, title of the holiday
     - date: datetime, date of the holiday
 + Response
