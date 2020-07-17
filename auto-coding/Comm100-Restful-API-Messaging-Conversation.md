@@ -43,7 +43,7 @@
 |[Note](#note)|/api/v3/ticketing/notes| Messages | 
 |[View](#views)|/api/v3/ticketing/views| Agent console views| 
 |[Routing](#Routing)|/api/v3/ticketing/routingConfig | Routing | 
-|[AutoDistribution](#AutoDistributions)|/api/v3/ticketing/autoDistribution| Auto distributions | 
+|[AutoDistribution](#AutoDistributionConfig)|/api/v3/ticketing/autoDistributionConfig| Auto distributions | 
 |[Trigger](#Triggers)|/api/v3/ticketing/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/ticketing/SLAPolicies| SLA policies | 
 |[WorkingHour](#WorkingHour)|/api/v3/ticketing/workingHourConfig| Work time | 
