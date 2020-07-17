@@ -834,7 +834,6 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of the autoUpdate |
-| `triggerId` | string | trigger id |
 | `fieldId` | string | field id | 
 | `value` | string | condition value | 
 
@@ -856,61 +855,16 @@
 ### Submit a trigger
 `post api/v3/ticketing/triggers`
 + Parameters
-    - description, string, description of the trigger
-    - isEnabled, boolean, if enabled the trigger
-    - event, string, `ticketCreated`, `ticketReplyReceived`, `agentReplied`, `ticketAssigneeChanged`, `ticketStatusChanged`, ` ticketStatusLastForCertainTime`
-    - conditions, [conditions](#conditions), conditions 
-    - ifSetValue, boolean, if set value
-    - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
-    - ifSendEmail, boolean, if send email
-    - ifSendToContacts, boolean, if send email to contacts
-    - ifSendToAgents, boolean, if send email to agents
-    - recipientAgentIds, string[], agent id array of recipient
-    - subject, string, subject of the email content
-    - htmlText, string, html body
-    - plainText, string, plain text
-    - attachments, [attachment](#attachment)[], attachment array
-    - ifShowInTicketCorrespondences, boolean, if show trigger email in Ticket Correspondence
+    -[trigger](#trigger)
 + Response
     - [trigger](#trigger)
 
  ### Update a trigger
 `put api/v3/ticketing/triggers/{id}`
 + Parameters
-    - id, string, id of the trigger
-    - description, string, description of the trigger
-    - isEnabled, boolean, if enabled the trigger
-    - event, string,  `ticketCreated`, `ticketReplyReceived`, `agentReplied`, `ticketAssigneeChanged`, `ticketStatusChanged`, ` ticketStatusLastForCertainTime` 
-    - conditions, [conditions](#conditions), conditions 
-    - ifSetValue, boolean, if set value
-    - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
-    - ifSendEmail, boolean, if send email
-    - ifSendToContacts, boolean, if send email to contacts
-    - ifSendToAgents, boolean, if send email to agents
-    - recipientAgentIds, integer[], agent id array of recipient
-    - subject, string, subject of the email content
-    - htmlText, string, html body
-    - plainText, string, plain text
-    - attachments, [attachment](#attachment)[], attachment array
-    - ifShowInTicketCorrespondences, boolean, if show trigger email in Ticket Correspondence
+    -[trigger](#trigger)
 + Response
     - [trigger](#trigger)
-
-### Upgrade/Downgrade a triggers
-`put api/v3/ticketing/triggers/{id}/sort`
-+ Parameters
-    - id: string, trigger id
-    - type: string, `up`, `down`
-+ Response
-    - http status code
-
-### Enable/Disable a triggers
-`put api/v3/ticketing/triggers/{id}`
-+ Parameters
-    - id: string, trigger id
-    - isEnabled: boolean, if enabled the trigger
-+ Response
-    - http status code
 
  ### Delete a trigger
 `delete api/v3/ticketing/triggers/{id}`
@@ -926,23 +880,25 @@
 | - | - | - | 
 | `id` | string | SLA policy id |
 | `isEnabled` | boolean | if enabled this SLA policy |
-| `firstRespondWithin` | integer | the hours first reply within |
-| `nextRespondWithin` | integer | the hours next reply within |
-| `resolveRespondWithin` | integer | the hours a ticket should be resolved within |
-| `isBusinessHours`| boolean | if `businessHours` or `calenderHours` |
-| `conditions` | [conditions](#conditions) | conditions | 
+| `firstRespond` | integer | |
+| `nextRespond` | integer | |
+| `resolution` | integer | |
+| `operationalHours`| boolean | if `businessHours` or `calenderHours` |
+| `conditionMetType` | string | `any`,`all`,`logicalExpression` |
+| `logicalExpression` | string | logic expression |
+| `slaPolicyCondition` | [conditions](#conditions) | conditions | 
 | `order` | integer | SLA execute and display order |
 
 ## endpoints
 ### List all SLA policies
-`get api/v3/ticketing/SLAPolicies`
+`get api/v3/ticketing/Slapolicies`
 + Parameters
     - no parameters
 + Response
     - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
-`get api/v3/ticketing/SLAPolicies/{id}`
+`get api/v3/ticketing/SlaPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
@@ -952,11 +908,13 @@
 `post api/v3/ticketing/SLAPolicies`
 + Parameters
     - isEnabled: boolean, if enabled this SLA policy 
-    - firstRespondWithin: integer, 
-    - nextRespondWithin: integer, 
-    - resolveRespondWithin: integer, 
-    - isBusinessHours: boolean, `businessHours` or `calenderHours` 
-    - conditions: [conditions](#conditions)
+    - firstRespond: integer, 
+    - nextRespond: integer, 
+    - resolution: integer, 
+    - operationalHours: boolean, `businessHours` or `calenderHours` 
+    - conditionMetType: string
+    - logicalExpression
+    - slaPolicyCondition: [conditions](#conditions)
 + Response
     - [SLAPolicy](#SLApolicy)
 
@@ -965,11 +923,13 @@
 + Parameters
     - id: string, SLA policy id 
     - isEnabled: boolean, if enabled this SLA policy 
-    - firstRespondWithin: integer,  
-    - nextRespondWithin: integer, 
-    - resolveRespondWithin: integer,  
-    - businessHours: string, `businessHours` or `calenderHours` 
-    - conditions: [conditions](#conditions)
+    - firstRespond: integer, 
+    - nextRespond: integer, 
+    - resolution: integer, 
+    - operationalHours: boolean, `businessHours` or `calenderHours` 
+    - conditionMetType: string
+    - logicalExpression
+    - slaPolicyCondition: [conditions](#conditions)
 + Response
     - [SLAPolicy](#SLApolicy)
 
@@ -980,25 +940,32 @@
 + Response
     - http status code
 
-### Upgrade/Downgrade a SLA policy
-`put api/v3/ticketing/triggers/{id}/sort`
-+ Parameters
-    - id: string, SLA policy id
-    - type: string, `up`, `down`
-+ Response
-    - http status code
-
 # WorkingTime&Holiday
 ## objects
-### workingTime
+### workingHoursConfig
 | Name | Type | Description | 
 | - | - | - | 
-| `dayOfWeek` | string | day of week |
-| `isBusinessDay` | boolean |  |
-| `startHour` | integer | business start hour |
-| `startMin` | integer | business start min |
-| `endHour` | integer | business close hour |
-| `endMin` | integer | business close min |
+| `IfWorkOnSunday` | boolean |  |
+| `IfWorkOnMonday` | boolean |  |
+| `IfWorkOnTuesday` | boolean |  |
+| `IfWorkOnWednesday` | boolean |  |
+| `IfWorkOnThursday` | boolean |  |
+| `IfWorkOnFriday` | boolean |  |
+| `IfWorkOnSaturday` | boolean |  |
+| `SundayStartTime` | time |  | 
+| `SundayEndTime` | time |  |
+| `MondayStartTime` | time |  | 
+| `MondayEndTime` | time |  |
+| `TuesdayStartTime` | time |  | 
+| `TuesdayEndTime` | time |  |
+| `WednesdayStartTime` | time |  | 
+| `WedesdayEndTime` | time |  |
+| `ThursdayStartTime` | time |  | 
+| `ThursdayEndTime` | time |  |
+| `FridayStartTime` | time |  | 
+| `FridayEndTime` | time |  |
+| `SaturdayStartTime` | time |  | 
+| `SaturdayEndTime` | time |  |
 
 ### holiday
 | Name | Type | Description |
@@ -1008,17 +975,17 @@
 | `date` | datetime | the date of the holiday |
 
 ## endpoints
-### Get working time setting
-`get api/v3/ticketing/workingTime`
+### Get working time config
+`get api/v3/ticketing/workingHoursConfig`
 + Parameters
     - no parameters
 + Response
     - [workingTime](#workingTime) list
 
-### Update working time settings
-`put api/v3/ticketing/workingTime`
+### Update working time config
+`put api/v3/ticketing/workingHoursConfig`
 + Parameters
-    - workingTimes: [workingTime](#workingTime)[]
+    - workingTimes: [workingHoursConfig](#workingHoursConfig)[]
 + Response
     - http status code
 
@@ -1069,14 +1036,15 @@
 | `id` | string | field id | 
 | `type` | string | `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department` |
 | `name` | string | field name | 
-| `isSystemField` | boolean | if is system field | 
+| `isSystem` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
 | `defaultValue` | string | field default value | 
+| `linkURL` | string | link URL | 
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
-| `options` | [field option](#fieldoption)[] | value option | 
-| `chatFieldMapping` | string | chat field name |
-| `offlineMessageFieldMapping` | string | offline message field name |
+| `availableIn` | integer | whick function the field availableIn | 
+| `fieldOptions` | [field option](#fieldOption)[] | value option | 
+| `fieldMapping` | [fieldMapping](#fieldMapping) | field mapping | 
 
 ### fieldOption 
 | Name | Type | Description | 
@@ -1097,8 +1065,8 @@
 ### List fields and their options 
 `get api/v3/ticketing/fields` 
 + Parameters
-    - isSystemField: boolean, if is system field, optional
-    - usageType: string, `all`, `views`, `routingRules`, `SLA`, `triggers`， optional, default `all`
+    - isSystem: boolean, if is system field, optional   
+    - availableIn: string, `all`, `views`, `routingRules`, `SLA`, `triggers`,`macro`,`trigger`,`fieldSetup`， optional, default `all`
 + Response 
     - [field](#field) list 
 
@@ -1112,26 +1080,14 @@
 ### Create a field
 `post api/v3/ticketing/fields`
 + Parameters
-    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
-    - name, string, field name 
-    - isRequired, boolean, value if is required 
-    - defaultValue, string, field default value 
-    - helpText, string, field help text 
-    - length, integer, field value max length 
-    - options, [field option](#fieldoption)[], value option 
+    - [field](#field) 
 + Response
     - [field](#field) 
 
 ### Update a field
 `put api/v3/ticketing/fields/{id}`
 + Parameters
-    - id, string, field id 
-    - name, string, field name 
-    - isRequired, boolean, value if is required 
-    - defaultValue, string, field default value 
-    - helpText, string, field help text 
-    - length, integer, field value max length 
-    - options, [field option](#fieldoption)[], value option 
+    - [field](#field) 
 + Response
     - [field](#field) 
 
@@ -1150,40 +1106,40 @@
     - http status code
 
 
-# BlockedSenders 
+# BlockedEmailSenders 
 ## objects 
-### blocked sender 
+### blocked email sender 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | the id of blocked sender |
-| `value` | string | email or domain | 
-| `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
+| `emailOrdomain` | string | email or domain | 
+| `blockLevel` | string | `blockasJunk`, `reject`, | 
 
 ## endpoints 
-### List blocked senders 
-`get /api/v3/ticketing/blockedSenders` 
+### List blocked email senders 
+`get /api/v3/ticketing/blockedEmailSenders` 
 + Parameters 
-    - value: string, domain or email address 
+    - emailOrdomain: string, domain or email address 
 + Response 
-    - [block sender](#blocked-sender) list 
+    - [block sender](#blocked-email-sender) list 
 
-### Get a blocked sender
-`get /api/v3/ticketing/blockedSenders/{id}`
+### Get a blocked email sender
+`get /api/v3/ticketing/blockedEmailSenders/{id}`
 + Parameters
     - id: string
 + Response
-    - [block sender](#blocked-sender) 
+    - [block email sender](#blocked-email-sender) 
 
-### Add/update a blocked sender 
-`put api/v3/ticketing/blockedSenders` 
+### Add/update a blocked email sender 
+`put api/v3/ticketing/blockedEmailSenders` 
 + Parameters 
-    - `value`, string, domain or email address 
-    - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
+    - `emailOrdomain`, string, domain or email address 
+    - `blockLevel`, string,
 + Response 
-    - [block sender](#blocked-sender) 
+    - [block email sender](#blocked-email-sender) 
 
-### Remove a blocked sender 
-`delete api/v3/ticketing/blockedSenders` 
+### Remove a blocked email sender 
+`delete api/v3/ticketing/blockedEmailSenders` 
 + Parameters 
    - value: string, domain or email address 
 + Response 
@@ -1194,20 +1150,11 @@
 ### junk 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | id of junk | 
-| `channelId` | string | channel id | 
+| `id` | string | id of junk |  
 | `channelAccountId`| string | channel account id | 
-| `contactIdentityId`| string | id of contact identity |
-| `originalMessageId` | string | original message id|
-| `originalMessageUrl` | string | origial message link |
-| `parentId` | string | parent id |
-| `contents` | [content](#content)[] | contents |   
-| `subject` | string | subject | 
-| `cc` | string | cc email addresses |  
+| `content` | string | Content | 
 | `isReadByAgent`| boolean | | 
-| `sentById`| string | id of contact or visitor | 
-| `sentByType`| string | `contact` or `visitor` or `system` | 
-| `sentTime` | datetime | the sent time of the junk message | 
+| `Time` | datetime | the received time of the junk message | 
 
 ## endpoints 
 ### List junk emails
@@ -1248,7 +1195,7 @@
     - [junk](#junk) 
 
 ### Restore a junk email to a normal ticket 
-`post api/v3/ticketing/junks/{id}/notJunk` 
+`post api/v3/ticketing/junks/{id}:notJunk` 
 - Parameters 
     - id: string, email id 
 - Response 
@@ -1269,16 +1216,17 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `accountName` | string | account name |   
-| `appId` | string | app id |
+| `name` | string | account name |   
+| `channelAppId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | if is enabled |
 | `screenName` | bool | screen name |
-| `channelIds` | string[] | channel id array |
+| `avatarUrl` | bool | avatar Url |
 | `isEnabledBot` | bool | if is enabled bot |
 | `selectedBotId` | string | selected bot id |
-| `percentageOfNewTicketToBotWhenAgentsOnline` | integer | Percentage of new ticket to bot when agents are online |
-| `percentageOfNewTicketToBotWhenAgentsOffline` | integer | Percentage of new ticket to bot when agents are offline |
+| `percentageToBotWhenOnline` | integer | Percentage of new ticket to bot when agents are online |
+| `percentageToBotWhenOffline` | integer | Percentage of new ticket to bot when agents are offline |
+| `channelIds` | string[] | channel id array |
 
 ## endpoints 
 ### List channel accounts 
@@ -1304,16 +1252,9 @@
 ### Update an channel account 
 `put api/v3/ticketing/channelAccounts/{id}` 
 - Parameters
-    - accountName: string 
+    - [channelAccount](#channelAccount)
 - Response 
     - [channelAccount](#channelAccount)
-
-### Enable/Disable bot for channel account
-`put api/v3/ticketing/channelAccounts/{id}/bot/enable`
-- Parameters
-    - isEnabled: boolean 
-- Response 
-    - http status code
 
 ### Delete an channel account 
 `delete api/v3/ticketing/channelAccounts/{id}` 
@@ -1321,42 +1262,3 @@
     - id: string,
 - Response 
     - http status code
-
-
-# Channels 
-## objects 
-### channel 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | id | 
-| `appId` | string | channel app id | 
-| `channelAccountIds` | string[] | channel account id array |
-| `name` | string | channel name | 
-| `contactIdentityTypeId` | string | contact identity type id |
-| `contactIdentityType` | int | contact identity type name |
-| `icon` | string | identity type icon url |     
-| `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
-| `outgoingMessageMaxLength` | int | outgoing message max length |
-| `outgoingMessageCapability` | int | outgoing message support message type |
-| `ifSupportDiffAccountReply` | bool | If support reply with different channel account |  
-| `ifAllowActiveCreation` | bool | If allow active create message by agent |  
-| `ifDisplaySubject` | bool | If display subject in agent console |  
-| `ifDisplayContact` | bool | If display contact in agent console |  
-| `ifDisplayCc` | bool | If display cc in agent console |  
-| `ifDisplayToolbarOfEditor` | bool | If display toolbar of editor in agent console |  
-| `ifDisplayAttachment` | bool | If display attachment |  
-| `ifDisplayChannelAccount` | bool | If display channel account |  
-| `ifEnableFullScreenReplay` | bool | If enable full screen when reply message |  
-| `ifHasNote` | bool | If has note |  
-| `ifEnableSaveAsDraft` | bool | If enable save draft |  
-| `ifAllowAtFeature` | bool | If allow @ |  
-| `ifAllowActiveReply` | bool | If allow active reply |  
-| `ifSupportBot` | bool | If support bot |  
-
-## endpoints 
-### List all integrated channels 
-`get api/v3/ticketing/channels` 
-- Parameters
-    - no parameter
-- Response 
-    - [channel](#channel)[] 
