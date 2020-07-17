@@ -40,13 +40,13 @@
 |[Ticket](#tickets)|/api/v3/ticketing/tickets| Tickets | 
 |[PortalTicket](#portalTickets)|/api/v3/ticketing/portalTickets| Portal tickets |
 |[DeletedTicket](#DeletedTicket)|/api/v3/ticketing/deletedTickets| Deleted tickets |
-|[Attachment](#attachments)|/api/v3/ticketing/attachments| Upload attachment for tickets | 
 |[View](#views)|/api/v3/ticketing/views| Agent console views| 
-|[Routing](#Routing)|/api/v3/ticketing/routing| Routing | 
+|[Routing](#Routing)|/api/v3/ticketing/routingConfig | Routing | 
 |[AutoDistribution](#AutoDistributions)|/api/v3/ticketing/autoDistribution| Auto distributions | 
 |[Trigger](#Triggers)|/api/v3/ticketing/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/ticketing/SLAPolicies| SLA policies | 
-|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/ticketing/workingTime| Work time and holiday | 
+|[WorkingHour](#WorkingHour)|/api/v3/ticketing/workingHourConfig| Work time | 
+|[Holiday](#Holiday)|/api/v3/ticketing/holidays| Holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v3/ticketing/fields| System fields and custom fields | 
 |[BlockedSender](#blockedsenders)|/api/v3/ticketing/blockedSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/ticketing/junks| Emails from blocked senders | 
@@ -940,7 +940,7 @@
 + Response
     - http status code
 
-# WorkingTime&Holiday
+# WorkingHour
 ## objects
 ### workingHoursConfig
 | Name | Type | Description | 
@@ -967,6 +967,23 @@
 | `SaturdayStartTime` | time |  | 
 | `SaturdayEndTime` | time |  |
 
+## endpoints
+### Get working hour config
+`get api/v3/ticketing/workingHoursConfig`
++ Parameters
+    - no parameters
++ Response
+    - [workingHour](#workingHour) list
+
+### Update working hour config
+`put api/v3/ticketing/workingHoursConfig`
++ Parameters
+    - workingHours: [workingHoursConfig](#workingHoursConfig)[]
++ Response
+    - http status code
+
+# Holiday
+## objects
 ### holiday
 | Name | Type | Description |
 | - | - | - | 
@@ -975,20 +992,6 @@
 | `date` | datetime | the date of the holiday |
 
 ## endpoints
-### Get working time config
-`get api/v3/ticketing/workingHoursConfig`
-+ Parameters
-    - no parameters
-+ Response
-    - [workingTime](#workingTime) list
-
-### Update working time config
-`put api/v3/ticketing/workingHoursConfig`
-+ Parameters
-    - workingTimes: [workingHoursConfig](#workingHoursConfig)[]
-+ Response
-    - http status code
-
 ### List all holidays
 `get api/v3/ticketing/holidays`
 + Parameters
