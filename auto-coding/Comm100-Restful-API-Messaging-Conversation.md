@@ -390,7 +390,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v3/ticketing/tickets/{id}/messages/{messageId}?include=sender` |
+    | sender | `get api/v3/ticketing/messages/{id}?include=sender` |
 
 ### Resend a message 
 `post api/v3/ticketing/messages/{id}:resend` 
