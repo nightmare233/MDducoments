@@ -1131,10 +1131,14 @@
 ### List blocked email senders 
 `get /api/v4/ticketing/blockedEmailSenders` 
 + Parameters 
+    - pageIndex: integer
+    - pageSize: integer
     - emailOrdomain: string, domain or email address 
 + Response 
     - [block sender](#blocked-email-sender) list 
-
+    - total: integer
+    - previousPage: string, next page uri, the first page return null
+    - nextPage: string, the last page return null
 ### Get a blocked email sender
 `get /api/v4/ticketing/blockedEmailSenders/{id}`
 + Parameters
@@ -1153,7 +1157,7 @@
 ### Remove a blocked email sender 
 `delete api/v4/ticketing/blockedEmailSenders` 
 + Parameters 
-   - value: string, domain or email address 
+   - emailOrdomain: string, domain or email address 
 + Response 
     - http status code
 
