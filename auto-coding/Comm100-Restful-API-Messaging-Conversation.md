@@ -3,9 +3,6 @@
   | 4.0 | v4 | Ticketing Restful API | 2020-7-16 | Frank |  
  
 
-# Authentication 
- 
-
 # Parameter introduction 
 - Incoming parameters:
     - Get API passes parameters through the query string 
@@ -13,26 +10,6 @@
     - DateTime Parameters: 
         - All time parameters need to be entered in the standard format of <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a>
 - All time values are UTC time. The caller can convert to different time zones where needed. 
-
-# Includes
-- Following APIs can use `Includes` as parameters to get related objects.
-
-    | Endpoints | Support including parameters |
-    | - | - |
-    | `get api/v4/ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
-    | `get api/v4/ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
-    | `get api/v4/ticketing/tickets/{id}/messages` | sender, messageContact |
-    | `get api/v4/ticketing/deletedTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v4/ticketing/deletedTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
-    | `get api/v4/ticketing/deletedTickets/{id}/messages` | sender |
-    | `get api/v4/ticketing/portalTickets/{id}` | contact, messages |
-    | `get api/v4/ticketing/portalTickets` | contact |
-    | `get api/v4/ticketing/portalTickets/{id}/messages` | sender | 
-    | `get api/v4/ticketing/junks/` | sender | 
-
-- Sample:
-    - request: `get api/v4/ticketing/tickets/{id}?include=agentAssignee,createdBy,messages`
-    - response: 
 
 # Resource List 
 |Name|EndPoint|Note| 
@@ -1278,3 +1255,23 @@
     - id: string,
 - Response 
     - http status code
+
+# Includes
+- Following APIs can use `Includes` as parameters to get related objects.
+
+    | Endpoints | Support including parameters |
+    | - | - |
+    | `get api/v4/ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
+    | `get api/v4/ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
+    | `get api/v4/ticketing/tickets/{id}/messages` | sender, messageContact |
+    | `get api/v4/ticketing/deletedTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v4/ticketing/deletedTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
+    | `get api/v4/ticketing/deletedTickets/{id}/messages` | sender |
+    | `get api/v4/ticketing/portalTickets/{id}` | contact, messages |
+    | `get api/v4/ticketing/portalTickets` | contact |
+    | `get api/v4/ticketing/portalTickets/{id}/messages` | sender | 
+    | `get api/v4/ticketing/junks/` | sender | 
+
+- Sample:
+    - request: `get api/v4/ticketing/tickets/{id}?include=agentAssignee,createdBy,messages`
+    - response: 
