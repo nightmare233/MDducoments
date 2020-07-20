@@ -1039,7 +1039,7 @@
 | `linkURL` | string | only available for `link` type fields | 
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
-| `availableIn` | integer | Indicate system field is avalaible in which function. 0:none, 1:triggerCondition, 2:view, 4:SLA, 8:routingRule, 16:macro, 32:triggerFieldSetup | 
+| `availableIn` | integer | Indicate system field is avalaible in which function. 0:`none`, 1:`triggerCondition`, 2:`view`, 4:`SLA`, 8:`routingRule`, 16:`macro`, 32:`triggerFieldSetup` | 
 | `fieldOptions` | [field option](#fieldOption)[] | value option | 
 | `fieldMapping` | [fieldMapping](#fieldMapping) | field mapping | 
 
