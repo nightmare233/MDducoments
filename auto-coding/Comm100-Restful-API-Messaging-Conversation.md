@@ -778,7 +778,7 @@
 | `description` | string | description of the trigger |
 | `isEnabled` | boolean | if enabled the trigger |
 | `order` | integer | trigger execute and display order |
-| `event` | string |  `ticketCreated`, `ticketReplyReceived`, `agentReplied`, `ticketAssigneeChanged`, `ticketStatusChanged`, ` ticketStatusLastForCertainTime` |
+| `event` | string |  `whenTicketIsCreated`, `whenATicketReplyIsReceived`, `whenAnAgentReplied`, `whenTheAssigneeOfATicketHasChanged`, `whenTheStatusOfATicketHasChanged`, ` whenATicketStatusStaysTheSameForASpecifiedPeriodOfTime` |
 | `status` | string | ticket status |
 | `statusDuration` | string | ticket status duration |
 | `isValueSettingEnabled` | boolean | if set value |
@@ -1030,8 +1030,8 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `fieldId` | string | field id | 
-| `chatFieldMapping` | string | chat field name |
-| `offlineMessageFieldMapping` | string | offline message field name |
+| `chatFieldId` | string | chat field id |
+| `offlineMessageFieldId` | string | offline message field id |
 
 ## endpoints 
 ### List fields and their options 
