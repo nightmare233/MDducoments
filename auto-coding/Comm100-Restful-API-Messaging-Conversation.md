@@ -165,7 +165,7 @@
 | `post api/v4/ticketing/tickets/{id}:read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
 | `post api/v4/ticketing/tickets/{id}:unread`  | [Mark a ticket as unread ](#Mark-a-ticket-as-unread) |
 | `post api/v4/ticketing/tickets/{id}:merge` | [ Merge a ticket ](#Merge-a-ticket) |
-| `get api/v4/ticketing/tickets:unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
+| `get api/v4/ticketing/tickets/unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
 | `delete api/v4/ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
 | `delete api/v4/ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
 | `get api/v4/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
