@@ -734,8 +734,8 @@
 | `isLastAssignedAgentPreferred`| boolean | prefer to allocate to the last assignee |
 | `ifLimitMaxTicketsForAllAgents` | boolean | if set maximum number of tickets an agent can be allocated to |
 | `maxTicketsForAllAgents` | integer | maximum number of tickets all agents can be allocated to |
-| `excludePendingExternal` | boolean | if exclude `Pending External` status while validating if an agent has reached the max number |
-| `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
+| `ifExcludePendingExternalFromAgentMaxTicketCount` | boolean | if exclude `Pending External` status while count an agent's tickets number |
+| `ifExcludeOnHoldFromAgentMaxTicketCount` | boolean | if exclude `On Hold` status while count an agent's tickets number |
 | `agentAutoDistributions` | [agentAutoDistribution](#agentAutoDistribution)[] | agent preference for distribution |
 | `departmentAutoDistributions`| [departmentAutoDistribution](#departmentAutoDistribution)[] | array of department distribution rules |
 
