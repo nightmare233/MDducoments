@@ -1039,7 +1039,7 @@
 | `linkURL` | string | link URL | 
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
-| `availableIn` | integer | whick function the field availableIn | 
+| `availableIn` | integer | which function the field available In. 0:none, 1:triggerCondition, 2:view, 4:SLA, 8:routingRule, 16:macro, 32:triggerFieldSetup | 
 | `fieldOptions` | [field option](#fieldOption)[] | value option | 
 | `fieldMapping` | [fieldMapping](#fieldMapping) | field mapping | 
 
@@ -1063,7 +1063,7 @@
 `get api/v3/ticketing/fields` 
 + Parameters
     - isSystem: boolean, if is system field, optional   
-    - availableIn: string, `all`, `views`, `routingRules`, `SLA`, `triggers`,`macro`,`trigger`,`fieldSetup`， optional, default `all`
+    - availableIn: integer, 0:none, 1:triggerCondition, 2:view, 4:SLA, 8:routingRule, 16:macro, 32:triggerFieldSetup
 + Response 
     - [field](#field) list 
 
