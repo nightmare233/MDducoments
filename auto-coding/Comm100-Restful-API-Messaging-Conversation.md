@@ -40,13 +40,12 @@
 |[Ticket](#tickets)|/api/v3/ticketing/tickets| Tickets |  
 |[DeletedTicket](#DeletedTicket)|/api/v3/ticketing/deletedTickets| Deleted tickets |
 |[Message](#message)|/api/v3/ticketing/messages| Messages |  
-|[Note](#note)|/api/v3/ticketing/notes| Messages | 
 |[View](#views)|/api/v3/ticketing/views| Agent console views| 
 |[Routing](#Routing)|/api/v3/ticketing/routingConfig | Routing | 
-|[AutoDistribution](#AutoDistributionConfig)|/api/v3/ticketing/autoDistributionConfig| Auto distributions | 
+|[AutoDistributionConfig](#AutoDistributionConfig)|/api/v3/ticketing/autoDistributionConfig| Auto distributions | 
 |[Trigger](#Triggers)|/api/v3/ticketing/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/ticketing/SLAPolicies| SLA policies | 
-|[WorkingHour](#WorkingHour)|/api/v3/ticketing/workingHourConfig| Work time | 
+|[WorkingHourConfig](#WorkingHour)|/api/v3/ticketing/workingHourConfig| Work time | 
 |[Holiday](#Holiday)|/api/v3/ticketing/holidays| Holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v3/ticketing/fields| System fields and custom fields | 
 |[BlockedEmailSender](#blockedemailsenders)|/api/v3/ticketing/blockedEmailSenders| Blocked email or domain | 
@@ -987,7 +986,7 @@
 | - | - | - | 
 | `id` | string | the id of the holiday |
 | `title` | string | the title of the holiday  |
-| `date` | datetime | the date of the holiday |
+| `date` | date | the date of the holiday |
 
 ## endpoints
 ### List all holidays
@@ -1008,7 +1007,7 @@
 `post api/v3/ticketing/holidays`
 + Parameters
     - title: string, title of the holiday
-    - date: datetime, date of the holiday
+    - date: date, date of the holiday
 + Response
     - [holiday](#holiday)
 
@@ -1017,7 +1016,7 @@
 + Parameters
     - id: string
     - title: string, title of the holiday
-    - date: datetime, date of the holiday
+    - date: date, date of the holiday
 + Response
     - [holiday](#holiday)
 
