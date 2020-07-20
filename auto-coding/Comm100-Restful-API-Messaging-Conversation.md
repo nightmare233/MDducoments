@@ -265,7 +265,6 @@
     - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
-    - currentPage: string, current page uri. 
 + Includes
 
     | Includes | Description |
@@ -530,7 +529,6 @@
     - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
-    - currentPage: string, current page uri. 
 - Includes
 
     | Includes | Description |
@@ -1170,7 +1168,6 @@
     - total: integer
     - previousPage: string, next page uri, the first page return null
     - nextPage: string, the last page return null
-    - currentPage: string
 
 + Includes
 
