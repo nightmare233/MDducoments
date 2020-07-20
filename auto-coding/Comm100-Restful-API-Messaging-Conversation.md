@@ -199,9 +199,9 @@
         - operator: string 
         - value: string
 
-    Here is the list of match types and values supported by ticket system field.    
+    Here is the list of operators and values supported by ticket system field.    
     
-    | Field | Match Type | Values |
+    | Field | Operator | Values |
     | - | - | - |
     | Ticket Id | Is, IsNot  | number |
     | Subject | Contains, NotContains  | string |
@@ -220,9 +220,9 @@
     | last Message Channel | Is, IsNot | guid, channel Id |
     | last Message Channel Account | Is, IsNot | guid, channel account Id |
 
-    Here is the list of match types and values supported by ticket custom field.    
+    Here is the list of operators and values supported by ticket custom field.    
 
-    | Field DataType | Match Type | Values |
+    | Field DataType | Operator | Values |
     | - | - | - |
     | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
     | Drop-down list | Is, IsNot | option text |
