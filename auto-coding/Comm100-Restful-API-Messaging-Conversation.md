@@ -60,13 +60,13 @@
 | - | - | - | 
 | `id` | integer | id of ticket | 
 | `subject` | string | ticket subject | 
-| `relatedType` | string | `contact`, `visitor`, `agent` | 
-| `relatedId` | string | contact id, visitor id, agent id | 
 | `assigneeType` | string | `agent`, `bot` | 
-| `assigneeId` | string | agent id, bot id| 
+| `assigneeId` | string | agent id, bot id | 
 | `departmentAssigneeId` | string | department assignee id | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
+| `relatedType` | string | `contact`, `visitor` | 
+| `relatedId` | string | contact id, visitor id | 
 | `hasDraft` | boolean | if has draft | 
 | `mergedToTargetId` | int | merged ticket id | 
 | `isReadByAgent` | boolean | if the ticket is read by agent | 
