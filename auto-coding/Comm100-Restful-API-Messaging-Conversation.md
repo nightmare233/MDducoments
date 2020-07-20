@@ -1084,7 +1084,7 @@
     - linkURL: only available for `Link`
     - helpText: string
     - length: integer
-    - fieldOptions: [field option](#fieldOption)[]
+    - fieldOptions: [field option](#fieldOption)[]`
     - fieldMapping: [fieldMapping](#fieldMapping) 
 + Response
     - [field](#field) 
@@ -1092,7 +1092,7 @@
 ### Update a field
 `put api/v3/ticketing/fields/{id}`
 + Parameters
-    - name: string, required, unique
+    - name: string, unique
     - isRequired: boolean, default `false`
     - defaultValue: string
     - linkURL: only available for `Link`
