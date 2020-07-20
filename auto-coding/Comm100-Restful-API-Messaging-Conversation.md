@@ -656,7 +656,7 @@
 | `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
-| `logicalExpression` | string | logic expression |
+| `logicalExpression` | string | logical expression |
 | `conditions` | [conditions](#condition)  | an trigger condition json object. |
 | `routeToType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToAgentId` | string | route to agent id  |
@@ -787,7 +787,7 @@
 | `ifSendEmailToContacts` | boolean | if send email to contacts|
 | `ifSendEmailToAgents` | boolean | if send email to agents |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
-| `logicalExpression` | string | logic expression |
+| `logicalExpression` | string | logical expression |
 | `triggerConditions` | [triggerConditions](#condition) | trigger conditions | 
 | `triggerActionAgentRecipient` | string[] | agent id array of recipient |
 | `triggerActionEmailContent` | [triggerActionEmailContent](#triggerActionEmailContent)[] | |
@@ -855,7 +855,7 @@
 | `resolution` | integer | |
 | `operationalHours`| boolean | if `businessHours`, `calenderHours` |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
-| `logicalExpression` | string | logic expression |
+| `logicalExpression` | string | logical expression |
 | `slaPolicyCondition` | [conditions](#condition) | conditions | 
 | `order` | integer | SLA execute and display order |
 
