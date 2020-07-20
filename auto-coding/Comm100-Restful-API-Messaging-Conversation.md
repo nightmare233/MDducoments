@@ -194,9 +194,9 @@
     - pageSize: integer, default 20, max value 50
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastUpdatedTime`, `priority`, `status` , default value: `lastUpdatedTime`
     - sortOrder: string, `ascending`, `descending`, default value: `descending`
-    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, fields can be ticket system fields and custom fields.  
+    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][operator]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][operator]=is&conditions[1][value]=1`, fields can be ticket system fields and custom fields.  
         - field: string, field name
-        - matchType: string 
+        - operator: string 
         - value: string
 
     Here is the list of match types and values supported by ticket system field.    
@@ -578,7 +578,7 @@
 | - | - | - | 
 | `id` | string | id of the condition | 
 | `fieldId` | string | field id | 
-| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
+| `operator` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 | `order` | integer | order number | 
 
