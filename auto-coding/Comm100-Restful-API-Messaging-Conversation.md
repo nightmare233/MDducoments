@@ -1063,7 +1063,7 @@
 `get api/v3/ticketing/fields` 
 + Parameters
     - isSystem: boolean, if is system field, optional   
-    - availableIn: integer, 0:none, 1:triggerCondition, 2:view, 4:SLA, 8:routingRule, 16:macro, 32:triggerFieldSetup
+    - availableIn: string, `all`, `triggerCondition`, `view`, `SLA`, `routingRule`, `macro`, `triggerFieldSetup`
 + Response 
     - [field](#field) list 
 
