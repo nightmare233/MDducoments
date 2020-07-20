@@ -574,7 +574,7 @@
 ### Conditions 
   | Name | Type |Description |
   | - | - | - | 
-  | `when` | string | when the rule is triggered, including `all`, `any` and `logicalExpression` |
+  | `conditionMetType` | string | condition met type, including `all`, `any` and `logicalExpression` |
   | `logicExpression` | string | the logical expression of the conditions |
   | `list` | [condition](#condition)[] | an array of condition |
 
