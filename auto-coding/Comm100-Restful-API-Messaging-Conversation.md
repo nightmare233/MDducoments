@@ -1125,7 +1125,7 @@
 | - | - | - | 
 | `id` | string | the id of blocked sender |
 | `emailOrdomain` | string | email or domain | 
-| `blockLevel` | string | `blockasJunk`, `reject`, | 
+| `blockLevel` | string | `blockasJunk`, `reject` | 
 
 ## endpoints 
 ### List blocked email senders 
@@ -1197,14 +1197,14 @@
 ### Get a junk email 
 `get api/v4/ticketing/junks/{id}` 
 - Parameters 
-    - id: string, email id 
+    - id: string, junk id 
 - Response 
     - [junk](#junk) 
 
 ### Update a junk 
 `put api/v4/ticketing/junks/{id}` 
 - Parameters 
-    - id: string, email id 
+    - id: string, junk id 
     - isReadByAgent: boolean, 
 - Response 
     - [junk](#junk) 
@@ -1247,6 +1247,7 @@
 ### List channel accounts 
 `get api/v4/ticketing/channelAccounts` 
 - Parameters
+    - no parameters
 - Response 
     - [channelAccount](#channelAccount)[] 
 
