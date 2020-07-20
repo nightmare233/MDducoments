@@ -25,7 +25,7 @@
 |[WorkingHourConfig](#WorkingHour)|/api/v4/ticketing/workingHourConfig| Work time | 
 |[Holiday](#Holiday)|/api/v4/ticketing/holidays| Holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v4/ticketing/fields| System fields and custom fields | 
-|[BlockedEmailSender](#blockedemailsenders)|/api/v4/ticketing/blockedEmailSenders| Blocked email or domain | 
+|[BlockedEmailSender](#blockedemailsenders)|/api/v4/ticketing/blockedEmailSenders| Blocked email, domain | 
 |[Junk](#junks)|/api/v4/ticketing/junks| Emails from blocked senders | 
 |[ChannelAccount](#channel-accounts)|/api/v4/ticketing/channelAccounts| Channel accounts |  
 
@@ -47,16 +47,16 @@
 | `mergedToTargetId` | int | merged ticket id | 
 | `isReadByAgent` | boolean | if the ticket is read by agent | 
 | `isReadByContact` | boolean | if the portal ticket is read by contact | 
-| `createdById` | string | contact id or agent id or visitor id| 
-| `createdByType` | string | `agent` or `contact` or `visitor` | 
+| `createdById` | string | contact id, agent id, visitor id| 
+| `createdByType` | string | `agent`, `contact`, `visitor` | 
 | `createdTime` | datetime | create time of ticket | 
 | `lastUpdatedTime` | datetime | last updated time of ticket | 
 | `lastStatusChangedTime` | datetime | last status change time of ticket | 
 | `lastRepliedTime` | datetime | last replied time | 
-| `lastRepliedById` | string | contact id or agent id | 
-| `lastRepliedByType` | string | `agent` or `contact` or `channelAccount` or `bot`|
-| `resolvedById` | string | contact id or agent id| 
-| `resolvedByType` | string | `agent` or `contact` or `system` | 
+| `lastRepliedById` | string | last replied by id | 
+| `lastRepliedByType` | string | `agent`, `contact`, `visitor`, `channelAccount`, `bot`|
+| `resolvedById` | string | contact id, agent id| 
+| `resolvedByType` | string | `agent`, `contact`, `system` | 
 | `resolvedTime` | datetime | resolved time of ticket | 
 | `firstMessageId` | string | the id of the first message | 
 | `firstMessageChannelId` | string | the channel id of the first message | 
@@ -72,8 +72,9 @@
 | `originalConversationId` | string | original id on social platform | 
 | `isDeleted` | boolean | if deleted | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
-| `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
+| `tagIds` | string[] | tag id array | 
+
 ### custom field value
 | Name | Type | Description | 
 | - | - | - | 
@@ -104,8 +105,8 @@
 | `metadata` | string | json fomat, content of message |
 | `parentId` | string | parent id |
 | `time` | datetime | received time for incoming message, sent time for outgoing message | 
-| `sentById`| string | id of agent or contact or visitor |
-| `sentByType`| string | `agent` or `contact` or `system` or `bot` or `channelAccount` or `visitor` |  
+| `sentById`| string | id of agent, contact, visitor |
+| `sentByType`| string | `agent`, `contact`, `system`, `bot`, `channelAccount`, `visitor` |  
 | `attachments`| [attachment](#attachment)[] | attachment array |  
 | `messageDelivery` | [messageDelivery](#messageDelivery) | message delivery object |  
 
@@ -192,7 +193,7 @@
     - pageIndex: integer, default 1
     - pageSize: integer, default 20, max value 50
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastUpdatedTime`, `priority`, `status` , default value: `lastUpdatedTime`
-    - sortOrder: string, `ascending` or `descending`, default value: `descending`
+    - sortOrder: string, `ascending`, `descending`, default value: `descending`
     - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, fields can be ticket system fields and custom fields.  
         - field: string, field name
         - matchType: string 
@@ -228,7 +229,7 @@
     | Drop-down list | Is, IsNot | option text |
     | Check-box list | Is, IsNot | option text |
     | Radio button | Is, IsNot | option text |
-    | Check-box | Is, IsNot | `true` or 1, `false` or 0 |
+    | Check-box | Is, IsNot | `true`, 1, `false`, 0 |
     | Single-line text box | Contains, NotContains | string |
     | Multi-line text box | Contains, NotContains | string |
     | Agent | Is, IsNot | agent id |
@@ -297,9 +298,9 @@
     - id: integer, ticket id
     - subject: string, ticket subject
     - relatedType: string, `contact`, `visitor`
-    - relatedId: integer, contact id or visitor id
+    - relatedId: integer, contact id, visitor id
     - assignedType: string, `agent`, `bot`
-    - assigneeId: string, bot or agent id
+    - assigneeId: string, bot, agent id
     - departmentAssigneeId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
@@ -680,7 +681,7 @@
 `put api/v4/ticketing/routingConfig`
 + Parameters
     - isEnabled: boolean
-    - type: string, `simple` or `customRules`
+    - type: string, `simple`, `customRules`
     - routeTypeForSimpleRouting: string, department and agent
     - routeToAgentIdForSimpleRouting: string, simple route to agent id
     - routeToDepartmentIdForSimpleRouting, string, simple route to department id
@@ -855,7 +856,7 @@
 | `firstRespond` | integer | |
 | `nextRespond` | integer | |
 | `resolution` | integer | |
-| `operationalHours`| boolean | if `businessHours` or `calenderHours` |
+| `operationalHours`| boolean | if `businessHours`, `calenderHours` |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
 | `logicalExpression` | string | logic expression |
 | `slaPolicyCondition` | [conditions](#conditions) | conditions | 
@@ -883,7 +884,7 @@
     - firstRespond: integer, 
     - nextRespond: integer, 
     - resolution: integer, 
-    - operationalHours: boolean, `businessHours` or `calenderHours` 
+    - operationalHours: boolean, `businessHours`, `calenderHours` 
     - conditionMetType: string
     - logicalExpression
     - slaPolicyCondition: [conditions](#conditions)
@@ -898,7 +899,7 @@
     - firstRespond: integer, 
     - nextRespond: integer, 
     - resolution: integer, 
-    - operationalHours: boolean, `businessHours` or `calenderHours` 
+    - operationalHours: boolean, `businessHours`, `calenderHours` 
     - conditionMetType: string
     - logicalExpression
     - slaPolicyCondition: [conditions](#conditions)
@@ -1101,7 +1102,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | the id of blocked sender |
-| `emailOrdomain` | string | email or domain | 
+| `emailOrdomain` | string | email, domain | 
 | `blockLevel` | string | `blockasJunk`, `reject` | 
 
 ## endpoints 
@@ -1110,7 +1111,7 @@
 + Parameters 
     - pageIndex: integer
     - pageSize: integer
-    - emailOrdomain: string, domain or email address 
+    - emailOrdomain: string, domain, email address 
 + Response 
     - [block sender](#blocked-email-sender) list 
     - total: integer
@@ -1126,7 +1127,7 @@
 ### Add/update a blocked email sender 
 `put api/v4/ticketing/blockedEmailSenders` 
 + Parameters 
-    - `emailOrdomain`, string, domain or email address 
+    - `emailOrdomain`, string, domain, email address 
     - `blockLevel`, string,
 + Response 
     - [block email sender](#blocked-email-sender) 
@@ -1134,7 +1135,7 @@
 ### Remove a blocked email sender 
 `delete api/v4/ticketing/blockedEmailSenders` 
 + Parameters 
-   - emailOrdomain: string, domain or email address 
+   - emailOrdomain: string, domain, email address 
 + Response 
     - http status code
 
