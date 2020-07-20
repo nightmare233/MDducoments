@@ -108,7 +108,7 @@
 | `sentById`| string | id of agent, contact, visitor |
 | `sentByType`| string | `agent`, `contact`, `system`, `bot`, `channelAccount`, `visitor` |  
 | `attachments`| [attachment](#attachment)[] | attachment array |  
-| `messageDelivery` | [messageDelivery](#messageDelivery) | message delivery object |  
+| `messageDelivery` | [messageDelivery](#messageDelivery) | message delivery info, only available for ougoing message |  
 
 ### messageDelivery
 | Name | Type | Description | 
@@ -205,21 +205,20 @@
     | - | - | - |
     | Ticket Id | Is, IsNot  | number |
     | Subject | Contains, NotContains  | string |
-    | DepartmentAssignee | Is, IsNot  | Department Id |
-    | AgentAssignee | Is, IsNot  | Agent Id |
+    | DepartmentAssignee | Is, IsNot  | department Id |
+    | AgentAssignee | Is, IsNot  | agent Id |
     | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created Time | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Last Updated Time | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Last Status Changed Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Closed Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Resolved Time | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
     | @Mentioned Agent | Is, IsNot | number, agent Id |
     | First Message Channel | Is, IsNot | guid, channel Id |
     | First Message Channel Account | Is, IsNot | guid, channel account Id |
     | last Message Channel | Is, IsNot | guid, channel Id |
     | last Message Channel Account | Is, IsNot | guid, channel account Id |
-    | is Multi Channel | Is, IsNot | bool, if the ticket is multi channel ticket |
 
     Here is the list of match types and values supported by ticket custom field.    
 
@@ -277,10 +276,9 @@
 `post api/v4/ticketing/tickets` 
 - Parameters 
     - subject: string, ticket subject, required 
-    - agentAssigneeId: string, agent id
-    - departmentAssigneeId: string, department id
-    - assignedBotId: string, bot id
-    - assignedType: string, `agent`, `bot`
+    - assigneeType: string, `agent`, `bot`
+    - agentAssigneeId: string, agent id, bot id
+    - departmentAssigneeId: string, department id 
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
@@ -299,7 +297,7 @@
     - subject: string, ticket subject
     - relatedType: string, `contact`, `visitor`
     - relatedId: integer, contact id, visitor id
-    - assignedType: string, `agent`, `bot`
+    - assigneeType: string, `agent`, `bot`
     - assigneeId: string, bot, agent id
     - departmentAssigneeId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
