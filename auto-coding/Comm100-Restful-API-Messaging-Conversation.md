@@ -568,15 +568,10 @@
 | `id` | string | view id | 
 | `name` | string | view name | 
 | `isPrivate` | boolean | if private view| 
-| `createdById` | string | agent id | 
-| `conditions` | [conditions](#conditions) | view conditions | 
-
-### Conditions 
-  | Name | Type |Description |
-  | - | - | - | 
-  | `conditionMetType` | string | condition met type, including `all`, `any` and `logicalExpression` |
-  | `logicExpression` | string | the logical expression of the conditions |
-  | `list` | [condition](#condition)[] | an array of condition |
+| `conditionMetType` | string | condition met type | 
+| `logicalExpression` | string | logical expression | 
+| `conditions` | [conditions](#condition) | condition array | 
+| `createdById` | string | agent id |  
 
 ### condition
 | Name | Type | Description | 
@@ -600,7 +595,9 @@
 - Parameters 
     - name: string, view name, required 
     - isPrivate: boolean, if private view, default value: `false` 
-    - conditions: [conditions](#conditions), view conditions
+    - conditionMetType: string
+    - logicalExpression: string
+    - conditions: [conditions](#condition), view conditions
 - Response 
     - [view](#view) list 
 
@@ -617,7 +614,9 @@
     - id: string, view id 
     - name: string, view name, required 
     - isPrivate: boolean, if private view 
-    - conditions: [conditions](#conditions), view conditions
+    - conditionMetType: string
+    - logicalExpression: string
+    - conditions: [conditions](#condition)
 - Response 
     - [view](#view) 
 
@@ -658,7 +657,7 @@
 | `name` | string | name of the custom rule |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
 | `logicalExpression` | string | logic expression |
-| `conditions` | [conditions](#conditions)  | an trigger condition json object. |
+| `conditions` | [conditions](#condition)  | an trigger condition json object. |
 | `routeToType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToAgentId` | string | route to agent id  |
 | `routeToDepartmentId` | string | route to department id |
@@ -789,7 +788,7 @@
 | `ifSendEmailToAgents` | boolean | if send email to agents |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
 | `logicalExpression` | string | logic expression |
-| `triggerConditions` | [triggerConditions](#conditions) | trigger conditions | 
+| `triggerConditions` | [triggerConditions](#condition) | trigger conditions | 
 | `triggerActionAgentRecipient` | string[] | agent id array of recipient |
 | `triggerActionEmailContent` | [triggerActionEmailContent](#triggerActionEmailContent)[] | |
 
@@ -857,7 +856,7 @@
 | `operationalHours`| boolean | if `businessHours`, `calenderHours` |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
 | `logicalExpression` | string | logic expression |
-| `slaPolicyCondition` | [conditions](#conditions) | conditions | 
+| `slaPolicyCondition` | [conditions](#condition) | conditions | 
 | `order` | integer | SLA execute and display order |
 
 ## endpoints
@@ -885,7 +884,7 @@
     - operationalHours: boolean, `businessHours`, `calenderHours` 
     - conditionMetType: string
     - logicalExpression
-    - slaPolicyCondition: [conditions](#conditions)
+    - slaPolicyCondition: [conditions](#condition)
 + Response
     - [SLAPolicy](#SLApolicy)
 
@@ -898,9 +897,9 @@
     - nextRespond: integer, 
     - resolution: integer, 
     - operationalHours: boolean, `businessHours`, `calenderHours` 
-    - conditionMetType: string
-    - logicalExpression
-    - slaPolicyCondition: [conditions](#conditions)
+    - conditionMetType: string,
+    - logicalExpression: string,
+    - slaPolicyCondition: [conditions](#condition)
 + Response
     - [SLAPolicy](#SLApolicy)
 
