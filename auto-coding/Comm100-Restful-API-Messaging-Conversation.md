@@ -1036,10 +1036,10 @@
 | `isSystem` | boolean | if is system field | 
 | `isRequired` | boolean | value if is required | 
 | `defaultValue` | string | field default value | 
-| `linkURL` | string | link URL | 
+| `linkURL` | string | only available for `link` type fields | 
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
-| `availableIn` | integer | which function the field available In. 0:none, 1:triggerCondition, 2:view, 4:SLA, 8:routingRule, 16:macro, 32:triggerFieldSetup | 
+| `availableIn` | integer | Indicate system field is avalaible in which function. 0:none, 1:triggerCondition, 2:view, 4:SLA, 8:routingRule, 16:macro, 32:triggerFieldSetup | 
 | `fieldOptions` | [field option](#fieldOption)[] | value option | 
 | `fieldMapping` | [fieldMapping](#fieldMapping) | field mapping | 
 
@@ -1074,17 +1074,32 @@
 + Response
     - [field](#field) 
 
-### Create a field
+### Create a custom field
 `post api/v3/ticketing/fields`
 + Parameters
-    - [field](#field) 
+    - type: string, requited
+    - name: string, required, unique
+    - isRequired: boolean, default `false`
+    - defaultValue: string
+    - linkURL: only available for `Link`
+    - helpText: string
+    - length: integer
+    - fieldOptions: [field option](#fieldOption)[]
+    - fieldMapping: [fieldMapping](#fieldMapping) 
 + Response
     - [field](#field) 
 
 ### Update a field
 `put api/v3/ticketing/fields/{id}`
 + Parameters
-    - [field](#field) 
+    - name: string, required, unique
+    - isRequired: boolean, default `false`
+    - defaultValue: string
+    - linkURL: only available for `Link`
+    - helpText: string
+    - length: integer
+    - fieldOptions: [field option](#fieldOption)[]
+    - fieldMapping: [fieldMapping](#fieldMapping) 
 + Response
     - [field](#field) 
 
