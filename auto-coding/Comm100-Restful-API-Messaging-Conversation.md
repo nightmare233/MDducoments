@@ -341,6 +341,18 @@
     | sender | `get api/v4/ticketing/tickets/{id}/messages?include=sender` |
     | messagecontact | `get api/v4/ticketing/tickets/{id}/messages?include=messagecontact` |
 
+### Get a message 
+`get api/v4/ticketing/messages/{id}` 
++ Parameters 
+    - id: string, message id
++ Response 
+    - [message](#message)
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v4/ticketing/messages/{id}?include=sender` |
+
 ### Post a message 
 `post api/v4/ticketing/tickets/{id}/messages` 
 - Parameters  
@@ -354,17 +366,14 @@
 - Response 
     - [message](#message) 
 
-### Get a message 
+### Update a message 
 `get api/v4/ticketing/messages/{id}` 
 + Parameters 
     - id: string, message id
+    - metadata: string,
+    - messageDelivery: [messageDelivery](#messageDelivery)
 + Response 
     - [message](#message)
-+ Includes
-
-    | Includes | Description |
-    | - | - |
-    | sender | `get api/v4/ticketing/messages/{id}?include=sender` |
 
 ### Resend a message 
 `post api/v4/ticketing/messages/{id}:resend` 
