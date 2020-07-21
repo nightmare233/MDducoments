@@ -490,7 +490,7 @@
 | `get api/v4/ticketing/deletedTickets/{id}`  | [Get a deleted ticket](#Get-a-deleted-ticket) |
 | `get api/v4/ticketing/deletedTickets/{id}/messages`  | [List messages of a deleted ticket](#List-messages-of-a-deleted-ticket) |
 | `delete api/v4/ticketing/deletedTickets/{id}`  | [Delete a ticket permanently ](#Delete-a-ticket-permanently) |
-| `post api/v4/ticketing/deletedTickets/{id}/restore `  | [Restore a deleted ticket ](#Restore-a-deleted-ticket) |
+| `post api/v4/ticketing/deletedTickets/{id}:restore `  | [Restore a deleted ticket ](#Restore-a-deleted-ticket) |
 
 ### List deleted tickets 
 `get api/v4/ticketing/deletedTickets/` 
@@ -554,7 +554,7 @@
     - http status code 
 
 ### Restore a deleted ticket 
-`post api/v4/ticketing/deletedTickets/{id}/restore ` 
+`post api/v4/ticketing/deletedTickets/{id}:restore ` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
@@ -1158,7 +1158,7 @@
 + Parameters
     - fieldMappings: [fieldMapping](#fieldMapping) list
 + Response
-    - http status code
+    - fieldMappings: [fieldMapping](#fieldMapping) list
 
 
 # BlockedEmailSenders 
