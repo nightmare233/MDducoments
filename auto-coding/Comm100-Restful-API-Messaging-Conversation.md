@@ -768,6 +768,20 @@
 + Response
     - [autoDistributionConfig](#autoDistributionConfig)
 
+### Enable auto distribution
+`post api/v4/ticketing/autoDistributionConfig:enable`
++ Parameters
+     - no parameters
++ Response
+    - [autoDistributionConfig](#autoDistributionConfig)
+
+### Disable auto distribution
+`post api/v4/ticketing/autoDistributionConfig:disable`
++ Parameters
+     - no parameters
++ Response
+    - [autoDistributionConfig](#autoDistributionConfig)
+
 # Triggers
 ## object
 ### trigger
@@ -836,6 +850,20 @@
 + Response
     - [trigger](#trigger)
 
+### Enable a trigger
+`post api/v4/ticketing/triggers/{id}:enable`
++ Parameters
+    - id: trigger id
++ Response
+    - [trigger](#trigger)   
+
+### Disable a trigger
+`post api/v4/ticketing/triggers/{id}:disable`
++ Parameters
+    - id: trigger id
++ Response
+    - [trigger](#trigger)  
+
  ### Delete a trigger
 `delete api/v4/ticketing/triggers/{id}`
 + Parameters
@@ -861,7 +889,7 @@
 
 ## endpoints
 ### List all SLA policies
-`get api/v4/ticketing/Slapolicies`
+`get api/v4/ticketing/SlaPolicies`
 + Parameters
     - no parameters
 + Response
@@ -875,7 +903,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
-`post api/v4/ticketing/SLAPolicies`
+`post api/v4/ticketing/SlaPolicies`
 + Parameters
     - isEnabled: boolean, if enabled this SLA policy 
     - firstRespond: integer, 
@@ -889,7 +917,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
-`put api/v4/ticketing/SLAPolicies/{id}`
+`put api/v4/ticketing/SlaPolicies/{id}`
 + Parameters
     - id: string, SLA policy id 
     - isEnabled: boolean, if enabled this SLA policy 
@@ -903,8 +931,22 @@
 + Response
     - [SLAPolicy](#SLApolicy)
 
+### Enable a SLA policy
+`post api/v4/ticketing/SlaPolicies/{id}:enable`
++ Parameters
+    - id: string, SLA policy id 
++ Response
+    - [SLAPolicy](#SLApolicy)
+
+### Disable a SLA policy
+`post api/v4/ticketing/SlaPolicies/{id}:disable`
++ Parameters
+    - id: string, SLA policy id 
++ Response
+    - [SLAPolicy](#SLApolicy)
+
 ### Delete a SLA policy
-`delete api/v4/ticketing/SLAPolicies/{id}`
+`delete api/v4/ticketing/SlaPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
