@@ -1287,6 +1287,7 @@
 | `channelAppId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | if is enabled |
+| `isDefault` | bool | if is default |
 | `screenName` | bool | screen name |
 | `avatarUrl` | bool | avatar Url |
 | `isEnabledBot` | bool | if is enabled bot |
