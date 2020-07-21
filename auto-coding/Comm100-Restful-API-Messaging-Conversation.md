@@ -1311,21 +1311,35 @@
 - Response 
     - [channelAccount](#channelAccount) 
 
-### Add an channel account 
+### Add a channel account 
 `post api/v4/ticketing/channelAccounts` 
 - Parameters
     - channelAccount: [channelAccount](#channelAccount) 
 - Response 
     - [channelAccount](#channelAccount)
 
-### Update an channel account 
+### Update a channel account 
 `put api/v4/ticketing/channelAccounts/{id}` 
 - Parameters
     - [channelAccount](#channelAccount)
 - Response 
     - [channelAccount](#channelAccount)
 
-### Delete an channel account 
+### Enable bot for a channel account 
+`post api/v4/ticketing/channelAccounts/{id}:enableBot` 
+- Parameters
+    - string: channel account id
+- Response 
+    - [channelAccount](#channelAccount)
+
+### Disable bot for a channel account 
+`post api/v4/ticketing/channelAccounts/{id}:disableBot` 
+- Parameters
+    - string: channel account id
+- Response 
+    - [channelAccount](#channelAccount)
+
+### Delete a channel account 
 `delete api/v4/ticketing/channelAccounts/{id}` 
 - Parameters
     - id: string,
