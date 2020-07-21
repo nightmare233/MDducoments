@@ -630,11 +630,11 @@
 
 # Routing
 ## objects
-### routing
+### routingConfig
 | Name | Type | Description |
 | - | - | - |
 | `isEnabled` | boolean | whether the routing is enabled or not.
-| `type` |string | the type of routing, including `simple`and `customRules`. |
+| `type` |string | the type of routing, including `simple`and `routingRules`. |
 | `routeTypeForSimpleRouting` | string | the rule of route ,including `department` and `agent` |
 | `routeToAgentIdForSimpleRouting` | string | route to agent id |
 | `routeToDepartmentIdForSimpleRouting` | string | route to department id |
@@ -652,9 +652,9 @@
 ### routingRule
 | Name | Type | Description |
 | - | - | - |
-| `id` | string | id of the custom rule |
-| `isEnabled` | boolean | whether the custom rule is enabled or not. |
-| `name` | string | name of the custom rule |
+| `id` | string | id of the routing rule |
+| `isEnabled` | boolean | whether the routing rule is enabled or not. |
+| `name` | string | name of the routing rule |
 | `conditionMetType` | string | `any`,`all`,`logicalExpression` |
 | `logicalExpression` | string | logical expression |
 | `conditions` | [conditions](#condition)  | an trigger condition json object. |
@@ -664,7 +664,7 @@
 | `priority` | string | ticket priority enum number|
 | `percentageToBotWhenOnline` | integer | Percentage of new ticket to bot when agents are online |
 | `percentageToBotWhenOffline` | integer | Percentage of new ticket to bot when agents are offline |
-| `order` | integer | order of the custom rule |
+| `order` | integer | order of the routing rule |
 
 ## endpoints
 ### get routingConfig
@@ -672,13 +672,13 @@
 + Parameters
     - no parameters
 + Response
-    - [routingRule](#routingRule)
+    - [routingConfig](#routingConfig)
 
 ### Update routing
 `put api/v4/ticketing/routingConfig`
 + Parameters
     - isEnabled: boolean
-    - type: string, `simple`, `customRules`
+    - type: string, `simple`, `routingRules`
     - routeTypeForSimpleRouting: string, department and agent
     - routeToAgentIdForSimpleRouting: string, simple route to agent id
     - routeToDepartmentIdForSimpleRouting, string, simple route to department id
@@ -692,33 +692,59 @@
     - percentageToBotWhenOnlineWhenNoRuleMatched: integer
     - percentageToBotWhenOfflineWhenNoRuleMatched: integer 
 + Response
-    - [routing](#routing)
+    - [routingConfig](#routingConfig)
 
-
-### Create a custom rule
-`post api/v4/ticketing/routingRules`
+### Enable routing
+`post api/v4/ticketing/routingConfig:enable`
 + Parameters
-    - customRule: [customRule](#customRule)
+    - no parameters
 + Response
-    - [customRule](#customRule)
+    - [routingConfig](#routingConfig)
 
-### Get a custom rule
+### Disable routing
+`post api/v4/ticketing/routingConfig:disable`
++ Parameters
+    - no parameters
++ Response
+    - [routingConfig](#routingConfig)
+
+### Get a routing rule
 `get api/v4/ticketing/routingRules/{id}`
 + Parameters
     - id: string
 + Response
-    - [customRule](#customRule)
+    - [routingRule](#routingRule)
 
-### Update a custom rule
+### Create a routing rule
+`post api/v4/ticketing/routingRules`
++ Parameters
+    - routingRule: [routingRule](#routingRule)
++ Response
+    - [routingRule](#routingRule)
+
+### Update a routing rule
 `put api/v4/ticketing/routingRules/{id}`
 + Parameters
-    - customRule: [customRule](#customRule)
+    - routingRule: [routingRule](#routingRule)
 + Response
-    - [customRule](#customRule)
+    - [routingRule](#routingRule)
 
+### Enable a routing rule
+`post api/v4/ticketing/routingRules/{id}:enable`
++ Parameters
+    - id: routing rule id
++ Response
+    - [routingRule](#routingRule)
 
-### Delete a custom rule
-`put api/v4/ticketing/routingRules/{id}`
+### Disable a routing rule
+`post api/v4/ticketing/routingRules/{id}:disable`
++ Parameters
+    - id: routing rule id
++ Response
+    - [routingRule](#routingRule)
+
+### Delete a routing rule
+`delete api/v4/ticketing/routingRules/{id}`
 + Parameters
     - id: string
 + Response
