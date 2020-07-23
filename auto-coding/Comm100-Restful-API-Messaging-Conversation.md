@@ -172,8 +172,7 @@
 | `post api/v4/ticketing/tickets/{id}/messages` | [Post a message](#Post-a-message) |
 | `get api/v4/ticketing/messages/{id}`  | [Get a message](#Get-a-message) |
 | `post api/v4/ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
-| `get api/v4/ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) |
-| `post api/v4/ticketing/tickets/{id}/draft`  | [Create a ticket draft ](#Create-a-ticket-draft) |
+| `get api/v4/ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) | 
 | `put api/v4/ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
 | `delete api/v4/ticketing/tickets/{id}/draft`  | [ Delete a ticket draft ](#Delete-a-ticket-draft) |
 | `get api/v4/ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
@@ -427,13 +426,6 @@
 - Response 
     - [ticket draft](#ticket-draft) 
 
-### Create a ticket draft 
-`post api/v4/ticketing/tickets/{id}/draft` 
-- Parameters 
-    - [ticket draft](#ticket-draft) 
-- Response 
-    - [ticket draft](#ticket-draft) 
-
 ### Update a ticket draft 
 `put api/v4/ticketing/tickets/{id}/draft` 
 - Parameters 
@@ -479,7 +471,8 @@
 ### List unread tickets number for views 
 `get api/v4/ticketing/tickets/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
 - Parameters 
-    - viewIds: view id array 
+    - viewIds: view id array
+    - timeZoneOffset: double
 - Response 
     - allCount: integer, all unread ticket number. 
     - array including: 
