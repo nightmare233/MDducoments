@@ -1163,7 +1163,7 @@
     - http status code
 
 ### Mapping fields
-`put api/v4/ticketing/fields/mapping`
+`put api/v4/ticketing/fieldmappings`
 + Parameters
     - fieldMappings: [fieldMapping](#fieldMapping) list
 + Response
@@ -1207,9 +1207,9 @@
     - [block email sender](#blocked-email-sender) 
 
 ### Remove a blocked email sender 
-`delete api/v4/ticketing/blockedEmailSenders` 
+`delete api/v4/ticketing/blockedEmailSenders/{id}` 
 + Parameters 
-   - emailOrdomain: string, domain, email address 
+   - id: string
 + Response 
     - http status code
 
