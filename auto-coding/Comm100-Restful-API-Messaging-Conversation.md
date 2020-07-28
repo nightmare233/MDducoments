@@ -839,8 +839,8 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `subject` | string | subject of the email content |
-| `htmlText` | string | html body |
-| `plainText` | string | plain text |
+| `htmlBody` | string | html body |
+| `textBody` | string | plain text |
 
 ### triggerActionUpdateField
 | Name | Type | Description | 
