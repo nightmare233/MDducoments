@@ -15,7 +15,7 @@
 |Name|EndPoint|Note| 
 |---|---|---| 
 |[Ticket](#tickets)|/api/v4/ticketing/tickets| Tickets |  
-|[DeletedTicket](#DeletedTicket)|/api/v4/ticketing/deletedTickets| Deleted tickets |
+|[RecycleBinTicket](#RecycleBinTicket)|/api/v4/ticketing/recycleBinTickets| Deleted tickets |
 |[Message](#message)|/api/v4/ticketing/messages| Messages |  
 |[View](#views)|/api/v4/ticketing/views| Agent console views| 
 |[Routing](#Routing)|/api/v4/ticketing/routingConfig | Routing | 
@@ -482,20 +482,20 @@
         - unreadMentionedCount: integer, the number of tickets which is unread and mentioned to me 
         - unreadMentionedTicketIds: integer[]
 
-# DeletedTicket
+# RecycleBinTicket
 
 ## endpoints 
 
 |EndPoint|Note| 
 |---|---|
-| `get api/v4/ticketing/deletedTickets/`  | [List deleted tickets ](#List-deleted-tickets ) |
-| `get api/v4/ticketing/deletedTickets/{id}`  | [Get a deleted ticket](#Get-a-deleted-ticket) |
-| `get api/v4/ticketing/deletedTickets/{id}/messages`  | [List messages of a deleted ticket](#List-messages-of-a-deleted-ticket) |
-| `delete api/v4/ticketing/deletedTickets/{id}`  | [Delete a ticket permanently ](#Delete-a-ticket-permanently) |
-| `post api/v4/ticketing/deletedTickets/{id}:restore `  | [Restore a deleted ticket ](#Restore-a-deleted-ticket) |
+| `get api/v4/ticketing/recycleBinTickets/`  | [List recycleBin tickets ](#List-recycleBin-tickets ) |
+| `get api/v4/ticketing/recycleBinTickets/{id}`  | [Get a recycleBin ticket](#Get-a-recycleBin-ticket) |
+| `get api/v4/ticketing/recycleBinTickets/{id}/messages`  | [List messages of a recycleBin ticket](#List-messages-of-a-recycleBin-ticket) |
+| `delete api/v4/ticketing/recycleBinTickets/{id}`  | [Delete a ticket permanently ](#Delete-a-ticket-permanently) |
+| `post api/v4/ticketing/recycleBinTickets/{id}:restore `  | [Restore a recycleBin ticket ](#Restore-a-recycleBin-ticket) |
 
-### List deleted tickets 
-`get api/v4/ticketing/deletedTickets/` 
+### List recycleBin tickets 
+`get api/v4/ticketing/recycleBinTickets/` 
 - Parameters 
     - keywords: string
     - pageIndex: integer
@@ -503,7 +503,7 @@
     - timeFrom: DateTime, last reply time, default search the last 30 days
     - timeTo: DateTime, last reply time, default value is the current time
 - Response 
-    - deletedTickets: [ticket](#ticket) list 
+    - recycleBinTickets: [ticket](#ticket) list 
     - total: integer, total number of tickets 
     - previousPage: string, next page uri, the first page return null. 
     - nextPage: string, the last page return null. 
@@ -511,15 +511,15 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v4/ticketing/deletedTickets?include=agentAssignee` |
-    | departmentAssignee | `get api/v4/ticketing/deletedTickets?include=departmentAssignee` |
-    | contactOrVisitor | `get api/v4/ticketing/deletedTickets?include=contactOrVisitor` |
-    | createdBy | `get api/v4/ticketing/deletedTickets?include=createdBy` |
-    | lastRepliedBy | `get api/v4/ticketing/deletedTickets?include=lastRepliedBy` | 
-    | lastMessage | `get api/v4/ticketing/deletedTickets?include=lastMessage` | 
+    | agentAssignee | `get api/v4/ticketing/recycleBinTickets?include=agentAssignee` |
+    | departmentAssignee | `get api/v4/ticketing/recycleBinTickets?include=departmentAssignee` |
+    | contactOrVisitor | `get api/v4/ticketing/recycleBinTickets?include=contactOrVisitor` |
+    | createdBy | `get api/v4/ticketing/recycleBinTickets?include=createdBy` |
+    | lastRepliedBy | `get api/v4/ticketing/recycleBinTickets?include=lastRepliedBy` | 
+    | lastMessage | `get api/v4/ticketing/recycleBinTickets?include=lastMessage` | 
 
-### Get a deleted ticket 
-`get api/v4/ticketing/deletedTickets/{id}` 
+### Get a recycleBin ticket 
+`get api/v4/ticketing/recycleBinTickets/{id}` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
@@ -528,16 +528,16 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v4/ticketing/deletedTickets/{id}?include=agentAssignee` |
-    | departmentAssignee | `get api/v4/ticketing/deletedTickets/{id}?include=departmentAssignee` |
-    | contactOrVisitor | `get api/v4/ticketing/deletedTickets/{id}?include=contactOrVisitor` |
-    | createdBy | `get api/v4/ticketing/deletedTickets/{id}?include=createdBy` |
-    | lastRepliedBy | `get api/v4/ticketing/deletedTickets/{id}?include=lastRepliedBy` |
-    | messages | `get api/v4/ticketing/deletedTickets/{id}?include=messages` |
-    | eventLogs | `get api/v4/ticketing/deletedTickets/{id}?include=eventLogs` |
+    | agentAssignee | `get api/v4/ticketing/recycleBinTickets/{id}?include=agentAssignee` |
+    | departmentAssignee | `get api/v4/ticketing/recycleBinTickets/{id}?include=departmentAssignee` |
+    | contactOrVisitor | `get api/v4/ticketing/recycleBinTickets/{id}?include=contactOrVisitor` |
+    | createdBy | `get api/v4/ticketing/recycleBinTickets/{id}?include=createdBy` |
+    | lastRepliedBy | `get api/v4/ticketing/recycleBinTickets/{id}?include=lastRepliedBy` |
+    | messages | `get api/v4/ticketing/recycleBinTickets/{id}?include=messages` |
+    | eventLogs | `get api/v4/ticketing/recycleBinTickets/{id}?include=eventLogs` |
 
-### List messages of a deleted ticket
-`get api/v4/ticketing/deletedTickets/{id}/messages` 
+### List messages of a recycleBin ticket
+`get api/v4/ticketing/recycleBinTickets/{id}/messages` 
 - Parameters 
     - id: integer, ticket id
 - Response 
@@ -546,17 +546,17 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v4/ticketing/deletedTickets/{id}/messages?include=sender` |
+    | sender | `get api/v4/ticketing/recycleBinTickets/{id}/messages?include=sender` |
 
 ### Delete a ticket permanently 
-`delete api/v4/ticketing/deletedTickets/{id}` 
+`delete api/v4/ticketing/recycleBinTickets/{id}` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - http status code 
 
-### Restore a deleted ticket 
-`post api/v4/ticketing/deletedTickets/{id}:restore ` 
+### Restore a recycleBin ticket 
+`post api/v4/ticketing/recycleBinTickets/{id}:restore ` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
@@ -1347,9 +1347,9 @@
     | `get api/v4/ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
     | `get api/v4/ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
     | `get api/v4/ticketing/tickets/{id}/messages` | sender, messageContact |
-    | `get api/v4/ticketing/deletedTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v4/ticketing/deletedTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
-    | `get api/v4/ticketing/deletedTickets/{id}/messages` | sender |
+    | `get api/v4/ticketing/recycleBinTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v4/ticketing/recycleBinTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
+    | `get api/v4/ticketing/recycleBinTickets/{id}/messages` | sender |
     | `get api/v4/ticketing/portalTickets/{id}` | contact, messages |
     | `get api/v4/ticketing/portalTickets` | contact |
     | `get api/v4/ticketing/portalTickets/{id}/messages` | sender | 
