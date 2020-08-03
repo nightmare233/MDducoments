@@ -15,7 +15,7 @@
 |Name|EndPoint|Note| 
 |---|---|---| 
 |[Ticket](#tickets)|/api/v4/ticketing/tickets| Tickets |  
-|[RecycleBinTicket](#RecycleBinTicket)|/api/v4/ticketing/recycleBinTickets| Deleted tickets |
+|[RecycleBinTicket](#RecycleBinTicket)|/api/v4/ticketing/recycleBinTickets| RecycleBin tickets |
 |[Message](#message)|/api/v4/ticketing/messages| Messages |  
 |[View](#views)|/api/v4/ticketing/views| Agent console views| 
 |[Routing](#Routing)|/api/v4/ticketing/routingConfig | Routing | 
@@ -70,7 +70,7 @@
 | `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is due to be resolved | 
 | `isEditable`| boolean | if the current agent can update\reply the ticket | 
 | `originalConversationId` | string | original id on social platform | 
-| `isDeleted` | boolean | if deleted | 
+| `isInRecycleBin` | boolean | is in recycle bin | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `tagIds` | string[] | tag id array | 
@@ -491,8 +491,8 @@
 | `get api/v4/ticketing/recycleBinTickets/`  | [List recycleBin tickets ](#List-recycleBin-tickets ) |
 | `get api/v4/ticketing/recycleBinTickets/{id}`  | [Get a recycleBin ticket](#Get-a-recycleBin-ticket) |
 | `get api/v4/ticketing/recycleBinTickets/{id}/messages`  | [List messages of a recycleBin ticket](#List-messages-of-a-recycleBin-ticket) |
-| `delete api/v4/ticketing/recycleBinTickets/{id}`  | [Delete a ticket permanently ](#Delete-a-ticket-permanently) |
-| `post api/v4/ticketing/recycleBinTickets/{id}:restore `  | [Restore a recycleBin ticket ](#Restore-a-recycleBin-ticket) |
+| `delete api/v4/ticketing/recycleBinTickets/{id}`  | [Delete a recycleBin ticket](#Delete-a-recycleBin-ticket) |
+| `post api/v4/ticketing/recycleBinTickets/{id}:restore `  | [Restore a recycleBin ticket](#Restore-a-recycleBin-ticket) |
 
 ### List recycleBin tickets 
 `get api/v4/ticketing/recycleBinTickets/` 
@@ -548,7 +548,7 @@
     | - | - |
     | sender | `get api/v4/ticketing/recycleBinTickets/{id}/messages?include=sender` |
 
-### Delete a ticket permanently 
+### Delete a recycleBin ticket 
 `delete api/v4/ticketing/recycleBinTickets/{id}` 
 - Parameters 
     - id: integer, ticket id 
