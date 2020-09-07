@@ -104,6 +104,7 @@
 | `type` | string | `text`, `html`,`audio`,`video`,`image`,`file`,`location`|
 | `metadata` | string | json fomat, content of message |
 | `parentId` | string | parent id |
+| `originalId` | string | id in original channel |
 | `time` | datetime | received time for incoming message, sent time for outgoing message | 
 | `sentById`| string | id of agent, contact, visitor |
 | `sentByType`| string | `agent`, `contact`, `system`, `bot`, `channelAccount`, `visitor` |  
@@ -352,6 +353,21 @@
     | - | - |
     | sender | `get api/v4/ticketing/messages/{id}?include=sender` |
 
+### List Messages
+`get api/v4/ticketing/messages` 
++ Parameters 
+    - conditions: parameter format: `conditions[0][field]=originalId&conditions[0][operator]=is&conditions[0][value]=1234`, support fields: originalId, parentId
+        - field: string, field name
+        - operator: string 
+        - value: string
++ Response 
+    - [message](#message) list
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v4/ticketing/messages?include=sender` |
+
 ### Post a message 
 `post api/v4/ticketing/tickets/{id}/messages` 
 - Parameters  
@@ -359,8 +375,8 @@
     - body: string, required
     - metadata: string, json
     - parentId: string
-    - sentByType: string
-    - sentById: string
+    - sentByType: string, agent or contact
+    - sentById: string, agent Id or contact Id
     - time: datetime
 - Response 
     - [message](#message) 
@@ -1243,6 +1259,16 @@
 `get api/v4/ticketing/junks/{id}` 
 - Parameters 
     - id: string, junk id 
+- Response 
+    - [junk](#junk) 
+
+### Post a junk email 
+`post api/v4/ticketing/junks/` 
+- Parameters 
+    - channelAccountId: string
+    - content: string 
+    - isReadByAgent: boolean
+    - Time: datetime
 - Response 
     - [junk](#junk) 
 
