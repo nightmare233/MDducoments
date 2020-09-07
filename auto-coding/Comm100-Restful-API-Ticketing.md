@@ -172,7 +172,7 @@
 | `get api/v4/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
 | `post api/v4/ticketing/tickets/{id}/messages` | [Post a message](#Post-a-message) |
 | `get api/v4/ticketing/messages/{id}`  | [Get a message](#Get-a-message) |
-| `get api/v4/ticketing/messages`  | [List messages](#List-messages) |
+| `get api/v4/ticketing/messages:identify`  | [Iditify a specific message by original Id and channel Id](#Iditify-a-specific-message-by-original-Id-and-channel-Id) |
 | `post api/v4/ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
 | `get api/v4/ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) | 
 | `put api/v4/ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
@@ -354,20 +354,13 @@
     | - | - |
     | sender | `get api/v4/ticketing/messages/{id}?include=sender` |
 
-### List Messages
-`get api/v4/ticketing/messages` 
+### Iditify a specific message by original Id and channel Id
+`post api/v4/ticketing/messages:identify` 
 + Parameters 
-    - conditions: parameter format: `conditions[0][field]=originalId&conditions[0][operator]=is&conditions[0][value]=1234`, support fields: originalId, parentId
-        - field: string, field name
-        - operator: string 
-        - value: string
+    - originalId: string
+    - channelId: string
 + Response 
-    - [message](#message) list
-+ Includes
-
-    | Includes | Description |
-    | - | - |
-    | sender | `get api/v4/ticketing/messages?include=sender` |
+    - [message](#message)
 
 ### Post a message 
 `post api/v4/ticketing/tickets/{id}/messages` 
