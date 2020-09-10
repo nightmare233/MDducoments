@@ -41,8 +41,8 @@
 | `departmentAssigneeId` | string | department assignee id | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
-| `relatedType` | string | `contact`, `visitor` | 
-| `relatedId` | string | contact id, visitor id | 
+| `contactOrVisitorType` | string | `contact`, `visitor` | 
+| `contactOrVisitorId` | string | contact id, visitor id | 
 | `hasDraft` | boolean | if has draft | 
 | `mergedToTargetId` | int | merged ticket id | 
 | `isReadByAgent` | boolean | if the ticket is read by agent | 
@@ -282,22 +282,27 @@
     - departmentAssigneeId: string, department id 
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
+    - channelId: string, the channel id of the first message,
+    - channelAccount: string, the channel account id of the first message,
+    - contactOrVisitorId: string,
+    - contactOrVisitorType: string, `contact` or `visitor`
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
-    - message: the first message of the ticket, required
+    - firstMessage: the first message of the ticket, option
         - body: string, required
         - type: string, message type,
         - metadata: string, json of message content
 + Response 
     - [ticket](#tickets)
 
+
 ### Update a ticket 
 `put api/v4/ticketing/tickets/{id}` 
 - Parameters 
     - id: integer, ticket id
     - subject: string, ticket subject
-    - relatedType: string, `contact`, `visitor`
-    - relatedId: integer, contact id, visitor id
+    - contactOrVisitorType: string, `contact`, `visitor`
+    - contactOrVisitorId: integer, contact id, visitor id
     - assigneeType: string, `agent`, `bot`
     - assigneeId: string, bot, agent id
     - departmentAssigneeId: string, department id
@@ -319,6 +324,7 @@
     - assigneeId: string
     - departmentAssigneeId, string
     - isReadByAgent, boolean
+    - isInRecycleBin, boolean
 + Response 
     - [ticket](#ticket) list 
 
@@ -422,13 +428,6 @@
 - Response 
     - http status code 
 
-### Batch delete tickets 
-`delete api/v4/ticketing/tickets` 
-+ Parameters 
-    - ids: integer[], id array
-+ Response 
-    - http status code 
-
 ### Get a ticket draft 
 `get api/v4/ticketing/tickets/{id}/draft/` 
 - Parameters 
@@ -501,6 +500,8 @@
 | `get api/v4/ticketing/recycleBinTickets/`  | [List recycleBin tickets ](#List-recycleBin-tickets ) |
 | `get api/v4/ticketing/recycleBinTickets/{id}`  | [Get a recycleBin ticket](#Get-a-recycleBin-ticket) |
 | `get api/v4/ticketing/recycleBinTickets/{id}/messages`  | [List messages of a recycleBin ticket](#List-messages-of-a-recycleBin-ticket) |
+| `get api/v4/ticketing/recycleBinTickets/{id}/notes`  | [List notes of a recycleBin ticket](#List-notes-of-a-recycleBin-ticket) |
+| `get api/v4/ticketing/recycleBinTickets/{id}/eventlogs`  | [List eventlogs of a recycleBin ticket](#List-eventlogs-of-a-recycleBin-ticket) |
 | `delete api/v4/ticketing/recycleBinTickets/{id}`  | [Delete a recycleBin ticket](#Delete-a-recycleBin-ticket) |
 | `post api/v4/ticketing/recycleBinTickets/{id}:restore `  | [Restore a recycleBin ticket](#Restore-a-recycleBin-ticket) |
 
@@ -557,6 +558,20 @@
     | Includes | Description |
     | - | - |
     | sender | `get api/v4/ticketing/recycleBinTickets/{id}/messages?include=sender` |
+
+### List notes of a recycleBin ticket
+`get api/v4/ticketing/recycleBinTickets/{id}/notes` 
+- Parameters 
+    - id: integer, ticket id
+- Response 
+    - [note](#note)  
+
+ ### List eventlogs of a recycleBin ticket
+`get api/v4/ticketing/recycleBinTickets/{id}/eventlogs` 
+- Parameters 
+    - id: integer, ticket id
+- Response 
+    - [eventlog](#eventlog)  
 
 ### Delete a recycleBin ticket 
 `delete api/v4/ticketing/recycleBinTickets/{id}` 
