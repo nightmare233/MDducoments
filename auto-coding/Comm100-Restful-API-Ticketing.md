@@ -59,8 +59,8 @@
 | `resolvedByType` | string | `agent`, `contact`, `system` | 
 | `resolvedTime` | datetime | resolved time of ticket | 
 | `firstMessageId` | string | the id of the first message | 
-| `firstMessageChannelId` | string | the channel id of the first message | 
-| `firstMessageChannelAccountId` | string | the channel account id of the first message | 
+| `channelId` | string | the channel id of the first message | 
+| `channelAccountId` | string | the channel account id of the first message | 
 | `lastMessageId` | string | the id of the last message | 
 | `lastMessageChannelId` | string | the channel id of the last message | 
 | `lastMessageChannelAccountId` | string | the channel account id of the last message | 
@@ -171,6 +171,7 @@
 | `delete api/v4/ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
 | `get api/v4/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
 | `post api/v4/ticketing/tickets/{id}/messages` | [Post a message](#Post-a-message) |
+| `put api/v4/ticketing/messages/{id}`  | [update a message](#update-a-message) |
 | `get api/v4/ticketing/messages/{id}`  | [Get a message](#Get-a-message) |
 | `get api/v4/ticketing/messages:identify`  | [Iditify a specific message by original Id and channel Id](#Iditify-a-specific-message-by-original-Id-and-channel-Id) |
 | `post api/v4/ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
@@ -604,7 +605,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of the condition | 
-| `fieldId` | string | field id | 
+| `fieldName` | string | field name | 
 | `operator` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
 | `order` | integer | order number | 
