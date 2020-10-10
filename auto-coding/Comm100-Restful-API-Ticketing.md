@@ -14,20 +14,20 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Ticket](#tickets)|/api/v4/ticketing/tickets| Tickets |  
-|[RecycleBinTicket](#RecycleBinTicket)|/api/v4/ticketing/recycleBinTickets| RecycleBin tickets |
-|[Message](#message)|/api/v4/ticketing/messages| Messages |  
-|[View](#views)|/api/v4/ticketing/views| Agent console views| 
-|[Routing](#Routing)|/api/v4/ticketing/routingConfig | Routing | 
-|[AutoDistributionConfig](#AutoDistributionConfig)|/api/v4/ticketing/autoDistributionConfig| Auto distributions | 
-|[Trigger](#Triggers)|/api/v4/ticketing/triggers| Triggers| 
-|[SLAPolicy](#SLAPolicies)|/api/v4/ticketing/SLAPolicies| SLA policies | 
-|[WorkingHourConfig](#WorkingHour)|/api/v4/ticketing/workingHourConfig| Work time | 
-|[Holiday](#Holiday)|/api/v4/ticketing/holidays| Holiday | 
-|[Fields&Mapping](#fields&mapping)|/api/v4/ticketing/fields| System fields and custom fields | 
-|[BlockedEmailSender](#blockedemailsenders)|/api/v4/ticketing/blockedEmailSenders| Blocked email, domain | 
-|[Junk](#junks)|/api/v4/ticketing/junks| Emails from blocked senders | 
-|[ChannelAccount](#channel-accounts)|/api/v4/ticketing/channelAccounts| Channel accounts |  
+|[Ticket](#tickets)| /ticketing/tickets| Tickets |  
+|[RecycleBinTicket](#RecycleBinTicket)| /ticketing/recycleBinTickets| RecycleBin tickets |
+|[Message](#message)| /ticketing/messages| Messages |  
+|[View](#views)| /ticketing/views| Agent console views| 
+|[Routing](#Routing)| /ticketing/routingConfig | Routing | 
+|[AutoDistributionConfig](#AutoDistributionConfig)| /ticketing/autoDistributionConfig| Auto distributions | 
+|[Trigger](#Triggers)| /ticketing/triggers| Triggers| 
+|[SLAPolicy](#SLAPolicies)| /ticketing/SLAPolicies| SLA policies | 
+|[WorkingHourConfig](#WorkingHour)| /ticketing/workingHourConfig| Work time | 
+|[Holiday](#Holiday)| /ticketing/holidays| Holiday | 
+|[Fields&Mapping](#fields&mapping)| /ticketing/fields| System fields and custom fields | 
+|[BlockedEmailSender](#blockedemailsenders)| /ticketing/blockedEmailSenders| Blocked email, domain | 
+|[Junk](#junks)| /ticketing/junks| Emails from blocked senders | 
+|[ChannelAccount](#channel-accounts)| /ticketing/channelAccounts| Channel accounts |  
 
 # Tickets 
 ## objects 
@@ -158,32 +158,32 @@
 ## endpoints 
 |EndPoint|Note| 
 |---|---|
-| `get api/v4/ticketing/tickets`  |  [List tickets](#List-tickets)  |
-| `get api/v4/ticketing/tickets/{id}` |  [Get a ticket](#Get-a-ticket)  |
-| `post api/v4/ticketing/tickets` | [Submit a new ticket](#Submit-a-new-ticket) |
-| `put api/v4/ticketing/tickets/{id}` | [Update a ticket ](#Update-a-ticket ) |
-| `put api/v4/ticketing/tickets/`  | [Batch update tickets](#Batch-update-tickets) |
-| `post api/v4/ticketing/tickets/{id}:read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
-| `post api/v4/ticketing/tickets/{id}:unread`  | [Mark a ticket as unread ](#Mark-a-ticket-as-unread) |
-| `post api/v4/ticketing/tickets/{id}:merge` | [ Merge a ticket ](#Merge-a-ticket) |
-| `get api/v4/ticketing/tickets/unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
-| `delete api/v4/ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
-| `delete api/v4/ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
-| `get api/v4/ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
-| `post api/v4/ticketing/tickets/{id}/messages` | [Post a message](#Post-a-message) |
-| `put api/v4/ticketing/messages/{id}`  | [update a message](#update-a-message) |
-| `get api/v4/ticketing/messages/{id}`  | [Get a message](#Get-a-message) |
-| `get api/v4/ticketing/messages:identify`  | [Iditify a specific message by original Id and channel Id](#Iditify-a-specific-message-by-original-Id-and-channel-Id) |
-| `post api/v4/ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
-| `get api/v4/ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) | 
-| `put api/v4/ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
-| `delete api/v4/ticketing/tickets/{id}/draft`  | [ Delete a ticket draft ](#Delete-a-ticket-draft) |
-| `get api/v4/ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
-| `post api/v4/ticketing/tickets/{id}/notes` | [ post a note](#Post-a-note) |
-| `get api/v4/ticketing/tickets/{id}/eventLogs` | [ List ticket event logs ](#List-ticket-event-logs) |
+| `get  /ticketing/tickets`  |  [List tickets](#List-tickets)  |
+| `get  /ticketing/tickets/{id}` |  [Get a ticket](#Get-a-ticket)  |
+| `post  /ticketing/tickets` | [Submit a new ticket](#Submit-a-new-ticket) |
+| `put  /ticketing/tickets/{id}` | [Update a ticket ](#Update-a-ticket ) |
+| `put  /ticketing/tickets/`  | [Batch update tickets](#Batch-update-tickets) |
+| `post  /ticketing/tickets/{id}:read`  | [Mark a ticket as read](#Mark-a-ticket-as-read) |
+| `post  /ticketing/tickets/{id}:unread`  | [Mark a ticket as unread ](#Mark-a-ticket-as-unread) |
+| `post  /ticketing/tickets/{id}:merge` | [ Merge a ticket ](#Merge-a-ticket) |
+| `get  /ticketing/tickets/unreadCount` | [List unread tickets number for views](#List-unread-tickets-number-for-views) |
+| `delete  /ticketing/tickets/{id}` | [Delete a ticket ](#Delete-a-ticket ) |
+| `delete  /ticketing/tickets`  | [Batch delete tickets ](#Batch-delete-tickets ) |
+| `get  /ticketing/tickets/{id}/messages` | [List messages of a ticket](#List-messages-of-a-ticket) |
+| `post  /ticketing/tickets/{id}/messages` | [Post a message](#Post-a-message) |
+| `put  /ticketing/messages/{id}`  | [update a message](#update-a-message) |
+| `get  /ticketing/messages/{id}`  | [Get a message](#Get-a-message) |
+| `get  /ticketing/messages:identify`  | [Iditify a specific message by original Id and channel Id](#Iditify-a-specific-message-by-original-Id-and-channel-Id) |
+| `post  /ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
+| `get  /ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) | 
+| `put  /ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
+| `delete  /ticketing/tickets/{id}/draft`  | [ Delete a ticket draft ](#Delete-a-ticket-draft) |
+| `get  /ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
+| `post  /ticketing/tickets/{id}/notes` | [ post a note](#Post-a-note) |
+| `get  /ticketing/tickets/{id}/eventLogs` | [ List ticket event logs ](#List-ticket-event-logs) |
 
 ### List tickets 
-`get api/v4/ticketing/tickets` 
+`get  /ticketing/tickets` 
 + Each request returns a maximum of 50 tickets. 
 + Parameters 
     - viewId: string, view id
@@ -248,15 +248,15 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v4/ticketing/tickets?include=agentAssignee` |
-    | departmentAssignee | `get api/v4/ticketing/tickets?include=departmentAssignee` |
-    | contactOrVisitor | `get api/v4/ticketing/tickets?include=contactOrVisitor` |
-    | createdBy | `get api/v4/ticketing/tickets?include=createdBy` |
-    | lastRepliedBy | `get api/v4/ticketing/tickets?include=lastRepliedBy` | 
-    | lastMessage | `get api/v4/ticketing/tickets?include=lastMessage` |
+    | agentAssignee | `get  /ticketing/tickets?include=agentAssignee` |
+    | departmentAssignee | `get  /ticketing/tickets?include=departmentAssignee` |
+    | contactOrVisitor | `get  /ticketing/tickets?include=contactOrVisitor` |
+    | createdBy | `get  /ticketing/tickets?include=createdBy` |
+    | lastRepliedBy | `get  /ticketing/tickets?include=lastRepliedBy` | 
+    | lastMessage | `get  /ticketing/tickets?include=lastMessage` |
 
 ### Get a ticket 
-`get api/v4/ticketing/tickets/{id}` 
+`get  /ticketing/tickets/{id}` 
 + Parameters 
     - id: integer, ticket  
 + Response 
@@ -265,17 +265,17 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v4/ticketing/tickets/{id}?include=agentAssignee` |
-    | departmentAssignee | `get api/v4/ticketing/tickets/{id}?include=departmentAssignee` |
-    | contactOrVisitor | `get api/v4/ticketing/tickets/{id}?include=contactOrVisitor` |
-    | createdBy | `get api/v4/ticketing/tickets/{id}?include=createdBy` |
-    | lastRepliedBy | `get api/v4/ticketing/tickets/{id}?include=lastRepliedBy` |
-    | messages | `get api/v4/ticketing/tickets/{id}?include=messages` |
-    | eventLogs | `get api/v4/ticketing/tickets/{id}?include=eventLogs` |
-    | lastMessage | `get api/v4/ticketing/tickets/{id}?include=lastMessage` |
+    | agentAssignee | `get  /ticketing/tickets/{id}?include=agentAssignee` |
+    | departmentAssignee | `get  /ticketing/tickets/{id}?include=departmentAssignee` |
+    | contactOrVisitor | `get  /ticketing/tickets/{id}?include=contactOrVisitor` |
+    | createdBy | `get  /ticketing/tickets/{id}?include=createdBy` |
+    | lastRepliedBy | `get  /ticketing/tickets/{id}?include=lastRepliedBy` |
+    | messages | `get  /ticketing/tickets/{id}?include=messages` |
+    | eventLogs | `get  /ticketing/tickets/{id}?include=eventLogs` |
+    | lastMessage | `get  /ticketing/tickets/{id}?include=lastMessage` |
  
 ### Submit a new ticket
-`post api/v4/ticketing/tickets` 
+`post  /ticketing/tickets` 
 - Parameters 
     - subject: string, ticket subject, required 
     - assigneeType: string, `agent`, `bot`
@@ -298,7 +298,7 @@
 
 
 ### Update a ticket 
-`put api/v4/ticketing/tickets/{id}` 
+`put  /ticketing/tickets/{id}` 
 - Parameters 
     - id: integer, ticket id
     - subject: string, ticket subject
@@ -316,7 +316,7 @@
     - [ticket](#ticket) 
 
 ### Batch update tickets
-`put api/v4/ticketing/tickets/` 
+`put  /ticketing/tickets/` 
 + Parameters 
     - ids: integer[], ticket id array
     - status, string
@@ -330,14 +330,14 @@
     - [ticket](#ticket) list 
 
 ### List ticket event logs
-`get api/v4/ticketing/tickets/{id}/eventLogs`
+`get  /ticketing/tickets/{id}/eventLogs`
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - [event log](#event-log)
 
 ### List messages of a ticket 
-`get api/v4/ticketing/tickets/{id}/messages` 
+`get  /ticketing/tickets/{id}/messages` 
 + Parameters 
     - id: integer, ticket id 
 + Response 
@@ -346,11 +346,11 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v4/ticketing/tickets/{id}/messages?include=sender` |
-    | messagecontact | `get api/v4/ticketing/tickets/{id}/messages?include=messagecontact` |
+    | sender | `get  /ticketing/tickets/{id}/messages?include=sender` |
+    | messagecontact | `get  /ticketing/tickets/{id}/messages?include=messagecontact` |
 
 ### Get a message 
-`get api/v4/ticketing/messages/{id}` 
+`get  /ticketing/messages/{id}` 
 + Parameters 
     - id: string, message id
 + Response 
@@ -359,10 +359,10 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v4/ticketing/messages/{id}?include=sender` |
+    | sender | `get  /ticketing/messages/{id}?include=sender` |
 
 ### Iditify a specific message by original Id and channel Id
-`post api/v4/ticketing/messages:identify` 
+`post  /ticketing/messages:identify` 
 + Parameters 
     - originalId: string
     - channelId: string
@@ -370,7 +370,7 @@
     - [message](#message)
 
 ### Post a message 
-`post api/v4/ticketing/tickets/{id}/messages` 
+`post  /ticketing/tickets/{id}/messages` 
 - Parameters  
     - type: string, required
     - body: string, required
@@ -383,7 +383,7 @@
     - [message](#message) 
 
 ### Update a message 
-`get api/v4/ticketing/messages/{id}` 
+`get  /ticketing/messages/{id}` 
 + Parameters 
     - id: string, message id
     - metadata: string,
@@ -392,14 +392,14 @@
     - [message](#message)
 
 ### Resend a message 
-`post api/v4/ticketing/messages/{id}:resend` 
+`post  /ticketing/messages/{id}:resend` 
 - Parameters  
     - id: string, message id, 
 - Response 
     - [message](#message) 
 
 ### Reply bot response with an intent
-`post api/v4/ticketing/tickets/{id}/messages:botIntent`
+`post  /ticketing/tickets/{id}/messages:botIntent`
 - Parameters  
     - id: number, ticket id,
     - botId: string, bot id, required
@@ -409,49 +409,49 @@
     - http status code
 
 ### Mark a ticket as read 
-`post api/v4/ticketing/tickets/{id}:read` 
+`post  /ticketing/tickets/{id}:read` 
 + Parameters 
     - id: integer, ticket id 
 + Response 
     - http status code
 
 ### Mark a ticket as unread 
-`post api/v4/ticketing/tickets/{id}:unread` 
+`post  /ticketing/tickets/{id}:unread` 
 + Parameters 
     - id: integer, ticket id 
 + Response 
     - http status code
 
 ### Delete a ticket 
-`delete api/v4/ticketing/tickets/{id}` 
+`delete  /ticketing/tickets/{id}` 
 - Parameters 
     - id: integer, ticket id
 - Response 
     - http status code 
 
 ### Get a ticket draft 
-`get api/v4/ticketing/tickets/{id}/draft/` 
+`get  /ticketing/tickets/{id}/draft/` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Update a ticket draft 
-`put api/v4/ticketing/tickets/{id}/draft` 
+`put  /ticketing/tickets/{id}/draft` 
 - Parameters 
     - [ticket draft](#ticket-draft) 
 - Response 
     - [ticket draft](#ticket-draft) 
 
 ### Delete a ticket draft 
-`delete api/v4/ticketing/tickets/{id}/draft` 
+`delete  /ticketing/tickets/{id}/draft` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - http status code 
 
 ### List notes of a ticket 
-`get api/v4/ticketing/tickets/{id}/notes` 
+`get  /ticketing/tickets/{id}/notes` 
 + Parameters 
     - id: integer, ticket id 
 + Response 
@@ -460,10 +460,10 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v4/ticketing/tickets/{id}/notes?include=sender` |
+    | sender | `get  /ticketing/tickets/{id}/notes?include=sender` |
 
 ### Post a note 
-`post api/v4/ticketing/tickets/{id}/notes` 
+`post  /ticketing/tickets/{id}/notes` 
 - Parameters  
     - text: string, required
     - attachments, attachment[]
@@ -471,7 +471,7 @@
     - [note](#note) 
 
 ### Merge a ticket 
-`post api/v4/ticketing/tickets/{id}:merge`
+`post  /ticketing/tickets/{id}:merge`
 - Parameters 
     - id: integer, target ticket id, 
     - sourceId: integer, source ticket id 
@@ -479,7 +479,7 @@
     - [ticket](#ticket) 
 
 ### List unread tickets number for views 
-`get api/v4/ticketing/tickets/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
+`get  /ticketing/tickets/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
 - Parameters 
     - viewIds: view id array
     - timeZoneOffset: double
@@ -498,16 +498,16 @@
 
 |EndPoint|Note| 
 |---|---|
-| `get api/v4/ticketing/recycleBinTickets/`  | [List recycleBin tickets ](#List-recycleBin-tickets ) |
-| `get api/v4/ticketing/recycleBinTickets/{id}`  | [Get a recycleBin ticket](#Get-a-recycleBin-ticket) |
-| `get api/v4/ticketing/recycleBinTickets/{id}/messages`  | [List messages of a recycleBin ticket](#List-messages-of-a-recycleBin-ticket) |
-| `get api/v4/ticketing/recycleBinTickets/{id}/notes`  | [List notes of a recycleBin ticket](#List-notes-of-a-recycleBin-ticket) |
-| `get api/v4/ticketing/recycleBinTickets/{id}/eventlogs`  | [List eventlogs of a recycleBin ticket](#List-eventlogs-of-a-recycleBin-ticket) |
-| `delete api/v4/ticketing/recycleBinTickets/{id}`  | [Delete a recycleBin ticket](#Delete-a-recycleBin-ticket) |
-| `post api/v4/ticketing/recycleBinTickets/{id}:restore `  | [Restore a recycleBin ticket](#Restore-a-recycleBin-ticket) |
+| `get  /ticketing/recycleBinTickets/`  | [List recycleBin tickets ](#List-recycleBin-tickets ) |
+| `get  /ticketing/recycleBinTickets/{id}`  | [Get a recycleBin ticket](#Get-a-recycleBin-ticket) |
+| `get  /ticketing/recycleBinTickets/{id}/messages`  | [List messages of a recycleBin ticket](#List-messages-of-a-recycleBin-ticket) |
+| `get  /ticketing/recycleBinTickets/{id}/notes`  | [List notes of a recycleBin ticket](#List-notes-of-a-recycleBin-ticket) |
+| `get  /ticketing/recycleBinTickets/{id}/eventlogs`  | [List eventlogs of a recycleBin ticket](#List-eventlogs-of-a-recycleBin-ticket) |
+| `delete  /ticketing/recycleBinTickets/{id}`  | [Delete a recycleBin ticket](#Delete-a-recycleBin-ticket) |
+| `post  /ticketing/recycleBinTickets/{id}:restore `  | [Restore a recycleBin ticket](#Restore-a-recycleBin-ticket) |
 
 ### List recycleBin tickets 
-`get api/v4/ticketing/recycleBinTickets/` 
+`get  /ticketing/recycleBinTickets/` 
 - Parameters 
     - keywords: string
     - pageIndex: integer
@@ -523,15 +523,15 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v4/ticketing/recycleBinTickets?include=agentAssignee` |
-    | departmentAssignee | `get api/v4/ticketing/recycleBinTickets?include=departmentAssignee` |
-    | contactOrVisitor | `get api/v4/ticketing/recycleBinTickets?include=contactOrVisitor` |
-    | createdBy | `get api/v4/ticketing/recycleBinTickets?include=createdBy` |
-    | lastRepliedBy | `get api/v4/ticketing/recycleBinTickets?include=lastRepliedBy` | 
-    | lastMessage | `get api/v4/ticketing/recycleBinTickets?include=lastMessage` | 
+    | agentAssignee | `get  /ticketing/recycleBinTickets?include=agentAssignee` |
+    | departmentAssignee | `get  /ticketing/recycleBinTickets?include=departmentAssignee` |
+    | contactOrVisitor | `get  /ticketing/recycleBinTickets?include=contactOrVisitor` |
+    | createdBy | `get  /ticketing/recycleBinTickets?include=createdBy` |
+    | lastRepliedBy | `get  /ticketing/recycleBinTickets?include=lastRepliedBy` | 
+    | lastMessage | `get  /ticketing/recycleBinTickets?include=lastMessage` | 
 
 ### Get a recycleBin ticket 
-`get api/v4/ticketing/recycleBinTickets/{id}` 
+`get  /ticketing/recycleBinTickets/{id}` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
@@ -540,16 +540,16 @@
 
     | Includes | Description |
     | - | - |
-    | agentAssignee | `get api/v4/ticketing/recycleBinTickets/{id}?include=agentAssignee` |
-    | departmentAssignee | `get api/v4/ticketing/recycleBinTickets/{id}?include=departmentAssignee` |
-    | contactOrVisitor | `get api/v4/ticketing/recycleBinTickets/{id}?include=contactOrVisitor` |
-    | createdBy | `get api/v4/ticketing/recycleBinTickets/{id}?include=createdBy` |
-    | lastRepliedBy | `get api/v4/ticketing/recycleBinTickets/{id}?include=lastRepliedBy` |
-    | messages | `get api/v4/ticketing/recycleBinTickets/{id}?include=messages` |
-    | eventLogs | `get api/v4/ticketing/recycleBinTickets/{id}?include=eventLogs` |
+    | agentAssignee | `get  /ticketing/recycleBinTickets/{id}?include=agentAssignee` |
+    | departmentAssignee | `get  /ticketing/recycleBinTickets/{id}?include=departmentAssignee` |
+    | contactOrVisitor | `get  /ticketing/recycleBinTickets/{id}?include=contactOrVisitor` |
+    | createdBy | `get  /ticketing/recycleBinTickets/{id}?include=createdBy` |
+    | lastRepliedBy | `get  /ticketing/recycleBinTickets/{id}?include=lastRepliedBy` |
+    | messages | `get  /ticketing/recycleBinTickets/{id}?include=messages` |
+    | eventLogs | `get  /ticketing/recycleBinTickets/{id}?include=eventLogs` |
 
 ### List messages of a recycleBin ticket
-`get api/v4/ticketing/recycleBinTickets/{id}/messages` 
+`get  /ticketing/recycleBinTickets/{id}/messages` 
 - Parameters 
     - id: integer, ticket id
 - Response 
@@ -558,31 +558,31 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v4/ticketing/recycleBinTickets/{id}/messages?include=sender` |
+    | sender | `get  /ticketing/recycleBinTickets/{id}/messages?include=sender` |
 
 ### List notes of a recycleBin ticket
-`get api/v4/ticketing/recycleBinTickets/{id}/notes` 
+`get  /ticketing/recycleBinTickets/{id}/notes` 
 - Parameters 
     - id: integer, ticket id
 - Response 
     - [note](#note)  
 
  ### List eventlogs of a recycleBin ticket
-`get api/v4/ticketing/recycleBinTickets/{id}/eventlogs` 
+`get  /ticketing/recycleBinTickets/{id}/eventlogs` 
 - Parameters 
     - id: integer, ticket id
 - Response 
     - [eventlog](#eventlog)  
 
 ### Delete a recycleBin ticket 
-`delete api/v4/ticketing/recycleBinTickets/{id}` 
+`delete  /ticketing/recycleBinTickets/{id}` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
     - http status code 
 
 ### Restore a recycleBin ticket 
-`post api/v4/ticketing/recycleBinTickets/{id}:restore ` 
+`post  /ticketing/recycleBinTickets/{id}:restore ` 
 - Parameters 
     - id: integer, ticket id 
 - Response 
@@ -612,14 +612,14 @@
 
 ## endpoints 
 ### List views 
-`get /api/v4/ticketing/views`
+`get  /ticketing/views`
 - Parameters 
     - no parameters 
 - Response 
     - [view](#view) list
 
 ### Create a new view 
-`post api/v4/ticketing/views`
+`post  /ticketing/views`
 - Parameters 
     - name: string, view name, required 
     - isPrivate: boolean, if private view, default value: `false` 
@@ -630,14 +630,14 @@
     - [view](#view) list 
 
 ### Get a view and its conditions 
-`get api/v4/ticketing/views/{id}` 
+`get  /ticketing/views/{id}` 
 - Parameters 
     - id: string, view id 
 - Response 
     - [view](#view) 
 
 ### Update a view 
-`put api/v4/ticketing/views/{id}` 
+`put  /ticketing/views/{id}` 
 - Parameters 
     - id: string, view id 
     - name: string, view name, required 
@@ -649,7 +649,7 @@
     - [view](#view) 
 
 ### Delete a view 
-`delete api/v4/ticketing/views/{id}` 
+`delete  /ticketing/views/{id}` 
 - Parameters 
     - id: string, view id 
 - Response 
@@ -696,14 +696,14 @@
 
 ## endpoints
 ### get routingConfig
-`get api/v4/ticketing/routingConfig`
+`get  /ticketing/routingConfig`
 + Parameters
     - no parameters
 + Response
     - [routingConfig](#routingConfig)
 
 ### Update routing
-`put api/v4/ticketing/routingConfig`
+`put  /ticketing/routingConfig`
 + Parameters
     - isEnabled: boolean
     - type: string, `simple`, `routingRules`
@@ -723,56 +723,56 @@
     - [routingConfig](#routingConfig)
 
 ### Enable routing
-`post api/v4/ticketing/routingConfig:enable`
+`post  /ticketing/routingConfig:enable`
 + Parameters
     - no parameters
 + Response
     - [routingConfig](#routingConfig)
 
 ### Disable routing
-`post api/v4/ticketing/routingConfig:disable`
+`post  /ticketing/routingConfig:disable`
 + Parameters
     - no parameters
 + Response
     - [routingConfig](#routingConfig)
 
 ### Get a routing rule
-`get api/v4/ticketing/routingRules/{id}`
+`get  /ticketing/routingRules/{id}`
 + Parameters
     - id: string
 + Response
     - [routingRule](#routingRule)
 
 ### Create a routing rule
-`post api/v4/ticketing/routingRules`
+`post  /ticketing/routingRules`
 + Parameters
     - routingRule: [routingRule](#routingRule)
 + Response
     - [routingRule](#routingRule)
 
 ### Update a routing rule
-`put api/v4/ticketing/routingRules/{id}`
+`put  /ticketing/routingRules/{id}`
 + Parameters
     - routingRule: [routingRule](#routingRule)
 + Response
     - [routingRule](#routingRule)
 
 ### Enable a routing rule
-`post api/v4/ticketing/routingRules/{id}:enable`
+`post  /ticketing/routingRules/{id}:enable`
 + Parameters
     - id: routing rule id
 + Response
     - [routingRule](#routingRule)
 
 ### Disable a routing rule
-`post api/v4/ticketing/routingRules/{id}:disable`
+`post  /ticketing/routingRules/{id}:disable`
 + Parameters
     - id: routing rule id
 + Response
     - [routingRule](#routingRule)
 
 ### Delete a routing rule
-`delete api/v4/ticketing/routingRules/{id}`
+`delete  /ticketing/routingRules/{id}`
 + Parameters
     - id: string
 + Response
@@ -809,28 +809,28 @@
 
 ## endpoints
 ### Get auto distribution config
-`get api/v4/ticketing/autoDistributionConfig`
+`get  /ticketing/autoDistributionConfig`
 + Parameters
     - no parameters
 + Response
     - [autoDistributionConfig](#autoDistributionConfig)
 
 ### Update auto distribution config
-`put api/v4/ticketing/autoDistributionConfig`
+`put  /ticketing/autoDistributionConfig`
 + Parameters
      - [autoDistributionConfig](#autoDistributionConfig)
 + Response
     - [autoDistributionConfig](#autoDistributionConfig)
 
 ### Enable auto distribution
-`post api/v4/ticketing/autoDistributionConfig:enable`
+`post  /ticketing/autoDistributionConfig:enable`
 + Parameters
      - no parameters
 + Response
     - [autoDistributionConfig](#autoDistributionConfig)
 
 ### Disable auto distribution
-`post api/v4/ticketing/autoDistributionConfig:disable`
+`post  /ticketing/autoDistributionConfig:disable`
 + Parameters
      - no parameters
 + Response
@@ -877,49 +877,49 @@
 
 ## endpoints
 ### List all triggers
-`get api/v4/ticketing/triggers`
+`get  /ticketing/triggers`
 + Parameters 
     - no parameters
 + Response
     - [trigger](#trigger) list
 
 ### Get a trigger
-`get api/v4/ticketing/triggers/{id}`
+`get  /ticketing/triggers/{id}`
 + Parameters
     - id: string, trigger id
 + Response
     - [trigger](#trigger)
 
 ### Submit a trigger
-`post api/v4/ticketing/triggers`
+`post  /ticketing/triggers`
 + Parameters
     -[trigger](#trigger)
 + Response
     - [trigger](#trigger)
 
  ### Update a trigger
-`put api/v4/ticketing/triggers/{id}`
+`put  /ticketing/triggers/{id}`
 + Parameters
     -[trigger](#trigger)
 + Response
     - [trigger](#trigger)
 
 ### Enable a trigger
-`post api/v4/ticketing/triggers/{id}:enable`
+`post  /ticketing/triggers/{id}:enable`
 + Parameters
     - id: trigger id
 + Response
     - [trigger](#trigger)   
 
 ### Disable a trigger
-`post api/v4/ticketing/triggers/{id}:disable`
+`post  /ticketing/triggers/{id}:disable`
 + Parameters
     - id: trigger id
 + Response
     - [trigger](#trigger)  
 
  ### Delete a trigger
-`delete api/v4/ticketing/triggers/{id}`
+`delete  /ticketing/triggers/{id}`
 + Parameters
     - id: string, trigger id
 + Response
@@ -943,21 +943,21 @@
 
 ## endpoints
 ### List all SLA policies
-`get api/v4/ticketing/SlaPolicies`
+`get  /ticketing/SlaPolicies`
 + Parameters
     - no parameters
 + Response
     - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
-`get api/v4/ticketing/SlaPolicies/{id}`
+`get  /ticketing/SlaPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
-`post api/v4/ticketing/SlaPolicies`
+`post  /ticketing/SlaPolicies`
 + Parameters
     - isEnabled: boolean, if enabled this SLA policy 
     - firstRespond: integer, 
@@ -971,7 +971,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
-`put api/v4/ticketing/SlaPolicies/{id}`
+`put  /ticketing/SlaPolicies/{id}`
 + Parameters
     - id: string, SLA policy id 
     - isEnabled: boolean, if enabled this SLA policy 
@@ -986,21 +986,21 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Enable a SLA policy
-`post api/v4/ticketing/SlaPolicies/{id}:enable`
+`post  /ticketing/SlaPolicies/{id}:enable`
 + Parameters
     - id: string, SLA policy id 
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Disable a SLA policy
-`post api/v4/ticketing/SlaPolicies/{id}:disable`
+`post  /ticketing/SlaPolicies/{id}:disable`
 + Parameters
     - id: string, SLA policy id 
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Delete a SLA policy
-`delete api/v4/ticketing/SlaPolicies/{id}`
+`delete  /ticketing/SlaPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
@@ -1035,14 +1035,14 @@
 
 ## endpoints
 ### Get working hour config
-`get api/v4/ticketing/workingHoursConfig`
+`get  /ticketing/workingHoursConfig`
 + Parameters
     - no parameters
 + Response
     - [workingHour](#workingHour) list
 
 ### Update working hour config
-`put api/v4/ticketing/workingHoursConfig`
+`put  /ticketing/workingHoursConfig`
 + Parameters
     - workingHours: [workingHoursConfig](#workingHoursConfig)[]
 + Response
@@ -1059,21 +1059,21 @@
 
 ## endpoints
 ### List all holidays
-`get api/v4/ticketing/holidays`
+`get  /ticketing/holidays`
 + Parameters
     - no parameters
 + Response
     - [holiday](#holiday) list
 
 ### Get a holiday
-`get api/v4/ticketing/holidays/{id}`
+`get  /ticketing/holidays/{id}`
 + Parameters
     - id: string
 + Response
     - [holiday](#holiday)
 
 ### Create a holiday
-`post api/v4/ticketing/holidays`
+`post  /ticketing/holidays`
 + Parameters
     - title: string, title of the holiday
     - date: date, date of the holiday
@@ -1081,7 +1081,7 @@
     - [holiday](#holiday)
 
 ### Update a holiday
-`put api/v4/ticketing/holidays/{id}`
+`put  /ticketing/holidays/{id}`
 + Parameters
     - id: string
     - title: string, title of the holiday
@@ -1090,7 +1090,7 @@
     - [holiday](#holiday)
 
 ### Delete a holiday
-`delete api/v4/ticketing/holidays`
+`delete  /ticketing/holidays`
 + Parameters
     - id: string
 + Response
@@ -1131,7 +1131,7 @@
 
 ## endpoints 
 ### List fields and their options 
-`get api/v4/ticketing/fields` 
+`get  /ticketing/fields` 
 + Parameters
     - isSystem: boolean, if is system field, optional   
     - availableIn: string, `all`, `triggerCondition`, `view`, `SLA`, `routingRule`, `macro`, `triggerFieldSetup`
@@ -1139,14 +1139,14 @@
     - [field](#field) list 
 
 ### Get a field
-`get api/v4/ticketing/fields/{id}`
+`get  /ticketing/fields/{id}`
 + Parameters
     - id: string, field id
 + Response
     - [field](#field) 
 
 ### Create a custom field
-`post api/v4/ticketing/fields`
+`post  /ticketing/fields`
 + Parameters
     - type: string, requited
     - name: string, required, unique
@@ -1161,7 +1161,7 @@
     - [field](#field) 
 
 ### Update a field
-`put api/v4/ticketing/fields/{id}`
+`put  /ticketing/fields/{id}`
 + Parameters
     - name: string, unique
     - isRequired: boolean, default `false`
@@ -1175,14 +1175,14 @@
     - [field](#field) 
 
 ### Delete a field
-`delete api/v4/ticketing/fields/{id}`
+`delete  /ticketing/fields/{id}`
 + Parameters
     - id, string, field id 
 + Response
     - http status code
 
 ### Mapping fields
-`put api/v4/ticketing/fieldmappings`
+`put  /ticketing/fieldmappings`
 + Parameters
     - fieldMappings: [fieldMapping](#fieldMapping) list
 + Response
@@ -1200,7 +1200,7 @@
 
 ## endpoints 
 ### List blocked email senders 
-`get /api/v4/ticketing/blockedEmailSenders` 
+`get  /ticketing/blockedEmailSenders` 
 + Parameters 
     - pageIndex: integer
     - pageSize: integer
@@ -1211,14 +1211,14 @@
     - previousPage: string, next page uri, the first page return null
     - nextPage: string, the last page return null
 ### Get a blocked email sender
-`get /api/v4/ticketing/blockedEmailSenders/{id}`
+`get  /ticketing/blockedEmailSenders/{id}`
 + Parameters
     - id: string
 + Response
     - [block email sender](#blocked-email-sender) 
 
 ### Add/update a blocked email sender 
-`put api/v4/ticketing/blockedEmailSenders` 
+`put  /ticketing/blockedEmailSenders` 
 + Parameters 
     - `emailOrdomain`, string, domain, email address 
     - `blockLevel`, string,
@@ -1226,7 +1226,7 @@
     - [block email sender](#blocked-email-sender) 
 
 ### Remove a blocked email sender 
-`delete api/v4/ticketing/blockedEmailSenders/{id}` 
+`delete  /ticketing/blockedEmailSenders/{id}` 
 + Parameters 
    - id: string
 + Response 
@@ -1245,7 +1245,7 @@
 
 ## endpoints 
 ### List junk emails
-`get api/v4/ticketing/junks` 
+`get  /ticketing/junks` 
 
 - Parameters 
     - keywords: string
@@ -1263,17 +1263,17 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v4/ticketing/junks?include=sender` | 
+    | sender | `get  /ticketing/junks?include=sender` | 
 
 ### Get a junk email 
-`get api/v4/ticketing/junks/{id}` 
+`get  /ticketing/junks/{id}` 
 - Parameters 
     - id: string, junk id 
 - Response 
     - [junk](#junk) 
 
 ### Post a junk email 
-`post api/v4/ticketing/junks/` 
+`post  /ticketing/junks/` 
 - Parameters 
     - channelAccountId: string
     - content: string 
@@ -1283,7 +1283,7 @@
     - [junk](#junk) 
 
 ### Update a junk 
-`put api/v4/ticketing/junks/{id}` 
+`put  /ticketing/junks/{id}` 
 - Parameters 
     - id: string, junk id 
     - isReadByAgent: boolean, 
@@ -1291,14 +1291,14 @@
     - [junk](#junk) 
 
 ### Restore a junk email to a normal ticket 
-`post api/v4/ticketing/junks/{id}:notJunk` 
+`post  /ticketing/junks/{id}:notJunk` 
 - Parameters 
     - id: string, email id 
 - Response 
     - [ticket](#ticket) 
 
 ### Delete a junk email 
-`delete api/v4/ticketing/junks/{id}` 
+`delete  /ticketing/junks/{id}` 
 - Parameters 
     - id: string, junk email id 
 - Response 
@@ -1327,49 +1327,49 @@
 
 ## endpoints 
 ### List channel accounts 
-`get api/v4/ticketing/channelAccounts` 
+`get  /ticketing/channelAccounts` 
 - Parameters
     - no parameters
 - Response 
     - [channelAccount](#channelAccount)[] 
 
 ### Get channel account by id
-`get api/v4/ticketing/channelAccounts/{id}` 
+`get  /ticketing/channelAccounts/{id}` 
 - Parameters
     - id: string
 - Response 
     - [channelAccount](#channelAccount) 
 
 ### Add a channel account 
-`post api/v4/ticketing/channelAccounts` 
+`post  /ticketing/channelAccounts` 
 - Parameters
     - channelAccount: [channelAccount](#channelAccount) 
 - Response 
     - [channelAccount](#channelAccount)
 
 ### Update a channel account 
-`put api/v4/ticketing/channelAccounts/{id}` 
+`put  /ticketing/channelAccounts/{id}` 
 - Parameters
     - [channelAccount](#channelAccount)
 - Response 
     - [channelAccount](#channelAccount)
 
 ### Enable bot for a channel account 
-`post api/v4/ticketing/channelAccounts/{id}:enableBot` 
+`post  /ticketing/channelAccounts/{id}:enableBot` 
 - Parameters
     - string: channel account id
 - Response 
     - [channelAccount](#channelAccount)
 
 ### Disable bot for a channel account 
-`post api/v4/ticketing/channelAccounts/{id}:disableBot` 
+`post  /ticketing/channelAccounts/{id}:disableBot` 
 - Parameters
     - string: channel account id
 - Response 
     - [channelAccount](#channelAccount)
 
 ### Delete a channel account 
-`delete api/v4/ticketing/channelAccounts/{id}` 
+`delete  /ticketing/channelAccounts/{id}` 
 - Parameters
     - id: string,
 - Response 
@@ -1380,17 +1380,17 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v4/ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
-    | `get api/v4/ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
-    | `get api/v4/ticketing/tickets/{id}/messages` | sender, messageContact |
-    | `get api/v4/ticketing/recycleBinTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v4/ticketing/recycleBinTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
-    | `get api/v4/ticketing/recycleBinTickets/{id}/messages` | sender |
-    | `get api/v4/ticketing/portalTickets/{id}` | contact, messages |
-    | `get api/v4/ticketing/portalTickets` | contact |
-    | `get api/v4/ticketing/portalTickets/{id}/messages` | sender | 
-    | `get api/v4/ticketing/junks/` | sender | 
+    | `get  /ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
+    | `get  /ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
+    | `get  /ticketing/tickets/{id}/messages` | sender, messageContact |
+    | `get  /ticketing/recycleBinTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get  /ticketing/recycleBinTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
+    | `get  /ticketing/recycleBinTickets/{id}/messages` | sender |
+    | `get  /ticketing/portalTickets/{id}` | contact, messages |
+    | `get  /ticketing/portalTickets` | contact |
+    | `get  /ticketing/portalTickets/{id}/messages` | sender | 
+    | `get  /ticketing/junks/` | sender | 
 
 - Sample:
-    - request: `get api/v4/ticketing/tickets/{id}?include=agentAssignee,createdBy,messages`
+    - request: `get  /ticketing/tickets/{id}?include=agentAssignee,createdBy,messages`
     - response: 
