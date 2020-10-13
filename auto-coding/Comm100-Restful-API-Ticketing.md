@@ -191,8 +191,7 @@
     - viewId: string, view id
     - tagId: string, tag id
     - keywords: string
-    - timeFrom: DateTime, last updated time, default search the last 90 days
-    - timeTo: DateTime, last updated time, default value is the current time
+    - time: DateTime, last updated time, default search the last 90 days, format: `time=startTime, endTime` 
     - timeZoneOffset, float, time zone of your time parameters
     - pageIndex: integer, default 1
     - pageSize: integer, default 20, max value 50
@@ -307,7 +306,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get  /ticketing/tickets/{id}/messages?include=sender` | 
+    | sentBy | `get  /ticketing/tickets/{id}/messages?include=sentBy` | 
 
 ### Get a message 
 `get  /ticketing/messages/{id}` 
@@ -319,7 +318,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get  /ticketing/messages/{id}?include=sender` |
+    | sentBy | `get  /ticketing/messages/{id}?include=sentBy` |
 
 ### Iditify a specific message by original Id and channel Id
 `post  /ticketing/messages:identify` 
@@ -427,7 +426,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get  /ticketing/tickets/{id}/notes?include=sender` |
+    | sentBy | `get  /ticketing/tickets/{id}/notes?include=sentBy` |
 
 ### Post a note 
 `post  /ticketing/tickets/{id}/notes` 
@@ -479,8 +478,7 @@
     - keywords: string
     - pageIndex: integer
     - pageSize: integer, default 20, max value 50
-    - timeFrom: DateTime, last reply time, default search the last 30 days
-    - timeTo: DateTime, last reply time, default value is the current time
+    - time: default search the last 90 days, format: `time=startTime, endTime`
 - Response 
     - recycleBinTickets: [ticket](#ticket) list 
     - total: integer, total number of tickets 
@@ -525,7 +523,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get  /ticketing/recycleBinTickets/{id}/messages?include=sender` |
+    | sentBy | `get  /ticketing/recycleBinTickets/{id}/messages?include=sentBy` |
 
 ### List notes of a recycleBin ticket
 `get  /ticketing/recycleBinTickets/{id}/notes` 
@@ -1221,8 +1219,7 @@
     - keywords: string
     - pageIndex: integer
     - pageSize: integer, default 20, max value 50
-    - timeFrom: DateTime
-    - timeTo: DateTime
+    - time: default search the last 90 days, format: `time=startTime, endTime`
 - Response 
     - junks: [junk](#junk) list 
     - total: integer
@@ -1233,7 +1230,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get  /ticketing/junks?include=sender` | 
+    | sentBy | `get  /ticketing/junks?include=sentBy` | 
 
 ### Get a junk 
 `get  /ticketing/junks/{id}` 
@@ -1349,14 +1346,14 @@
     | - | - |
     | `get  /ticketing/tickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
     | `get  /ticketing/tickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
-    | `get  /ticketing/tickets/{id}/messages` | sender, messageContact |
+    | `get  /ticketing/tickets/{id}/messages` | sentBy |
     | `get  /ticketing/recycleBinTickets` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy |
     | `get  /ticketing/recycleBinTickets/{id}` | agentAssignee, departmentAssignee, contactOrVisitor, createdBy, lastRepliedBy, messages |
-    | `get  /ticketing/recycleBinTickets/{id}/messages` | sender |
+    | `get  /ticketing/recycleBinTickets/{id}/messages` | sentBy |
     | `get  /ticketing/portalTickets/{id}` | contact, messages |
     | `get  /ticketing/portalTickets` | contact |
-    | `get  /ticketing/portalTickets/{id}/messages` | sender | 
-    | `get  /ticketing/junks/` | sender | 
+    | `get  /ticketing/portalTickets/{id}/messages` | sentBy | 
+    | `get  /ticketing/junks/` | sentBy | 
 
 - Sample:
     - request: `get  /ticketing/tickets/{id}?include=agentAssignee,createdBy,messages`
