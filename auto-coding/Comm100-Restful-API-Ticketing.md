@@ -133,7 +133,8 @@
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `ticketId` | integer | id of ticket |     
-| `body` | string | json of draft | 
+| `body` | string | draft body | 
+| `metadata` | string | json of draft | 
 | `lastUpdatedById`| string | id of agent| 
 | `LastUpdatedTime` | datetime | the last updated time |
 | `attachments`| [attachment](#attachment)[] | attachment array | 
@@ -176,6 +177,7 @@
 | `get  /ticketing/messages:identify`  | [Iditify a specific message by original Id and channel Id](#Iditify-a-specific-message-by-original-Id-and-channel-Id) |
 | `post  /ticketing/messages/{id}:resend`  | [Resend a message](#Resend-a-message) |
 | `get  /ticketing/tickets/{id}/draft`  | [Get a ticket draft ](#Get-a-ticket-draft) | 
+| `post  /ticketing/tickets/{id}/draft`  | [Create a ticket draft ](#Create-a-ticket-draft) |
 | `put  /ticketing/tickets/{id}/draft`  | [Update a ticket draft ](#Update-a-ticket-draft) |
 | `delete  /ticketing/tickets/{id}/draft`  | [ Delete a ticket draft ](#Delete-a-ticket-draft) |
 | `get  /ticketing/tickets/{id}/notes` | [List notes of a ticket](#List-notes-of-a-ticket) |
@@ -196,48 +198,7 @@
     - pageSize: integer, default 20, max value 50
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastUpdatedTime`, `priority`, `status` , default value: `lastUpdatedTime`
     - sortOrder: string, `ascending`, `descending`, default value: `descending`
-    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][operator]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][operator]=is&conditions[1][value]=1`, fields can be ticket system fields and custom fields.  
-        - field: string, field name
-        - operator: string 
-        - value: string
-
-    Here is the list of operators and values supported by ticket system field.    
-    
-    | Field | Operator | Values |
-    | - | - | - |
-    | Ticket Id | Is, IsNot  | number |
-    | Subject | Contains, NotContains  | string |
-    | DepartmentAssignee | Is, IsNot  | department Id |
-    | AgentAssignee | Is, IsNot  | agent Id |
-    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
-    | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
-    | Created Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Updated Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Status Changed Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Resolved Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
-    | @Mentioned Agent | Is, IsNot | number, agent Id |
-    | First Message Channel | Is, IsNot | guid, channel Id |
-    | First Message Channel Account | Is, IsNot | guid, channel account Id |
-    | last Message Channel | Is, IsNot | guid, channel Id |
-    | last Message Channel Account | Is, IsNot | guid, channel account Id |
-
-    Here is the list of operators and values supported by ticket custom field.    
-
-    | Field DataType | Operator | Values |
-    | - | - | - |
-    | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
-    | Drop-down list | Is, IsNot | option text |
-    | Check-box list | Is, IsNot | option text |
-    | Radio button | Is, IsNot | option text |
-    | Check-box | Is, IsNot | `true`, 1, `false`, 0 |
-    | Single-line text box | Contains, NotContains | string |
-    | Multi-line text box | Contains, NotContains | string |
-    | Agent | Is, IsNot | agent id |
-    | Department | Is, IsNot | department id |
-    | Link | Contains, NotContains | string |
-    | Url | Contains, NotContains | string |
-
+    - contactOrVisitorId: string
 
 + Response 
     - tickets: [ticket](#tickets) list, 
@@ -346,8 +307,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get  /ticketing/tickets/{id}/messages?include=sender` |
-    | messagecontact | `get  /ticketing/tickets/{id}/messages?include=messagecontact` |
+    | sender | `get  /ticketing/tickets/{id}/messages?include=sender` | 
 
 ### Get a message 
 `get  /ticketing/messages/{id}` 
@@ -433,6 +393,13 @@
 `get  /ticketing/tickets/{id}/draft/` 
 - Parameters 
     - id: integer, ticket id 
+- Response 
+    - [ticket draft](#ticket-draft) 
+
+### Create a ticket draft 
+`post  /ticketing/tickets/{id}/draft` 
+- Parameters 
+    - [ticket draft](#ticket-draft) 
 - Response 
     - [ticket draft](#ticket-draft) 
 
@@ -1238,15 +1205,18 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk |  
-| `channelAccountId`| string | channel account id | 
-| `content` | string | Content | 
-| `isReadByAgent`| boolean | | 
+| `channelId`| string | channel id | 
+| `body` | string | body | 
+| `type` | string | type: `html` or `text` | 
+| `metadata` | string | json format | 
+| `isReadByAgent`| boolean | if read by agent |
+| `sentById`| string | id of sent by |
+| `sentByType`| string | type of sent by: `contact` |
 | `Time` | datetime | the received time of the junk message | 
 
 ## endpoints 
-### List junk emails
+### List junk
 `get  /ticketing/junks` 
-
 - Parameters 
     - keywords: string
     - pageIndex: integer
@@ -1265,20 +1235,17 @@
     | - | - |
     | sender | `get  /ticketing/junks?include=sender` | 
 
-### Get a junk email 
+### Get a junk 
 `get  /ticketing/junks/{id}` 
 - Parameters 
     - id: string, junk id 
 - Response 
     - [junk](#junk) 
 
-### Post a junk email 
+### Post a junk 
 `post  /ticketing/junks/` 
 - Parameters 
-    - channelAccountId: string
-    - content: string 
-    - isReadByAgent: boolean
-    - Time: datetime
+    - [junk](#junk) 
 - Response 
     - [junk](#junk) 
 
@@ -1290,7 +1257,7 @@
 - Response 
     - [junk](#junk) 
 
-### Restore a junk email to a normal ticket 
+### Restore a junk to a ticket 
 `post  /ticketing/junks/{id}:notJunk` 
 - Parameters 
     - id: string, email id 
