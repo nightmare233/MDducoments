@@ -239,7 +239,7 @@
 - Parameters 
     - subject: string, ticket subject, required 
     - assigneeType: string, `agent`, `bot`
-    - agentAssigneeId: string, agent id, bot id
+    - assigneeId: string, agent id, bot id
     - departmentAssigneeId: string, department id 
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
