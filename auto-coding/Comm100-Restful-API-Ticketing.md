@@ -65,9 +65,9 @@
 | `lastMessageChannelId` | string | the channel id of the last message | 
 | `lastMessageChannelAccountId` | string | the channel account id of the last message | 
 | `totalReplies`| int | total replies number | 
-| `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
-| `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
-| `resolveBreachAt` | datetime | Timestamp that denotes when the ticket is due to be resolved | 
+| `firstRespondBreachTime` | datetime | Timestamp that denotes when the first response is due | 
+| `nextRespondBreachTime` | datetime | Timestamp that denotes when the next response is due | 
+| `resolveBreachTime` | datetime | Timestamp that denotes when the ticket is due to be resolved | 
 | `isEditable`| boolean | if the current agent can update\reply the ticket | 
 | `originalConversationId` | string | original id on social platform | 
 | `isInRecycleBin` | boolean | is in recycle bin | 
@@ -249,10 +249,8 @@
     - contactOrVisitorType: string, `contact` or `visitor`
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
-    - firstMessage: the first message of the ticket, option
-        - body: string, required
-        - type: string, message type,
-        - metadata: string, json of message content
+    - messages: [message](#message)[], the first message of the ticket, option
+        
 + Response 
     - [ticket](#tickets)
 
