@@ -680,7 +680,7 @@ Request body the request body contains data with the following structure:
   |`message`  | string | yes |   |   |
   |`attachments`  | [Attachment](#attachment-object)[] object | no |  the attachments of message|   
   |`callbackURL` | string | no |  The callbackURL of the Outbound Message. |  
-  |`metadata`  | [Outreach Message MetaData Object](#outreach-message-metadata-object) | no |  extra properties for outbound message|
+  |`email`  | [Outreach Message MetaData Object](#outreach-message-metadata-object) | no |  extra properties for outbound message|
   #### example:
 ```Json 
  {
