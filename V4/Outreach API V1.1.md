@@ -150,8 +150,8 @@ The request body contains data with the following structure:
   | `channel` | string | yes |  App channel of this Outreach Campaign, allowed values: `SMS`,`Email`,`WhatsApp`. |  
   | `channelAccountId` | Guid | yes |  Channel account id of this Outreach Campaign. |  
   | `message` | string | yes |  Message of this Outreach Campaign. |  
-  | `isMessageAutoAttachedToTicket` | bool | no |  Whether a message need to auto attached to ticket. |  
-  | `preferredTicketToAutoAttach` | string | no |  Allowed values are "newTicket", "existing".|  
+  | `subject` | string | yes |  Email subject of this Outreach Campaign. |  
+  | `isMessageAutoAttachedToTicket` | bool | no |  Whether a message need to auto attached to ticket. |   
   | `timeToAutoAttachToTicket` | string | no |  Allowed values are "whenTheMessageIsSent", "whenContactRepliesTheMessage". |  
   | `contactFilterConditionMetType` | string | no |  Allowed values are "all", "any", "logicalExpression". |  
   | `contactFilterLogicalExpresssion` | string | no |  Contact Filter Logical Expresssion of this Condition. |  
@@ -166,6 +166,7 @@ example:
 	"channel": "Email",
 	"channelAccountId": "647277e8-06a5-4eec-ba66-1cdd617dc778",
 	"message": "Hello, please fill in your application form by the end of this week!",
+    "subject":"Test subject",
 	"isMessageAutoAttachedToTicket": "true",
 	"timeToAutoAttachToTicket": "whenTheMessageIsSent",
 	"contactFilterConditionMetType": "any",
@@ -237,7 +238,6 @@ The request body contains data with the following structure:
   | `message` | string | no |  Message of this Outreach Campaign. |  
   | `subject` | string | no |  Email subject of this Outreach Campaign. |  
   | `isMessageAutoAttachedToTicket` | bool | no |  Whether a message need to auto attached to ticket. |  
-  | `preferredTicketToAutoAttach` | string | no |  Allowed values are "newTicket", "existing".|  
   | `timeToAutoAttachToTicket` | string | no |  Allowed values are "whenTheMessageIsSent", "whenContactRepliesTheMessage". |  
   | `contactFilterConditionMetType` | string | no |  Allowed values are "all", "any", "logicalExpression". |  
   | `contactFilterLogicalExpresssion` | string | no |  Contact Filter Logical Expresssion of this Condition. |  
@@ -399,7 +399,8 @@ The Response body contains data with the [OutreachMessage](#outreachmessage-obje
 		"channelAccountId": "647277e8-06a5-4eec-ba66-1cdd617dc778",
 		"contactId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
 		"message": "Hello, please fill in your application form by the end of this week!",
-        "metadata":{
+        "metadata":
+        {
             "subject":"Test subject",
             "reference":"outreach-f9928d68-92e6-4487-a2e8-8234fc9d1f48"
         },
