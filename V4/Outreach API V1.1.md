@@ -45,7 +45,7 @@ The CallbackURL can be any valid URL that implements this API, and it is configu
 #### Parameters
   | Name | Type | Required  | Description |     
   | - | - | - | - | 
-  | `channel` | string | no |  App channel of this Outreach Campaign, allowed value is "SMS". |  
+  | `channel` | string | no |  App channel of this Outreach Campaign, allowed values: `SMS`,`Email`,`WhatsApp`. |  
   | `channelAccountId` | Guid | no |  Channel account id of this Outreach Campaign. |  
   | `pageIndex` | int | No  | page index | 
   | `pageSize` | int | No  | page size, default is 10, if the value is 0, will return all matched contacts. | 
@@ -232,7 +232,7 @@ The request body contains data with the following structure:
   | - | - | - | - |  
   | `name` | string | no |  Name of this Outreach Campaign. |  
   | `description` | string | no |  Description of this Outreach Campaign. |  
-  | `channel` | string | no |  App channel of this Outreach Campaign, allowed value is "SMS". |  
+  | `channel` | string | no |  App channel of this Outreach Campaign, allowed values: `SMS`,`Email`,`WhatsApp`. |  
   | `channelAccountId` | Guid | no |  Channel account id of this Outreach Campaign. |  
   | `message` | string | no |  Message of this Outreach Campaign. |  
   | `subject` | string | no |  Email subject of this Outreach Campaign. |  
@@ -372,7 +372,7 @@ parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-| `channel` | string | no |  App channel of this Outreach Campaign, allowed value is "SMS". |  
+| `channel` | string | no |  App channel of this Outreach Campaign, allowed values: `SMS`,`Email`,`WhatsApp`. |  
 | `channelAccountId` | Guid | no |  Channel account id of this Outreach Campaign. |  
 | `status` | string | no |  Status of the Outreach Message. Allowed values are `queued`, `sending`, `sent`, `failed`，`delivered`,`undelivered` |  
 | `campaignId` |Guid |No| The unique id of the Outreach Campaign | 
